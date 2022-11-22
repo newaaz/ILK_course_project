@@ -1,24 +1,12 @@
-# README
+# Выпускной проект "ILK"
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ILK - это информационно-туристический портал для поиска аренды жилья, активного отдыха, развлечений и услуг в различных городах.
 
-Things you may want to cover:
+В проекте систематизирована и каталогизирована информация по городам, где в каждом городе можно будет выбрать отель, просмотреть подробную информацию о нём и забронировать понравившийся номер этого отеля.
 
-* Ruby version
+## Основной функционал 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Регистрация пользователей в качестве владельцев отелей (Owners) для возможности размещения объявлений.
+* Регистрация пользователей в качестве гостей (Guests) для возможности бронирования номера в отеле.
+* Механизм бронирования номера отеля и менеджмент заявок.
+* Внесение авансового платежа с помощью онлайн платежей.
