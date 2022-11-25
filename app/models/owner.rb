@@ -5,4 +5,6 @@ class Owner < ApplicationRecord
           :rememberable,
           :validatable,
           :confirmable
+
+  has_many  :properties, dependent: :destroy
 end

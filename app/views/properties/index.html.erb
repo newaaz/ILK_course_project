@@ -1,0 +1,13 @@
+<% provide(:title, 'All properties') %>
+
+<h1>All Properties</h1>
+
+<%= link_to 'New Property', new_property_path %>
+
+<br>
+
+<% @properties.each do |property| %>
+  <%= link_to property.title, property %>
+  <br>
+<% end %>
+

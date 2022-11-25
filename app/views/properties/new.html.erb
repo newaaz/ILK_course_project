@@ -1,0 +1,103 @@
+<% provide(:title, 'New Property') %>
+
+<h1>New Property</h1>
+
+<%= form_with(model: @property, class: 'w-75', data: {turbo: false}) do |f| %>
+  <%= render 'shared/errors', object: f.object %>
+
+  <div class="form-group mb-2">
+    <%= f.label :title, class: 'form-label' %>        
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mb-2">
+    <%= f.label :address, class: 'form-label' %>        
+    <%= f.text_field :address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mb-2">
+    <%= f.label :town_id, class: 'form-label' %>       
+    <%= f.collection_select :town_id, Town.order(:number), :id, :name, { prompt: "Выбрать..." }, class:"form-select" %>
+  </div>
+
+  <div class="form-group mb-2">
+    <%= f.label :category_id, class: 'form-label' %>       
+    <%= f.collection_select :category_id, Category.all, :id, :title, { prompt: "Выбрать..." }, class:"form-select" %>
+  </div>
+
+  <div class="row mb-3 pb-3 pt-2 bg-white shadow"><!-- mark on map -->
+    <h3 class='h4 text-center text-success'>Отметить на карте<span  class="text-danger">*</span></h3>
+    <div class="col-md-8">
+      <div id="map" style="height: 300px" class="border"></div>
+    </div>
+    <div class="col-md-4">
+      <div class="coordinates" style="width: 200px">
+        <span>Координаты</span>
+        <div class="form-group">              
+          <small class="text-muted">
+            Широта
+          </small>
+          <%= f.text_field :latitude, class: 'form-control form-control-sm', readonly: true, required: true %>
+        </div>
+        <div class="form-group">              
+          <small class="text-muted">
+            Долгота
+          </small>
+          <%= f.text_field :longitude, class: 'form-control form-control-sm', readonly: true, required: true %>
+        </div>
+        <br>        
+        <button type="button" id="clear-btn" class="d-block btn btn-outline-secondary btn-sm">Сбросить координаты</button>
+        <small class="text-muted">
+          С пустыми координатами карта отображаться не будет
+        </small>
+      </div>
+    </div>
+  </div><!-- END mark on map --> 
+
+  <div class="form-group mb-2">
+    <%= f.label :avatar, class: 'form-label' %>        
+    <%= f.file_field :avatar, class: 'form-control' %>
+  </div>
+
+
+  <%= f.submit "Save",class:"btn btn-primary my-4" %>
+<% end %>
+
+<script type="text/javascript"> // ymap
+  ymaps.ready(init);
+  function init(){
+      
+    var myMap = new ymaps.Map("map", {
+      center: [45.15, 34.52],
+      zoom: 8,
+      controls: ['zoomControl'],
+      behaviors: ['drag','dblClickZoom', 'multiTouch']
+    });    
+
+    myMap.events.add('click', function (e) {
+      if (!myMap.balloon.isOpen()) {
+        var coords = e.get('coords');
+        myMap.balloon.open(coords, {                
+            contentBody:'<p>Вы отметили новое место на карте.</p>' +
+                '<p>Координаты щелчка: ' + [
+                coords[0].toPrecision(6),
+                coords[1].toPrecision(6),
+                ].join(', ') + '</p>',
+            contentFooter:'Чтобы изменить координаты щёлкните в другом месте'
+        });
+
+        document.getElementById('property_latitude').value = coords[0].toPrecision(6)
+        document.getElementById('property_longitude').value = coords[1].toPrecision(6)
+      }
+      else {
+          myMap.balloon.close();
+      }
+    });
+
+  }
+
+  document.getElementById('clear-btn').onclick = function(e) {
+    document.getElementById('property_latitude').value = ''
+    document.getElementById('property_longitude').value = ''
+  }  
+</script>

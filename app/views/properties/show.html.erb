@@ -1,0 +1,45 @@
+<% provide(:title, @property.title) %>
+
+<h1><%= @property.title %></h1>
+
+<%= image_tag @property.avatar.variant(resize_to_limit: [600, 200]) %>
+
+<p>
+  Town: <%= @property.town.name %>
+  <br>
+  Address: <%= @property.address %>
+  <br>
+  Category: <%= @property.category.title %>
+</p>
+
+
+
+
+ <div id="map" style="height: 300px" class="border shadow"></div>
+
+
+
+ <script type="text/javascript"> // map
+    ymaps.ready(init);
+    function init(){
+      const coords = [<%= @property.latitude %>, <%= @property.longitude %>]      
+      var myMap = new ymaps.Map("map", {
+          center: coords,
+          zoom: 14,
+          behaviors: ['drag','dblClickZoom', 'multiTouch']
+      });    
+      var myPlacemark = new ymaps.Placemark(coords, {
+        balloonContentHeader: 'Однажды',
+        balloonContentBody: 'В студеную зимнюю пору',
+        balloonContentFooter: 'Мы пошли в гору',
+        hintContent: 'Зимние происшествия'
+      }, {
+        preset: "islands#blueHomeIcon"
+      });
+      myMap.geoObjects.add(myPlacemark);
+    };  
+  </script>
+
+
+
+
