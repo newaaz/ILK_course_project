@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Owners::SessionsController < Devise::SessionsController
-  include Accessible
+  include Accessibled
   skip_before_action :check_user, only: :destroy
   
   # before_action :configure_sign_in_params, only: [:create]

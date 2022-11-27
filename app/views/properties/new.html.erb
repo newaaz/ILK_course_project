@@ -59,6 +59,10 @@
     <%= f.file_field :avatar, class: 'form-control' %>
   </div>
 
+  <div class="form-group mb-2">
+    <%= f.label :images, class: 'form-label' %>        
+    <%= f.file_field :images, multiple: true, class: 'form-control' %>
+  </div>
 
   <%= f.submit "Save",class:"btn btn-primary my-4" %>
 <% end %>
@@ -67,7 +71,7 @@
   ymaps.ready(init);
   function init(){
       
-    var myMap = new ymaps.Map("map", {
+    const myMap = new ymaps.Map("map", {
       center: [45.15, 34.52],
       zoom: 8,
       controls: ['zoomControl'],
@@ -76,7 +80,7 @@
 
     myMap.events.add('click', function (e) {
       if (!myMap.balloon.isOpen()) {
-        var coords = e.get('coords');
+        const coords = e.get('coords');
         myMap.balloon.open(coords, {                
             contentBody:'<p>Вы отметили новое место на карте.</p>' +
                 '<p>Координаты щелчка: ' + [

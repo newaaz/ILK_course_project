@@ -2,7 +2,10 @@
 
 <h1>HOME</h1>
 
-
+<% @towns.each do |town| %>
+  <%= link_to town.name, town %>
+  <br>
+<% end %>
 
 
 

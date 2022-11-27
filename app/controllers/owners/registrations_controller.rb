@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Owners::RegistrationsController < Devise::RegistrationsController
-  include Accessible
+  include Accessibled
   
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]

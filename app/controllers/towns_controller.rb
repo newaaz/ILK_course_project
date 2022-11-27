@@ -5,6 +5,7 @@ class TownsController < ApplicationController
   
   def show
     @town = Town.find(params[:id])
+    @properties = @town.properties
   end
   
   def new
