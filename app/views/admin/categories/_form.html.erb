@@ -1,5 +1,5 @@
 <div class="col-6">
-  <%= form_with(model: @category, data: {turbo: false}) do |f| %>
+  <%= form_with(model: [:admin, @category], data: {turbo: false}) do |f| %>
     <%= render 'shared/errors', object: f.object%>      
     <div class="form-group">
       <%= f.label :title %>        

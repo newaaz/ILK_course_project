@@ -1,4 +1,7 @@
-class CategoriesController<ApplicationController
+class Admin::CategoriesController < Admin::BaseController
+  before_action :authorize_category!
+  after_action  :verify_authorized
+  
   def index
     @categories = Category.all
   end
@@ -11,7 +14,7 @@ class CategoriesController<ApplicationController
     @category = Category.new(category_params)
     if @category.save
       flash[:success] = "Category successfully created"
-      redirect_to categories_path
+      redirect_to admin_categories_path
     else
       flash[:info] = "Категория не создана"
       render :new
@@ -25,7 +28,7 @@ class CategoriesController<ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
-      redirect_to categories_path
+      redirect_to admin_categories_path
       flash.now[:info] = 'Category successfully edited'
     else
       flash.now[:info] = 'Failed to edit category'
@@ -37,12 +40,20 @@ class CategoriesController<ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
     flash[:info] = 'Category deleted'
-    redirect_to categories_path
+    redirect_to admin_categories_path
   end
 
 private
 
   def category_params
     params.require(:category).permit(:title, :number)
+  end
+
+  def pundit_user
+    current_owner
+  end
+
+  def authorize_category!
+    authorize(@category || Category)
   end
 end

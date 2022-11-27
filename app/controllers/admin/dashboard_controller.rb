@@ -1,9 +1,8 @@
-class Owners::DashboardController < ApplicationController
+class Admin::DashboardController < Admin::BaseController
   before_action :authorize_dashboard!
   after_action  :verify_authorized
 
-  def index
-  	@properties = current_owner.properties
+  def index  
   end
 
   private
@@ -13,6 +12,6 @@ class Owners::DashboardController < ApplicationController
   end
 
   def authorize_dashboard!
-    authorize([:owners, :dashboard])
+    authorize(:dashboard)
   end
 end

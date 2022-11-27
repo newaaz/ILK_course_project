@@ -1,7 +1,9 @@
 class PropertyPolicy < ApplicationPolicy
-  # only admin can index (then - remove index)
-  def index?
-    user.admin?
+  class Scope < Scope
+    # NOTE: Be explicit about which records you allow access to!
+    # def resolve
+    #   scope.all
+    # end
   end
   
   def show?
@@ -18,12 +20,5 @@ class PropertyPolicy < ApplicationPolicy
 
   def destroy?
     user == record.owner || user.admin?
-  end
-  
-  class Scope < Scope
-    # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
   end
 end

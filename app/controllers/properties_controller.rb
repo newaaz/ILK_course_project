@@ -1,5 +1,4 @@
 class PropertiesController < ApplicationController 
-  before_action :authenticate_owner!, except: %i[show]
   before_action :set_property, only: %i[show edit update destroy]
   before_action :authorize_property!
 

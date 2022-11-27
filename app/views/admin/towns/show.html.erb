@@ -1,0 +1,8 @@
+<h1><%= @town.name %></h1>
+
+<% @properties.each do |property| %>
+  <%= link_to property.title, property %>
+  <br>
+<% end %>
+
+

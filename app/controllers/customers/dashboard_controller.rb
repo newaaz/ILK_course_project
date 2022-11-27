@@ -1,18 +1,18 @@
-class Owners::DashboardController < ApplicationController
+class Customers::DashboardController < ApplicationController
+  #before_action :authenticate_customer!
   before_action :authorize_dashboard!
   after_action  :verify_authorized
 
   def index
-  	@properties = current_owner.properties
   end
 
   private
 
   def pundit_user
-    current_owner
+    current_customer
   end
 
   def authorize_dashboard!
-    authorize([:owners, :dashboard])
+    authorize([:customers, :dashboard])
   end
 end

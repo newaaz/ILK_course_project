@@ -1,5 +1,5 @@
 <div class="col-6">
-  <%= form_with(model: @town, data: {turbo: false}) do |f| %>
+  <%= form_with(model: [:admin, @town], data: {turbo: false}) do |f| %>
     <%= render 'shared/errors', object: f.object %>
 
     <div class="form-group mb-2">

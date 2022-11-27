@@ -1,0 +1,12 @@
+<% provide(:title, 'Categories') %>
+
+<%= link_to 'New Category', new_admin_category_path, class: 'btn btn-primary btn-sm mt-5' %>
+
+<h1>Categories</h1>
+
+<% @categories.each do |cat| %>
+  <%= "#{cat.number} - #{cat.title}" %>
+  <%= link_to 'Edit', edit_admin_category_path(cat), class: 'btn btn-warning btn-sm' %>
+  <%= link_to "Delete", admin_category_path(cat), data: { "turbo-method": :delete }, class: 'btn btn-outline-danger btn-sm' %>
+  <br>
+<% end %>

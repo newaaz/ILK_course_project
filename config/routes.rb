@@ -16,16 +16,23 @@ Rails.application.routes.draw do
     # omniauth_callbacks: 'customers/omniauth_callbacks'
   }
 
-  namespace :owners do
+  namespace :admin do
     root 'dashboard#index'
-    get '/dashboard', to: 'dashboard#main'
+    resources :towns, except: %i[show]
+    resources :categories, except: %i[show]
   end
 
-  resources :towns do
+  namespace :owners do
+    root 'dashboard#index'
+  end
+
+  namespace :customers do
+    root 'dashboard#index'
+  end
+
+  resources :towns, only: %i[show] do
     get :hotels, on: :member
   end
 
-  resources :categories, except: %i[show]
-
-  resources :properties
+  resources :properties, except: :index
 end
