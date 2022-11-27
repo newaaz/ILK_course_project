@@ -102,7 +102,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_27_090155) do
   create_table "towns", force: :cascade do |t|
     t.string "name", null: false
     t.string "parent_name", null: false
-    t.string "avatar", null: false
     t.integer "number", limit: 2, default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

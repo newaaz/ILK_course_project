@@ -3,7 +3,6 @@ class CreateTowns < ActiveRecord::Migration[7.0]
     create_table :towns do |t|
       t.string :name, null: false
       t.string :parent_name, null: false
-      t.string :avatar, null: false
       t.integer :number, default: 1, limit: 1, null: false
 
       t.timestamps

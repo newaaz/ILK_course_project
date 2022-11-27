@@ -25,9 +25,6 @@
 !/tmp/storage/
 !/tmp/storage/.keep
 
-# Ignore uploaded files from CarrierWave
-/public/uploads
-
 /public/assets
 
 # Ignore master key for decrypting credentials and more.

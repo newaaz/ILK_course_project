@@ -1,5 +1,7 @@
 <h1><%= @town.name %></h1>
 
+<%= image_tag @town.avatar.variant(resize_to_limit: [900, 200]) %>
+
 <% @properties.each do |property| %>
   <%= link_to property.title, property %>
   <br>

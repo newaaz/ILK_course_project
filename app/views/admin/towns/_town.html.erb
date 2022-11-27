@@ -1,7 +1,7 @@
 <div class="row my-3">
   <div class="col"><%= town.number %></div>
   <div class="col"><%= link_to town.name, town %></div>
-  <div class="col"><%= image_tag town.avatar.thumb.url %></div>
+  <div class="col"><%= image_tag town.avatar.variant(resize_to_limit: [400, 200]) %></div>
 
   <div class="col">
     <%= link_to 'Edit', edit_admin_town_path(town), class: 'btn btn-warning btn-sm' %>

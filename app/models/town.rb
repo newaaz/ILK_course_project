@@ -1,10 +1,10 @@
 class Town < ApplicationRecord
   has_many  :properties, dependent: :destroy
 
-  mount_uploader  :avatar, PictureUploader
+  has_one_attached  :avatar
 
   validates :name, :parent_name, :number, :avatar, presence: true  
-  validate  :avatar_size
+  #validate  :avatar_size
 
   default_scope { order(:number) }
 
