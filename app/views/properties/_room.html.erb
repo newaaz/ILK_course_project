@@ -1,0 +1,12 @@
+<h3><%= room.title %></h3>
+
+<%= image_tag(room.avatar.variant(resize_to_limit: [150, 150])) %>
+<% room.images.each do |image| %>
+  <%= image_tag(image.variant(resize_to_limit: [150, 150])) %>
+<% end %>
+
+<p>
+  Base guest: <%= room.guest_base_count %>
+  Max guest:  <%= room.guest_max_count %>
+</p>
+

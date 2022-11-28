@@ -6,4 +6,8 @@ class GuestUser
   def admin?
     false
   end
+
+  def id
+    'guest_id'
+  end
 end

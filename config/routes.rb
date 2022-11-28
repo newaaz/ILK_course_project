@@ -34,7 +34,9 @@ Rails.application.routes.draw do
     get :hotels, on: :member
   end
 
-  resources :properties, except: :index
+  resources :properties, except: :index do
+    resources :rooms, except: %i[index show], shallow: true
+  end
 
   # delete attacments (images)
   delete 'attachments/:id/purge', to: 'attachments#purge', as: 'purge_attachment' 

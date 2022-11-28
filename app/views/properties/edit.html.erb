@@ -69,7 +69,7 @@
 <% end %>
 
 <!-- remove images -->
-<%= render partial: 'attachment', collection: @property.images, as: :image %>
+<%= render partial: 'shared/attachment_edit', collection: @property.images, as: :image %>
 
 <script type="text/javascript">
     ymaps.ready(init);

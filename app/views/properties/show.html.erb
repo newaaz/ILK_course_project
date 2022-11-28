@@ -27,6 +27,11 @@
 
 <div id="map" style="height: 300px" class="border shadow"></div>
 
+<% if @property.rooms.any? %>
+  <h2>Rooms</h2>
+  <%= render partial: 'room', collection: @property.rooms, as: :room %>
+<% end %>
+
 <script type="text/javascript"> // map
   ymaps.ready(init);
   function init(){

@@ -5,7 +5,7 @@ class Property < ApplicationRecord
   belongs_to  :town
   belongs_to  :category
 
-  has_one_attached  :avatar  
+  has_many  :rooms, dependent: :destroy
 
-  validates :title, :avatar, :latitude, :longitude, presence: true
+  validates :title, :latitude, :longitude, presence: true
 end

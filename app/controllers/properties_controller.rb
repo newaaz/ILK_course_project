@@ -46,12 +46,12 @@ class PropertiesController < ApplicationController
 
   def set_property
     #@property = Property.with_attached_files.find(params[:id])
-    @property = Property.find(params[:id])
+    @property = Property.includes(:rooms).find(params[:id])
   end
 
   def property_params
-    params.require(:property).permit(:title, :address, :avatar, :town_id,
-                                     :category_id, :latitude, :longitude, images: [])
+    params.require(:property).permit(:title, :address, :town_id, :category_id,
+                                     :latitude, :longitude,:avatar, images: [])
   end  
 
   def pundit_user

@@ -3,7 +3,7 @@ class Owners::DashboardController < ApplicationController
   after_action  :verify_authorized
 
   def index
-  	@properties = current_owner.properties
+  	@properties = current_owner.properties.includes(:rooms)
   end
 
   private
