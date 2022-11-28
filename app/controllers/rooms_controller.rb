@@ -3,8 +3,9 @@ class RoomsController < ApplicationController
 
   def new
     @property = Property.find(params[:property_id])
-    @room = @property.rooms.build
+    @room = @property.rooms.build(prices: [Price.new])
     authorize(@room)
+    #@room.prices.new
   end
 
   def create    
@@ -28,6 +29,8 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     authorize(@room)
+    # FIXME cocoon add all nested forms
+    @room.prices.destroy_all
     if @room.update room_params
       redirect_to owners_root_path
     else
@@ -46,7 +49,8 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:title, :property_id, :guest_base_count, :guest_max_count,
-                                 :avatar, images: [])
+                                 :avatar, images: [],
+                                 prices_attributes: [:start_date, :end_date, :day_cost, :add_guest_cost, :_destroy])
   end
 
   def pundit_user

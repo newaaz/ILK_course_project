@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_28_074105) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_115328) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,6 +84,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_074105) do
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
 
+  create_table "prices", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
+    t.integer "day_cost", null: false
+    t.string "add_guest_cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_prices_on_room_id"
+  end
+
   create_table "properties", force: :cascade do |t|
     t.string "title", null: false
     t.string "address"
@@ -119,6 +130,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_074105) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "prices", "rooms"
   add_foreign_key "properties", "categories"
   add_foreign_key "properties", "owners"
   add_foreign_key "properties", "towns"

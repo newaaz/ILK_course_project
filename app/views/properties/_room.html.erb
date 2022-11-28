@@ -10,3 +10,6 @@
   Max guest:  <%= room.guest_max_count %>
 </p>
 
+<% room.prices.each do |price| %>
+  <%= price.start_date %>
+<% end %>

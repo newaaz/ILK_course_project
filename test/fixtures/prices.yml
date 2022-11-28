@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  room: one
+  start_date: 2022-11-28 14:53:28
+  end_date: 2022-11-28 14:53:28
+  day_cost: 1
+  add_guest_cost: MyString
+
+two:
+  room: two
+  start_date: 2022-11-28 14:53:28
+  end_date: 2022-11-28 14:53:28
+  day_cost: 1
+  add_guest_cost: MyString
