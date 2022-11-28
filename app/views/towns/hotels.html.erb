@@ -1,0 +1,17 @@
+<% provide(:title, "Properties in #{ @town.parent_name }") %>
+
+<% if @properties_category %>
+  <h1><%= @properties_category %> в <%= @town.parent_name %></h1>          
+<% else %>      
+  <h1>Properties in <%= @town.parent_name %></h1>   
+<% end %>
+
+<% @categories.each do |cat| %>
+  <%= link_to cat.title, { cat: cat.id }, class: 'btn btn-light btn-sm' %>
+<% end %>
+
+<div class="row">
+  <%= render partial: 'towns/hotel', collection: @properties, as: :property %>
+</div>
+
+
