@@ -25,17 +25,7 @@
     <%= f.collection_select :category_id, Category.all, :id, :title, { prompt: "Выбрать..." }, class:"form-select" %>
   </div>
 
-  <div class="form-group mb-2">
-    <%= f.label :avatar, class: 'form-label' %>        
-    <%= f.file_field :avatar, class: 'form-control' %>
-  </div>
-
-  <div class="form-group mb-2">
-    <%= f.label :images, class: 'form-label' %>        
-    <%= f.file_field :images, multiple: true, class: 'form-control' %>
-  </div>
-
-    <!-- map -->
+  <!-- map -->
   <div class="row mb-3 pb-3 pt-2 bg-white shadow">
     <h3 class='h4 text-center text-success'>Отметить на карте</h3>
     <div class="col-md-8">
@@ -65,10 +55,21 @@
     </div>
   </div>
 
+  <div class="form-group mb-2">
+    <%= f.label :avatar, class: 'form-label' %>        
+    <%= f.file_field :avatar, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mb-2">
+    <%= f.label :images, class: 'form-label' %>        
+    <%= f.file_field :images, multiple: true, class: 'form-control' %>
+  </div>
+
   <%= f.submit "Save",class:"btn btn-primary my-4" %>
 <% end %>
 
-
+<!-- remove images -->
+<%= render partial: 'attachment', collection: @property.images, as: :image %>
 
 <script type="text/javascript">
     ymaps.ready(init);
