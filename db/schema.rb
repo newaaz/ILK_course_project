@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_28_115328) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_171930) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_115328) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.bigint "property_id", null: false
+    t.bigint "customer_id", null: false
+    t.date "check_in", null: false
+    t.date "check_out", null: false
+    t.integer "room_id"
+    t.integer "adults", limit: 2
+    t.integer "kids", limit: 2
+    t.boolean "reservation_confirmed", default: false
+    t.boolean "payment_successful", default: false
+    t.string "owner_comment"
+    t.integer "total_amount"
+    t.text "wishes_comment"
+    t.string "customer_name"
+    t.string "customer_phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["property_id"], name: "index_orders_on_property_id"
+  end
+
   create_table "owners", force: :cascade do |t|
     t.string "name"
     t.string "email", default: "", null: false
@@ -86,8 +107,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_115328) do
 
   create_table "prices", force: :cascade do |t|
     t.bigint "room_id", null: false
-    t.datetime "start_date", null: false
-    t.datetime "end_date", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
     t.integer "day_cost", null: false
     t.string "add_guest_cost"
     t.datetime "created_at", null: false
@@ -130,6 +151,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_115328) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "properties"
   add_foreign_key "prices", "rooms"
   add_foreign_key "properties", "categories"
   add_foreign_key "properties", "owners"

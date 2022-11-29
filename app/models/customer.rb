@@ -5,4 +5,10 @@ class Customer < ApplicationRecord
           :rememberable,
           :validatable,
           :confirmable
+
+  has_many  :orders, dependent: :destroy
+
+  def admin?
+    false
+  end
 end

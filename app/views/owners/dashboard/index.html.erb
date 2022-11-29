@@ -13,9 +13,17 @@
     <%= link_to 'Add room', new_property_room_path(property), class: 'btn btn-primary btn-sm' %>
   </p>
   <br>
-  <% if property.rooms.any? %>
-    <%= render partial: 'room', collection: property.rooms, as: :room %>
+  <% if property.orders.any? %>
+    <h4>Orders</h4>
+    <% property.orders.each do |order| %>
+      <%= link_to "№-#{order.id}", order %>
+      <br>
+    <% end %>
   <% end %>
-  
+
+  <% if property.rooms.any? %>
+    <h4>Rooms:</h4>
+    <%= render partial: 'room', collection: property.rooms, as: :room %>
+  <% end %>  
 <% end %>
 

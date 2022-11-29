@@ -4,6 +4,7 @@ class Customers::DashboardController < ApplicationController
   after_action  :verify_authorized
 
   def index
+    @orders = current_customer.orders
   end
 
   private

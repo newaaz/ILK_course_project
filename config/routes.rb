@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :rooms, except: %i[index show], shallow: true
   end
 
-  # delete attacments (images)
+  resources :orders, only: %i[show new create]
+
   delete 'attachments/:id/purge', to: 'attachments#purge', as: 'purge_attachment' 
 end

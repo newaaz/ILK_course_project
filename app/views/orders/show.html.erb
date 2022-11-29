@@ -1,0 +1,12 @@
+<% provide(:title, "Order №#{@order.id}") %>
+
+<h1>Order to <%= @property.title %></h1>
+
+<p>Room: <%= @room.title %></p>
+<p>Check in: <%= @order.check_in.strftime('%d.%m.%y') %></p>
+<p>Check out: <%= @order.check_out.strftime('%d.%m.%y') %></p>
+<p>Adults: <%= @order.adults %></p>
+<p>Kids: <%= @order.kids %></p>
+<p>Customer name: <%= @order.customer_name %></p>
+<p>Customer phone: <%= @order.customer_phone_number %></p>
+<p>Wishes <%= @order.wishes_comment %></p>

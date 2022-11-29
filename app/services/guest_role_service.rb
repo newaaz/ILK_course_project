@@ -1,4 +1,4 @@
-class GuestUser
+class GuestRoleService
   def guest?
     true
   end

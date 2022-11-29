@@ -2,4 +2,11 @@
 
 <h1>Dashboard customer</h1>
 
+<h2>Orders:</h2>
+
+<% @orders.each do |order| %>
+  <%= link_to "№-#{order.id} to #{order.property.title}", order %>
+  <br>
+<% end %>
+
 
