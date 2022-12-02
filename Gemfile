@@ -43,7 +43,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails", "~> 6.0"
   gem "rails-controller-testing", "~> 1.0"
-  gem "factory_bot_rails", "~> 6.2"
+  gem "factory_bot_rails", "~> 6.2"  
   gem "letter_opener", "~> 1.8"
 end
 
@@ -63,9 +63,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
-  gem "shoulda-matchers", "~> 5.1"  
+  gem "shoulda-matchers", "~> 5.2"
   gem "launchy", "~> 2.5"
   gem "database_cleaner-active_record", "~> 2.0"
 end
-
 
