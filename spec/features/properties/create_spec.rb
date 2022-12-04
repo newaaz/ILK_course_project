@@ -6,31 +6,40 @@ feature 'Partner can create property', %q{
   I'd like to be able to create Property
 } do
 
-  given(:partner) { Partner.create!(email: 'partner@test.com', password: '12345678') }
+  given(:partner)  { create(:partner) }
+  given!(:town)    { create(:town) }
+  given!(:category){ create(:category) }
 
-  scenario 'Authenticated partner create property' do
-    visit new_partner_session_path
-    fill_in 'Email', with: partner.email
-    fill_in 'Password', with: partner.password
-    click_on 'Log in'
+  describe 'Authenticated partner' do
+    background do
+      sign_in_partner(partner)
+      visit properties_path
+      click_on 'New property'
+    end
 
-    visit properties_path
-    click_on 'Create property'
-
-    fill_in 'title', with: "Hotel 'California'"
-    fill_in 'address', with: 'Lenina 15'
-    fill_in 'town_id', with: 1
-    fill_in 'category_id', with: 2
-    #attach_file 'Image', ["#{Rails.root}/spec/rails_helper.rb", "#{Rails.root}/spec/spec_helper.rb"]
-
-    expect(page).to have_content 'Property successfull created'
-    expect(page).to have_content "Hotel 'California'"
-    
+    scenario 'create property' do  
+      fill_in 'property_title', with: "Hotel 'California'"
+      fill_in 'property_address', with: 'Lenina 15'
+      select town.name, from: "property_town_id"
+      select category.title, from: "property_category_id"
+      click_on 'Save' 
+      
+      expect(page).to have_content 'Property successfull created'
+      expect(page).to have_content "Hotel 'California'"
+    end
+  
+    scenario 'create property with errors' do
+      click_on 'Save' 
+      expect(page).to have_content "Title can't be blank"
+    end
   end
 
-  scenario 'Authenticated partner create property with errors'
+  scenario 'Unauthenticated partner tries to create property' do
+    visit properties_path
+    click_on 'New property'
 
-  scenario 'Unauthenticated partner tries to create property'
+    expect(page).to have_content 'You need to sign in or sign up before continuing.'
+  end
 
 
 end

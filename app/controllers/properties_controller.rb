@@ -16,7 +16,7 @@ class PropertiesController < ApplicationController
   def create
     @property = current_partner.properties.build(property_params)
     if @property.save
-      flash[:success] = 'Property was created'
+      flash[:success] = 'Property successfull created'
       redirect_to @property
     else
       render 'new'

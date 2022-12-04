@@ -3,7 +3,8 @@ class Partner < ApplicationRecord
           :registerable,
           :recoverable,
           :rememberable,
-          :validatable
+          :validatable,
+          :confirmable
           
   has_many :properties, foreign_key: 'owner_id', class_name: 'Property', dependent: :destroy
 end

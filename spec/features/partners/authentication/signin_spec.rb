@@ -6,8 +6,7 @@ feature 'Partner can sign in', %q{
   I'd like to be able to sign in as Partner
 } do
 
-  given(:partner) { Partner.create!(email: 'partner@test.com', password: '12345678') }
-  #given(:partner) { create(:partner) }
+  given(:partner) { create(:partner) }
 
   background { visit new_partner_session_path }
 

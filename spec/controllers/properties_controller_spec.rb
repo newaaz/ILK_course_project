@@ -34,10 +34,9 @@ RSpec.describe PropertiesController, type: :controller do
 
   describe 'GET #new' do    
     context 'Authenticated partner' do
-      before do
-        sign_in(owner)
-        get :new
-      end
+      before { sign_in(owner) }
+
+      before { get :new }
 
       it 'assigns a new Property to @property' do
         expect(assigns(:property)).to be_a_new(Property)
@@ -50,6 +49,7 @@ RSpec.describe PropertiesController, type: :controller do
 
     context 'Unauthenticated partner' do
       before { get :new }
+
       it 'redirect to sign_in' do
         expect(response).to redirect_to new_partner_session_path
       end
@@ -58,10 +58,9 @@ RSpec.describe PropertiesController, type: :controller do
 
   describe 'GET #edit' do
     context 'Authenticated partner' do
-      before do
-        sign_in(owner)
-        get :edit, params: { id: property }
-      end
+      before { sign_in(owner) }
+      
+      before { get :edit, params: { id: property } }
 
       it 'assigns requested property to @property' do
         expect(assigns(:property)).to eq property
