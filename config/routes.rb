@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     # omniauth_callbacks: 'partners/omniauth_callbacks'
   }
 
-
+  resources :properties
 
 
 

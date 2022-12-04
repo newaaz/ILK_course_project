@@ -3,5 +3,5 @@ class Property < ApplicationRecord
   belongs_to :town
   belongs_to :category 
 
-  validates :title, presence: true
+  validates :title, :address, presence: true
 end
