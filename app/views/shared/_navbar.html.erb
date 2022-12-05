@@ -4,5 +4,6 @@
 <%= link_to "Properties", properties_path, class: 'btn btn-outline-primary' %>
 
 <% if current_partner %>
+  <%= link_to "Dashboard Partner", partners_root_path, class: 'btn btn-primary' %>
   <%= link_to "Logout Partner", destroy_partner_session_path, data: { "turbo-method": :delete }, class: 'btn btn-outline-danger' %>
 <% end %>

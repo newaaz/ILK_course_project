@@ -6,8 +6,11 @@ Rails.application.routes.draw do
     registrations:      'partners/registrations',
     confirmations:      'partners/confirmations',
     passwords:          'partners/passwords',
-    # omniauth_callbacks: 'partners/omniauth_callbacks'
   }
+
+  namespace :partners do
+    root 'dashboard#index'
+  end
 
   resources :properties
 

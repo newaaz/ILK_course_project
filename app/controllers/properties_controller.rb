@@ -1,6 +1,10 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
-  before_action :authenticate_partner!, only: %i[new create edit update destroy]
+  #before_action :authenticate_partner!, only: %i[new create edit update destroy]
+
+  before_action :authorize_property!
+
+  after_action  :verify_authorized
 
   def index
     @properties = Property.all
@@ -37,7 +41,7 @@ class PropertiesController < ApplicationController
   def destroy
     @property.destroy
     flash[:success] = 'Property was destroyed'
-    redirect_to root_path
+    redirect_to partners_root_path
   end
 
   private
@@ -48,5 +52,13 @@ class PropertiesController < ApplicationController
 
   def property_params
     params.require(:property).permit(:title, :address, :town_id, :category_id)
-  end  
+  end
+
+  def pundit_user
+    current_partner
+  end
+
+  def authorize_property!
+    authorize(@property || Property)
+  end
 end
