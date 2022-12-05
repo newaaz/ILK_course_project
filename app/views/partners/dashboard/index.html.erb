@@ -2,14 +2,7 @@
 <hr>
 <h2>Properties:</h2>
 
-<% @properties.each do |property| %>
-  <h3><%= property.title %></h3>
-  <p>
-    <%= link_to 'Edit', edit_property_path(property), class: 'btn btn-warning' %>
-    <%= link_to "Delete", property_path(property), data: { "turbo-method": :delete }, class: 'btn btn-outline-danger' %>
-  </p>
-  <br>  
-<% end %>
+<%= render partial: 'partners/dashboard/property', collection: @properties, as: :property %>
 
 
 

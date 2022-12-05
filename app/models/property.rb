@@ -3,5 +3,7 @@ class Property < ApplicationRecord
   belongs_to :town
   belongs_to :category 
 
+  has_many  :rooms, dependent: :destroy
+
   validates :title, :address, presence: true
 end
