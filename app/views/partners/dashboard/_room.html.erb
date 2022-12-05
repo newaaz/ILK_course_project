@@ -1,0 +1,4 @@
+<h5><%= room.title %></h5>
+<%= link_to 'Edit', edit_room_path(room), class: 'btn btn-warning btn-sm' %>
+<%= link_to "Delete", room_path(room), data: { "turbo-method": :delete }, class: 'btn btn-outline-danger btn-sm' %>
+<br>

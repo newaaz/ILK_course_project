@@ -12,9 +12,7 @@ Rails.application.routes.draw do
     root 'dashboard#index'
   end
 
-  resources :properties, except: :index do
+  resources :properties do
     resources :rooms, except: %i[index show], shallow: true
   end
-
-
 end

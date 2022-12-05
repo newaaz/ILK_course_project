@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
 
   def new
     @property = Property.find(params[:property_id])
-    @room = @property.rooms.build
+    @room = @property.rooms.build    
     #@room = @property.rooms.build(prices: [Price.new])
     authorize(@room)
     #@room.prices.new
@@ -31,7 +31,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     authorize(@room)
     # FIXME cocoon add all nested forms
-    @room.prices.destroy_all
+    #@room.prices.destroy_all
     if @room.update room_params
       redirect_to partners_root_path
     else

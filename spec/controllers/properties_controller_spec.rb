@@ -51,7 +51,7 @@ RSpec.describe PropertiesController, type: :controller do
     context 'Unauthenticated partner' do
       before { get :new }
 
-      it 'redirect to sign_in' do
+      it 'redirect to root path' do
         expect(response).to redirect_to root_path
       end
     end
@@ -124,7 +124,7 @@ RSpec.describe PropertiesController, type: :controller do
         expect { post :create, params: { property: attributes_for(:property) } }.to_not change(Property, :count)      
       end
 
-      it 'redirect to sign_in' do
+      it 'redirect to root path' do
         post :create, params: { property: attributes_for(:property, category_id: category, town_id: town) }
         expect(response).to redirect_to root_path
       end
