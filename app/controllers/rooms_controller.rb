@@ -30,7 +30,7 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     authorize(@room)
-    # FIXME cocoon add all nested forms
+    # FIXME cocoon add all nested forms 
     #@room.prices.destroy_all
     if @room.update room_params
       redirect_to partners_root_path
@@ -50,8 +50,7 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:title, :property_id, :guest_base_count, :guest_max_count,
-                                 :avatar, images: [],
-                                 prices_attributes: [:start_date, :end_date, :day_cost, :add_guest_cost, :_destroy])
+                                 prices_attributes: [:id, :start_date, :end_date, :day_cost, :add_guest_cost, :_destroy])
   end
 
   def pundit_user

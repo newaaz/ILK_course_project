@@ -1,4 +1,4 @@
-<%= form_with model:[@property, @room], class: 'w-75', data: {turbo: false} do |f| %>
+<%= form_with model:[@property, @room], class: 'room-form w-75', data: {turbo: false} do |f| %>
 
   <%= render 'shared/errors', object: f.object %>
 
@@ -15,6 +15,16 @@
   <div class="form-group mb-2">
     <%= f.label :guest_max_count %>       
     <%= f.number_field :guest_max_count, class: 'form-control' %>
+  </div>
+
+  <h4>Prices:</h4>
+  <div class="price_fields">
+    <%= f.fields_for :prices do |price| %>
+      <%= render 'prices/price_fields', f: price %>
+    <% end %>
+    <div class="prices mt-2">
+      <%= link_to_add_association 'add price', f, :prices, partial: 'prices/price_fields' %>
+    </div>
   </div>
 
   <%= f.submit "Save",class:"btn btn-primary my-4" %>

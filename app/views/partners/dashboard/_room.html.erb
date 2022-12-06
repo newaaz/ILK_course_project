@@ -2,3 +2,13 @@
 <%= link_to 'Edit', edit_room_path(room), class: 'btn btn-warning btn-sm' %>
 <%= link_to "Delete", room_path(room), data: { "turbo-method": :delete }, class: 'btn btn-outline-danger btn-sm' %>
 <br>
+
+<% if room.prices.any? %>
+  <h6>Prices</h6>
+
+  <% room.prices.each do |price| %>
+    <%= "from: #{price.start_date.strftime('%d.%m')} to: #{price.end_date.strftime('%d.%m')} - #{price.day_cost}" %>
+    <br>
+  <% end %>
+
+<% end %>
