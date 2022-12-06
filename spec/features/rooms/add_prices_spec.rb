@@ -18,9 +18,11 @@ feature 'Partner can add prices to rooms', %q{
         click_on 'Add room'
       end
       fill_in 'room_title', with: "Standard 3-x"
+      attach_file 'room_avatar', "#{Rails.root}/spec/support/placeholders/placeholder10.jpg"
     end
 
-    scenario 'with valid attributes' do      
+    scenario 'with valid attributes' do
+      click_on 'remove price'    
       3.times { click_on 'add price' }
 
       page.all('.nested-fields').each do |field|
@@ -37,8 +39,7 @@ feature 'Partner can add prices to rooms', %q{
       expect(page).to have_content '999', count: 3
     end
 
-    scenario 'with invalid attributes' do
-      click_on 'add price'
+    scenario 'with invalid attributes' do      
       within '.nested-fields' do
         fill_in with: '2022/11/01', placeholder: 'start-date'
         fill_in with: '2022/12/01', placeholder: 'end-date'

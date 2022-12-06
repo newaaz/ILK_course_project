@@ -17,6 +17,8 @@
     <%= f.number_field :guest_max_count, class: 'form-control' %>
   </div>
 
+  <%= render 'attached_images/imagable_fields', f: f %>
+
   <h4>Prices:</h4>
   <div class="price_fields">
     <%= f.fields_for :prices do |price| %>

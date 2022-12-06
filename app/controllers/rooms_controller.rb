@@ -3,10 +3,8 @@ class RoomsController < ApplicationController
 
   def new
     @property = Property.find(params[:property_id])
-    @room = @property.rooms.build    
-    #@room = @property.rooms.build(prices: [Price.new])
+    @room = @property.rooms.build(prices: [Price.new]) 
     authorize(@room)
-    #@room.prices.new
   end
 
   def create    
@@ -49,7 +47,7 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:title, :property_id, :guest_base_count, :guest_max_count,
+    params.require(:room).permit(:title, :property_id, :guest_base_count, :guest_max_count, :avatar, images: [],
                                  prices_attributes: [:id, :start_date, :end_date, :day_cost, :add_guest_cost, :_destroy])
   end
 

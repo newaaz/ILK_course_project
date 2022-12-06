@@ -1,4 +1,6 @@
 class Room < ApplicationRecord
+  include Imagable
+  
   belongs_to :property
 
   has_many :prices, dependent: :destroy

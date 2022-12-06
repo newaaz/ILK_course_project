@@ -21,5 +21,7 @@
     <%= f.collection_select :category_id, Category.all, :id, :title, { prompt: "Выбрать..." }, class:"form-select" %>
   </div>
 
+  <%= render 'attached_images/imagable_fields', f: f %>
+
   <%= f.submit "Save",class:"btn btn-primary my-4" %>
 <% end %>

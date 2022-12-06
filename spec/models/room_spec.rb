@@ -5,6 +5,8 @@ RSpec.describe Room, type: :model do
     it { should belong_to(:property) }
 
     it { should have_many(:prices).dependent(:destroy) } 
+
+    it { should accept_nested_attributes_for :prices }
   end
   
   describe 'validations' do

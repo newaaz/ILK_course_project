@@ -6,7 +6,9 @@ RSpec.describe Property, type: :model do
     it { should belong_to(:category) } 
     it { should belong_to(:town) }
 
-    it { should have_many(:rooms).dependent(:destroy) } 
+    it { should have_many(:rooms).dependent(:destroy) }
+
+    it_behaves_like 'Imagable'
   end
   
   describe 'validations' do

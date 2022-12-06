@@ -22,6 +22,10 @@ RSpec.describe RoomsController, type: :controller do
         expect(assigns(:room)).to be_a_new(Room)
       end
 
+      it 'assigns a new Price for room' do
+        expect(assigns(:room).prices.first).to be_a_new(Price)
+      end
+
       it 'render new view' do
         expect(response).to render_template :new
       end

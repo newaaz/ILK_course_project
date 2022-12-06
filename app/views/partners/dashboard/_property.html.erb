@@ -1,5 +1,4 @@
 <%= content_tag(:div, id: dom_id(property)) do %>
-
   <h3><%= property.title %></h3>
   <p>
     <%= link_to 'Edit', edit_property_path(property), class: 'btn btn-warning' %>
@@ -7,12 +6,10 @@
     <%= link_to 'Add room', new_property_room_path(property), class: 'btn btn-primary btn-sm' %>
   </p>
   <br>
-
   <% if property.rooms.any? %>
     <h4>Rooms:</h4>
     <%= render partial: 'room', collection: property.rooms, as: :room %>
   <% end %> 
-
 <% end %>
 
 
