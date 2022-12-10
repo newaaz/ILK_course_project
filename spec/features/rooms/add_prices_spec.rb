@@ -18,7 +18,7 @@ feature 'Partner can add prices to rooms', %q{
         click_on 'Add room'
       end
       fill_in 'room_title', with: "Standard 3-x"
-      attach_file 'room_avatar', "#{Rails.root}/spec/support/placeholders/placeholder10.jpg"
+      attach_file 'room_avatar', "#{Rails.root}/spec/support/assets/placeholder10.jpg"
     end
 
     scenario 'with valid attributes' do

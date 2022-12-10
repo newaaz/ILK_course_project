@@ -23,8 +23,9 @@ feature 'Partner can create rooms', %q{
       fill_in 'room_title', with: "Standard 3-x"
       fill_in 'room_guest_base_count', with: 3
       fill_in 'room_guest_max_count', with: 5
-      attach_file 'room_avatar', "#{Rails.root}/spec/support/placeholders/placeholder10.jpg"
-      attach_file 'room_images', ["#{Rails.root}/spec/support/placeholders/placeholder20.jpg", "#{Rails.root}/spec/support/placeholders/placeholder30.jpg"]
+      attach_file 'room_avatar', "#{Rails.root}/spec/support/assets/placeholder10.jpg"
+      attach_file 'room_images', ["#{Rails.root}/spec/support/assets/placeholder20.jpg",
+                                  "#{Rails.root}/spec/support/assets/placeholder30.jpg"]
 
       click_on 'Save'
 

@@ -32,6 +32,7 @@ class PropertiesController < ApplicationController
 
   def update
     if @property.update property_params
+      flash[:success] = 'Property successfull updated'
       redirect_to @property
     else
       render 'edit'
