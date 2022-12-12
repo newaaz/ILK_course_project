@@ -201,7 +201,7 @@ RSpec.describe PropertiesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let!(:property)       { create(:property, owner: owner) }
+    let!(:property) { create(:property, owner: owner) }
     
     context 'Authenticated partner' do
       context 'Correct owner' do

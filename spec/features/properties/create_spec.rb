@@ -28,7 +28,7 @@ feature 'Partner can create property', %q{
 
       click_on 'Save' 
       
-      expect(page).to have_content 'Property successfull created'
+      expect(page).to have_content 'Property successfully created'
       expect(page).to have_content "Hotel 'California'"
       within ".property-images" do
         expect(page).to have_css("img[alt='placeholder10.jpg']")

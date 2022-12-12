@@ -1,5 +1,5 @@
 <%= content_tag(:div, id: dom_id(property)) do %>
-  <h3><%= property.title %></h3>
+  <h3><%= link_to property.title, property %></h3>
   <p>
     <%= link_to 'Edit', edit_property_path(property), class: 'btn btn-warning' %>
     <%= link_to "Delete", property_path(property), data: { "turbo-method": :delete }, class: 'btn btn-outline-danger' %>

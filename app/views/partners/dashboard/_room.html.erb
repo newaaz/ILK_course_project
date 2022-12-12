@@ -15,8 +15,9 @@
     <h6>Prices</h6>
 
     <% room.prices.each do |price| %>
+      <%= content_tag(:div, id: "price_#{price.id}") do %>
       <%= "from: #{price.start_date.strftime('%d.%m')} to: #{price.end_date.strftime('%d.%m')} - #{price.day_cost}" %>
-      <br>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
