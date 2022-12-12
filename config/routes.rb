@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   resources :properties do
     resources :rooms, except: %i[index show], shallow: true
   end
+
+  delete 'images/:id/purge', to: 'images#purge', as: 'purge_image' 
 end

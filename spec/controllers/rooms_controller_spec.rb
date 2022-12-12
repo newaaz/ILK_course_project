@@ -233,7 +233,7 @@ RSpec.describe RoomsController, type: :controller do
         expect { delete :destroy, params: { id: room } }.to_not change(Room, :count)
       end
 
-      it "redirect to partners's dashboard" do
+      it "redirect to root path" do
         delete :destroy, params: { id: room }
         expect(response).to redirect_to root_path
       end
@@ -244,7 +244,7 @@ RSpec.describe RoomsController, type: :controller do
         expect { delete :destroy, params: { id: room } }.to_not change(Room, :count)
       end
 
-      it "redirect to partners's dashboard" do
+      it "redirect to root path" do
         delete :destroy, params: { id: room }
         expect(response).to redirect_to root_path
       end

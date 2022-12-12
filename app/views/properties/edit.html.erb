@@ -1,3 +1,6 @@
 <h1>Edit <%= @property.title %></h1>
 
 <%= render 'form' %>
+
+<!-- remove images -->
+<%= render partial: 'shared/image_purge', collection: @property.images, as: :image %>
