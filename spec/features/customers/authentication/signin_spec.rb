@@ -1,24 +1,24 @@
 require 'rails_helper'
 
-feature 'Partner can sign in', %q{
-  In order to place ads
-  As an unauthenticated Partner
-  I'd like to be able to sign in as Partner
+feature 'Customer can sign in', %q{
+  In order to book properties
+  As an registered customer
+  I'd like to be able to sign in as customer
 } do
 
-  given(:partner) { create(:partner) }
+  given(:customer) { create(:customer) }
 
-  background { visit new_partner_session_path }
+  background { visit new_customer_session_path }
 
-  scenario 'Registered Partner tries to sign in' do
-    fill_in 'Email', with: partner.email
-    fill_in 'Password', with: partner.password
+  scenario 'Registered customer tries to sign in' do
+    fill_in 'Email', with: customer.email
+    fill_in 'Password', with: customer.password
     click_on 'Log in'
 
     expect(page).to have_content 'Signed in successfully'
   end
 
-  scenario 'Unregistered Partner tries to sign up' do
+  scenario 'Unregistered customer tries to sign up' do
     fill_in 'Email', with: 'wrong@test.com'
     fill_in 'Password', with: 'wrong'
     click_on 'Log in'

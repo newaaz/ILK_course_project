@@ -7,3 +7,8 @@
   <%= link_to "Dashboard Partner", partners_root_path, class: 'btn btn-primary' %>
   <%= link_to "Logout Partner", destroy_partner_session_path, data: { "turbo-method": :delete }, class: 'btn btn-outline-danger' %>
 <% end %>
+
+<% if current_customer %>
+  <%= link_to "Dashboard Customer", customers_root_path, class: 'btn btn-primary' %>
+  <%= link_to "Logout Customer", destroy_customer_session_path, data: { "turbo-method": :delete }, class: 'btn btn-outline-danger' %>
+<% end %>

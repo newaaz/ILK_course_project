@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Partner can sign in', %q{
   In order to place ads
-  As an unauthenticated Partner
+  As an registered Partner
   I'd like to be able to sign in as Partner
 } do
 
