@@ -8,7 +8,18 @@ Rails.application.routes.draw do
     passwords:          'partners/passwords',
   }
 
+  devise_for :customers, controllers: {
+    sessions:           'customers/sessions',
+    registrations:      'customers/registrations',
+    confirmations:      'customers/confirmations',
+    passwords:          'customers/passwords',
+  }
+
   namespace :partners do
+    root 'dashboard#index'
+  end
+
+  namespace :customers do
     root 'dashboard#index'
   end
 

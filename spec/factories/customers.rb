@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :partner do
-    sequence(:email) { |n| "partner_#{n}@test.com" }
+  factory :customer do
+    sequence(:email) { |n| "customer_#{n}@test.com" }
     password { '12345678' }
     password_confirmation { '12345678' }
     before(:create) { |user| user.skip_confirmation! }
