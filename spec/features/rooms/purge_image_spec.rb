@@ -8,7 +8,7 @@ feature 'Owner can purge room images', %q{
 
   given(:owner)     { create :partner }
   given(:property)  { create :property, :imagable, owner: owner }
-  given(:room)      { create :room, :imagable, property: property }
+  given(:room)      { create :room, :imagable, property: property } 
   given!(:image_id) { room.images.first.id }
 
   before { sign_in_partner(owner) }

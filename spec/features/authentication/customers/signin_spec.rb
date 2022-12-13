@@ -15,7 +15,7 @@ feature 'Customer can sign in', %q{
     fill_in 'Password', with: customer.password
     click_on 'Log in'
 
-    expect(page).to have_content 'Signed in successfully'
+    expect(page).to have_content 'You are customer (from Acessibled)'
   end
 
   scenario 'Unregistered customer tries to sign up' do

@@ -13,6 +13,6 @@ class Partners::DashboardController < ApplicationController
   end
 
   def authorize_dashboard!
-    authorize([:partner, :dashboard])
+    authorize([:partners, :dashboard])
   end
 end
