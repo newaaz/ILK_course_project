@@ -10,7 +10,7 @@ RSpec.describe PropertiesController, type: :controller do
   describe 'GET #index' do
     let(:properties)  { create_list(:property, 3) }
 
-    before { get :index    }
+    before { get :index }
 
     it 'populates an array of all properties' do         
       expect(assigns(:properties)).to match_array(properties)
