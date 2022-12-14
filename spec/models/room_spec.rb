@@ -4,7 +4,8 @@ RSpec.describe Room, type: :model do
   describe 'associations' do
     it { should belong_to(:property) }
 
-    it { should have_many(:prices).dependent(:destroy) } 
+    it { should have_many(:prices).dependent(:destroy) }
+    it { should have_many(:orders).dependent(:destroy) }  
 
     it { should accept_nested_attributes_for :prices }
   end

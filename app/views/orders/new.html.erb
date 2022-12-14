@@ -1,0 +1,39 @@
+<h1><%= "Booking - #{@property.title}:#{@room.title}" %></h1>
+
+<%= form_with(model: @order, class: 'w-75', data: {turbo: false}) do |f| %>
+  <%= render 'shared/errors', object: f.object %>
+
+  <!-- checkin - checkout -->
+  <div class="row">
+    <div class="col-6 form-group mb-2">
+      <%= f.label :check_in, class: 'form-label' %>        
+      <%= f.date_field :check_in, class: 'form-control' %>
+    </div>
+    <div class="col-6 form-group mb-2">
+      <%= f.label :check_out, class: 'form-label' %>        
+      <%= f.date_field :check_out, class: 'form-control' %>
+    </div>
+  </div>
+
+  <!-- room type -->
+  <div class="form-group mb-2">
+    <%= f.label 'Room type', class: 'form-label' %>
+    <%= f.collection_select :room_id, @property.rooms, :id, :title, { selected: @room.id  },
+                                                                    class: "form-select" %>  
+  </div>
+
+  <!-- adults, kids -->
+  <div class="row">
+    <div class="col-6 form-group">
+      <%= f.label :adults, class: "form-label" %>               
+      <%= f.number_field :adults, class:"form-control" %>
+    </div>
+    <div class="col-6 form-group">
+      <%= f.label :kids, class: "form-label" %>               
+      <%= f.number_field :kids, class:"form-control" %>
+    </div>
+  </div>
+
+  <%= f.submit "Send",class:"btn btn-primary my-4" %>
+<% end %>
+

@@ -6,6 +6,7 @@ class Property < ApplicationRecord
   belongs_to :category 
 
   has_many  :rooms, dependent: :destroy
+  has_many  :orders, dependent: :destroy
 
   validates :title, :address, presence: true
 end

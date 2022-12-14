@@ -6,4 +6,5 @@ class Customer < ApplicationRecord
           :validatable,
           :confirmable
 
+  has_many  :orders, dependent: :destroy
 end

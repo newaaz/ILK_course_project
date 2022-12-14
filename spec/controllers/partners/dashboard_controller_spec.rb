@@ -18,6 +18,8 @@ RSpec.describe Partners::DashboardController, type: :controller do
       it 'renders index view' do
         expect(response).to render_template :index
       end
+
+      it 'populates an array of all orders belongin to property'
     end
 
     context 'Unauthenticated user' do
