@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Partner can view their properties', %q{
   In order to check my properties
   As an authenticated Partner
-  I'd like to be able see list of my properties
+  I'd like to be able view my properties list
 } do
 
   given(:customer)    { create :customer }
@@ -28,4 +28,3 @@ feature 'Partner can view their properties', %q{
     expect(page).to_not have_link('Dashboard Partner')
   end
 end
-

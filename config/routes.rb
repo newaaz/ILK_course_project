@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   namespace :partners do
     root 'dashboard#index'
+    get 'orders', to: 'dashboard#orders'
   end
 
   namespace :customers do

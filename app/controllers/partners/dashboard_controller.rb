@@ -6,6 +6,10 @@ class Partners::DashboardController < ApplicationController
   	@properties = current_partner.properties.includes(:orders).includes(:rooms)
   end
 
+  def orders
+    @orders = current_partner.owner_orders
+  end
+
   private
 
   def pundit_user

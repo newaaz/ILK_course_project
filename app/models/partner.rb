@@ -7,4 +7,8 @@ class Partner < ApplicationRecord
           :confirmable
           
   has_many :properties, foreign_key: 'owner_id', class_name: 'Property', dependent: :destroy
+
+  def owner_orders
+    Order.where(property_id: property_ids)
+  end
 end
