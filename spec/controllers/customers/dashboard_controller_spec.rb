@@ -3,15 +3,18 @@ require 'rails_helper'
 RSpec.describe Customers::DashboardController, type: :controller do
   let(:owner)    { create(:partner) }
   let(:customer) { create(:customer) }
-  let(:property) { create_list(:property, owner: owner) }
 
   describe 'GET #index' do
+    let!(:orders)  { create_list(:order, 3, customer: customer) }
+
     context 'Authenticated customer' do
       before do
         sign_in(customer)
         get :index
       end
-      it 'populates an array of all orders'
+      it 'populates an array of all orders' do
+        expect(assigns(:orders)).to match_array(orders)
+      end
 
       it 'renders index view' do
         expect(response).to render_template :index

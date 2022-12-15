@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :order do
+    customer  { association :customer }
     property  { association :property }
-    customer  { association :room }
+    room      { association :room }
     check_in  { "2022-06-05" }
     check_out { "2022-07-09" }
 

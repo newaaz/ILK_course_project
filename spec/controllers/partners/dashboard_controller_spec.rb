@@ -4,6 +4,7 @@ RSpec.describe Partners::DashboardController, type: :controller do
   let(:owner)      { create(:partner) }
   let(:customer)   { create(:customer) }
   let(:properties) { create_list(:property, 3, owner: owner) }
+  let!(:orders)    { create_list(:order, 3, property: properties.first) }
 
   describe 'GET #index' do
     context 'Authenticated partner' do
@@ -19,7 +20,7 @@ RSpec.describe Partners::DashboardController, type: :controller do
         expect(response).to render_template :index
       end
 
-      it 'populates an array of all orders belongin to property'
+      it 'populates an array of all orders belonging to property'
     end
 
     context 'Unauthenticated user' do
