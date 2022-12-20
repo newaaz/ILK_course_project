@@ -6,6 +6,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script> 
+
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
@@ -23,5 +26,9 @@
       
       <%= yield %>
     </div>
+
+    <% if content_for?(:footer_scripts) %>
+      <%= yield(:footer_scripts) %>    
+    <% end %>
   </body>
 </html>

@@ -5,9 +5,9 @@
   <br>
 
   <div class="room-images">
-    <%= image_tag room.avatar.variant(resize_to_limit: [300, 100]), alt: room.avatar.filename.to_s %>
+    <%= image_tag room.avatar_thumb, alt: room.avatar.filename.to_s %>
     <% room.images.each do |image| %>
-      <%= image_tag image.variant(resize_to_limit: [300, 100]), alt: image.filename.to_s %>
+      <%= image_tag room.image_thumb(image), alt: image.filename.to_s %>
     <% end %>
   </div>
 

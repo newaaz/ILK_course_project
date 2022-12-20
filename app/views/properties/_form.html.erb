@@ -11,6 +11,12 @@
     <%= f.text_field :address, class: 'form-control' %>
   </div>
 
+  <% if @property.new_record? %>
+    <%= render 'geolocations/new_map_fields', f: f %>    
+  <% else %>
+    <%= render 'geolocations/edit_map_fields', f: f %>
+  <% end %>
+
   <div class="form-group mb-2">
     <%= f.label :town_id, class: 'form-label' %>       
     <%= f.collection_select :town_id, Town.order(:ordinal_number), :id, :name, { prompt: "Выбрать..." }, class:"form-select" %>
@@ -25,3 +31,6 @@
 
   <%= f.submit "Save",class:"btn btn-primary my-4" %>
 <% end %>
+
+
+

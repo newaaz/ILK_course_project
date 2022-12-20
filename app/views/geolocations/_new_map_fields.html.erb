@@ -1,0 +1,64 @@
+<%= f.fields_for :geolocation do |l| %>
+  <div class="row my-4">
+    <h4 class='h4 text-center'>Mark on map</h4>
+    <div class="col-md-8">
+      <div id="map" style="height: 300px" class="border"></div>
+    </div>
+    <div class="col-md-4">
+      <div class="coordinates" style="width: 200px">
+        <div class="form-group">              
+          <%= l.label :latitude, class: 'form-label' %> 
+          <%= l.text_field :latitude, class: 'form-control form-control-sm', readonly: true %>
+        </div>
+        <div class="form-group">              
+          <%= l.label :longitude, class: 'form-label' %> 
+          <%= l.text_field :longitude, class: 'form-control form-control-sm', readonly: true %>
+        </div>
+        <br>        
+        <button type="button" id="clear-btn" class="d-block btn btn-outline-secondary btn-sm">Reset coordinates</button>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% content_for(:footer_scripts) do %>
+  <script type="text/javascript"> // ymap
+    ymaps.ready(init);
+    objectFieldId = "<%= f.object.class.name.downcase %>_geolocation_attributes_"
+
+    function init(){
+      const myMap = new ymaps.Map("map", {
+        center: [45.15, 34.52],
+        zoom: 8,
+        controls: ['zoomControl'],
+        behaviors: ['drag','dblClickZoom', 'multiTouch']
+      });    
+
+      myMap.events.add('click', function (e) {
+        if (!myMap.balloon.isOpen()) {
+          const coords = e.get('coords');
+          myMap.balloon.open(coords, {                
+              contentBody:'<p>Вы отметили новое место на карте.</p>' +
+                '<p>Координаты щелчка: ' + [
+                coords[0].toPrecision(8),
+                coords[1].toPrecision(8),
+                ].join(', ') + '</p>',
+              contentFooter:'Чтобы изменить координаты щёлкните в другом месте'
+          });
+
+          document.getElementById(objectFieldId + 'latitude').value = coords[0].toPrecision(8)
+          document.getElementById(objectFieldId + 'longitude').value = coords[1].toPrecision(8)
+        }
+        else {
+          myMap.balloon.close();
+        }
+      });
+    }
+
+    document.getElementById('clear-btn').onclick = function(e) {
+      document.getElementById(objectFieldId + 'latitude').value = ''
+      document.getElementById(objectFieldId + 'longitude').value = ''
+    }  
+  </script>
+<% end %>
+

@@ -1,7 +1,5 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
-  #before_action :authenticate_partner!, only: %i[new create edit update destroy]
-
   before_action :authorize_property!
 
   after_action  :verify_authorized
@@ -14,7 +12,7 @@ class PropertiesController < ApplicationController
   end
 
   def new
-    @property = Property.new
+    @property = Property.new(geolocation: Geolocation.new)
   end
 
   def create
@@ -48,11 +46,12 @@ class PropertiesController < ApplicationController
   private
 
   def set_property
-    @property = Property.find(params[:id])
+    @property = Property.includes(:geolocation).find(params[:id])
   end
 
   def property_params
-    params.require(:property).permit(:title, :address, :town_id, :category_id, :avatar, images: [])
+    params.require(:property).permit(:title, :address, :town_id, :category_id, :avatar, images: [],
+    geolocation_attributes: [:id, :latitude, :longitude])
   end
 
   def pundit_user

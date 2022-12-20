@@ -10,6 +10,7 @@ RSpec.describe Property, type: :model do
     it { should have_many(:orders).dependent(:destroy) }  
 
     it_behaves_like 'Imagable'
+    it_behaves_like 'Geolocable'
   end
   
   describe 'validations' do
