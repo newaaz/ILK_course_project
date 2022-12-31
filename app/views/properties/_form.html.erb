@@ -11,11 +11,7 @@
     <%= f.text_field :address, class: 'form-control' %>
   </div>
 
-  <% if @property.new_record? %>
-    <%= render 'geolocations/new_map_fields', f: f %>    
-  <% else %>
-    <%= render 'geolocations/edit_map_fields', f: f %>
-  <% end %>
+  <%= render 'geolocations/map_fields', f: f %>
 
   <div class="form-group mb-2">
     <%= f.label :town_id, class: 'form-label' %>       

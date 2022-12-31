@@ -43,8 +43,8 @@
 
       myPlacemark.events.add('dragend', function(e) {
         const newCoords = myPlacemark.geometry.getCoordinates()
-        document.getElementById(objectFieldId + 'latitude').value = newCoords[0].toPrecision(8)
-        document.getElementById(objectFieldId + 'longitude').value = newCoords[1].toPrecision(8)
+        document.getElementById(objectFieldId + 'latitude').value = newCoords[0].toPrecision(7)
+        document.getElementById(objectFieldId + 'longitude').value = newCoords[1].toPrecision(7)
 
       })
 

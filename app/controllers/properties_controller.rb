@@ -26,6 +26,7 @@ class PropertiesController < ApplicationController
   end
 
   def edit
+    #debugger
   end
 
   def update

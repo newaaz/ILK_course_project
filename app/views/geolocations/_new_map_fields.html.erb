@@ -40,14 +40,14 @@
           myMap.balloon.open(coords, {                
               contentBody:'<p>Вы отметили новое место на карте.</p>' +
                 '<p>Координаты щелчка: ' + [
-                coords[0].toPrecision(8),
-                coords[1].toPrecision(8),
+                coords[0].toPrecision(7),
+                coords[1].toPrecision(7),
                 ].join(', ') + '</p>',
               contentFooter:'Чтобы изменить координаты щёлкните в другом месте'
           });
 
-          document.getElementById(objectFieldId + 'latitude').value = coords[0].toPrecision(8)
-          document.getElementById(objectFieldId + 'longitude').value = coords[1].toPrecision(8)
+          document.getElementById(objectFieldId + 'latitude').value = coords[0].toPrecision(7)
+          document.getElementById(objectFieldId + 'longitude').value = coords[1].toPrecision(7)
         }
         else {
           myMap.balloon.close();
