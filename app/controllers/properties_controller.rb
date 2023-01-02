@@ -9,6 +9,20 @@ class PropertiesController < ApplicationController
   end
 
   def show
+    min_lat = @property.geolocation.latitude - 0.0090
+    max_lat = @property.geolocation.latitude + 0.0090
+    min_long = @property.geolocation.longitude - 0.0127
+    max_long = @property.geolocation.longitude + 0.0127
+
+    @points = Geolocation.where(latitude: min_lat..max_lat, longitude: min_long..max_long, geolocable_type: 'Property')
+                         .where.not(geolocable_type: 'Property', geolocable_id: @property.id)
+
+    @nearby_properties = []
+    @points.each do |point|
+      @nearby_properties << point.geolocable
+    end
+
+    
   end
 
   def new
@@ -21,12 +35,11 @@ class PropertiesController < ApplicationController
       flash[:success] = 'Property successfully created'
       redirect_to @property
     else
-      render 'new'
+      render 'new', status: :unprocessable_entity
     end
   end
 
   def edit
-    #debugger
   end
 
   def update
@@ -34,7 +47,7 @@ class PropertiesController < ApplicationController
       flash[:success] = 'Property successfully updated'
       redirect_to @property
     else
-      render 'edit'
+      render 'edit', status: :unprocessable_entity
     end
   end
 

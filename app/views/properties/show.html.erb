@@ -20,3 +20,10 @@ Category: <%= @property.category.title %>
   <%= render 'geolocations/show_map', object: @property, preset_icon: "islands#blueHomeIcon" %>
 <% end %>
 
+<div class="nearby_properties">
+
+  <h4>Nearby properties</h4>
+  <%= @nearby_properties %>
+  
+</div>
+

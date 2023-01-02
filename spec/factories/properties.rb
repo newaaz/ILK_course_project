@@ -6,6 +6,8 @@ FactoryBot.define do
     category  { association :category }
     town      { association :town }
 
+    before(:create) { |property| create(:geolocation, geolocable: property) }
+
     trait :invalid do
       address { nil }
     end
