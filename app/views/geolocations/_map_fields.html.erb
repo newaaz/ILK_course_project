@@ -24,7 +24,7 @@
 <% if controller.action_name == 'new' %>
 
   <% content_for(:footer_scripts) do %>
-    <script type="text/javascript"> // ymap
+    <script type="text/javascript">
       ymaps.ready(init);
       objectFieldId = "<%= f.object.class.name.downcase %>_geolocation_attributes_"
 

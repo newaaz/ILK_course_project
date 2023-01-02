@@ -9,20 +9,7 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    min_lat = @property.geolocation.latitude - 0.0090
-    max_lat = @property.geolocation.latitude + 0.0090
-    min_long = @property.geolocation.longitude - 0.0127
-    max_long = @property.geolocation.longitude + 0.0127
-
-    @points = Geolocation.where(latitude: min_lat..max_lat, longitude: min_long..max_long, geolocable_type: 'Property')
-                         .where.not(geolocable_type: 'Property', geolocable_id: @property.id)
-
-    @nearby_properties = []
-    @points.each do |point|
-      @nearby_properties << point.geolocable
-    end
-
-    
+    @nearby_properties = @property.nearby_objects('Property')
   end
 
   def new
