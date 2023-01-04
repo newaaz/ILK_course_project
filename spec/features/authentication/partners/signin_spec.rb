@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Partner can sign in', %q{
   In order to place ads
-  As an unauthenticated Partner
+  As an registered Partner
   I'd like to be able to sign in as Partner
 } do
 
@@ -15,7 +15,7 @@ feature 'Partner can sign in', %q{
     fill_in 'Password', with: partner.password
     click_on 'Log in'
 
-    expect(page).to have_content 'Signed in successfully'
+    expect(page).to have_content 'You are partner (from Acessibled)'
   end
 
   scenario 'Unregistered Partner tries to sign up' do

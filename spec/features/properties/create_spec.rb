@@ -22,12 +22,13 @@ feature 'Partner can create property', %q{
       fill_in 'property_address', with: 'Lenina 15'
       select town.name, from: "property_town_id"
       select category.title, from: "property_category_id"
-      attach_file 'property_avatar', "#{Rails.root}/spec/support/placeholders/placeholder10.jpg"
-      attach_file 'property_images', ["#{Rails.root}/spec/support/placeholders/placeholder20.jpg", "#{Rails.root}/spec/support/placeholders/placeholder30.jpg"]
+      attach_file 'property_avatar', "#{Rails.root}/spec/support/assets/placeholder10.jpg"
+      attach_file 'property_images', ["#{Rails.root}/spec/support/assets/placeholder20.jpg",
+                                      "#{Rails.root}/spec/support/assets/placeholder30.jpg"]
 
       click_on 'Save' 
       
-      expect(page).to have_content 'Property successfull created'
+      expect(page).to have_content 'Property successfully created'
       expect(page).to have_content "Hotel 'California'"
       within ".property-images" do
         expect(page).to have_css("img[alt='placeholder10.jpg']")

@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-feature 'User can sign up', %q{
+feature 'User can sign up as Partner', %q{
   In order to place ads
   As an unregistered user
   I'd like to be able to sign up as Partner
 } do
 
-  given(:partner)             { build(:partner) }
+  #given(:partner)             { build(:partner) }
   given(:registered_partner)  { create(:partner) }
 
   scenario 'Unregistered partner tries to sign up' do
@@ -25,7 +25,7 @@ feature 'User can sign up', %q{
     visit new_partner_registration_path
     fill_in 'Email', with: registered_partner.email
     fill_in 'Password', with: registered_partner.password
-    fill_in 'Password confirmation', with: partner.password
+    fill_in 'Password confirmation', with: registered_partner.password
     click_on 'Sign up'
 
     expect(page).to have_content 'Email has already been taken'
@@ -38,17 +38,11 @@ feature 'User can sign up', %q{
     expect(page).to have_content 'You are already signed in.'
   end
 
-
   def complete_registration
     visit new_partner_registration_path
-    fill_in 'Email', with: partner.email
-    fill_in 'Password', with: partner.password
-    fill_in 'Password confirmation', with: partner.password
+    fill_in 'Email', with: 'partner@mail.ru'
+    fill_in 'Password', with: '340242'
+    fill_in 'Password confirmation', with: '340242'
     click_on 'Sign up'
   end
 end
-
-
-
-
-

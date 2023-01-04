@@ -1,0 +1,13 @@
+<% if @properties_category %>
+  <h1><%= @properties_category %> in <%= @town.parent_name %></h1>          
+<% else %>      
+  <h1>Properties in <%= @town.parent_name %></h1>   
+<% end %>
+
+<%= link_to 'All categories', town_path(@town), class: 'btn btn-light btn-sm' %>
+<% @categories.each do |cat| %>
+  <%= link_to cat.title, { cat: cat.id }, class: 'btn btn-light btn-sm' %>
+<% end %>
+
+<%= render partial: 'towns/hotel', collection: @properties, as: :property %>
+

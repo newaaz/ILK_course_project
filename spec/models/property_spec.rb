@@ -7,6 +7,7 @@ RSpec.describe Property, type: :model do
     it { should belong_to(:town) }
 
     it { should have_many(:rooms).dependent(:destroy) }
+    it { should have_many(:orders).dependent(:destroy) }  
 
     it_behaves_like 'Imagable'
   end

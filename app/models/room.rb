@@ -4,6 +4,7 @@ class Room < ApplicationRecord
   belongs_to :property
 
   has_many :prices, dependent: :destroy
+  has_many  :orders, dependent: :destroy
 
   validates :title, :guest_base_count, :guest_max_count, presence: true
 

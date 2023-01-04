@@ -3,7 +3,11 @@ class Partners::DashboardController < ApplicationController
   after_action  :verify_authorized
 
   def index
-  	@properties = current_partner.properties #.includes(:rooms)
+  	@properties = current_partner.properties.includes(:orders).includes(:rooms)
+  end
+
+  def orders
+    @orders = current_partner.owner_orders
   end
 
   private
@@ -13,6 +17,6 @@ class Partners::DashboardController < ApplicationController
   end
 
   def authorize_dashboard!
-    authorize([:partner, :dashboard])
+    authorize([:partners, :dashboard])
   end
 end

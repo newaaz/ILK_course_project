@@ -36,6 +36,7 @@ RSpec.configure do |config|
   config.include FeatureHelpers, type: :feature
 
   Capybara.javascript_driver = :selenium_chrome_headless
+  Capybara.default_max_wait_time = 5
 
   config.after(:all) do
     FileUtils.rm_rf("#{Rails.root}/tmp/storage")

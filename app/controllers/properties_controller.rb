@@ -20,7 +20,7 @@ class PropertiesController < ApplicationController
   def create
     @property = current_partner.properties.build(property_params)
     if @property.save
-      flash[:success] = 'Property successfull created'
+      flash[:success] = 'Property successfully created'
       redirect_to @property
     else
       render 'new'
@@ -32,6 +32,7 @@ class PropertiesController < ApplicationController
 
   def update
     if @property.update property_params
+      flash[:success] = 'Property successfully updated'
       redirect_to @property
     else
       render 'edit'

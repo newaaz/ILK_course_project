@@ -1,0 +1,13 @@
+<h1>Dashboard customer</h1>
+
+<h2>Orders:</h2>
+
+<% @orders.each do |order| %>
+
+  <%= "Order №-#{order.id} to #{order.property.title} in #{order.room.title}" %>
+  <br>
+  <%= "From: #{order.check_in.strftime('%d.%m.%y')} to: #{order.check_out.strftime('%d.%m.%y')}" %> 
+  <br>
+<% end %>
+
+

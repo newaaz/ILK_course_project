@@ -28,9 +28,10 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     authorize(@room)
-    # FIXME cocoon add all nested forms 
+    # FIXME cocoon add all nested forms from edit
     #@room.prices.destroy_all
     if @room.update room_params
+      flash[:success] = 'Room successfully updated'
       redirect_to partners_root_path
     else
       render 'edit'
@@ -41,6 +42,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     authorize(@room)
     @room.destroy
+    flash[:success] = 'Room was destroyed'
     redirect_to partners_root_path
   end
 
