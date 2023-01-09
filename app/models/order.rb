@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  include BookingCalculatable
+  
   belongs_to :customer
   belongs_to :property
   belongs_to :room

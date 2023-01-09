@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
     #authorize @order
 
     if @order.save
-      flash[:info] = "Order №-#{@order.id} to #{@property.title} in #{@room.title} created"
+      flash[:info] = "Order №-#{@order.id} to #{@property.title} in #{@room.title} created. Total: #{@order.total_amount}"
       redirect_to property_path @property
     else
       render 'new'
