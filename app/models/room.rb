@@ -11,6 +11,7 @@ class Room < ApplicationRecord
 
   accepts_nested_attributes_for :prices, reject_if: :all_blank, allow_destroy: true
 
+  #TODO validates_each
   def check_overlap_price_date_ranges
     all_prices = self.prices.to_a
     if all_prices.count > 1

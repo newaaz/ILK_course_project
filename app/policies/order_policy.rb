@@ -6,4 +6,15 @@ class OrderPolicy < ApplicationPolicy
   def create?
     user.is_a?(Customer)
   end
+
+  def accept_order?
+    record.property.owner == user
+  end
+
+  def reject_order?
+    record.property.owner == user
+  end
+
+
+
 end

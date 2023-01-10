@@ -20,7 +20,34 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    @order = Order.find(params[:id])
+
+    case_status_action(params[:status_action])
+
+    redirect_back fallback_location: root_path
+  end
+
   private
+
+  def case_status_action(status_action)
+    case  status_action
+          when 'accepting'
+            accept_order!
+          when 'rejecting'
+            reject_order!
+          end
+  end
+
+  def accept_order!
+    authorize @order, :accept_order?
+    @order.accepted!
+  end
+
+  def reject_order!
+    authorize @order, :reject_order?
+    @order.rejected!
+  end
 
   def pundit_user
     current_customer || current_partner

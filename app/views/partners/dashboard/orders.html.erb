@@ -3,9 +3,36 @@
 <h2>Orders</h2>
 
 <% @orders.each do |order| %>
-  <%= "Order №-#{order.id} to #{order.property.title} in #{order.room.title}" %>
-  <br>
-  <%= "From: #{order.check_in.strftime('%d.%m.%y')} to: #{order.check_out.strftime('%d.%m.%y')}" %> 
-  <br>
+
+  <%= content_tag(:div, id: dom_id(order), class: 'row rounded border shadow shadow-sm my-2') do %>
+  
+    <div class="col"><%= "№-#{order.id}" %></div>
+    <div class="col"><%= "#{order.property.title}" %></div>
+    <div class="col"><%= "#{order.room.title}" %></div>
+    <div class="col"><%= "From: #{order.check_in.strftime('%d.%m.%y')} to: #{order.check_out.strftime('%d.%m.%y')}" %></div>
+    <div class="col"><%= "#{order.total_amount}" %></div>
+
+    <div class="col"><%= "#{order.status}" %></div>
+
+    <div class="col">
+    
+      <%= form_with(model: order, class: 'w-75', data: {turbo: false}) do |f| %>
+        <%= hidden_field_tag(:status_action, 'accepting') %>
+        <div class="input-group">
+          <%= f.number_field :total_amount, class:"form-control form-control-sm" %>
+          <%= f.submit "Accept",class:"btn btn-sm btn-primary" %>
+        </div>
+      <% end %>
+
+    </div>
+
+    <div class="col">
+      <%= link_to 'Regect', order_path(order, status_action: 'rejecting'), data: { 'turbo-method': :patch } ,class: 'btn btn-sm btn-outline-danger' %>
+    </div>
+
+  <% end %>  
+  
+
+
 <% end %>
 

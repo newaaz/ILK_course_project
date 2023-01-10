@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   delete 'images/:id/purge', to: 'images#purge', as: 'purge_image'
 
-  resources :orders, only: %i[show new create]
+  resources :orders, only: %i[show new create update]
 
   resources :towns, only: %i[show]
 end

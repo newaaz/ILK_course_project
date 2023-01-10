@@ -1,13 +1,15 @@
 class Order < ApplicationRecord
-  before_validation :booking_calculate, if: :dates_present?
+  before_validation :booking_calculate, on: :create, if: :dates_present?
 
   belongs_to :customer
   belongs_to :property
   belongs_to :room
 
   validates :check_in, :check_out, presence: true
-  validate  :correct_arrival_dates,           if: :dates_present?
-  validate  :available_by_prices_date_ranges, if: :dates_present?
+  validate  :correct_arrival_dates,           on: :create, if: :dates_present?
+  validate  :available_by_prices_date_ranges, on: :create, if: :dates_present?
+
+  enum status: { received: 0, accepted: 1, rejected: 2, paid: 3 }
 
   private
 
@@ -36,7 +38,7 @@ class Order < ApplicationRecord
   end
 
   def available_by_prices_date_ranges
-    errors.add(:date_range, "- availability is limited") unless order_date_range.count == available_days_by_prices 
+    errors.add(:date_range, "- availability is limited. CHECK IN #{check_in} CHECKOUT #{check_out} ORDER DATE RANGE #{order_date_range.count} ") unless order_date_range.count == available_days_by_prices 
   end
 
   def correct_arrival_dates
