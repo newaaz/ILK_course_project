@@ -40,7 +40,30 @@ feature 'Customer can book room in property ', %q{
 
       expect(page).to have_content "Check in can't be blank"
       expect(page).to have_content "Check out can't be blank"
-    end  
+    end
+
+    scenario 'with check out earlier check in' do
+      select room.title, from: "order_room_id"
+      fill_in 'order_check_in', with: '03.07.2023'
+      fill_in 'order_check_out', with: '14.06.2023'
+      fill_in 'order_adults', with: '2'
+      fill_in 'order_kids', with: '0'
+      click_on 'Send'
+    
+      expect(page).to have_content "Check in should be earlier check out"
+    end
+
+    scenario 'Arrival dates not in price_date ranges' do
+      select room.title, from: "order_room_id"
+      fill_in 'order_check_in', with: '14.06.2023'
+      fill_in 'order_check_out', with: '03.12.2023'
+      fill_in 'order_adults', with: '2'
+      fill_in 'order_kids', with: '0'
+      click_on 'Send'
+    
+      expect(page).to have_content "Date range - availability is limited"
+    end
+    
   end
 
   scenario 'Unauthenticated user bookes property' do    

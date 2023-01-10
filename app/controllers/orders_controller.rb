@@ -11,7 +11,6 @@ class OrdersController < ApplicationController
     @room = Room.find(params[:order][:room_id])
     @property = @room.property
     @order = current_customer.orders.build(order_params.merge({ property_id: @property.id }))
-    #authorize @order
 
     if @order.save
       flash[:info] = "Order №-#{@order.id} to #{@property.title} in #{@room.title} created. Total: #{@order.total_amount}"
