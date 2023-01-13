@@ -44,7 +44,15 @@ class OrdersController < ApplicationController
             accept_order!
           when 'rejecting'
             reject_order!
+          when 'paying'
+            pay_order!
           end
+  end
+
+  def pay_order!
+    authorize @order, :pay_order?
+    # Service for order pay
+    @order.paid!
   end
 
   def accept_order!

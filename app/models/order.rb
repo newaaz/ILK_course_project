@@ -8,8 +8,17 @@ class Order < ApplicationRecord
   validates :check_in, :check_out, presence: true
   validate  :correct_arrival_dates,           on: :create, if: :dates_present?
   validate  :available_by_prices_date_ranges, on: :create, if: :dates_present?
+  validate  :available_by_booked_orders,      on: :create, if: :dates_present?
+
+
 
   enum status: { received: 0, accepted: 1, rejected: 2, paid: 3 }
+
+  protected
+
+  def order_date_range
+    check_in..check_out
+  end
 
   private
 
@@ -17,10 +26,6 @@ class Order < ApplicationRecord
 
   def dates_present?
     check_in.present? && check_out.present?
-  end
-
-  def order_date_range
-    check_in..check_out
   end
 
   def booking_calculate
@@ -39,6 +44,12 @@ class Order < ApplicationRecord
 
   def available_by_prices_date_ranges
     errors.add(:date_range, "- availability is limited.") unless order_date_range.count == available_days_by_prices 
+  end
+
+  def available_by_booked_orders
+    self.property.orders.where(room: self.room, status: 'accepted').each do |booked_order|
+      errors.add(:date_range, "Arrival dates are booked") if self.order_date_range.overlaps? booked_order.order_date_range
+    end
   end
 
   def correct_arrival_dates
