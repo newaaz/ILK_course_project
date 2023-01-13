@@ -8,7 +8,7 @@
   <br>
   <% if property.rooms.any? %>
     <h4>Rooms:</h4>
-    <%= render partial: 'room', collection: property.rooms, as: :room %>
+    <%= render partial: 'partners/dashboard/partials/room', collection: property.rooms, as: :room %>
   <% end %> 
 <% end %>
 

@@ -15,6 +15,7 @@ class OrderPolicy < ApplicationPolicy
     record.property.owner == user
   end
 
-
-
+  def show?
+    (record.property.owner == user) || record.customer == user
+  end
 end

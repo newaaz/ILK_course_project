@@ -1,4 +1,9 @@
 class OrdersController < ApplicationController
+  def show
+    @order = Order.find(params[:id])
+    authorize @order
+  end
+
   def new
     authorize Order
     @room = Room.find(params[:room_id])
@@ -25,7 +30,10 @@ class OrdersController < ApplicationController
 
     case_status_action(params[:status_action])
 
-    redirect_back fallback_location: root_path
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace(@order, partial: 'orders/order', locals: { order: @order }) }
+    end
   end
 
   private

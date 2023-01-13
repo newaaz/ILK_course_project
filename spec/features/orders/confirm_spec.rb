@@ -20,16 +20,10 @@ feature 'The partner-owner can confirm order', %q{
     click_on 'Orders'
   end
 
-  scenario 'Owner confirm order' do
-    expect(page).to have_content "№-#{order.id}"
-
-    click_on 'Accept'
-
-    within "#order_#{order.id}" do
+  scenario 'Owner confirm order' do  
+    within "#row_order_#{order.id}" do
+      click_on 'Accept'
       expect(page).to have_content "accepted"
     end
   end
-
-
-
 end

@@ -38,7 +38,7 @@ class Order < ApplicationRecord
   end
 
   def available_by_prices_date_ranges
-    errors.add(:date_range, "- availability is limited. CHECK IN #{check_in} CHECKOUT #{check_out} ORDER DATE RANGE #{order_date_range.count} ") unless order_date_range.count == available_days_by_prices 
+    errors.add(:date_range, "- availability is limited.") unless order_date_range.count == available_days_by_prices 
   end
 
   def correct_arrival_dates
