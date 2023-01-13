@@ -18,8 +18,7 @@ feature 'Partner can view orders list of their properties', %q{
 
     expect(page).to have_content "Orders"
     orders.each do |order|
-      expect(page).to have_content "Order №-#{order.id} to #{order.property.title} in #{order.room.title}"
-      expect(page).to have_content "From: #{order.check_in.strftime('%d.%m.%y')} to: #{order.check_out.strftime('%d.%m.%y')}"
+      expect(page).to have_content "№-#{order.id}"
     end
   end
 

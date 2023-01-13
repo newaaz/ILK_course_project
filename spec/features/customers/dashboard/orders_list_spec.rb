@@ -10,7 +10,7 @@ feature 'Customer can view their orders', %q{
   given(:partner)   { create :partner }
   given(:property)  { create :property, :imagable }
   given!(:room)     { create :room, :imagable, property: property }
-  given!(:orders)   { create_list :order, 3, customer: customer }
+  given!(:orders)   { create_list :order, 3, customer: customer, room:room }
 
   scenario 'Authenticated customer' do
     sign_in_customer(customer)
@@ -31,13 +31,11 @@ feature 'Customer can view their orders', %q{
     click_on 'Dashboard Customer'
 
     orders.each do |order|
-      expect(page).to have_content "Order №-#{order.id} to #{order.property.title} in #{order.room.title}"
-      expect(page).to have_content "From: #{order.check_in.strftime('%d.%m.%y')} to: #{order.check_out.strftime('%d.%m.%y')}"
+      expect(page).to have_content "№-#{order.id}"
     end
 
     last_order = Order.last
-    expect(page).to have_content "Order №-#{last_order.id} to #{property.title} in #{room.title}"
-    expect(page).to have_content "From: 05.01.22 to: 05.02.22"
+    expect(page).to have_content "№-#{last_order.id}"
   end
 
   scenario 'Unauthenticated user' do

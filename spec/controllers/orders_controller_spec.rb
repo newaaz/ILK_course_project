@@ -6,6 +6,9 @@ RSpec.describe OrdersController, type: :controller do
   let(:property) { create(:property) }
   let(:room)     { create(:room, property: property) }
 
+  let!(:price)   { create :price, start_date: '2023-05-31', end_date: '2023-09-16', day_cost: 35, room: room }
+
+
   describe 'GET #new' do
     context 'Authenticated customer' do
       before do
@@ -44,12 +47,12 @@ RSpec.describe OrdersController, type: :controller do
 
       context 'create booking order with valid attributes' do
         it 'saves new order in DB' do
-          expect { post :create, params: { order: attributes_for(:order, room_id: room.id) } }
+          expect { post :create, params: { order: attributes_for(:order, room_id: room.id, check_in: price.start_date, check_out: price.start_date + 5) } }
                  .to change(Order, :count).by(1)
         end
 
         it 'redirect to property path' do
-          post :create, params: { order: attributes_for(:order, room_id: room.id) }      
+          post :create, params: { order: attributes_for(:order, room_id: room.id, check_in: price.start_date, check_out: price.start_date + 5) }      
           expect(response).to redirect_to property_path(property)
         end
       end
