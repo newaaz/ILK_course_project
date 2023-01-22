@@ -5,25 +5,19 @@ module Geolocable
     accepts_nested_attributes_for :geolocation, reject_if: :coordinates_optional?
 
     def nearby_objects(object)
-      min_lat = geolocation.latitude - 0.0090
-      max_lat = geolocation.latitude + 0.0090
-      min_long = geolocation.longitude - 0.0127
-      max_long = geolocation.longitude + 0.0127
+      min_lat, max_lat = (geolocation.latitude - 0.0090), (geolocation.latitude + 0.0090)
+      min_long, max_long = (geolocation.longitude - 0.0127), (geolocation.longitude + 0.0127)
 
       points = Geolocation.where(latitude: min_lat..max_lat, longitude: min_long..max_long, geolocable_type: object)
                           .where.not(geolocable_type: object, geolocable_id: id)
 
-      nearbies_objects = []
-      
-      points.each do |point|
-        nearbies_objects << {
-                              title: point.geolocable.title,
-                              object_id: point.geolocable.id,
-                              distance: distance_to(point)
-                            }
-      end
-
-      nearbies_objects
+      points.map do |point|
+        {
+          title: point.geolocable.title,
+          object_id: point.geolocable.id,
+          distance: distance_to(point)
+        }
+      end 
     end
 
     private
