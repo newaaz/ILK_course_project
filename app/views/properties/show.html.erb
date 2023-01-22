@@ -16,3 +16,21 @@ Category: <%= @property.category.title %>
   <%= render partial: 'room', collection: @property.rooms, as: :room %>
 <% end %>
 
+<% if @property.geolocation.present? %>
+  <%= render 'geolocations/show_map', object: @property, preset_icon: "islands#blueHomeIcon" %>
+<% end %>
+
+<% if @nearby_properties.any? %>
+  <div class="nearby_properties">
+    <h4>Nearby properties</h4>
+    <% @nearby_properties.each do |nearby_property| %>
+      <p>
+        <%= link_to nearby_property[:title], property_path(nearby_property[:object_id]) %>
+        <br>
+        <span><%= nearby_property[:distance] %> m.</span>
+      </p>
+    <% end %>    
+  </div>
+<% end %>
+
+

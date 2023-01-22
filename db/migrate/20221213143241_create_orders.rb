@@ -8,9 +8,8 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.date :check_out, null: false
       t.integer :adults, limit:1
       t.integer :kids, limit:1
-      t.boolean :reservation_confirmed, default: false
-      t.boolean :payment_successful, default: false
-      t.integer :total_amount
+      t.integer :total_amount, default: 0
+      t.integer :status, default: 0
 
       t.timestamps
     end

@@ -1,1 +1,17 @@
-body { background:#f1f5f9; }
+//body { background:#f1f5f9; }
+
+.turbo-progress-bar {
+  background: linear-gradient(to right, var(--color-primary), var(--color-primary-rotate));
+}
+
+:root {
+  // Application colors
+  --color-primary:          hsl(350, 67%, 50%);
+  --color-primary-rotate:   hsl(10, 73%, 54%);
+  --color-primary-bg:       hsl(0, 85%, 96%);
+  --color-secondary:        hsl(101, 45%, 56%);
+  --color-secondary-rotate: hsl(120, 45%, 56%);
+  --color-tertiary:         hsl(49, 89%, 64%);
+  --color-glint:            hsl(210, 100%, 82%);
+}
+

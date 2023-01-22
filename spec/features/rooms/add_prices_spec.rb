@@ -22,33 +22,56 @@ feature 'Partner can add prices to rooms', %q{
     end
 
     scenario 'with valid attributes' do
-      click_on 'remove price'    
-      3.times { click_on 'add price' }
-
-      page.all('.nested-fields').each do |field|
-        within(field) do
-          fill_in with: '05.01.2022', placeholder: 'start-date'
-          fill_in with: '06.02.2022', placeholder: 'end-date'
-          fill_in with: 999,          placeholder: 'day-cost'
-        end
-      end    
+      within '.nested-fields' do
+        fill_in with: '06/15/2023', placeholder: 'start-date'
+        fill_in with: '06/24/2023', placeholder: 'end-date'
+        fill_in with: 90,          placeholder: 'day-cost'
+      end
 
       click_on 'Save' 
 
       expect(page).to have_content 'Room was added'
-      expect(page).to have_content "from: 01.05 to: 02.06 - 999", count: 3
+      expect(page).to have_content "from: 15.06 to: 24.06 - 90", count: 1
     end
 
     scenario 'with invalid attributes' do      
       within '.nested-fields' do
-        fill_in with: '2022/11/01', placeholder: 'start-date'
-        fill_in with: '2022/12/01', placeholder: 'end-date'
+        fill_in with: '06/15/2023', placeholder: 'start-date'
+        fill_in with: '06/24/2023', placeholder: 'end-date'
         fill_in with: nil,          placeholder: 'day-cost'
       end
     
       click_on 'Save' 
   
       expect(page).to have_content "Prices day cost can't be blank"
+    end
+
+    scenario 'with start_date older end_date' do      
+      within '.nested-fields' do
+        fill_in with: '06/24/2023', placeholder: 'start-date'
+        fill_in with: '06/15/2023', placeholder: 'end-date'
+        fill_in with: 45,          placeholder: 'day-cost'
+      end
+    
+      click_on 'Save' 
+  
+      expect(page).to have_content "Prices start date should be earlier end date"
+    end
+
+    scenario 'with intersect date ranges' do
+      click_on 'add price'
+      
+      page.all('.nested-fields').each do |field|
+        within(field) do
+          fill_in with: '06/15/2023', placeholder: 'start-date'
+          fill_in with: '06/24/2023', placeholder: 'end-date'
+          fill_in with: 90,          placeholder: 'day-cost'
+        end
+      end
+
+      click_on 'Save' 
+
+      expect(page).to have_content "Prices - there are intersect date ranges in prices"
     end
   end
 end

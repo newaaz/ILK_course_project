@@ -1,6 +1,11 @@
 Rails.application.routes.draw do  
   root 'static_pages#home'
 
+  # static pages
+  get '/contacts', to: 'static_pages#contacts'
+  get '/about', to: 'static_pages#about'
+  get '/privacy', to: 'static_pages#privacy'
+
   devise_for :partners, controllers:  {
     sessions:           'partners/sessions',
     registrations:      'partners/registrations',
@@ -30,7 +35,7 @@ Rails.application.routes.draw do
 
   delete 'images/:id/purge', to: 'images#purge', as: 'purge_image'
 
-  resources :orders, only: %i[show new create]
+  resources :orders, only: %i[show new create update]
 
   resources :towns, only: %i[show]
 end

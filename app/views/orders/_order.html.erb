@@ -1,0 +1,49 @@
+<%= turbo_frame_tag order do %>
+  <%= content_tag(:div, id: dom_id(order, 'row'), class: 'row rounded border shadow shadow-sm my-2') do %>  
+    <div class="col"><%= link_to "№-#{order.id}", order_path(order) %></div>
+    <div class="col"><%= "#{order.property.title}" %></div>
+    <div class="col"><%= "#{order.room.title}" %></div>
+    <div class="col"><%= "From: #{order.check_in.strftime('%d.%m.%y')} to: #{order.check_out.strftime('%d.%m.%y')}" %></div>
+    <div class="col"><%= "#{order.total_amount}" %></div>
+    <div class="col"><%= "#{order.status}" %></div>
+
+
+    <% if order.received? %>
+      <% if current_partner %>
+        <div class="col">
+          <%= link_to 'Accept', order_path(order, status_action: 'accepting'), data: { 'turbo-method': :patch } ,class: 'btn btn-sm btn-success' %>
+          <%= link_to 'Regect', order_path(order, status_action: 'rejecting'), data: { 'turbo-method': :patch } ,class: 'btn btn-sm btn-outline-danger' %>
+        </div>
+      <% elsif current_customer %>
+        <div class="col">
+          <span class="badge text-bg-primary">Waiting for accepting</span>
+        </div>
+      <% end %>
+
+    <% elsif order.accepted? %>
+      <% if current_partner %>
+        <div class="col">
+          <span class="badge text-bg-primary">Waiting for payment</span>
+        </div>
+      <% elsif current_customer %>
+        <div class="col">
+          <%= link_to "Pay #{order.total_amount}", order_path(order, status_action: 'paying'), data: { 'turbo-method': :patch } ,class: 'btn btn-sm btn-success' %>
+        </div>
+      <% end %>
+
+    <% elsif order.rejected? %>
+      <div class="col">
+        <span class="badge text-bg-warning">Availability is limited</span>
+      </div>
+
+    <% elsif order.paid? %>
+      <div class="col">
+        <span class="badge text-bg-success"><%= "Paid #{order.total_amount}" %></span>
+      </div>
+    <% end %>
+
+  
+
+
+  <% end %> 
+<% end %>

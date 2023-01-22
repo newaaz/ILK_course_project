@@ -1,0 +1,25 @@
+<div id="map" style="height: 300px" class="my-4 shadow"></div>
+
+<% content_for(:footer_scripts) do %>
+  <script type="text/javascript"> // map
+    ymaps.ready(init);
+    function init(){
+      const coords = [<%= object.geolocation.latitude %>, <%= object.geolocation.longitude %>]      
+      const myMap = new ymaps.Map("map", {
+          center: coords,
+          zoom: 14,
+          behaviors: ['drag','dblClickZoom', 'multiTouch']
+      });    
+      const myPlacemark = new ymaps.Placemark(coords, {
+        balloonContentHeader: 'Header',
+        balloonContentBody: 'Body',
+        balloonContentFooter: 'Footer',
+        hintContent: 'Hint'
+      }, {
+        preset: "<%= preset_icon %>"
+      });
+      myMap.geoObjects.add(myPlacemark);
+    };  
+  </script>
+<% end %>
+

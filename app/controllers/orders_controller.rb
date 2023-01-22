@@ -1,4 +1,9 @@
 class OrdersController < ApplicationController
+  def show
+    @order = Order.find(params[:id])
+    authorize @order
+  end
+
   def new
     authorize Order
     @room = Room.find(params[:room_id])
@@ -11,17 +16,54 @@ class OrdersController < ApplicationController
     @room = Room.find(params[:order][:room_id])
     @property = @room.property
     @order = current_customer.orders.build(order_params.merge({ property_id: @property.id }))
-    #authorize @order
 
     if @order.save
-      flash[:info] = "Order №-#{@order.id} to #{@property.title} in #{@room.title} created"
+      flash[:info] = "Order №-#{@order.id} to #{@property.title} in #{@room.title} created. Total: #{@order.total_amount}"
       redirect_to property_path @property
     else
       render 'new'
     end
   end
 
+  def update
+    @order = Order.find(params[:id])
+
+    case_status_action(params[:status_action])
+
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace(@order, partial: 'orders/order', locals: { order: @order }) }
+    end
+  end
+
   private
+
+  def case_status_action(status_action)
+    case  status_action
+          when 'accepting'
+            accept_order!
+          when 'rejecting'
+            reject_order!
+          when 'paying'
+            pay_order!
+          end
+  end
+
+  def pay_order!
+    authorize @order, :pay_order?
+    # Service for order pay
+    @order.paid!
+  end
+
+  def accept_order!
+    authorize @order, :accept_order?
+    @order.accepted!
+  end
+
+  def reject_order!
+    authorize @order, :reject_order?
+    @order.rejected!
+  end
 
   def pundit_user
     current_customer || current_partner

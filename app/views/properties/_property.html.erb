@@ -2,4 +2,6 @@
 <p class="card-text"><%= property.address %></p>
 Town: <%= property.town.name %>
 Category: <%= property.category.title %>
-
+<br>
+<%= link_to image_tag(property.avatar_thumb), property %>
+<hr>

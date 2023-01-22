@@ -1,14 +1,66 @@
-<%= link_to "Home", root_path, class: 'btn btn-outline-primary' %>
-<%= link_to "Login owner", new_partner_session_path, class: 'btn btn-outline-primary' %>
-<%= link_to "Login customer", new_customer_session_path, class: 'btn btn-outline-success' %>
-<%= link_to "Properties", properties_path, class: 'btn btn-outline-primary' %>
+<!-- Header START -->
+<header class="navbar-light header-sticky">
+	<!-- Logo Nav START -->
+	<nav class="navbar navbar-expand-xl">
+		<div class="container">
+			<!-- Logo START -->
+			<%= link_to root_url, class: "navbar-brand" do %>
+				<%= image_tag("logo.png", alt: "logo", class: "light-mode-item navbar-brand-item") %>
+				<%= image_tag("logo.png", alt: "logo", class: "dark-mode-item navbar-brand-item") %>
+			<% end %>
+			<!-- Logo END -->
 
-<% if current_partner %>
-  <%= link_to "Dashboard Partner", partners_root_path, class: 'btn btn-primary' %>
-  <%= link_to "Logout Partner", destroy_partner_session_path, data: { "turbo-method": :delete }, class: 'btn btn-outline-danger' %>
-<% end %>
+			<!-- Main navbar START -->
+			<div class="navbar-collapse collapse" id="navbarCollapse">
+				<ul class="navbar-nav navbar-nav-scroll me-auto">
+					<!-- Nav item Listing -->
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="listingMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Static pages
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="listingMenu">
+							<li><%= link_to 'Contacts', contacts_path, class: 'dropdown-item' %></li>							
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<!-- Main navbar END -->
 
-<% if current_customer %>
-  <%= link_to "Dashboard Customer", customers_root_path, class: 'btn btn-primary' %>
-  <%= link_to "Logout Customer", destroy_customer_session_path, data: { "turbo-method": :delete }, class: 'btn btn-outline-danger' %>
-<% end %>
+			<!-- Nav category menu START -->
+			<div class="text-center ms-auto ">
+				<%= link_to "Home", root_path, class: 'btn btn-outline-primary' %>
+				<%= link_to "Login owner", new_partner_session_path, class: 'btn btn-outline-primary' %>
+				<%= link_to "Login customer", new_customer_session_path, class: 'btn btn-outline-success' %>
+				<%= link_to "Properties", properties_path, class: 'btn btn-outline-primary' %>
+
+				<% if current_partner %>
+					<%= link_to "Dashboard Partner", partners_root_path, class: 'btn btn-primary' %>
+					<%= link_to "Logout Partner", destroy_partner_session_path, data: { "turbo-method": :delete }, class: 'btn btn-outline-danger' %>
+				<% end %>
+
+				<% if current_customer %>
+					<%= link_to "Dashboard Customer", customers_root_path, class: 'btn btn-primary' %>
+					<%= link_to "Logout Customer", destroy_customer_session_path, data: { "turbo-method": :delete }, class: 'btn btn-outline-danger' %>
+				<% end %>
+
+				<div class="modeswitch-wrap" id="darkModeSwitch">
+					<div class="modeswitch-item">
+						<div class="modeswitch-icon"></div>
+					</div>
+					<span>Dark mode</span>
+				</div>
+			</div>
+			<!-- Nav category menu END -->
+		</div>
+	</nav>
+	<!-- Logo Nav END -->
+</header>
+<!-- Header END -->
+
+
+
+
+
+
+
+
