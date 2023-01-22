@@ -65,14 +65,14 @@
   transition: $transition-base;
   background:  var(--#{$prefix}primary);
   color: $white;
-  border-radius: 10%;
+  border-radius: 40%;
   width: 52px;
   height: 52px;
   line-height: 52px;
   text-align: center;
   &:before{
-    content: "\f176";
-    font-family: "Font Awesome 6 Free";
+    content: "\f111";
+    font-family: 'bootstrap-icons';
     font-weight: 900;
     position: absolute;
     left: 50%;

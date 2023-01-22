@@ -21,8 +21,8 @@
       // Navbar styling for all screen sizes
 			// Custom dropdown toggle icon
       .dropdown-toggle:after {
-        content: "";
-        font-family: "Font Awesome 6 Free";
+        content: "\f282";
+        font-family: "bootstrap-icons";
         margin-left: 0.35rem;
         font-weight: 900;
         font-size: 0.8rem;
@@ -30,15 +30,15 @@
         border: none;
       }
       .dropdown-submenu.dropend .dropdown-toggle:after {
-        content: "";
-        font-family: "Font Awesome 6 Free";
+        content: "\f285";
+        font-family: "bootstrap-icons";
         right: 1rem;
         font-size: 1rem;
       }
       .dropdown-submenu.dropstart .dropdown-toggle:before{
-        content: "";
+        content: "\f284";
         margin-right: 0;
-        font-family: "Font Awesome 6 Free";
+        font-family: "bootstrap-icons";
         right: 1rem;
 				position: absolute;
       }

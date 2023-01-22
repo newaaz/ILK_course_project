@@ -1,31 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html class="dark-mode">
   <head>
     <title>Ilk</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- Google Font -->
+	  <link rel="preconnect" href="https://fonts.googleapis.com">
+	  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap">
+
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script> 
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+    <!-- Dark mode -->
+    <script type="text/javascript">
+      const theme = localStorage.getItem('data-theme');
+      const root = document.documentElement;
+      if (theme === 'dark' && theme !== undefined) {
+        root.classList.add('dark-mode');
+      } else {
+        root.classList.remove('dark-mode');
+      }
+    </script>
   </head>
 
   <body>
     <%= render 'shared/navbar' %>
-    
-    <div class="container">
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %> alert-dismissible fade show" role="alert">
-          <%= message %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      <% end %>
-      <%= turbo_frame_tag 'flash_messages' %>
-      
-      <%= yield %>
-    </div>
+
+      <div class="container">
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %> alert-dismissible fade show" role="alert">
+            <%= message %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
+        <%= turbo_frame_tag 'flash_messages' %>
+        
+        <%= yield %>
+      </div>
+
+    <!-- Back to top -->
+    <div class="back-top"></div>
 
     <% if content_for?(:footer_scripts) %>
       <%= yield(:footer_scripts) %>    
