@@ -11,8 +11,8 @@
     <% if order.received? %>
       <% if current_partner %>
         <div class="col">
-          <%= link_to 'Accept', order_path(order, status_action: 'accepting'), data: { 'turbo-method': :patch } ,class: 'btn btn-sm btn-success' %>
-          <%= link_to 'Regect', order_path(order, status_action: 'rejecting'), data: { 'turbo-method': :patch } ,class: 'btn btn-sm btn-outline-danger' %>
+          <%= link_to 'Accept', order_path(order, status_action: 'accept'), data: { 'turbo-method': :patch } ,class: 'btn btn-sm btn-success' %>
+          <%= link_to 'Regect', order_path(order, status_action: 'reject'), data: { 'turbo-method': :patch } ,class: 'btn btn-sm btn-outline-danger' %>
         </div>
       <% elsif current_customer %>
         <div class="col">
@@ -27,7 +27,7 @@
         </div>
       <% elsif current_customer %>
         <div class="col">
-          <%= link_to "Pay #{order.total_amount}", order_path(order, status_action: 'paying'), data: { 'turbo-method': :patch } ,class: 'btn btn-sm btn-success' %>
+          <%= link_to "Pay #{order.total_amount}", order_path(order, status_action: 'pay'), data: { 'turbo-method': :patch } ,class: 'btn btn-sm btn-success' %>
         </div>
       <% end %>
 
@@ -41,9 +41,5 @@
         <span class="badge text-bg-success"><%= "Paid #{order.total_amount}" %></span>
       </div>
     <% end %>
-
-  
-
-
   <% end %> 
 <% end %>

@@ -34,10 +34,13 @@ gem "omniauth", "~> 2.1"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "omniauth-github", "~> 2.0"
 gem "omniauth-vkontakte", "~> 1.8"
-gem "pundit", "~> 2.2"
 
+gem "pundit", "~> 2.2"
 gem "cocoon", "~> 1.2"
 gem "geocoder", "~> 1.8"
+
+gem "aasm", "~> 5.4"
+#gem "after_commit_everywhere", "~> 1.3"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -69,6 +72,5 @@ group :test do
   gem "database_cleaner-active_record", "~> 2.0"
   gem 'pundit-matchers', '~> 1.8.4'
 end
-
 
 
