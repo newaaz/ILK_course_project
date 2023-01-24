@@ -6,3 +6,10 @@
 
 <hr>
 
+<%= render 'search/form' %>
+
+<div id="search_result">
+  <% if @properties %>
+    <%= render partial: 'properties/property', collection: @properties, as: :property %>
+  <% end %>
+</div>

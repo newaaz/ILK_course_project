@@ -1,6 +1,8 @@
 class Property < ApplicationRecord
   include Imagable
   include Geolocable
+
+  searchkick
   
   belongs_to :owner, class_name: 'Partner'
   belongs_to :town
