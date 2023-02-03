@@ -114,6 +114,11 @@ GEM
       elasticsearch-transport (= 7.17.7)
     elasticsearch-api (7.17.7)
       multi_json
+    elasticsearch-model (7.2.1)
+      activesupport (> 3)
+      elasticsearch (~> 7)
+      hashie
+    elasticsearch-rails (7.2.1)
     elasticsearch-transport (7.17.7)
       faraday (~> 1)
       multi_json
@@ -206,6 +211,7 @@ GEM
       rack (>= 1.2, < 4)
       snaky_hash (~> 2.0)
       version_gem (~> 1.1)
+    oj (3.14.0)
     omniauth (2.1.0)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
@@ -360,6 +366,8 @@ DEPENDENCIES
   debug
   devise (~> 4.8)
   elasticsearch (~> 7.17.7)
+  elasticsearch-model (~> 7.2)
+  elasticsearch-rails (~> 7.2)
   factory_bot_rails (~> 6.2)
   geocoder (~> 1.8)
   image_processing (~> 1.2)
@@ -367,6 +375,7 @@ DEPENDENCIES
   jsbundling-rails
   launchy (~> 2.5)
   letter_opener (~> 1.8)
+  oj (~> 3.14)
   omniauth (~> 2.1)
   omniauth-github (~> 2.0)
   omniauth-rails_csrf_protection (~> 1.0)
