@@ -11,17 +11,13 @@ module Searchable
         indexes :town_id,     type: :long
         indexes :category_id, type: :long
         indexes :title,       type: :text
-        indexes :available_range, type: :nested, properties: {
-                    available_start_date: { type: :date },
-                    available_end_date:   { type: :date },
-                    min_price:            { type: :long },
-                    max_price:            { type: :long }
-                  }
         indexes :rooms, type: :nested, properties: {
                   guest_base_count: { type: :byte },
                   guest_max_count:  { type: :byte },
                   title:            { type: :text },
                   id:               { type: :long },
+                  start_available:  { type: :date },
+                  end_available:    { type: :date },
                   prices:           { type: :nested, properties: {
                     start_date: { type: :date },
                     end_date:   { type: :date },
@@ -33,12 +29,10 @@ module Searchable
 
     def as_indexed_json(_options = {})
       self.as_json(
-            only: %i[id town_id category_id]
+            only: %i[id title town_id category_id]
           ).merge({
               rooms: room_availabilities
-          }).merge({
-              available_range: price_date_available_range
-          })
+            })
     end
 
     def room_availabilities
@@ -47,7 +41,9 @@ module Searchable
           {
             guest_base_count: room.guest_base_count,
             guest_max_count:  room.guest_max_count,
-            id:               room.id,            
+            id:               room.id,
+            start_available:  room.start_available_date,
+            end_available:    room.end_available_date,
             prices:           room.prices.map do |price|
                                 {
                                   start_date: price.start_date,
@@ -60,17 +56,16 @@ module Searchable
       end
     end
 
-    def self.search(query)
-      # params = {
-      #   query: {
-      #     match: {
-      #       title: query,
-      #     },
-      #   },
-      # }
+    # def self.search(query)
+    #   params = {
+    #     query: {
+    #       match: {
+    #         title: query,
+    #       },
+    #     },
+    #   }
 
-      self.__elasticsearch__.search(query)
-    end
-    
+    #   self.__elasticsearch__.search(query)
+    # end    
   end
 end
