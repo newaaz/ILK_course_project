@@ -12,10 +12,10 @@ module Searchable
         indexes :category_id, type: :long
         indexes :title,       type: :text
         indexes :rooms, type: :nested, properties: {
-                  guest_base_count: { type: :byte },
-                  guest_max_count:  { type: :byte },
-                  title:            { type: :text },
                   id:               { type: :long },
+                  title:            { type: :text },
+                  guest_base_count: { type: :byte },
+                  guest_max_count:  { type: :byte },                  
                   start_available:  { type: :date },
                   end_available:    { type: :date },
                   prices:           { type: :nested, properties: {
@@ -56,16 +56,17 @@ module Searchable
       end
     end
 
-    # def self.search(query)
-    #   params = {
-    #     query: {
-    #       match: {
-    #         title: query,
-    #       },
-    #     },
-    #   }
+    # Searchkick
+    searchkick
+    scope :search_import, -> { includes(:rooms, :orders) }
 
-    #   self.__elasticsearch__.search(query)
-    # end    
+    def search_data
+      {
+        title:                title,
+        town_id:              town_id,
+        category_id:          category_id,
+        rooms:                self.room_availabilities   
+      }
+    end
   end
 end

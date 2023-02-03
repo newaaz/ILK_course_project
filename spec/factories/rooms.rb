@@ -2,6 +2,8 @@ FactoryBot.define do
   factory :room do
     title     { 'Standard 3-x' }
     property  { association :property }
+    guest_base_count { 2 }
+    guest_max_count  { 3 }
 
     trait :invalid do
       title { nil }
