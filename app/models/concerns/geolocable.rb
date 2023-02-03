@@ -12,8 +12,12 @@ module Geolocable
                                  .where.not(geolocable_type: object, geolocable_id: id)
                                  .order(:updated_at)
       
+      # OPTIMIZE: sorting on :updated_at - for objects and theirs geopoints synchronization
       nearbys_objects = object.constantize.order(:updated_at).find(nearbys_geolocations.pluck(:geolocable_id))
 
+      # Поиск и перебор объектов происходит здесь, чтобы отдавать только необходимые
+      # и минимальные данные по соседям
+      # Потом соседями могут являться места где можно перекусить (кафе), достопримечательности
       nearbys_objects.map.with_index do |object, i|
         {
           title: object.title,
