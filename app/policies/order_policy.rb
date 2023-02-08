@@ -8,15 +8,15 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def pay_order?
-    record.customer == user || record.status == 'accepted'
+    record.customer == user && record.status == 'accepted'
   end
 
   def accept_order?
-    record.property.owner == user || record.status == 'received'
+    record.property.owner == user && record.status == 'received'
   end
 
   def reject_order?
-    record.property.owner == user || record.status == 'received'
+    record.property.owner == user && record.status == 'received'
   end
 
   def show?

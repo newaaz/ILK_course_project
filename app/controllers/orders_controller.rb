@@ -28,7 +28,9 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
 
-    case_status_action(params[:status_action])
+    authorize @order, authorized_action(params[:status_action]) 
+
+    @order.change_status(params[:status_action])
 
     respond_to do |format|
       format.html { redirect_back fallback_location: root_path }
@@ -38,31 +40,8 @@ class OrdersController < ApplicationController
 
   private
 
-  def case_status_action(status_action)
-    case  status_action
-          when 'accepting'
-            accept_order!
-          when 'rejecting'
-            reject_order!
-          when 'paying'
-            pay_order!
-          end
-  end
-
-  def pay_order!
-    authorize @order, :pay_order?
-    # Service for order pay
-    @order.paid!
-  end
-
-  def accept_order!
-    authorize @order, :accept_order?
-    @order.accepted!
-  end
-
-  def reject_order!
-    authorize @order, :reject_order?
-    @order.rejected!
+  def authorized_action(status_action)
+    (status_action + '_order?').to_sym
   end
 
   def pundit_user

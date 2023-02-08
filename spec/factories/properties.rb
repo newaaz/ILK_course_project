@@ -29,5 +29,11 @@ FactoryBot.define do
         ])
       end
     end
+
+    trait :reindex do
+      after(:create) do |property, _evaluator|
+        property.reindex(refresh: true)
+      end
+    end
   end
 end

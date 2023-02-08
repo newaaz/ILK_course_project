@@ -34,10 +34,23 @@ gem "omniauth", "~> 2.1"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "omniauth-github", "~> 2.0"
 gem "omniauth-vkontakte", "~> 1.8"
-gem "pundit", "~> 2.2"
 
+gem "pundit", "~> 2.2"
 gem "cocoon", "~> 1.2"
 gem "geocoder", "~> 1.8"
+
+gem "aasm", "~> 5.4"
+#gem "after_commit_everywhere", "~> 1.3"
+
+
+gem "searchkick", "~> 5.1"
+gem "elasticsearch", "~> 7.17.7"
+
+gem "elasticsearch-rails", "~> 7.2"
+gem "elasticsearch-model", "~> 7.2"
+
+# speed up work with JSON
+gem "oj", "~> 3.14"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

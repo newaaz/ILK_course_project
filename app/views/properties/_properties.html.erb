@@ -1,0 +1,8 @@
+<div id="search_result">
+  <% if @properties.any? %>
+    <h3><%= "Found #{@properties.count} property" %></h3>
+    <%= render partial: 'properties/property', collection: @properties, as: :property %>
+  <% else %>
+    <h3>Not found</h3>
+  <% end %>
+</div> 

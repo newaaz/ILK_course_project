@@ -10,3 +10,6 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 
 // functions of theme
 import "./custom/functions"
+
+// work with yandex map
+import "./custom/display_map"

@@ -16,9 +16,7 @@ Category: <%= @property.category.title %>
   <%= render partial: 'room', collection: @property.rooms, as: :room %>
 <% end %>
 
-<% if @property.geolocation.present? %>
-  <%= render 'geolocations/show_map', object: @property, preset_icon: "islands#blueHomeIcon" %>
-<% end %>
+<%= render 'geolocations/show_map', object: @property, preset_icon: "islands#blueHomeIcon" %>
 
 <% if @nearby_properties.any? %>
   <div class="nearby_properties">
