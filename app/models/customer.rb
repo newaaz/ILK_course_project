@@ -3,8 +3,8 @@ class Customer < ApplicationRecord
           :registerable,
           :recoverable,
           :rememberable,
-          :validatable,
-          :confirmable
+          :validatable
+        # :confirmable
 
   has_many  :orders, dependent: :destroy
 end

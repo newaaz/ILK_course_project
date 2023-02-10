@@ -202,7 +202,7 @@ $font-family-heading:        'Poppins', sans-serif;
 // Font Sizes
 
 $font-size-xs:                .8125rem;
-$font-size-base:              0.9rem;
+$font-size-base:              1rem;
 $font-size-lg:                $font-size-base * 1.2;
 $font-size-sm:                $font-size-base * .875;
 
@@ -392,7 +392,7 @@ $form-select-padding-x:             $input-padding-x;
 $form-select-font-size:             $input-font-size;
 $form-select-font-weight:           $input-font-weight;
 $form-select-line-height:           $input-line-height;
-// $form-select-color:                 $input-color;  ////////////////////////////
+// $form-select-color:                 $input-color;
 $form-select-border-radius:         $border-radius;
 
 $form-select-indicator-color:       $gray-600;

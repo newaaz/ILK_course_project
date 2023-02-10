@@ -1,19 +1,35 @@
-// Should you need to add your custom variable or you need to override our theme variables from _variables.SCSS, then we highly recommend that you add the code into this file so that whenever theme update is available and you update the theme, You will not lose your hard work :)
-
-// Below given example is for how to overrides core variables. Uncomment the code, after compilation, You will see the color scheme changes on frontend.
-
 // User Variables
-// Uncomment below code and change primary color to your brand color
+
+// NAVBAR LOGO
+$navbar-brand-height:               75px; //Logo height
+$navbar-brand-padding-y:            5px;
+
+// Font Families
+
+// $font-family-base:           'Montserrat', sans-serif;   // 'DM Sans', sans-serif;
+//$font-family-base:           'Montserrat', sans-serif;
+//$font-family-heading:        'Montserrat', sans-serif;      // 'Poppins', sans-serif;
+
+// FONTS FROM TABLER
+// FONTS
+$font-google: null !default;
+$font-google-monospaced: null !default;
+$font-local: null !default;
+$font-icons: () !default;
+
+$font-family-base: unquote("#{if($font-local, "#{$font-local}, ", ' ')}#{if($font-google, "#{$font-google}, ", ' ')}") -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+$font-family-monospace: unquote("#{if($font-google-monospaced, "#{$font-google-monospaced}, ", '')}") Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+$font-family-serif: "Georgia", "Times New Roman", times, serif !default;
 
 
 
 // Headings
-$h1-font-size:                $font-size-base * 2.7;
-$h2-font-size:                $font-size-base * 2.2;
-$h3-font-size:                $font-size-base * 1.7;
-$h4-font-size:                $font-size-base * 1.5;
-$h5-font-size:                $font-size-base * 1.3;
-$h6-font-size:                $font-size-base;
+// $h1-font-size:                $font-size-base * 2.7;
+// $h2-font-size:                $font-size-base * 2.2;
+// $h3-font-size:                $font-size-base * 1.7;
+// $h4-font-size:                $font-size-base * 1.5;
+// $h5-font-size:                $font-size-base * 1.3;
+// $h6-font-size:                $font-size-base;
 
 // COLORS
 // $primary:     red;
