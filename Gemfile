@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.2"
+ruby "3.2.1"
 
 gem "rails", "~> 7.0.4"
 gem "sprockets-rails"
@@ -70,6 +70,16 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  # Deploy
+  gem 'capistrano', '~> 3.11', require: false  
+  gem 'capistrano-rails', '~> 1.4', require: false
+  gem 'capistrano-passenger', '~> 0.2.0', require: false
+  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4', require: false
+  #gem "capistrano3-unicorn", "~> 0.2.1", require: false
+  #gem 'capistrano-bundler', require: false
+  #gem 'capistrano-sidekiq', require: false  
+  #gem 'capistrano-rvm', require: false
 end
 
 group :test do
