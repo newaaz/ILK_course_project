@@ -80,6 +80,9 @@ group :development do
   #gem 'capistrano-bundler', require: false
   #gem 'capistrano-sidekiq', require: false  
   #gem 'capistrano-rvm', require: false
+
+  gem "ed25519", "~> 1.3", require: false
+  gem "bcrypt_pbkdf", "~> 1.1", require: false
 end
 
 group :test do
@@ -92,6 +95,5 @@ group :test do
   gem "database_cleaner-active_record", "~> 2.0"
   gem 'pundit-matchers', '~> 1.8.4'
 end
-
 
 
