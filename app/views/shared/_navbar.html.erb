@@ -124,13 +124,7 @@
 								<%= link_to customers_root_path, class: 'dropdown-item' do %>
 									<i class="bi bi-house-door fa-fw me-2"></i>Dashboard
 								<% end %>
-							</li>
-
-							<li>
-								<%= link_to partners_orders_path, class: 'dropdown-item' do %>
-									<i class="bi bi-bookmark-heart fa-fw me-2"></i>Orders
-								<% end %>
-							</li>
+							</li>				
 
 							<li>
 								<%= link_to destroy_customer_session_path, data: { "turbo-method": :delete }, class: 'dropdown-item bg-danger-soft-hover' do %>
