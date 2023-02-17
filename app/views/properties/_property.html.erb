@@ -1,7 +1,32 @@
-<h5 class="card-title"><%= link_to property.title, property %></h5>
-<%= property.address %><br>
-Town: <%= property.town.name %>
-Category: <%= property.category.title %>
-<br>
-<%= link_to image_tag(property.avatar_thumb), property %>
-<hr>
+<div class="col-6 col-lg-4 px-0 mb-4">
+  <div class="card mx-2 shadow-lg  h-100 hotel-card">      
+    
+    <!-- fotorama begin -->
+    <div class="fotorama-rooms"
+        data-width="100%"
+        data-ratio="3/2"
+        data-allowfullscreen="true"                
+        data-nav="false"
+        data-loop="true"
+        data-keyboard="true"
+        data-auto="false">      
+      <%= link_to image_tag(property.avatar.variant(resize_to_limit: [300, 300])) %>      
+      <% property.images.each do |image| %> 
+        <%= link_to image_tag(image.variant(resize_to_limit: [300, 300])) %>            
+      <% end %>
+    </div>
+    <!-- fotorama end -->
+
+    <div class="card-body py-1 px-2">
+      <%= link_to property do %>      
+        <%= property.title %>
+      <% end %>
+    </div>
+
+    <div class="card-footer px-2">
+      <small >
+        <i class="bi bi-geo-alt"></i>&nbsp;<%= property.address %>        
+      </small>
+    </div>
+  </div>
+</div>
