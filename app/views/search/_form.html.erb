@@ -1,20 +1,35 @@
 <div id="search-form">
-  <%= form_with url: search_path, method: :post do |f| %>
-    <%= f.label :town %>
-    <%= f.select :town_id, options_for_select(Town.all.map { |town| [town.name, town.id] }.insert(0, nil)) %>
+  <%= form_with url: search_path, method: :post, id: 'new_order', class: "row g-3" do |f| %>
 
-    <%= f.label :category %>
-    <%= f.select :category_id, options_for_select(Category.all.map { |cat| [cat.title, cat.id] }.insert(0, nil)) %>
+    <div class="col-auto">
+      <%= f.label :town, class: "form-label" %>
+      <%= f.collection_select :town_id, Town.all, :id, :name, { include_blank: true }, class: "form-select form-select-sm" %>    
+    </div>
 
-    <%= f.label :check_in %>
-    <%= f.date_field :check_in %>
+    <div class="col-auto">
+      <%= f.label :category, class: "form-label" %>
+      <%= f.collection_select :category_id, Category.all, :id, :title, { include_blank: true }, class: "form-select form-select-sm" %> 
+    </div>
 
-    <%= f.label :check_out %>
-    <%= f.date_field :check_out %>
+    <div class="col-auto">
+      <%= f.label :check_in, class: "form-label" %>
+      <%= f.date_field :check_in, class: "form-control form-control-sm" %>
+    </div>
+    <div class="col-auto">
+      <%= f.label :check_out, class: "form-label" %>
+      <%= f.date_field :check_out, class: "form-control form-control-sm" %>
+    </div>
 
-    <%= f.label :guests %>
-    <%= f.number_field :guests %>
+    <div class="col-auto">
+      <%= f.label :guests, class: "form-label" %>
+      <%= f.number_field :guests, class: "form-control form-control-sm" %>
+    </div>
 
-    <%= f.submit "Search" %>
+    <div class="col-auto pt-4">
+      <div class="mb-1"></div>
+      <%= f.submit "Search", class: "btn btn-primary btn-sm" %>
+    </div>
   <% end %>
 </div>
+
+

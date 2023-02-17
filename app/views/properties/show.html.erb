@@ -1,25 +1,39 @@
-<h1 class="card-title"><%= @property.title %></h1>
-<p class="card-text"><%= @property.address %></p>
-Town: <%= @property.town.name %>
-Category: <%= @property.category.title %>
+<h1 class="fs-2 mt-3"><%= @property.title %></h1>
 
-<div class="property-images">
-  <%= image_tag @property.avatar.variant(resize_to_limit: [600, 200]), alt: @property.avatar.filename.to_s %>
+<!-- photo + contacts -->
+<div class="row mt-3">
+  
+  <div class="col-lg-9 px-0">
+    <!-- fotorama begin -->        
+    <div class="fotoramain mt-2 ">
+      <%= link_to image_tag(@property.avatar.variant(resize_to_limit: [100, 100])), @property.avatar %>
+      <% @property.images.each do |image| %>
+        <%= link_to image_tag(image.variant(resize_to_limit: [100, 100])), image %>
+      <% end %>
+    </div>        
+    <!-- fotorama end -->
+  </div>
 
-  <% @property.images.each do |image| %>
-    <%= image_tag image.variant(resize_to_limit: [300, 100]), alt: image.filename.to_s %>
-  <% end %>
+  <div class="col-lg-3 px-4">   
+
+    <h4>Contacts:</h4>
+    <p class="fw-bold mb-0">
+      <i class="bi bi-geo-alt me-2"></i><%= "#{@property.town.name}, #{@property.address}" %>
+    </p>
+  </div>
+
 </div>
 
-<% if @property.rooms.any? %>
-  <h2>Rooms</h2>
-  <%= render partial: 'room', collection: @property.rooms, as: :room %>
+
+<% if @rooms.any? %>
+  <h2 class="mt-5">Rooms</h2>
+  <%= render @rooms %>
 <% end %>
 
 <%= render 'geolocations/show_map', object: @property, preset_icon: "islands#blueHomeIcon" %>
 
 <% if @nearby_properties.any? %>
-  <div class="nearby_properties">
+  <div class="nearby_properties mt-5">
     <h4>Nearby properties</h4>
     <% @nearby_properties.each do |nearby_property| %>
       <p>
@@ -30,5 +44,4 @@ Category: <%= @property.category.title %>
     <% end %>    
   </div>
 <% end %>
-
 

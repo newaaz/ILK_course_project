@@ -1,5 +1,5 @@
 <!-- Header START -->
-<header class="navbar-light header-sticky">
+<header class="navbar-light header-sticky shadow">
 	<!-- Logo Nav START -->
 	<nav class="navbar navbar-expand-xl">
 		<div class="container">
@@ -19,48 +19,190 @@
 							Static pages
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="listingMenu">
-							<li><%= link_to 'Contacts', contacts_path, class: 'dropdown-item' %></li>							
+							<li><%= link_to 'Contacts', contacts_path, class: 'dropdown-item' %></li>		
+							<li><%= link_to 'Privacy', privacy_path, class: 'dropdown-item' %></li>					
 						</ul>
 					</li>
-				</ul>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="pageMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Towns</a>
+						<ul class="dropdown-menu" aria-labelledby="pageMenu">
+							<% Town.find_each do |town| %>
+								<li><%= link_to town.name, town, class: 'dropdown-item' %></li>	
+							<% end %>
+						</ul>
+					</li>					
+				</ul>		
 			</div>
 			<!-- Main navbar END -->
 
-			<!-- Nav category menu START -->
-			<div class="text-center ms-auto ">
-				<%= link_to "Home", root_path, class: 'btn btn-outline-primary' %>
-				<%= link_to "Login owner", new_partner_session_path, class: 'btn btn-outline-primary' %>
-				<%= link_to "Login customer", new_customer_session_path, class: 'btn btn-outline-success' %>
-				<%= link_to "Properties", properties_path, class: 'btn btn-outline-primary' %>
-
-				<% if current_partner %>
-					<%= link_to "Dashboard Partner", partners_root_path, class: 'btn btn-primary' %>
-					<%= link_to "Logout Partner", destroy_partner_session_path, data: { "turbo-method": :delete }, class: 'btn btn-outline-danger' %>
-				<% end %>
-
-				<% if current_customer %>
-					<%= link_to "Dashboard Customer", customers_root_path, class: 'btn btn-primary' %>
-					<%= link_to "Logout Customer", destroy_customer_session_path, data: { "turbo-method": :delete }, class: 'btn btn-outline-danger' %>
-				<% end %>
-
-				<div class="modeswitch-wrap" id="darkModeSwitch">
-					<div class="modeswitch-item">
-						<div class="modeswitch-icon"></div>
-					</div>
-					<span>Dark mode</span>
+			<!-- Dark mode switch START -->
+			<div class="modeswitch-wrap" id="darkModeSwitch">
+				<div class="modeswitch-item">
+					<div class="modeswitch-icon"></div>
 				</div>
+				<span>Dark mode</span>
 			</div>
-			<!-- Nav category menu END -->
+
+			<% if current_partner %>
+				<!-- PARTNER NAV START -->
+				<ul class="nav flex-row align-items-center list-unstyled ms-xl-auto">				
+					<!-- Profile dropdown START -->
+					<li class="nav-item ms-3 dropdown">
+						<!-- Avatar -->
+						<a class="avatar avatar-xs p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+							<%= image_tag("theme/user.png", class: 'avatar-img rounded-circle', alt: "avatar") %>
+						</a>
+
+						<!-- Profile dropdown START -->
+						<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
+							<!-- Profile info -->
+							<li class="px-3 mb-3">
+								<div class="d-flex align-items-center">
+									<!-- Avatar -->
+									<div class="avatar me-3">
+										<%= image_tag("theme/user.png", class: 'avatar-img rounded-circle shadow', alt: "avatar") %>
+									</div>
+									<div>									
+										<span class="h6 mt-2 mt-sm-0">Partner</span>
+										<p class="small m-0"><%= current_partner.email %></p>
+									</div>
+								</div>
+							</li>
+
+							<!-- Links -->
+							<li> <hr class="dropdown-divider"></li>
+
+							<li>
+								<%= link_to partners_root_path, class: 'dropdown-item' do %>
+									<i class="bi bi-house-door fa-fw me-2"></i>Dashboard
+								<% end %>
+							</li>
+
+							<li>
+								<%= link_to partners_orders_path, class: 'dropdown-item' do %>
+									<i class="bi bi-bookmark-heart fa-fw me-2"></i>Orders
+								<% end %>
+							</li>
+
+							<li>
+								<%= link_to destroy_partner_session_path, data: { "turbo-method": :delete }, class: 'dropdown-item bg-danger-soft-hover' do %>
+									<i class="bi bi-box-arrow-right fa-fw me-2"></i>Sign Out
+								<% end %>
+							</li>
+
+
+							<li> <hr class="dropdown-divider"></li>
+
+							<!-- Dark mode switch START -->
+							<li>
+								<div class="modeswitch-wrap" id="darkModeSwitch">
+									<div class="modeswitch-item">
+										<div class="modeswitch-icon"></div>
+									</div>
+									<span>Dark mode</span>
+								</div>
+							</li> 
+							<!-- Dark mode switch END -->
+						</ul>
+						<!-- Profile dropdown END -->
+					</li>
+					<!-- Profile dropdown END -->
+				</ul>
+			<% elsif current_customer %>
+				<!-- CUSTOMER NAV START -->
+				<ul class="nav flex-row align-items-center list-unstyled ms-xl-auto">				
+					<!-- Profile dropdown START -->
+					<li class="nav-item ms-3 dropdown">
+						<!-- Avatar -->
+						<a class="avatar avatar-xs p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+							<%= image_tag("theme/guest.png", class: 'avatar-img rounded-circle', alt: "avatar") %>
+						</a>
+
+						<!-- Profile dropdown START -->
+						<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
+							<!-- Profile info -->
+							<li class="px-3 mb-3">
+								<div class="d-flex align-items-center">
+									<!-- Avatar -->
+									<div class="avatar me-3">
+										<%= image_tag("theme/guest.png", class: 'avatar-img rounded-circle shadow', alt: "avatar") %>
+									</div>
+									<div>									
+										<span class="h6 mt-2 mt-sm-0">Customer</span>
+										<p class="small m-0"><%= current_customer.email %></p>
+									</div>
+								</div>
+							</li>
+
+							<!-- Links -->
+							<li> <hr class="dropdown-divider"></li>
+
+							<li>
+								<%= link_to customers_root_path, class: 'dropdown-item' do %>
+									<i class="bi bi-house-door fa-fw me-2"></i>Dashboard
+								<% end %>
+							</li>
+
+							<li>
+								<%= link_to partners_orders_path, class: 'dropdown-item' do %>
+									<i class="bi bi-bookmark-heart fa-fw me-2"></i>Orders
+								<% end %>
+							</li>
+
+							<li>
+								<%= link_to destroy_customer_session_path, data: { "turbo-method": :delete }, class: 'dropdown-item bg-danger-soft-hover' do %>
+									<i class="bi bi-box-arrow-right fa-fw me-2"></i>Sign Out
+								<% end %>
+							</li>
+
+							<li> <hr class="dropdown-divider"></li>
+
+							<!-- Dark mode switch START -->
+							<li>
+								<div class="modeswitch-wrap" id="darkModeSwitch">
+									<div class="modeswitch-item">
+										<div class="modeswitch-icon"></div>
+									</div>
+									<span>Dark mode</span>
+								</div>
+							</li> 
+							<!-- Dark mode switch END -->
+						</ul>
+						<!-- Profile dropdown END -->
+					</li>
+					<!-- Profile dropdown END -->
+				</ul>
+			<% else %>
+				<!-- UNAUTHENTICATED -->
+				<ul class="navbar-nav navbar-nav-scroll me-auto">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="listingMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="bi bi-building-fill-add"></i><span class="ms-1">For Partners</span>
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="listingMenu">
+							<li><%= link_to "Login as Partner", new_partner_session_path, class: 'dropdown-item' %></li>
+							<li><%= link_to "Sign up as Partner", new_partner_registration_path, class: 'dropdown-item' %></li>	
+						</ul>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="listingMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="bi bi-bookmark-plus"></i><span class="ms-1">For Customers</span>
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="listingMenu">
+							<li><%= link_to "Login as Customer", new_customer_session_path, class: 'dropdown-item' %></li>
+							<li><%= link_to "Sign up as Customer", new_customer_registration_path, class: 'dropdown-item' %></li>	
+						</ul>
+					</li>
+
+				
+				</ul>
+			<% end %>				
 		</div>
 	</nav>
 	<!-- Logo Nav END -->
 </header>
 <!-- Header END -->
-
-
-
-
-
-
 
 

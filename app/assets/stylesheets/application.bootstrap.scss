@@ -2,7 +2,15 @@
 
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+@import "@fancyapps/ui/src/Fancybox/Fancybox.scss";
+
 @import 'theme/scss/style.scss';
 
+@import 'plugins/fotorama.scss';
+
 @import 'base';
+
+@import './custom/top_line.scss';
+@import './custom/logo.scss';
+@import './custom/prices.scss';
 

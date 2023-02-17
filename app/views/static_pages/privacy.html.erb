@@ -1,0 +1,38 @@
+
+			<!-- Nav category menu START -->
+			<div class="text-center ms-auto ">
+				<%= link_to "Login owner", new_partner_session_path, class: 'btn btn-outline-primary' %>
+				<%= link_to "Login customer", new_customer_session_path, class: 'btn btn-outline-success' %>
+				<%= link_to "Properties", properties_path, class: 'btn btn-outline-primary' %>
+
+				<% if current_partner %>
+					<%= link_to "Dashboard Partner", partners_root_path, class: 'btn btn-primary' %>
+					<%= link_to "Logout Partner", destroy_partner_session_path, data: { "turbo-method": :delete }, class: 'btn btn-outline-danger' %>
+				<% end %>
+
+				<% if current_customer %>
+					<%= link_to "Dashboard Customer", customers_root_path, class: 'btn btn-primary' %>
+					<%= link_to "Logout Customer", destroy_customer_session_path, data: { "turbo-method": :delete }, class: 'btn btn-outline-danger' %>
+				<% end %>
+
+				<div class="modeswitch-wrap" id="darkModeSwitch">
+					<div class="modeswitch-item">
+						<div class="modeswitch-icon"></div>
+					</div>
+					<span>Dark mode</span>
+				</div>
+			</div>
+			<!-- Nav category menu END -->
+
+
+
+
+
+
+<%= link_to "Home", root_path, class: 'btn btn-outline-primary' %>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Montserrat:ital,wght@0,200;0,400;0,500;0,600;0,700;1,200;1,400;1,600&display=swap" rel="stylesheet">
