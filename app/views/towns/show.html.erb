@@ -9,5 +9,7 @@
   <%= link_to cat.title, { cat: cat.id }, class: 'btn btn-light btn-sm' %>
 <% end %>
 
-<%= render partial: 'towns/hotel', collection: @properties, as: :property %>
+<%#= render partial: 'towns/hotel', collection: @properties, as: :property %>
+<%= render @properties %>
+
 

@@ -1,0 +1,46 @@
+<div class="room"><!-- Single room  -->
+  <div class="row">
+    <div class="col-md-5">
+      <!-- fotorama begin -->
+      <div class="fotorama-rooms"
+          data-width="100%"
+          data-ratio="3/2"
+          data-allowfullscreen="true"                
+          data-nav="false"
+          data-loop="true"
+          data-keyboard="true"
+          data-auto="false">      
+        <%= link_to image_tag(room.avatar.variant(resize_to_limit: [150, 150])), room.avatar %>      
+        <% room.images.each do |image| %> 
+          <%= link_to image_tag(image.variant(resize_to_limit: [150, 150])), image %>            
+        <% end %>
+      </div>
+      <!-- fotorama end -->            
+    </div>
+
+    <div class="col-md-7">
+      <h4 class="my-3 px-2"><%= room.title %></h4> 
+      <p>
+        Base guest: <%= room.guest_base_count %>
+        Max guest:  <%= room.guest_max_count %>
+      </p>
+    
+      <%= link_to 'Book', new_order_path(room_id: room.id), class: "btn btn-success-soft" %>             
+    </div>
+  </div>  
+
+  <% if room.prices.any? %>
+    <h5 class="text-center mt-2 px-2">Стоимость проживания номер/сутки(руб.)</h5>  
+    <div style="overflow-x:auto;">
+      <div class="room-prices">
+        <% room.prices.each do |price| %>
+          <div class="period">
+            <div class="period__date"><%= price.start_date.strftime('%d.%m') %>-<%= price.end_date.strftime('%d.%m') %></div>
+            <div class="period__price"><%= price.day_cost %><small> р.</small></div>
+          </div>
+        <% end %>    
+      </div>
+    </div>
+  <% end %>    
+
+</div><!--END Single room--><br>

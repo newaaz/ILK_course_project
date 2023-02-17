@@ -1,0 +1,30 @@
+<div class="logo">
+  <%= link_to image_tag("logo.png", alt: "Главная", width: "175px"), root_path %>
+</div>
+
+<div id="top_line">
+  <div class="container">
+    <ul id="top_links">
+      <li id="cart">
+        <% if @cart %>
+          <% if @cart.line_items.count > 0 %>                
+            <%= link_to @cart do %>
+              <i class="icon-heart" style="font-size:14px"></i> Избранное (<%= @cart.line_items.count %>)
+            <% end %>                
+          <% else %>                
+            <%= link_to @cart do %>
+              <i class="icon-heart-empty" style="font-size:14px"></i> Избранное
+            <% end %>                
+          <% end %>  
+        <% else %>              
+          <%= link_to root_url do %>
+            <i class="icon-heart-empty" style="font-size:14px"></i> Избранное
+          <% end %>              
+        <% end %>
+      </li>
+      <% unless (current_partner || current_customer) %>
+        <li><%= link_to "Sign in", new_partner_session_path %> / <%= link_to "Sign up", new_partner_registration_path %></li>
+      <% end %>          
+    </ul> 
+  </div><!-- End container-->
+</div><!-- End top line-->

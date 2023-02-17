@@ -1,6 +1,6 @@
 <h1><%= "Booking - #{@property.title}:#{@room.title}" %></h1>
 
-<%= form_with(model: @order, class: 'w-75', data: {turbo: false}) do |f| %>
+<%= form_with(model: @order, id: 'new_order', class: 'w-75', data: {turbo: false}) do |f| %>
   <%= render 'shared/errors', object: f.object %>
 
   <!-- checkin - checkout -->

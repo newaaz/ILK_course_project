@@ -12,6 +12,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.15.14.tgz#1221684955c44385f8af34f7240088b7dc08d19d"
   integrity sha512-eQi9rosGNVQFJyJWV0HCA5WZae/qWIQME7s8/j8DMvnylfBv62Pbu+zJ2eUDqNf2O4u3WB+OEXyfkpBoe194sg==
 
+"@fancyapps/ui@^4.0.31":
+  version "4.0.31"
+  resolved "https://registry.yarnpkg.com/@fancyapps/ui/-/ui-4.0.31.tgz#cf187b0ffe41ec1f44fd2ba2c2237f5cf7914619"
+  integrity sha512-D7+PMIloxSOFJyY+lXcNlVDhmssOmDT6PT5fqQUIiws2hT7PH29r0EKZxERmACSQpm6qrFkP7rSguzXWvRJduQ==
+
 "@hotwired/stimulus@^3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.1.1.tgz#652f08a8e1d5edcb407340e58818fcff463b5848"
@@ -265,6 +270,11 @@ is-number@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
+
+jquery@^3.6.3:
+  version "3.6.3"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.3.tgz#23ed2ffed8a19e048814f13391a19afcdba160e6"
+  integrity sha512-bZ5Sy3YzKo9Fyc8wH2iIQK4JImJ6R0GWI9kL1/k7Z91ZBNgkRXE6U0JfHIizZbort8ZunhSI3jw9I6253ahKfg==
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"

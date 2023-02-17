@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: %i[show edit update destroy]
+  before_action :set_property, only: %i[edit update destroy]
   before_action :authorize_property!
 
   after_action  :verify_authorized
@@ -9,6 +9,8 @@ class PropertiesController < ApplicationController
   end
 
   def show
+    @property = Property.with_attached_images.includes([:geolocation]).find(params[:id])
+    @rooms = @property.rooms.with_attached_images.includes(:prices)
     @nearby_properties = @property.nearby_objects('Property')
   end
 
