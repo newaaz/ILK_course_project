@@ -10,14 +10,14 @@ Rails.application.routes.draw do
   devise_for :partners, controllers:  {
     sessions:           'partners/sessions',
     registrations:      'partners/registrations',
-  # confirmations:      'partners/confirmations',
+    confirmations:      'partners/confirmations',
     passwords:          'partners/passwords',
   }
 
   devise_for :customers, controllers: {
     sessions:           'customers/sessions',
     registrations:      'customers/registrations',
-  # confirmations:      'customers/confirmations',
+    confirmations:      'customers/confirmations',
     passwords:          'customers/passwords',
   }
 

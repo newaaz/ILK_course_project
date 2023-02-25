@@ -14,7 +14,7 @@ feature 'Owner can delete prices belongs his room when edit room', %q{
   before { sign_in_partner(owner) }
 
   scenario 'Owner delete price when edit room', js: true do    
-    click_on 'Dashboard Partner'
+    visit partners_root_path
     within "#property_#{property.id}" do
       within "#room_#{room.id}" do
         click_on 'Edit'

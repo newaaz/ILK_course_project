@@ -14,11 +14,10 @@ feature 'Customer can view their orders', %q{
 
   scenario 'Authenticated customer' do
     sign_in_customer(customer)
-
     visit property_path(property)
 
     within "#room_#{room.id}" do
-      click_on 'Book'
+      click_on 'Book' 
     end
 
     select room.title, from: "order_room_id"
@@ -28,7 +27,7 @@ feature 'Customer can view their orders', %q{
     fill_in 'order_kids', with: '5'
     click_on 'Send'
 
-    click_on 'Dashboard Customer'
+    click_on 'Dashboard'
 
     orders.each do |order|
       expect(page).to have_content "№-#{order.id}"
@@ -40,12 +39,12 @@ feature 'Customer can view their orders', %q{
 
   scenario 'Unauthenticated user' do
     visit root_path
-    expect(page).to_not have_link('Dashboard Customer')
+    expect(page).to_not have_link('Dashboard')
   end
 
   scenario 'Authenticated partner' do
     sign_in_partner(partner)
     visit root_path
-    expect(page).to_not have_link('Dashboard Customer')
+    expect(page).to_not have_link('Dashboard')
   end
 end

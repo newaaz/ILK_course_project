@@ -19,8 +19,10 @@ feature 'The partner-owner can confirm order', %q{
   scenario 'Accepting and paying, multiple_sessions' do
     Capybara.using_session('partner') do
       sign_in_partner(partner)
-      click_on 'Dashboard Partner'
-      click_on 'Orders'
+      click_on 'Dashboard'
+      within '.dashboard-menu-links' do
+        click_on 'Orders'
+      end
 
       within "#row_order_#{order.id}" do
         click_on 'Accept'
@@ -34,7 +36,7 @@ feature 'The partner-owner can confirm order', %q{
 
     Capybara.using_session('customer') do
       sign_in_customer(customer)
-      click_on 'Dashboard Customer'
+      click_on 'Dashboard'
       within "#row_order_#{order.id}" do
         click_on "Pay #{order.total_amount}"
 

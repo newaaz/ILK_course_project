@@ -13,8 +13,10 @@ feature 'Partner can view orders list of their properties', %q{
 
   scenario 'Authenticated partner' do
     sign_in_partner(owner)
-    click_on 'Dashboard Partner'
-    click_on 'Orders'
+    click_on 'Dashboard'
+    within '.dashboard-menu-links' do
+      click_on 'Orders'
+    end
 
     expect(page).to have_content "Orders"
     orders.each do |order|
@@ -24,12 +26,12 @@ feature 'Partner can view orders list of their properties', %q{
 
   scenario 'Unauthenticated user' do
     visit root_path
-    expect(page).to_not have_link('Dashboard Partner')
+    expect(page).to_not have_link('Dashboard')
   end
 
   scenario 'Authenticated customer' do
     sign_in_customer(customer)
     visit root_path
-    expect(page).to_not have_link('Dashboard Partner')
+    expect(page).to_not have_link('Dashboard')
   end
 end

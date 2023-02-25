@@ -1,8 +1,10 @@
 <h1>Homepage</h1>
 
-<% @towns.each do |town| %>
-  <%= link_to town.name, town, class: "btn btn-success-soft" %>
-<% end %>
+<div class="links-towns-show">
+  <% @towns.each do |town| %>
+    <%= link_to town.name, town, class: "btn btn-success-soft" %>
+  <% end %>
+</div>
 
 <hr>
 

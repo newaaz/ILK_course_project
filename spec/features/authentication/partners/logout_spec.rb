@@ -10,12 +10,12 @@ feature 'Partner can logout', %q{
 
   scenario 'Authenticated partner tries logout' do
     sign_in_partner(partner)
-    click_on 'Logout'
+    click_on 'Sign Out'
     expect(page).to have_content 'Signed out successfully.'
   end
 
   scenario 'Unauthenticated user tries log out' do
     visit root_path
-    expect(page).to_not have_content 'Logout'      
+    expect(page).to_not have_content 'Sign Out'      
   end
 end

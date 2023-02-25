@@ -1,12 +1,16 @@
 <h1>Dashboard Owner</h1>
 
-<%= link_to 'Orders', partners_orders_path, class: 'btn btn-light btn-sm' %>
+<p><%= link_to 'New property', new_property_path, class: 'btn btn-success my-3' %></p>
+
+<div class="dashboard-menu-links">
+  <%= link_to 'Orders', partners_orders_path, class: 'btn btn-light btn-sm' %>
+</div>
+
 <hr>
 <h2>Properties:</h2>
 
 <%= render partial: 'partners/dashboard/partials/property', collection: @properties, as: :property %>
 
-<p><%= link_to 'New property', new_property_path, class: 'btn btn-success my-3' %></p>
 
 
 

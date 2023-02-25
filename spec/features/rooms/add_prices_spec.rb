@@ -13,7 +13,7 @@ feature 'Partner can add prices to rooms', %q{
 
   describe 'Partner owner add prices when create room', js: true do
     background do
-      click_on 'Dashboard Partner'
+      visit partners_root_path
       within "#property_#{property.id}" do
         click_on 'Add room'
       end
