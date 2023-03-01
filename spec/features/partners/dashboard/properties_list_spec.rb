@@ -25,6 +25,6 @@ feature 'Partner can view their properties', %q{
   scenario 'Authenticated customer' do
     sign_in_customer(customer)
     visit root_path
-    expect(page).to_not have_link('Dashboard')
+    expect(page).to_not have_css('.nav-partner')
   end
 end

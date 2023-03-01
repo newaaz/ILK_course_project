@@ -45,6 +45,6 @@ feature 'Customer can view their orders', %q{
   scenario 'Authenticated partner' do
     sign_in_partner(partner)
     visit root_path
-    expect(page).to_not have_link('Dashboard')
+    expect(page).to_not have_css('.nav-customer')
   end
 end
