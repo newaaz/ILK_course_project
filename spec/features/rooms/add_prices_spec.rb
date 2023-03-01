@@ -7,7 +7,7 @@ feature 'Partner can add prices to rooms', %q{
 } do
 
   given(:partner)   { create :partner }
-  given!(:property) { create :property, owner: partner }
+  given!(:property) { create :property, :imagable, owner: partner }
 
   background { sign_in_partner(partner) }
 

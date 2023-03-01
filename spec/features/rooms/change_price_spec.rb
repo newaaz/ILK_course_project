@@ -7,7 +7,7 @@ feature 'Owner can change price belongs his room when edit room', %q{
 } do
 
   given(:owner)    { create :partner }
-  given(:property) { create :property, owner: owner }
+  given(:property) { create :property, :imagable, owner: owner }
   given(:room)     { create :room, :imagable, property: property }
   given!(:price)   { create :price, room: room }
 

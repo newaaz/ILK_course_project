@@ -38,13 +38,13 @@ feature 'Customer can view their orders', %q{
   end
 
   scenario 'Unauthenticated user' do
-    visit root_path
+    visit property_path property
     expect(page).to_not have_link('Dashboard')
   end
 
   scenario 'Authenticated partner' do
     sign_in_partner(partner)
-    visit root_path
+    visit property_path property
     expect(page).to_not have_css('.nav-customer')
   end
 end

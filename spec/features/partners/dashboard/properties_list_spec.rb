@@ -8,7 +8,7 @@ feature 'Partner can view their properties', %q{
 
   given(:customer)    { create :customer }
   given(:owner)       { create :partner }
-  given!(:properties) { create_list :property, 3, owner: owner }
+  given!(:properties) { create_list :property, 3, :imagable, owner: owner }
 
   scenario 'Authenticated partner' do
     sign_in_partner(owner)

@@ -8,7 +8,7 @@ feature 'Partner can create rooms', %q{
 
   given(:partner)   { create :partner }
   given(:non_owner) { create :partner }
-  given!(:property) { create :property, owner: partner }
+  given!(:property) { create :property, :imagable, owner: partner }
 
   describe 'Authencticated owner of property create with avatar+images' do
     background do
@@ -53,7 +53,7 @@ feature 'Partner can create rooms', %q{
   end
 
   scenario 'Unauthenticated user tries add room' do
-    visit root_path
+    property_path property
     expect(page).to_not have_link 'Dashboard'
   end
 end
