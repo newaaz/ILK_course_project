@@ -1,6 +1,13 @@
-<%= content_tag(:div, id: dom_id(room), class: 'room') do %>
-  <div class="row">
-    <div class="col-md-5">
+<%= content_tag(:div, id: dom_id(room), class: 'room card shadow p-3') do %>
+  <div class="row g-4">
+    <!-- Card img -->
+    <div class="col-md-6 position-relative">
+
+      <!-- Overlay item -->
+      <div class="position-absolute top-0 start-0 z-index-1 mt-3 ms-4">
+        <div class="badge text-bg-danger">30% Off</div>
+      </div>
+
       <!-- fotorama begin -->
       <div class="fotorama-rooms"
           data-width="100%"
@@ -15,23 +22,48 @@
           <%= link_to image_tag(image.variant(resize_to_limit: [150, 150])), image %>            
         <% end %>
       </div>
-      <!-- fotorama end -->            
-    </div>
+      <!-- fotorama end --> 
 
-    <div class="col-md-7">
-      <h4 class="my-3 px-2"><%= room.title %></h4> 
-      <p>
-        Base guest: <%= room.guest_base_count %>
-        Max guest:  <%= room.guest_max_count %>
-      </p>
-
-      <div class="booking-cost">
-      665
       </div>
-    
-      <%= link_to 'Book', new_order_path(room_id: room.id), class: "btn btn-success-soft" %>             
+
+    <!-- Card body -->
+    <div class="col-md-6">
+      <div class="card-body d-flex flex-column h-100 p-0">
+
+        <!-- Title -->
+        <h5 class="card-title"><a href="#">Luxury Room with Balcony</a></h5>
+
+        <!-- Amenities -->
+        <ul class="nav nav-divider mb-2">
+          <li class="nav-item">Air Conditioning</li>
+          <li class="nav-item">Wifi</li>
+          <li class="nav-item">Kitchen</li>
+          <li class="nav-item">
+            <a href="#" class="mb-0 text-primary">More+</a>
+          </li>
+        </ul>
+
+        <p class="text-success mb-0">Free Cancellation till 7 Jan 2022</p>
+
+        <!-- Button -->
+        <div class="d-sm-flex justify-content-sm-between align-items-center mt-auto">
+          <a href="#" class="btn btn-link text-decoration-underline p-0 mb-0 mt-1" data-bs-toggle="modal" data-bs-target="#roomDetail"><i class="bi bi-eye-fill me-1"></i>View more details</a>
+        </div>
+        
+        <!-- Price and Button -->
+        <div class="d-sm-flex justify-content-sm-between align-items-center mt-auto">
+
+          <!-- Room price -->
+          <%= render partial: 'rooms/display_price', locals: { room: room } %>
+
+          <!-- Button -->
+          <div class="mt-3 mt-sm-0">
+            <%= link_to 'Book', new_order_path(room_id: room.id), class: "btn btn-success-soft mb-0" %>             
+          </div>                  
+        </div>
+      </div>
     </div>
-  </div>  
+  </div>
 
   <% if room.prices.any? %>
     <h5 class="text-center mt-2 px-2">Стоимость проживания номер/сутки(руб.)</h5>  
@@ -45,15 +77,5 @@
         <% end %>    
       </div>
     </div>
-  <% end %>    
-
+  <% end %>
 <% end %>
-
-<br>
-
-
-
-
-
-
-

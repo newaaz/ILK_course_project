@@ -22,11 +22,31 @@ class Room < ApplicationRecord
     end
   end
 
+  def calculate_booking(check_in, check_out)
+    check_in = check_in.to_date
+    check_out = check_out.to_date
+
+    total_cost = 0
+
+    self.prices.each do |price|
+      if price.date_range.overlaps? check_in..check_out
+        overlap_days_count = ([check_in, price.start_date].max..[check_out, price.end_date].min).count
+        total_cost += overlap_days_count * price.day_cost
+      end
+    end
+    
+    total_cost
+  end
+
   def start_available_date
     prices.any? ? prices.minimum(:start_date) : nil
   end
 
   def end_available_date
     prices.any? ? prices.maximum(:end_date) : nil
+  end
+
+  def min_price
+    prices.any? ? prices.minimum(:day_cost) : nil
   end
 end

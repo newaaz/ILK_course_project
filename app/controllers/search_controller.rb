@@ -5,6 +5,9 @@ class SearchController < ApplicationController
     if params[:check_in].present? && params[:check_out].present?        
       session[:check_in] = params[:check_in]
       session[:check_out] = params[:check_out]
+    else
+      session.delete(:check_in)
+      session.delete(:check_out)
     end
 
     render turbo_stream:

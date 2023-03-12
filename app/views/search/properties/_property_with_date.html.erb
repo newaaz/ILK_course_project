@@ -5,7 +5,14 @@
       <%= link_to property do %>      
         <%= property.title %>
       <% end %>
-    </div>
+
+      <br>
+
+      <% property.rooms.each do |room| %>
+        <%= room.title %>:
+        <%= room.calculate_booking(session[:check_in], session[:check_out]) %><small>₽</small>
+      <% end %>
+    </div>    
 
     <div class="card-footer px-2">
       <small >
