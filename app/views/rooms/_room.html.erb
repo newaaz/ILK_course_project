@@ -24,6 +24,10 @@
         Base guest: <%= room.guest_base_count %>
         Max guest:  <%= room.guest_max_count %>
       </p>
+
+      <div class="booking-cost">
+      665
+      </div>
     
       <%= link_to 'Book', new_order_path(room_id: room.id), class: "btn btn-success-soft" %>             
     </div>

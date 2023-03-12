@@ -1,0 +1,17 @@
+<% if session['check_in'] %>
+
+  <h1><%= session['check_in'] %></h1>
+
+<% end %>
+
+<div id="search_result">
+  <% if @properties.any? %>
+    <h3><%= "Found #{@properties.count} property" %></h3>
+    <div class="row gx-2">
+      <%= render partial: 'search/properties/property_with_date', collection: @properties, as: :property %>
+    </div>
+  <% else %>
+    <h3>Not found</h3>
+  <% end %>
+</div> 
+

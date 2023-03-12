@@ -1,16 +1,16 @@
 class SearchController < ApplicationController
   def index
     @properties = BookingSearchService.call(params)
-    
-    respond_to do |format|
-      format.html { render :index }
-      
-      format.turbo_stream do
-        render turbo_stream:
-          turbo_stream.update('search_result',
-            partial: 'properties/properties',
-            locals:   { properties: @properties })
-      end
+
+    if params[:check_in].present? && params[:check_out].present?        
+      session['check_in'] = params[:check_in]
+      session['check_out'] = params[:check_out]
+      partial = 'search/properties/with_dates'
     end
+
+    render turbo_stream:
+      turbo_stream.update('search_result',
+                    partial: partial || 'properties/properties',
+                    locals:   { properties: @properties })
   end
 end
