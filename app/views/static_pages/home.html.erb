@@ -1,23 +1,27 @@
-<h1>Homepage</h1>
+<div class="container">
 
-<div class="links-towns-show">
-  <% @towns.each do |town| %>
-    <%= link_to town.name, town, class: "btn btn-success-soft" %>
-  <% end %>
-</div>
+  <h1>Homepage</h1>
 
-<hr>
-
-<%= render 'search/form' %>
-
-<div id="search_result">
-  <h2>All properties</h2>
-  <div class="row gx-2">
-    <%= render @homepage_properties %>
+  <div class="links-towns-show">
+    <% @towns.each do |town| %>
+      <%= link_to town.name, town, class: "btn btn-success-soft" %>
+    <% end %>
   </div>
 
-  <% if @properties %>
-    <%= render partial: 'properties/property', collection: @properties, as: :property %>
-  <% end %>
+  <hr>
+
+  <%= render 'search/form' %>
+
+  <div id="search_result">
+    <h2>All properties</h2>
+    <div class="row gx-2">
+      <%= render @homepage_properties %>
+    </div>
+
+    <% if @properties %>
+      <%= render partial: 'properties/property', collection: @properties, as: :property %>
+    <% end %>
+  </div>
+
 </div>
 

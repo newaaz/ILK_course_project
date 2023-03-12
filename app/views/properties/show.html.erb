@@ -3,15 +3,16 @@
 <section class="py-0 pt-sm-5">
 	<div class="container position-relative">
 		<!-- Title and button START -->
-		<div class="row mb-3">
+		<div class="row mb-3 border-bottom pb-2">
 			<div class="col-12">
 				<!-- Meta -->
 				<div class="d-lg-flex justify-content-lg-between mb-1">
 					<!-- Title -->
 					<div class="mb-2 mb-lg-0">
-						<h1 class="fs-2"><%= @property.title %></h1>
+						<h1 class="h3"><%= @property.title %></h1>
 						<!-- Location -->
-						<p class="fw-bold mb-0"><i class="bi bi-geo-alt me-2"></i>5855 W Century Blvd, Los Angeles - 90045
+						<p class="fw-bold mb-0"><i class="bi bi-geo-alt me-2"></i>
+							<%= "#{@property.town.name}, #{@property.address}" %>
 							<a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">
 								<i class="bi bi-eye-fill me-1"></i>View On Map
 							</a>
@@ -60,15 +61,12 @@
         <!-- fotorama end -->
       </div>
 
-      <div class="col-lg-4 px-4">   
+      <div class="col-lg-4 px-lg-4 px-sm-0">
+				<%= render 'properties/booking_form' %>
 
-        <h4>Contacts:</h4>
-        <p class="fw-bold mb-0">
-          <i class="bi bi-geo-alt me-2"></i><%= "#{@property.town.name}, #{@property.address}" %>
-        </p>
+				<%= render 'properties/contacts' %>
       </div>
-
-			</div>
+			
 		</div>
 	</div>
 </section>
@@ -95,9 +93,7 @@
               <!-- Card body START -->
               <div class="card-body pt-4 p-0">
                 <div class="vstack gap-4">
-
                   <%= render @property.rooms %>
-
                 </div>
               </div>
               <!-- Card body END -->
