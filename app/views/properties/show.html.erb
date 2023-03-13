@@ -10,14 +10,17 @@
 					<!-- Title -->
 					<div class="mb-2 mb-lg-0">
 						<h1 class="h3"><%= @property.title %></h1>
-						<!-- Location --
+						<!-- Location -->
 						<p class="fw-bold mb-0"><i class="bi bi-geo-alt me-2"></i>
 							<%= "#{@property.town.name}, #{@property.address}" %>
+
+							<!-- Location --
 							<a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">
 								<i class="bi bi-eye-fill me-1"></i>View On Map
 							</a>
-						</p>
-						-- Location -->
+							-- Location -->
+							
+						</p>						
 					</div>
 
 					<!-- Buttons -->
@@ -50,7 +53,6 @@
 <section class="card-grid pt-0">
 	<div class="container">
 		<div class="row g-2">
-
       <div class="col-lg-8 px-0">
         <!-- fotorama begin -->        
         <div class="fotoramain mt-2 property-images">
@@ -63,11 +65,9 @@
       </div>
 
       <div class="col-lg-4 px-lg-4 px-sm-0">
-				<%= render 'properties/booking_form' %>
-
-				<%= render 'properties/contacts' %>
-      </div>
-			
+				<%#= render 'properties/templates/booking_form' %>
+				<%#= render 'properties/templates/contacts' %>
+      </div>			
 		</div>
 	</div>
 </section>
@@ -153,177 +153,6 @@
 					</div>
 					<!-- About hotel START -->
 
-					<!-- Amenities START -->
-					<div class="card bg-transparent">
-						<!-- Card header -->
-						<div class="card-header border-bottom bg-transparent px-0 pt-0">
-							<h3 class="card-title mb-0">Amenities</h3>
-						</div>
-
-						<!-- Card body START -->
-						<div class="card-body pt-4 p-0">
-							<div class="row g-4">
-								<!-- Activities -->
-								<div class="col-sm-6">
-									<h6><i class="bi bi-bicycle me-2" style="font-size: 1.5rem;"></i>Activities</h6>
-									<!-- List -->
-									<ul class="list-group list-group-borderless mt-2 mb-0">
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Swimming pool
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Spa
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Kids' play area
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Gym
-										</li>
-									</ul>
-								</div>
-	
-								<!-- Payment Method -->
-								<div class="col-sm-6">
-									<h6><i class="bi bi-credit-card me-2"></i>Payment Method</h6>
-									<!-- List -->
-									<ul class="list-group list-group-borderless mt-2 mb-0">
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Credit card (Visa, Master card)
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Cash
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Debit Card
-										</li>
-									</ul>
-								</div>
-	
-								<!-- Services -->
-								<div class="col-sm-6">
-									<h6><i class="bi bi-bell me-2"></i>Services</h6>
-									<!-- List -->
-									<ul class="list-group list-group-borderless mt-2 mb-0">
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Dry cleaning
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Room Service
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Special service
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Waiting Area
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Secrete smoking area
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Concierge
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Laundry facilities
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Ironing Service
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Lift
-										</li>
-									</ul>
-								</div>
-	
-								<!-- Safety & Security -->
-								<div class="col-sm-6">
-									<h6><i class="bi bi-shield-fill-check me-2"></i>Safety & Security</h6>
-									<!-- List -->
-									<ul class="list-group list-group-borderless mt-2 mb-4 mb-sm-5">
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Doctor on Call
-										</li>
-									</ul>
-	
-									<h6><i class="bi bi-volume-up me-2"></i>Staff Language</h6>
-									<!-- List -->
-									<ul class="list-group list-group-borderless mt-2 mb-0">
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>English
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Spanish
-										</li>
-										<li class="list-group-item pb-0">
-											<i class="bi bi-check-circle-fill text-success me-2"></i>Hindi
-										</li>
-									</ul>
-								</div>
-	
-							</div>
-						</div>
-						<!-- Card body END -->
-					</div>
-					<!-- Amenities END -->
-
-					<!-- Hotel Policies START -->
-					<div class="card bg-transparent">
-						<!-- Card header -->
-						<div class="card-header border-bottom bg-transparent px-0 pt-0">
-							<h3 class="mb-0">Hotel Policies</h3>
-						</div>
-
-						<!-- Card body START -->
-						<div class="card-body pt-4 p-0">
-							<!-- List -->
-							<ul class="list-group list-group-borderless mb-2">
-								<li class="list-group-item d-flex">
-									<i class="bi bi-check-circle-fill-fill me-2"></i>This is a family farmhouse, hence we request you to not indulge.
-								</li>
-								<li class="list-group-item d-flex">
-									<i class="bi bi-check-circle-fill-fill me-2"></i>Drinking and smoking within controlled limits are permitted at the farmhouse but please do not create a mess or ruckus at the house.
-								</li>
-								<li class="list-group-item d-flex">
-									<i class="bi bi-check-circle-fill-fill me-2"></i>Drugs and intoxicating illegal products are banned and not to be brought to the house or consumed.
-								</li>
-								<li class="list-group-item d-flex">
-									<i class="bi bi-x-circle-fill me-2"></i>For any update, the customer shall pay applicable cancellation/modification charges.
-								</li>
-							</ul>
-
-							<!-- List -->
-							<ul class="list-group list-group-borderless mb-2">
-								<li class="list-group-item h6 fw-light d-flex mb-0">
-									<i class="bi bi-arrow-right me-2"></i>Check-in: 1:00 pm - 9:00 pm
-								</li>
-								<li class="list-group-item h6 fw-light d-flex mb-0">
-									<i class="bi bi-arrow-right me-2"></i>Check out: 11:00 am
-								</li>
-								<li class="list-group-item h6 fw-light d-flex mb-0">
-									<i class="bi bi-arrow-right me-2"></i>Self-check-in with building staff
-								</li>
-								<li class="list-group-item h6 fw-light d-flex mb-0">
-									<i class="bi bi-arrow-right me-2"></i>No pets
-								</li>
-								<li class="list-group-item h6 fw-light d-flex mb-0">
-									<i class="bi bi-arrow-right me-2"></i>No parties or events
-								</li>
-								<li class="list-group-item h6 fw-light d-flex mb-0">
-									<i class="bi bi-arrow-right me-2"></i>Smoking is allowed
-								</li>
-							</ul>
-
-							<!-- Important note -->
-							<div class="bg-danger bg-opacity-10 rounded-2 p-3 mb-3">
-								<p class="mb-0 text-danger">During the COVID-19 pandemic, all hosts and guests must review and follow Booking social distancing and other COVID-19-related guidelines.</p>
-							</div>
-							<div class="bg-danger bg-opacity-10 rounded-2 p-3">
-								<p class="mb-0 text-danger">Smoke alarm not reported — The host hasn't reported a smoke alarm on the property. We suggest bringing a portable detector for your trip.</p>
-							</div>
-						</div>
-						<!-- Card body END -->
-					</div>
-					<!-- Hotel Policies START -->
 				</div>	
 			</div>
 			<!-- Content END -->
@@ -331,44 +160,13 @@
 			<!-- Right side content START -->
 			<aside class="col-xl-4 order-xl-2">
 				<div data-sticky-dont-work data-margin-top="100" data-sticky-for="1199">
-					<!-- Book now START -->
-					<div class="card card-body border">
-						
-						<!-- Title -->
-						<div class="d-sm-flex justify-content-sm-between align-items-center mb-3">
-							<div>
-								<span>Price Start at</span>
-								<h4 class="card-title mb-0">$3,500</h4>
-							</div>
-							<div>
-								<h6 class="fw-normal mb-0">1 room per night</h6>
-								<small>+ $285 taxes & fees</small>
-							</div>
-						</div>		
 
-						<!-- Rating -->
-						<ul class="list-inline mb-2">
-							<li class="list-inline-item me-1 h6 fw-light mb-0"><i class="bi bi-arrow-right me-2"></i>4.5</li>
-							<li class="list-inline-item me-0 small"><i class="bi bi-star-fill text-warning"></i></li>
-							<li class="list-inline-item me-0 small"><i class="bi bi-star-fill text-warning"></i></li>
-							<li class="list-inline-item me-0 small"><i class="bi bi-star-fill text-warning"></i></li>
-							<li class="list-inline-item me-0 small"><i class="bi bi-star-fill text-warning"></i></li>
-							<li class="list-inline-item me-0 small"><i class="bi bi-star-half text-warning"></i></li>
-						</ul>
-
-						<p class="h6 fw-light mb-4"><i class="bi bi-arrow-right me-2"></i>Free breakfast available</p>
-
-						<!-- Button -->
-						<div class="d-grid">
-							<a href="#room-options" class="btn btn-lg btn-primary-soft mb-0">View All Rooms</a>
-						</div>
-					</div>
-					<!-- Book now END -->
+					<%#= render 'properties/templates/price_start' %>
 
 					<%= render 'geolocations/show_map', object: @property, preset_icon: "islands#blueHomeIcon" %>
 
 					<% if @nearby_properties.any? %>
-						<%= render 'properties/nearby_properties' %>
+						<%= render 'properties/templates/nearby_properties' %>
 					<% end %>
 				</div>	
 			</aside>

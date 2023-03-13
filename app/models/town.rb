@@ -1,7 +1,7 @@
 class Town < ApplicationRecord
   has_many  :properties, dependent: :destroy
 
-  has_one_attached  :avatar
+  mount_uploader  :avatar, PictureUploader
 
   validates :name, :parent_name, :ordinal_number, presence: true  
 
