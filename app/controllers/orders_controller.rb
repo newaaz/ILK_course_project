@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
 
-    authorize @order, authorized_action(params[:status_action]) 
+    authorize @order, authorized_action(params[:status_action])
 
     @order.change_status(params[:status_action])
 

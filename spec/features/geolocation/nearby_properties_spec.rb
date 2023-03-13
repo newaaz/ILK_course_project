@@ -6,7 +6,7 @@ feature 'The user can view nearby properties of the shown property', %q{
   I'd like to be able view nearby properties of the shown property
 } do
 
-  given(:properties)  { create_list :property, 3, :imagable }
+  given(:properties)  { create_list :property, 3, :imagable, :reindex }
 
   given(:customer)  { create :customer }
   given(:partner)   { create :partner }

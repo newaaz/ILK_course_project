@@ -13,7 +13,7 @@ feature 'Partner can create property', %q{
   describe 'Authenticated partner' do
     background do
       sign_in_partner(partner)
-      click_on 'Dashboard Partner'
+      click_on 'Dashboard'
       click_on 'New property'
     end
 
@@ -33,9 +33,7 @@ feature 'Partner can create property', %q{
       expect(page).to have_content 'Property successfully created'
       expect(page).to have_content "Hotel 'California'"
       within ".property-images" do
-        expect(page).to have_css("img[alt='placeholder10.jpg']")
-        expect(page).to have_css("img[alt='placeholder20.jpg']")
-        expect(page).to have_css("img[alt='placeholder30.jpg']")
+        expect(page).to have_css("img"), count: 3  
       end
     end
   

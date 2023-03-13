@@ -1,0 +1,27 @@
+<div class="mt-4 d-none d-xl-block">
+  <h4>Nearby properties</h4>
+
+  <% @nearby_properties.each do |nearby_property| %>
+    <div class="card shadow rounded-3 overflow-hidden">
+      <div class="row g-0 align-items-center">
+        <!-- Image -->
+        <div class="col-sm-5 col-md-12 col-lg-5">
+          <%= image_tag("theme/nearby_property.jpg", class: 'card-img rounded-0', alt: "") %>
+        </div>
+
+        <!-- Title and content -->
+        <div class="col-sm-7 col-md-12 col-lg-7">
+          <div class="card-body p-3">
+            <h6 class="card-title">
+              <%= link_to nearby_property[:title], property_path(nearby_property[:object_id]), class: "stretched-link" %>
+            </h6>
+            <p class="mb-0">
+            <i class="bi bi-pin-map"></i>
+            <%= nearby_property[:distance] %> m.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

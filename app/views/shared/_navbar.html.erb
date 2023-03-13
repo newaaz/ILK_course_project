@@ -13,6 +13,9 @@
 			<!-- Main navbar START -->
 			<div class="navbar-collapse collapse" id="navbarCollapse">
 				<ul class="navbar-nav navbar-nav-scroll me-auto">
+
+
+					<% if Rails.env.development? %>
 					<!-- Nav item Listing -->
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="listingMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,6 +26,7 @@
 							<li><%= link_to 'Privacy', privacy_path, class: 'dropdown-item' %></li>					
 						</ul>
 					</li>
+					<% end %>
 
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="pageMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Towns</a>
@@ -36,17 +40,9 @@
 			</div>
 			<!-- Main navbar END -->
 
-			<!-- Dark mode switch START -->
-			<div class="modeswitch-wrap" id="darkModeSwitch">
-				<div class="modeswitch-item">
-					<div class="modeswitch-icon"></div>
-				</div>
-				<span>Dark mode</span>
-			</div>
-
 			<% if current_partner %>
 				<!-- PARTNER NAV START -->
-				<ul class="nav flex-row align-items-center list-unstyled ms-xl-auto">				
+				<ul class="nav flex-row align-items-center list-unstyled ms-xl-auto nav-partner">				
 					<!-- Profile dropdown START -->
 					<li class="nav-item ms-3 dropdown">
 						<!-- Avatar -->
@@ -90,20 +86,6 @@
 									<i class="bi bi-box-arrow-right fa-fw me-2"></i>Sign Out
 								<% end %>
 							</li>
-
-
-							<li> <hr class="dropdown-divider"></li>
-
-							<!-- Dark mode switch START -->
-							<li>
-								<div class="modeswitch-wrap" id="darkModeSwitch">
-									<div class="modeswitch-item">
-										<div class="modeswitch-icon"></div>
-									</div>
-									<span>Dark mode</span>
-								</div>
-							</li> 
-							<!-- Dark mode switch END -->
 						</ul>
 						<!-- Profile dropdown END -->
 					</li>
@@ -111,7 +93,7 @@
 				</ul>
 			<% elsif current_customer %>
 				<!-- CUSTOMER NAV START -->
-				<ul class="nav flex-row align-items-center list-unstyled ms-xl-auto">				
+				<ul class="nav flex-row align-items-center list-unstyled ms-xl-auto nav-customer">				
 					<!-- Profile dropdown START -->
 					<li class="nav-item ms-3 dropdown">
 						<!-- Avatar -->
@@ -142,32 +124,13 @@
 								<%= link_to customers_root_path, class: 'dropdown-item' do %>
 									<i class="bi bi-house-door fa-fw me-2"></i>Dashboard
 								<% end %>
-							</li>
-
-							<li>
-								<%= link_to partners_orders_path, class: 'dropdown-item' do %>
-									<i class="bi bi-bookmark-heart fa-fw me-2"></i>Orders
-								<% end %>
-							</li>
+							</li>				
 
 							<li>
 								<%= link_to destroy_customer_session_path, data: { "turbo-method": :delete }, class: 'dropdown-item bg-danger-soft-hover' do %>
 									<i class="bi bi-box-arrow-right fa-fw me-2"></i>Sign Out
 								<% end %>
 							</li>
-
-							<li> <hr class="dropdown-divider"></li>
-
-							<!-- Dark mode switch START -->
-							<li>
-								<div class="modeswitch-wrap" id="darkModeSwitch">
-									<div class="modeswitch-item">
-										<div class="modeswitch-icon"></div>
-									</div>
-									<span>Dark mode</span>
-								</div>
-							</li> 
-							<!-- Dark mode switch END -->
 						</ul>
 						<!-- Profile dropdown END -->
 					</li>
@@ -198,7 +161,14 @@
 
 				
 				</ul>
-			<% end %>				
+			<% end %>	
+
+			<!-- Dark mode switch START -->
+			<div class="modeswitch-wrap" id="darkModeSwitch">
+				<div class="modeswitch-item">
+					<div class="modeswitch-icon"></div>
+				</div>				
+			</div>			
 		</div>
 	</nav>
 	<!-- Logo Nav END -->

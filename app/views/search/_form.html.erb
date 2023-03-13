@@ -1,4 +1,4 @@
-<div id="search-form">
+<div id="search-form" class="border rounded p-3 my-3 bg-light shadow">
   <%= form_with url: search_path, method: :post, id: 'new_order', class: "row g-3" do |f| %>
 
     <div class="col-auto">
@@ -28,6 +28,16 @@
     <div class="col-auto pt-4">
       <div class="mb-1"></div>
       <%= f.submit "Search", class: "btn btn-primary btn-sm" %>
+
+      <% if session['check_in'] && session['check_out'] %>
+        <small>
+          <%= "#{session['check_in'].to_date.strftime('%d.%m')}-#{session['check_out'].to_date.strftime('%d.%m')}" %>
+        </small>
+        <%= link_to reset_search_dates_path, data: { "turbo-method": :delete }, class: 'btn btn-sm bg-danger-soft-hover' do %>
+          <i class="bi bi-arrow-counterclockwise fa-fw me-1"></i>
+          Reset
+        <% end %>
+      <% end %>    
     </div>
   <% end %>
 </div>

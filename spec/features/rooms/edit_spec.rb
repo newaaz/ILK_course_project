@@ -14,7 +14,7 @@ feature 'Partner can edit room of his property', %q{
   describe 'Authenticated partner - owner of property' do
     background do
       sign_in_partner(partner)
-      click_on 'Dashboard Partner'
+      click_on 'Dashboard'
       within "#room_#{room.id}" do
         click_on 'Edit'
       end     
@@ -37,12 +37,12 @@ feature 'Partner can edit room of his property', %q{
 
   scenario 'Authenticated non-owner of property tries to edit some one else property' do
     sign_in_partner(non_owner)
-    click_on 'Dashboard Partner'
+    click_on 'Dashboard'
     expect(page).to_not have_css("#room_#{room.id}")
   end
 
   scenario 'Unauthenticated partner tries edit property' do
     visit root_path
-    expect(page).to_not have_link('Dashboard Partner')
+    expect(page).to_not have_link('Dashboard')
   end
 end

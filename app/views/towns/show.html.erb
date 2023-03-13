@@ -4,12 +4,15 @@
   <h1>Properties in <%= @town.parent_name %></h1>   
 <% end %>
 
-<%= link_to 'All categories', town_path(@town), class: 'btn btn-light btn-sm' %>
-<% @categories.each do |cat| %>
-  <%= link_to cat.title, { cat: cat.id }, class: 'btn btn-light btn-sm' %>
-<% end %>
+<div class="categories my-3">
+  <%= link_to 'All categories', town_path(@town), class: 'btn btn-light btn-sm' %>
+  <% @categories.each do |cat| %>
+    <%= link_to cat.title, { cat: cat.id }, class: 'btn btn-light btn-sm' %>
+  <% end %>
+</div>
 
 <%#= render partial: 'towns/hotel', collection: @properties, as: :property %>
-<%= render @properties %>
-
+<div class="row gx-2">
+  <%= render @properties %>
+</div>
 

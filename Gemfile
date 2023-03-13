@@ -52,6 +52,11 @@ gem "elasticsearch-model", "~> 7.2"
 # speed up work with JSON
 gem "oj", "~> 3.14"
 
+# get your Rails variables in your js
+#gem "gon", "~> 6.4"
+
+gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -88,12 +93,13 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
-  gem "selenium-webdriver"
+  gem "selenium-webdriver", "~> 4.7.1"
   gem "webdrivers"
   gem "shoulda-matchers", "~> 5.2"
   gem "launchy", "~> 2.5"
   gem "database_cleaner-active_record", "~> 2.0"
   gem 'pundit-matchers', '~> 1.8.4'
+  # gem "rack_session_access", "~> 0.2.0"
 end
 
 
