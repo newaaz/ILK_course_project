@@ -6,13 +6,24 @@ class SearchController < ApplicationController
       session[:check_in] = params[:check_in]
       session[:check_out] = params[:check_out]
     else
-      session.delete(:check_in)
-      session.delete(:check_out)
+      reset_search_dates
     end
 
     render turbo_stream:
       turbo_stream.update('search_result',
                     partial: 'search/properties/finded_properties',
                     locals:  { properties: @properties })
+  end
+
+  def destroy
+    reset_search_dates
+    redirect_back fallback_location: root_path
+  end
+
+  private
+
+  def reset_search_dates
+    session.delete(:check_in)
+    session.delete(:check_out)
   end
 end

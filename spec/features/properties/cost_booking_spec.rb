@@ -6,19 +6,9 @@ feature 'The visitor can see the cost of booking a room for the entered date', %
   I'd like to be able see cost of booking a room for the set date
 } do
 
-  # given(:town)         { create :town }
-  # given(:town_feo)     { create :town, name: 'Feo' }
-  # given(:cat_hotels)   { create :category, title: 'Hotels' }
-  # given(:cat_flats)    { create :category, title: 'Flats' }
-  # given!(:properties)  { create_list :property, 3, :imagable, :reindex, town: town, category: cat_hotels }
-  # given(:feo_hotel)    { create :property, :imagable, :reindex, town: town_feo, category: cat_flats  }
-  # given(:room)         { create :room, property: feo_hotel }
-  # given!(:price)       { create :price, start_date: "2023-05-31", end_date: "2023-07-15", day_cost: 35, room: room }
-
-
   given(:property) { create :property, :imagable, :reindex }
   given(:room)     { create :room, :imagable, property: property }
-  given!(:price)   { create :price, start_date: "2023-05-31", end_date: "2023-07-15", day_cost: 35, room: room }
+  given!(:price)   { create :price, start_date: "2023-05-31", end_date: "2023-11-15", day_cost: 35, room: room }
 
   before do
     Property.reindex
@@ -33,6 +23,9 @@ feature 'The visitor can see the cost of booking a room for the entered date', %
       click_on 'Search'
     end
 
+    #page.set_rack_session(check_in: '14.06.2023')
+    #page.set_rack_session(check_in: '03.07.2023')
+
     visit property_path property
 
     within '.booking-cost' do
@@ -41,6 +34,5 @@ feature 'The visitor can see the cost of booking a room for the entered date', %
   end
 
   # form for dates on property#show 
-
 
 end

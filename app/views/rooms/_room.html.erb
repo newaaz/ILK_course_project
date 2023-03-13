@@ -5,7 +5,7 @@
 
       <!-- Overlay item -->
       <div class="position-absolute top-0 start-0 z-index-1 mt-3 ms-4">
-        <div class="badge text-bg-danger">30% Off</div>
+        <div class="badge text-bg-success">Best choise</div>
       </div>
 
       <!-- fotorama begin -->
@@ -24,7 +24,7 @@
       </div>
       <!-- fotorama end --> 
 
-      </div>
+    </div>
 
     <!-- Card body -->
     <div class="col-md-6">
@@ -37,10 +37,7 @@
         <ul class="nav nav-divider mb-2">
           <li class="nav-item">Air Conditioning</li>
           <li class="nav-item">Wifi</li>
-          <li class="nav-item">Kitchen</li>
-          <li class="nav-item">
-            <a href="#" class="mb-0 text-primary">More+</a>
-          </li>
+          <li class="nav-item">Kitchen</li>        
         </ul>
 
         <!-- Highlights Icons -->
@@ -59,12 +56,13 @@
           </div>
         </div>
 
-        <p class="text-success mb-0">Free Cancellation till 7 Jan 2022</p>
+        <p class="text-success mb-0">Free Cancellation till 7 days</p>
 
-        <!-- Button -->
+        <!-- Modal Button
         <div class="d-sm-flex justify-content-sm-between align-items-center mt-auto">
           <a href="#" class="btn btn-link text-decoration-underline p-0 mb-0 mt-1" data-bs-toggle="modal" data-bs-target="#roomDetail"><i class="bi bi-eye-fill me-1"></i>View more details</a>
         </div>
+        Modal Button -->
         
         <!-- Price and Button -->
         <div class="d-sm-flex justify-content-sm-between align-items-center mt-auto">
@@ -82,7 +80,7 @@
   </div>
 
   <% if room.prices.any? %>
-    <h5 class="text-center mt-2 px-2">Стоимость проживания номер/сутки(руб.)</h5>  
+    <h5 class="text-center mt-2 px-2">Cost of accommodation room/day</h5>  
     <div style="overflow-x:auto;">
       <div class="room-prices">
         <% room.prices.each do |price| %>

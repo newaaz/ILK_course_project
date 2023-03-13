@@ -1,7 +1,7 @@
 <div class="d-flex align-items-center booking-cost">
 
 
-  <% if session['check_in'] && session['check_out'] && (all_dates_cost = room.calculate_booking(session[:check_in], session[:check_out])) %>
+  <% if session['check_in'] && session['check_out'] && (all_dates_cost = room.calculate_booking(session[:check_in], session[:check_out])) != 0 %>
     <h5 class="fw-bold mb-0 me-1"><%= all_dates_cost %><small>₽</small></h5>
     <span class="mb-0 me-2">
       <%= "/ #{(session['check_in'].to_date..session['check_out'].to_date).count} days" %>

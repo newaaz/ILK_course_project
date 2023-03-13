@@ -1,28 +1,32 @@
 <form class="row g-1 form-border-transparent bg-light rounded border shadow-sm p-3">
- 
-  <!-- Check in -->
-  <div class="col-md-6">
-    <label class="small">Check in</label>
-    <div class="form-border-bottom form-control-transparent d-flex align-items-center">
-      <!-- Icon -->
-      <i class="bi bi-calendar text-secondary d-block me-2"></i>
-      <!-- Cities -->
-      <div class="form-fs-sm">
-        <input type="text" class="form-control flatpickr" data-date-format="d/M/Y" placeholder="Select Date">
+  <div class="row align-items-end g-0">
+    <!-- Check in -->
+    <div class="col-md-5">
+      <label class="small">Check in</label>
+      <div class="form-border-bottom form-control-transparent d-flex align-items-center">
+        <i class="bi bi-calendar text-secondary d-block me-2"></i>
+        <div class="form-fs-sm">
+          <input type="text" class="form-control flatpickr" data-date-format="d/M/Y" placeholder="Select Date">
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Check Out -->
-  <div class="col-md-6">
-    <label class="small">Check Out</label>
-    <div class="form-border-bottom form-control-transparent d-flex align-items-center">
-      <!-- Icon -->
-      <i class="bi bi-calendar text-secondary d-block me-2"></i>
-      <!-- Cities -->
-      <div class="form-fs-sm">
-        <input type="text" class="form-control flatpickr" data-date-format="d/M/Y" placeholder="Select Date">
-      </div>	
+    <!-- Check Out -->
+    <div class="col-md-5">
+      <label class="small">Check Out</label>
+      <div class="form-border-bottom form-control-transparent d-flex align-items-center">
+        <i class="bi bi-calendar text-secondary d-block me-2"></i>
+        <div class="form-fs-sm">
+          <input type="text" class="form-control flatpickr" data-date-format="d/M/Y" placeholder="Select Date">
+        </div>	
+      </div>
+    </div>
+
+    <!-- Reset Dates -->
+    <div class="col-md-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Reset dates">    
+      <%= link_to reset_search_dates_path, data: { "turbo-method": :delete }, class: 'btn btn-sm bg-danger-soft-hover' do %>
+        <i class="bi bi-arrow-counterclockwise fa-fw me-1"></i>
+      <% end %>
     </div>
   </div>
 
@@ -31,7 +35,7 @@
     <label class="small">Guests</label>
     <div class="form-border-bottom form-control-transparent d-flex align-items-center">
       <!-- Icon -->
-      <i class="fa-solid fa-user-group text-secondary d-block me-2"></i>
+      <i class="bi bi-people text-secondary d-block me-2"></i>
       <!-- Cities -->
       <div class="form-fs-sm">
         <div class="dropdown guest-selector me-2">
@@ -97,3 +101,9 @@
     <button class="btn btn-sm btn-primary-soft w-100 mb-0">Calculate booking</button>
   </div>
 </form>
+
+
+<%= form_with url: search_path, method: :post, id: 'new_order_for_datepicker', class: "row g-3" do |f| %>
+
+
+<% end %>

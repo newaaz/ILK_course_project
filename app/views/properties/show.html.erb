@@ -10,13 +10,14 @@
 					<!-- Title -->
 					<div class="mb-2 mb-lg-0">
 						<h1 class="h3"><%= @property.title %></h1>
-						<!-- Location -->
+						<!-- Location --
 						<p class="fw-bold mb-0"><i class="bi bi-geo-alt me-2"></i>
 							<%= "#{@property.town.name}, #{@property.address}" %>
 							<a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">
 								<i class="bi bi-eye-fill me-1"></i>View On Map
 							</a>
 						</p>
+						-- Location -->
 					</div>
 
 					<!-- Buttons -->
@@ -359,33 +360,16 @@
 
 						<!-- Button -->
 						<div class="d-grid">
-							<a href="#room-options" class="btn btn-lg btn-primary-soft mb-0">View 10 Rooms Options</a>
+							<a href="#room-options" class="btn btn-lg btn-primary-soft mb-0">View All Rooms</a>
 						</div>
 					</div>
 					<!-- Book now END -->
 
-					<!-- Best deal START -->
-					<div class="mt-4 d-none d-xl-block">
-						<h4>Today's Best Deal</h4>
+					<%= render 'geolocations/show_map', object: @property, preset_icon: "islands#blueHomeIcon" %>
 
-						<div class="card shadow rounded-3 overflow-hidden">
-							<div class="row g-0 align-items-center">
-								<!-- Image -->
-								<div class="col-sm-6 col-md-12 col-lg-6">
-                  <%= image_tag("theme/offer/04.jpg", class: 'card-img rounded-0', alt: "") %>
-								</div>
-
-								<!-- Title and content -->
-								<div class="col-sm-6 col-md-12 col-lg-6">
-									<div class="card-body p-3">
-										<h6 class="card-title"><a href="offer-detail.html" class="stretched-link">Travel Plan</a></h6>
-										<p class="mb-0">Get up to $10,000 for lifetime limits</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Best deal END -->
+					<% if @nearby_properties.any? %>
+						<%= render 'properties/nearby_properties' %>
+					<% end %>
 				</div>	
 			</aside>
 			<!-- Right side content END -->
@@ -395,6 +379,29 @@
 
 
 </main>
+
+<!-- Map modal START -->
+<div class="modal fade" id="mapmodal" tabindex="-1" aria-labelledby="mapmodalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+			<!-- Title -->
+			<div class="modal-header">
+				<h5 class="modal-title" id="mapmodalLabel">View Our Hotel Location</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<!-- Map -->
+			<div class="modal-body p-0">				
+				<%= render 'geolocations/show_map', object: @property, preset_icon: "islands#blueHomeIcon" %>	
+			</div>
+			<!-- Button -->
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Map modal END -->
+
+
 
 
 

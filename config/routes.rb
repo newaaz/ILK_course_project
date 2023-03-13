@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/privacy',  to: 'static_pages#privacy'
 
   post 'search', to: 'search#index'
+  delete 'reset_search_dates', to: 'search#destroy'
 
   devise_for :partners, controllers:  {
     sessions:           'partners/sessions',

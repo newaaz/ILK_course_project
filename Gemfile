@@ -97,6 +97,9 @@ group :test do
   gem "launchy", "~> 2.5"
   gem "database_cleaner-active_record", "~> 2.0"
   gem 'pundit-matchers', '~> 1.8.4'
+  # gem "rack_session_access", "~> 0.2.0"
 end
+
+
 
 
