@@ -149,6 +149,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_13_122521) do
     t.string "parent_name", null: false
     t.integer "ordinal_number", limit: 2, default: 1, null: false
     t.string "avatar"
+    t.string "description"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
