@@ -1,6 +1,7 @@
-<h1>Edit <%= @property.title %></h1>
+<div class="container">
+  <h1>Edit <%= @property.title %></h1>
+  <%= render 'form' %>
 
-<%= render 'form' %>
-
-<!-- remove images -->
-<%= render partial: 'shared/image_purge', collection: @property.images, as: :image %>
+  <!-- remove images -->
+  <%= render partial: 'shared/image_purge', collection: @property.images, as: :image %>
+</div>

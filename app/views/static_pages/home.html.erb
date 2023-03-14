@@ -2,65 +2,34 @@
 
 <section class="py-0">
 	<div class="container">
-		<!-- Title -->
 		<div class="row mb-4">
-			<div class="col-12 text-center">
-				<h2 class="h3">Куда поехать</h2>
-			</div>
+				<h2 class="h3 ps-5"><i class="bi bi-signpost-split text-black-50 me-2"></i>Куда поехать</h2>
 		</div>
 
-		<!-- Blog START -->
 		<div class="row g-4">
-
-      <% @towns.each do |town| %>
-        <div class="col-lg-6">
-          <div class="vstack gap-4">
-            <!-- Blog item START -->
-            <div class="card bg-transparent">
-              <div class="row g-2 g-sm-3">
-                <!-- Image -->
-                <div class="col-md-6">
-                  <%= image_tag town.avatar.thumb.url, class: "card-img", alt: town.name %>
-                </div>
-                <div class="col-md-6">
-                  <!-- card body -->
-                  <div class="card-body p-0">
-                    <h5 class="card-title mb-sm-1"><%= link_to town.name, town, class: "stretched-link"%></h5>
-                    <!-- Author name and button -->
-                    <div class="d-flex justify-content-between align-items-center">
-                      <span class="small"><%= town.description.truncate(215) %></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Blog item END -->
-
-            <hr class="my-0"> <!-- Divider -->
-
-          </div>
-        </div>
-      <% end %>
-
+      <%= render @towns %>
 		</div>
-		<!-- Blog END -->
 	</div>
 </section>
 
 
+<section>
+  <div class="container">
 
-<%= render @towns %>
+    <div class="row mb-4">
+			<h2 class="h3 ps-5"><i class="bi bi-buildings text-black-50 me-2"></i>Что арендовать</h2>
+		</div>
 
+    <div id="search_result">
+      <div class="row gx-2">
+        <%= render @homepage_properties %>
+      </div>
 
-<div id="search_result">
-  <h2>All properties</h2>
-  <div class="row gx-2">
-    <%= render @homepage_properties %>
+      <% if @properties %>
+        <%= render partial: 'properties/property', collection: @properties, as: :property %>
+      <% end %>
+    </div>
   </div>
-
-  <% if @properties %>
-    <%= render partial: 'properties/property', collection: @properties, as: :property %>
-  <% end %>
-</div>
+</section>
 
 

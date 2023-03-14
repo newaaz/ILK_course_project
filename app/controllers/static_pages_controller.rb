@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
   end
 
   def contacts
+    @town = Town.first
   end
 
   def about

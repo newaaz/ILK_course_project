@@ -1,17 +1,27 @@
-<section class="py-0 py-md-3">
-	<div class="container">
-		<div class="position-relative rounded overflow-hidden p-2 p-sm-5" style="background-image:url(<%= town.avatar.url %>); background-position: center left; background-size: cover;">
-			<div class="row position-relative z-index-9">
-				<div class="col-md-9 col-xl-8">
-					<div class="rounded shadow bg-light bg-opacity-75 p-sm-4">
+        <div class="col-lg-6">
+          <div class="vstack gap-4">
+            <!-- Blog item START -->
+            <div class="card bg-transparent">
+              <div class="row g-2 g-sm-3">
+                <!-- Image -->
+                <div class="col-md-6">
+                  <%= image_tag town.avatar.thumb.url, class: "card-img", alt: town.name %>
+                </div>
+                <div class="col-md-6">
+                  <!-- card body -->
+                  <div class="card-body p-0">
+                    <h5 class="card-title mb-sm-1"><%= link_to town.name, town, class: "stretched-link"%></h5>
+                    <!-- Author name and button -->
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span class="small"><%= town.description.truncate(215) %></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Blog item END -->
 
-            <h5><%= link_to town.name, town, class: "stretched-link"%></h5>
+            <hr class="my-0"> <!-- Divider -->
 
-						<p class="mb-3 text-dark"><%= town.description %></p>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+          </div>
+        </div>
