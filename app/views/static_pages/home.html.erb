@@ -1,5 +1,7 @@
 <h1>Homepage</h1>
 
+<%= render 'search/form' %>
+
 <div class="links-towns-show">
   <% @towns.each do |town| %>
     <%= link_to town.name, town, class: "btn btn-success-soft" %>
@@ -8,7 +10,7 @@
 
 <hr>
 
-<%= render 'search/form' %>
+
 
 <div id="search_result">
   <h2>All properties</h2>

@@ -168,5 +168,8 @@ document.addEventListener("turbo:load", () => {
     })
   });
 
+  // Parallax
+  $('.parallax-window').parallax({zIndex:1}); /* Parallax modal*/ 
+
 })
 

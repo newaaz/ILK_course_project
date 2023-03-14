@@ -1,18 +1,45 @@
-<% if @properties_category %>
-  <h1><%= @properties_category %> in <%= @town.parent_name %></h1>          
-<% else %>      
-  <h1>Properties in <%= @town.parent_name %></h1>   
-<% end %>
+</div>
+<section class="parallax-window" data-parallax="scroll" data-image-src="<%= @town.avatar.url %>">
+  <div class="parallax-content-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">          
+          <h1><%= @town.name %></h1>  
+					<span>Страница города</span>         
+        </div>
+        <div class="col-md-4">
+          <div id="price_single_main" class="hotel">
+            <span><sup></sup></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="categories my-3">
-  <%= link_to 'All categories', town_path(@town), class: 'btn btn-light btn-sm' %>
-  <% @categories.each do |cat| %>
-    <%= link_to cat.title, { cat: cat.id }, class: 'btn btn-light btn-sm' %>
+
+<div class="container mt-4">
+
+  <% if @properties_category %>
+    <h2 class="h3"><%= @properties_category %> in <%= @town.parent_name %></h2>          
+  <% else %>      
+    <h2 class="h3">Properties in <%= @town.parent_name %></h2>   
   <% end %>
-</div>
 
-<%#= render partial: 'towns/hotel', collection: @properties, as: :property %>
-<div class="row gx-2">
-  <%= render @properties %>
-</div>
+  <div class="categories my-3">
+    <%= link_to 'All categories', town_path(@town), class: 'btn btn-light btn-sm' %>
+    <% @categories.each do |cat| %>
+      <%= link_to cat.title, { cat: cat.id }, class: 'btn btn-light btn-sm' %>
+    <% end %>
+  </div>
+
+  <%= render partial: 'towns/property', collection: @properties, as: :property %>
+  <div class="row gx-2">
+    <%= render @properties %>
+  </div>
+
+
+
+
+
 
