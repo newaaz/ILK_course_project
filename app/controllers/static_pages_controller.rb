@@ -1,10 +1,12 @@
 class StaticPagesController < ApplicationController
   def home
     @towns = Town.all
-    @homepage_properties = Property.all
+    @properties = Property.take 6
   end
 
   def contacts
+    @town = Town.first
+    @properties = Property.take 6
   end
 
   def about

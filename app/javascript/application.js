@@ -18,6 +18,9 @@ import "./custom/theme_functions"
 // Fotorama
 import "./custom/plugins/fotorama"
 
+// Parallax
+import "./custom/plugins/parallax"
+
 // LightPicker
 import "./custom/plugins/litepicker"
 

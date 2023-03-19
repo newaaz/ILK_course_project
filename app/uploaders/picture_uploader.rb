@@ -61,6 +61,6 @@ class PictureUploader < CarrierWave::Uploader::Base
   private
 
   def model_user? picture
-    model.model_name.name == 'User'
+    model.model_name.name == 'Partner' || 'Customer'
   end
 end

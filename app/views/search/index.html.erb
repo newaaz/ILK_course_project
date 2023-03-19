@@ -1,0 +1,13 @@
+<section>
+  <div class="container">
+    <div class="row mb-4">
+			<h2 class="h3 ps-5"><i class="bi bi-search text-black-50 me-2"></i>Search results</h2>
+		</div>
+
+    <div id="search_result">
+      <div class="row gx-4">
+        <%= render partial: 'properties/property', collection: @properties, as: :property %>
+      </div>
+    </div>
+  </div>
+</section>

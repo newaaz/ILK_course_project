@@ -9,10 +9,16 @@ class SearchController < ApplicationController
       reset_search_dates
     end
 
-    render turbo_stream:
-      turbo_stream.update('search_result',
-                    partial: 'search/properties/finded_properties',
-                    locals:  { properties: @properties })
+    respond_to do |format|
+      format.html { render :index }
+
+      format.turbo_stream do
+        render turbo_stream:
+          turbo_stream.update('search_result',
+            partial: 'search/properties/finded_properties',
+            locals:   { properties: @properties })
+      end
+    end
   end
 
   def destroy

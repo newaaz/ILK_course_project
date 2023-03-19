@@ -1,24 +1,30 @@
-<h1>Homepage</h1>
+<%= render 'static_pages/templates/main_banner' %>
 
-<div class="links-towns-show">
-  <% @towns.each do |town| %>
-    <%= link_to town.name, town, class: "btn btn-success-soft" %>
-  <% end %>
-</div>
+<section class="py-0">
+	<div class="container">
+		<div class="row mb-4">
+				<h2 class="h3 ps-5"><i class="bi bi-signpost-split text-black-50 me-2"></i>Куда поехать</h2>
+		</div>
 
-<hr>
+		<div class="row g-4">
+      <%= render @towns %>
+		</div>
+	</div>
+</section>
 
-<%= render 'search/form' %>
 
-<div id="search_result">
-  <h2>All properties</h2>
-  <div class="row gx-2">
-    <%= render @homepage_properties %>
+<section>
+  <div class="container">
+    <div class="row mb-4">
+			<h2 class="h3 ps-5"><i class="bi bi-buildings text-black-50 me-2"></i>Популярные предложения</h2>
+		</div>
+
+    <div id="search_result">
+      <div class="row gx-4">
+        <%= render @properties %>
+      </div>
+    </div>
   </div>
-
-  <% if @properties %>
-    <%= render partial: 'properties/property', collection: @properties, as: :property %>
-  <% end %>
-</div>
+</section>
 
 
