@@ -16,17 +16,13 @@
 <section>
   <div class="container">
     <div class="row mb-4">
-			<h2 class="h3 ps-5"><i class="bi bi-buildings text-black-50 me-2"></i>Что арендовать</h2>
+			<h2 class="h3 ps-5"><i class="bi bi-buildings text-black-50 me-2"></i>Популярные предложения</h2>
 		</div>
 
     <div id="search_result">
       <div class="row gx-4">
-        <%= render @homepage_properties %>
+        <%= render @properties %>
       </div>
-
-      <% if @properties %>
-        <%= render partial: 'properties/property', collection: @properties, as: :property %>
-      <% end %>
     </div>
   </div>
 </section>

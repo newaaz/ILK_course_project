@@ -8,10 +8,13 @@
       <!-- Overlay -->
       <div class="card-img-overlay d-flex flex-column p-2 z-index-1">
         <!-- Card overlay top -->
-        <div>
-          <span class="badge text-bg-danger">30% Off</span>
-          <span class="badge text-bg-primary">Adventure</span>
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <span class="badge text-bg-danger">30% Off</span>
+            <span class="badge text-bg-primary">Adventure</span>
+          </div>
         </div>
+        
         <!-- Card overlay bottom -->
         <div class="w-100 mt-auto">
           <span class="badge text-bg-light bg-opacity-75 fs-6">6 days / 5 nights</span>
@@ -21,14 +24,16 @@
     <!-- Image -->
 
     <!-- Card body START -->
-    <div class="card-body px-3">
-      <!-- Title -->   
-
-      <h5 class="card-title mb-0"><%= link_to property.title, property, class: "stretched-link" %></h5>
+    <div class="card-body px-3">      
+      <!-- Title -->
+      <div class="d-flex justify-content-between mb-3">        
+        <h5 class="card-title mb-0"><%= link_to property.title, property, class: "strlnk" %></h5>
+        <a href="#" class="badge bg-warning bg-opacity-25 text-orange"><i class="bi fa-fw bi-bookmark"></i></a>
+      </div>
 
       <span class="small"><i class="bi bi-geo-alt"></i>&nbsp;<%= property.address %> </span>
 
-              <!-- Highlights Icons -->
+      <!-- Highlights Icons -->
       <ul class="nav nav-divider my-2">
         <li class="nav-item">Air Conditioning</li>
         <li class="nav-item">Wifi</li>
