@@ -2,7 +2,7 @@ module Bookable
   extend ActiveSupport::Concern
 
   included do
-    before_validation :booking_calculate,       on: :create, if: :dates_present?
+    before_validation :calculate_booking,       on: :create, if: :dates_present?
 
     validate  :correct_arrival_dates,           on: :create, if: :dates_present?
     validate  :available_by_prices_date_ranges, on: :create, if: :dates_present?
@@ -10,7 +10,7 @@ module Bookable
 
     private
 
-    attr_accessor :available_days_by_prices
+    attr_accessor :available_days_by_prices 
 
     def dates_present?
       check_in.present? && check_out.present?
@@ -30,7 +30,7 @@ module Bookable
       end
     end
 
-    def booking_calculate
+    def calculate_booking
       self.available_days_by_prices = 0
   
       self.room.prices.each do |price|
@@ -39,9 +39,9 @@ module Bookable
     end
   
     def calculate_intersection(price)
-      price_day_count = ([check_in, price.start_date].max..[check_out, price.end_date].min).count
-      self.total_amount += price_day_count * price.day_cost
-      self.available_days_by_prices += price_day_count
+      overlap_days_count = ([check_in, price.start_date].max..[check_out, price.end_date].min).count
+      self.total_amount += overlap_days_count * price.day_cost
+      self.available_days_by_prices += overlap_days_count
     end
   end
 end

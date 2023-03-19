@@ -18,21 +18,11 @@ import "./custom/theme_functions"
 // Fotorama
 import "./custom/plugins/fotorama"
 
+// Parallax
+import "./custom/plugins/parallax"
+
 // LightPicker
 import "./custom/plugins/litepicker"
 
 // work with yandex map
 import "./custom/custom_functions"
-
-
-      // // Initialize main fotorama
-      // $('.fotoramain').fotorama({
-      //   width: 990,
-      //   ratio: 3/2,
-      //   allowfullscreen: true,
-      //   nav: 'thumbs',
-      //   loop: true,
-      //   keyboard: true,
-      // })
-
-

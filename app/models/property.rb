@@ -1,7 +1,7 @@
 class Property < ApplicationRecord
   include Imagable
   include Geolocable
-#  include Searchable
+  include Searchable
   
   belongs_to :owner, class_name: 'Partner'
   belongs_to :town

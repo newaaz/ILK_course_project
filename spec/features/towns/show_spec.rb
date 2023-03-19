@@ -9,20 +9,22 @@ feature 'Any user can view properties list of town', %q{
   given!(:town)      { create(:town) }
   given!(:cat_hotel) { create(:category, title: 'Hotels') }
   given!(:cat_flat)  { create(:category, title: 'Flats') }
-  given!(:hotels)    { create_list(:property, 3, town: town, category: cat_hotel) }
-  given!(:flats)     { create_list(:property, 3, town: town, category: cat_flat) }
+  given!(:hotels)    { create_list(:property, 3, :imagable, :reindex, town: town, category: cat_hotel) }
+  given!(:flats)     { create_list(:property, 3, :imagable, :reindex, town: town, category: cat_flat) }
 
   background do
     visit root_path
-    click_on town.name
+    within ".links-towns-show" do
+      click_on town.name
+    end
   end
 
-  scenario 'Properties list of all categories' do
+  scenario 'Properties list of all categories', js: true do
     expect(page).to have_content "Properties in #{town.parent_name}" 
     expect(page).to have_content "Hotel 'Alexandra'", count: 6
   end
 
-  scenario 'Properties list of selected category' do
+  scenario 'Properties list of selected category', js: true do
     click_on "#{cat_hotel.title}"
 
     expect(page).to have_content "#{cat_hotel.title} in #{town.parent_name}" 

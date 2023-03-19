@@ -8,11 +8,11 @@ feature 'Only owner can delete his property', %q{
 
   given(:partner)   { create :partner }
   given(:non_owner) { create :partner }
-  given!(:property) { create :property, owner: partner }
+  given!(:property) { create :property, :imagable, owner: partner }
 
   scenario 'Authenticated owner of property deletes his property' do
     sign_in_partner(partner)
-    click_on 'Dashboard Partner'
+    click_on 'Dashboard'
     within "#property_#{property.id}" do
       click_on 'Delete'
     end     
@@ -23,12 +23,12 @@ feature 'Only owner can delete his property', %q{
 
   scenario 'Authenticated non-owner of property tries to destroy some one else property' do
     sign_in_partner(non_owner)
-    click_on 'Dashboard Partner'
+    click_on 'Dashboard'
     expect(page).to_not have_css("#property_#{property.id}")
   end
 
   scenario 'Unauthenticated partner tries to destroy property' do
-    visit root_path
-    expect(page).to_not have_link('Dashboard Partner')
+    visit property_path property
+    expect(page).to_not have_link('Dashboard')
   end
 end

@@ -8,23 +8,23 @@ feature 'Partner can view their properties', %q{
 
   given(:customer)    { create :customer }
   given(:owner)       { create :partner }
-  given!(:properties) { create_list :property, 3, owner: owner }
+  given!(:properties) { create_list :property, 3, :imagable, owner: owner }
 
   scenario 'Authenticated partner' do
     sign_in_partner(owner)
-    click_on 'Dashboard Partner'
+    click_on 'Dashboard'
 
     expect(page).to have_content "Hotel 'Alexandra'", count: 3
   end
 
   scenario 'Unauthenticated user' do
     visit root_path
-    expect(page).to_not have_link('Dashboard Partner')
+    expect(page).to_not have_link('Dashboard')
   end
 
   scenario 'Authenticated customer' do
     sign_in_customer(customer)
     visit root_path
-    expect(page).to_not have_link('Dashboard Partner')
+    expect(page).to_not have_css('.nav-partner')
   end
 end

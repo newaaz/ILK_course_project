@@ -7,13 +7,13 @@ feature 'Partner can add prices to rooms', %q{
 } do
 
   given(:partner)   { create :partner }
-  given!(:property) { create :property, owner: partner }
+  given!(:property) { create :property, :imagable, owner: partner }
 
   background { sign_in_partner(partner) }
 
   describe 'Partner owner add prices when create room', js: true do
     background do
-      click_on 'Dashboard Partner'
+      visit partners_root_path
       within "#property_#{property.id}" do
         click_on 'Add room'
       end

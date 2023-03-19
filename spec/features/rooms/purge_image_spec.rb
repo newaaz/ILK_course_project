@@ -14,7 +14,7 @@ feature 'Owner can purge room images', %q{
   before { sign_in_partner(owner) }
 
   scenario 'Owner purge images when edit room' do    
-    click_on 'Dashboard Partner'
+    click_on 'Dashboard'
     within "#property_#{property.id}" do
       within "#room_#{room.id}" do
         click_on 'Edit'

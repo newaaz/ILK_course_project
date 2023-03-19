@@ -8,12 +8,12 @@ feature 'Partner can create rooms', %q{
 
   given(:partner)   { create :partner }
   given(:non_owner) { create :partner }
-  given!(:property) { create :property, owner: partner }
+  given!(:property) { create :property, :imagable, owner: partner }
 
   describe 'Authencticated owner of property create with avatar+images' do
     background do
       sign_in_partner(partner)
-      click_on 'Dashboard Partner'
+      click_on 'Dashboard'
       within "#property_#{property.id}" do
         click_on 'Add room'
       end     
@@ -47,13 +47,13 @@ feature 'Partner can create rooms', %q{
 
   scenario 'Authenticated non-owner of property tries add room' do
     sign_in_partner(non_owner)
-    click_on 'Dashboard Partner'
+    click_on 'Dashboard'
 
     expect(page).to_not have_css("div#property_#{property.id}")
   end
 
   scenario 'Unauthenticated user tries add room' do
-    visit root_path
-    expect(page).to_not have_link 'Dashboard Partner'
+    property_path property
+    expect(page).to_not have_link 'Dashboard'
   end
 end
