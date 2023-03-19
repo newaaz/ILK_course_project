@@ -6,6 +6,7 @@ class StaticPagesController < ApplicationController
 
   def contacts
     @town = Town.first
+    @properties = Property.take 5
   end
 
   def about
