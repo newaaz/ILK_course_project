@@ -39,7 +39,18 @@ Rails.application.configure do
   # For DEVISE and email sending
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # For letter_opener
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.mail.ru',
+    :port           => '465',
+    :authentication => :plain,
+    :user_name      => Rails.application.credentials.email[:login],
+    :password       => Rails.application.credentials.email[:pass],
+    :tls            => true,
+    #:domain         => 'heroku.com',
+    :enable_starttls_auto => true
+    }
+
   config.action_mailer.perform_deliveries = true
 
   # Don't care if the mailer can't send.

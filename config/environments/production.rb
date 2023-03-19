@@ -64,6 +64,21 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # For DEVISE and email sending
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # For letter_opener
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.mail.ru',
+    :port           => '465',
+    :authentication => :plain,
+    :user_name      => Rails.application.credentials.email[:login],
+    :password       => Rails.application.credentials.email[:pass_prod],
+    :tls            => true,
+    #:domain         => 'heroku.com',
+    :enable_starttls_auto => true
+    }
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
