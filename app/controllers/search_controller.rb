@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def index
-    @properties = BookingSearchService.call(params)
+    @properties = BookingSearchService.call(params).includes([:avatar_attachment])
 
     if params[:check_in].present? && params[:check_out].present?        
       session[:check_in] = params[:check_in]

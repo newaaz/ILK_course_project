@@ -18,6 +18,7 @@ def create_categories
     { title: 'Дома под ключ', ordinal_number: 5 },
     { title: 'Эллинги', ordinal_number: 6 }
   ])
+  puts "Categories created"
 end
 
 # Towns
@@ -50,8 +51,8 @@ def create_towns
       avatar: File.open(File.join(Rails.root, "app/assets/images/towns_avatars/avatar_beregovoe.jpg"))
     }
   ])
+  puts "Towns created"
 end
-
 
 def rand_image_path  
   Pathname.new(Rails.root.join("app/assets/images/seed/property/p (#{rand 1..15}).jpg"))
@@ -89,14 +90,15 @@ def create_property
     end    
   end
 
-  property.save!  
+  property.save!
+
+  puts "Property #{property.title} created"
 end
 
-# Run creates
 create_categories
 create_towns
 
 Property.destroy_all
 25.times { create_property }
 Property.reindex
-
+puts "Properties indexed"

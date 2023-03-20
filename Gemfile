@@ -88,6 +88,8 @@ group :development do
 
   gem "ed25519", "~> 1.3", require: false
   gem "bcrypt_pbkdf", "~> 1.1", require: false
+
+  gem "bullet", "~> 7.0"
 end
 
 group :test do
@@ -101,5 +103,4 @@ group :test do
   gem 'pundit-matchers', '~> 1.8.4'
   # gem "rack_session_access", "~> 0.2.0"
 end
-
 
