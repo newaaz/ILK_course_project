@@ -5,7 +5,7 @@ class PropertiesController < ApplicationController
   after_action  :verify_authorized
 
   def index
-    @properties = Property.all
+    @properties = Property.take 3
   end
 
   def show

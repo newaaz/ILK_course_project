@@ -1,15 +1,28 @@
-<h1>Dashboard Owner</h1>
+<%= render 'partners/dashboard/templates/nav_section' %>
 
-<p><%= link_to 'New property', new_property_path, class: 'btn btn-success my-3' %></p>
+<section class="pt-0">
+	<div class="container vstack gap-4">
+		<!-- Title START -->
+		<div class="row">
+			<div class="col-12">
+				<h1 class="fs-4 mb-0"><i class="bi bi-house-door fa-fw me-1"></i>Dashboard</h1>
+			</div>
+		</div>	
+		<!-- Title END -->    		
+			
+    <div class="card border">
+      <!-- Card header -->
+      <div class="card-header border-bottom">
+        <h5 class="card-header-title">My Listings
+      </div>
+      
+      <div class="card-body vstack gap-3">
+        <%= render partial: 'partners/dashboard/templates/property', collection: @properties, as: :property %>
+      </div>
+    </div>
 
-<div class="dashboard-menu-links">
-  <%= link_to 'Orders', partners_orders_path, class: 'btn btn-light btn-sm' %>
-</div>
-
-<hr>
-<h2>Properties:</h2>
-
-<%= render partial: 'partners/dashboard/partials/property', collection: @properties, as: :property %>
+	</div>
+</section>
 
 
 
