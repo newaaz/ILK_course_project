@@ -10,7 +10,7 @@ class PropertiesController < ApplicationController
 
   def show
     @property = Property.includes([:geolocation, images_attachments: :blob, avatar_attachment: :blob,
-                                  rooms: [:prices, images_attachments: :blob, avatar_attachment: :blob]])
+                                   rooms: [:prices, images_attachments: :blob, avatar_attachment: :blob]])
                         .find(params[:id])
 
     @nearby_properties = @property.nearby_objects('Property')

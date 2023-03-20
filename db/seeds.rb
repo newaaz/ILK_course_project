@@ -60,7 +60,7 @@ end
 
 # Create property
 def create_property
-  property = Property.new(geolocation:  Geolocation.new(latitude: "45.0#{rand 0..9}865", longitude: "35.3#{rand 0..9}088"),
+  property = Property.new(geolocation:  Geolocation.new(latitude: "45.05#{rand 0..9}65", longitude: "35.39#{rand 0..9}88"),
                           title:        PROPERTY_NAMES.sample,
                           address:      PROPERTY_ADRESSES.sample,
                           town:         Town.all.sample,
@@ -99,6 +99,6 @@ create_categories
 create_towns
 
 Property.destroy_all
-25.times { create_property }
+35.times { create_property }
 Property.reindex
 puts "Properties indexed"
