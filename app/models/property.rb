@@ -11,4 +11,6 @@ class Property < ApplicationRecord
   has_many  :orders, dependent: :destroy
 
   validates :title, :address, presence: true
+
+  scope :by_category, ->(category) { joins(:category).where(category: { title: category }) }
 end

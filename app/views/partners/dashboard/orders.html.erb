@@ -1,5 +1,19 @@
-<%= link_to 'Properties', partners_root_path, class: 'btn btn-light btn-sm' %>
+<%= render 'partners/dashboard/templates/nav_section' %>
 
-<h2>Orders</h2>
+<section class="pt-0">
+	<div class="container vstack gap-4">
+		<!-- Title START -->
+		<div class="row">
+			<div class="col-12">
+				<h1 class="fs-4 mb-0"><i class="bi bi-bookmark-heart fa-fw me-1"></i>Bookings</h1>
+			</div>
+		</div>
+		<!-- Title END -->  
 
-<%= render partial: 'orders/order', collection: @orders, as: :order %>
+    <div class="card border">
+      <div class="card-body vstack gap-3">
+        <%= render partial: 'orders/order', collection: @orders, as: :order %>
+      </div>
+    </div>
+	</div>
+</section>

@@ -1,5 +1,5 @@
 <%= turbo_frame_tag order do %>
-  <%= content_tag(:div, id: dom_id(order, 'row'), class: 'row rounded border shadow shadow-sm my-2') do %>  
+  <%= content_tag(:div, id: dom_id(order, 'row'), class: 'row rounded border shadow shadow-sm') do %>  
     <div class="col"><%= link_to "№-#{order.id}", order_path(order) %></div>
     <div class="col"><%= "#{order.property.title}" %></div>
     <div class="col"><%= "#{order.room.title}" %></div>

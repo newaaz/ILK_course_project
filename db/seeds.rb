@@ -1,3 +1,12 @@
+PROPERTY_NAMES = ["Гостевой дом 'Одиссей'", "Гостевой дом 'Александра'", "Гостиница 'Орхидея'",
+                  "Апартаменты 'Парус'", "Эллинг 'Катран'", "Дом под ключ в центре",
+                  "3-х комнатная квартира у моря", "Гостиница У Моря", "Эко гостевой дом 'Здоровье'",
+                  "Отель 'Бриз'", "Апартаменты 'Хижина Робинзона'", "Вилла 'Santa Fe'", "Апартаменты 'На Черноморской'"].freeze
+
+PROPERTY_ADRESSES = ["ул. Ленина 15", "Черноморская набережная, д. 1В", "ул. Бусина 35", "ул. Приморская 65 B",
+                     "переулок Лазурный, д.7", "ул. Луначарского, д. 16", "Севастопольское шоссе, д. 22", "ул. Ленина, 35 б,
+                     эллинг 60"].freeze
+
 # Categories for properties
 def create_categories
   Category.destroy_all
@@ -9,6 +18,7 @@ def create_categories
     { title: 'Дома под ключ', ordinal_number: 5 },
     { title: 'Эллинги', ordinal_number: 6 }
   ])
+  puts "Categories created"
 end
 
 # Towns
@@ -41,26 +51,18 @@ def create_towns
       avatar: File.open(File.join(Rails.root, "app/assets/images/towns_avatars/avatar_beregovoe.jpg"))
     }
   ])
+  puts "Towns created"
 end
-
 
 def rand_image_path  
   Pathname.new(Rails.root.join("app/assets/images/seed/property/p (#{rand 1..15}).jpg"))
 end
 
-PROPERTY_NAMES = ["Гостевой дом 'Одиссей'", "Гостевой дом 'Александра'", "Гостиница 'Орхидея'",
-                  "Апартаменты 'Парус'", "Эллинг 'Катран'", "Дом под ключ в центре",
-                  "3-х комнатная квартира у моря", "Гостиница У Моря", "Эко гостевой дом 'Здоровье'",
-                  "Отель 'Бриз'", "Апартаменты 'Хижина Робинзона'", "Вилла 'Santa Fe'", "Апартаменты 'На Черноморской'"].freeze
-
-ADRESSES = ["ул. Ленина 15", "Черноморская набережная, д. 1В", "ул. Бусина 35", "ул. Приморская 65 B",
-            "переулок Лазурный, д.7", "ул. Луначарского, д. 16", "Севастопольское шоссе, д. 22", "ул. Ленина, 35 б, эллинг 60"].freeze
-
 # Create property
 def create_property
-  property = Property.new(geolocation:  Geolocation.new(latitude: "45.0#{rand 0..9}865", longitude: "35.3#{rand 0..9}088"),
+  property = Property.new(geolocation:  Geolocation.new(latitude: "45.05#{rand 0..9}65", longitude: "35.39#{rand 0..9}88"),
                           title:        PROPERTY_NAMES.sample,
-                          address:      ADRESSES.sample,
+                          address:      PROPERTY_ADRESSES.sample,
                           town:         Town.all.sample,
                           category:     Category.all.sample,
                           owner:        Partner.first
@@ -88,14 +90,15 @@ def create_property
     end    
   end
 
-  property.save!  
+  property.save!
+
+  puts "Property #{property.title} created"
 end
 
-# Run creates
 create_categories
 create_towns
 
 Property.destroy_all
-25.times { create_property }
+35.times { create_property }
 Property.reindex
-
+puts "Properties indexed"

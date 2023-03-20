@@ -13,6 +13,7 @@
             <span class="badge text-bg-danger">30% Off</span>
             <span class="badge text-bg-primary">Adventure</span>
           </div>
+          <a href="#" class="badge bg-warning bg-opacity-25 text-orange"><i class="bi fa-fw bi-bookmark"></i></a>
         </div>
         
         <!-- Card overlay bottom -->
@@ -27,8 +28,7 @@
     <div class="card-body px-3">      
       <!-- Title -->
       <div class="d-flex justify-content-between mb-3">        
-        <h5 class="card-title mb-0"><%= link_to property.title, property, class: "strlnk" %></h5>
-        <a href="#" class="badge bg-warning bg-opacity-25 text-orange"><i class="bi fa-fw bi-bookmark"></i></a>
+        <h5 class="card-title mb-0"><%= link_to property.title, property, class: "strlnk-dontuse" %></h5>        
       </div>
 
       <span class="small"><i class="bi bi-geo-alt"></i>&nbsp;<%= property.address %> </span>
@@ -65,12 +65,12 @@
       <div class="d-sm-flex justify-content-sm-between align-items-center flex-wrap">
         <!-- Price -->
         <div class="hstack gap-2">
-          <h5 class="fw-normal text-success mb-0">1500<small>р</small></h5>
+          <h5 class="fw-normal text-orange mb-0">1500<small>р</small></h5>
           <small>per room/day</small>
         </div>
         <!-- Button -->
         <div class="mt-2 mt-sm-0">
-          <a href="#" class="btn btn-sm btn-primary mb-0">View Details</a>    
+          <%= link_to "View Details", property, class: "btn btn-sm btn-orange-soft mb-0" %>  
         </div>
       </div>
     </div>

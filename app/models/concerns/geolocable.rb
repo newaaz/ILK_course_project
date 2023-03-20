@@ -5,32 +5,18 @@ module Geolocable
     accepts_nested_attributes_for :geolocation
 
     def nearby_objects(object)
-      min_lat, max_lat = (geolocation.latitude - 0.0090), (geolocation.latitude + 0.0090)
-      min_long, max_long = (geolocation.longitude - 0.0127), (geolocation.longitude + 0.0127)
+      lat_range = (geolocation.latitude - 0.0090)..(geolocation.latitude + 0.0090)
+      long_range = (geolocation.longitude - 0.0127)..(geolocation.longitude + 0.0127)
 
-      nearbys_geolocations = Geolocation.where(latitude: min_lat..max_lat, longitude: min_long..max_long, geolocable_type: object)
-                                 .where.not(geolocable_type: object, geolocable_id: id)
-                                 .order(:updated_at)
-      
-      # OPTIMIZE: sorting on :updated_at - for objects and theirs geopoints synchronization
-      nearbys_objects = object.constantize.order(:updated_at).find(nearbys_geolocations.pluck(:geolocable_id))
-
-      # Поиск и перебор объектов происходит здесь, чтобы отдавать только необходимые
-      # и минимальные данные по соседям
-      # Потом соседями могут являться места где можно перекусить (кафе), достопримечательности
-      nearbys_objects.map.with_index do |object, i|
-        {
-          title: object.title,
-          object_id: object.id,
-          distance: distance_to(nearbys_geolocations[i])
-        }
-      end
+      object.constantize.includes([:geolocation, images_attachments: :blob, avatar_attachment: :blob])
+                        .where(town_id: self.town_id)
+                        .joins(:geolocation)
+                        .where(geolocation: { latitude: lat_range, longitude: long_range, geolocable_type: object })
+                        .where.not(geolocation: { geolocable_type: object, geolocable_id: id })
     end
 
-    private
-
-    def distance_to(point)
-      (120000 * Math.sqrt((geolocation.latitude - point.latitude)**2 + (geolocation.longitude - point.longitude)**2)).floor(-1)
+    def distance_to(object)
+      (90000 * Math.sqrt((geolocation.latitude - object.geolocation.latitude)**2 + (geolocation.longitude - object.geolocation.longitude)**2)).floor(-1)
     end
   end
 end

@@ -46,7 +46,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ "http://example.com", /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
@@ -63,6 +63,21 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "ilk_production"
 
   config.action_mailer.perform_caching = false
+
+  # For DEVISE and email sending
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # For letter_opener
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.mail.ru',
+    :port           => '465',
+    :authentication => :plain,
+    :user_name      => Rails.application.credentials.email[:login],
+    :password       => Rails.application.credentials.email[:pass_prod],
+    :tls            => true,
+    #:domain         => 'heroku.com',
+    :enable_starttls_auto => true
+    }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
