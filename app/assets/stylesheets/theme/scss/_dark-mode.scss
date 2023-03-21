@@ -138,7 +138,8 @@
       width: 54px;
       height: 27px;
       padding: 6px;
-      background: var(--#{$prefix}gray-800);
+      //background: var(--#{$prefix}gray-800);
+      background: var(--#{$prefix}primary);
       border-radius: 60px;
       display: flex;
       align-items: center;

@@ -1,6 +1,4 @@
-<!-- Header START -->
 <header class="navbar-light header-sticky shadow">
-	<!-- Logo Nav START -->
 	<nav class="navbar navbar-expand-xl">
 		<div class="container">
 			<!-- Logo START -->
@@ -10,22 +8,30 @@
 			<% end %>
 			<!-- Logo END -->
 
+			<!-- Responsive navbar toggler -->
+			<button class="navbar-toggler ms-auto ms-sm-0 p-0 p-sm-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-animation">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+				<span class="d-none d-sm-inline-block small">Menu</span>
+			</button>
+
 			<!-- Main navbar START -->
 			<div class="navbar-collapse collapse" id="navbarCollapse">
 				<ul class="navbar-nav navbar-nav-scroll me-auto">
-
-
 					<% if Rails.env.development? %>
-					<!-- Nav item Listing -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="listingMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Static pages
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="listingMenu">
-							<li><%= link_to 'Contacts', contacts_path, class: 'dropdown-item' %></li>		
-							<li><%= link_to 'Privacy', privacy_path, class: 'dropdown-item' %></li>					
-						</ul>
-					</li>
+						<!-- Nav item Listing -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="listingMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Static pages
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="listingMenu">
+								<li><%= link_to 'Contacts', contacts_path, class: 'dropdown-item' %></li>		
+								<li><%= link_to 'Privacy', privacy_path, class: 'dropdown-item' %></li>					
+							</ul>
+						</li>
 					<% end %>
 
 					<li class="nav-item dropdown">
@@ -138,29 +144,57 @@
 				</ul>
 			<% else %>
 				<!-- UNAUTHENTICATED -->
-				<ul class="navbar-nav navbar-nav-scroll me-auto">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="listingMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="bi bi-building-fill-add"></i><span class="ms-1">For Partners</span>
+				<ul class="nav flex-row align-items-center list-unstyled ms-xl-auto">
+					<li class="nav-item dropdown ms-3 ms-md-3">		
+						<!-- Notification button -->
+						<a class="nav-notification btn btn-primary-soft btn-sm p-0 mb-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+							<i class="bi bi-person-add" style="font-size: 1.5rem;"></i>
 						</a>
-						<ul class="dropdown-menu" aria-labelledby="listingMenu">
-							<li><%= link_to "Login as Partner", new_partner_session_path, class: 'dropdown-item' %></li>
-							<li><%= link_to "Sign up as Partner", new_partner_registration_path, class: 'dropdown-item' %></li>	
-						</ul>
-					</li>
 
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="listingMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="bi bi-bookmark-plus"></i><span class="ms-1">For Customers</span>
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="listingMenu">
-							<li><%= link_to "Login as Customer", new_customer_session_path, class: 'dropdown-item' %></li>
-							<li><%= link_to "Sign up as Customer", new_customer_registration_path, class: 'dropdown-item' %></li>	
-						</ul>
-					</li>
+						<!-- Notification dropdown menu START -->
+						<div class="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md shadow-lg p-0">
+							<div class="card bg-transparent">
+								<!-- Card header -->
+								<div class="card-header bg-transparent text-center border-bottom">
+									<h6 class="m-0">Login / Signup</h6>
+								</div>
 
-				
+								<!-- Card body START -->
+								<div class="card-body p-3">
+									<ul class="list-group list-group-flush list-unstyled p-2">
+										<!-- Notification item -->
+										<li class="mb-4">											
+											<h6 class="mb-2"><i class="bi bi-building-fill-add"></i><span class="ms-1">For Partners</span></h6>
+											<div class="row">
+												<div class="col-sm-6">
+													<%= link_to "Login Partner", new_partner_session_path, class: 'btn btn-primary-soft btn-sm' %>
+												</div>
+												<div class="col-sm-6">
+													<%= link_to "Signup Partner", new_partner_registration_path, class: 'btn btn-primary-soft btn-sm' %>
+												</div>
+											</div>									
+										</li>
+										<!-- Notification item -->
+										<li>
+											<h6 class="mb-2"><i class="bi bi-bookmark-plus"></i><span class="ms-1">For Customers</span></h6>
+											<div class="row">
+												<div class="col-sm-6">
+													<%= link_to "Login Customer", new_customer_session_path, class: 'btn btn-orange-soft btn-sm' %>
+												</div>
+												<div class="col-sm-6">
+													<%= link_to "Signup Customer", new_customer_registration_path, class: 'btn btn-orange-soft btn-sm' %>
+												</div>
+											</div>	
+										</li>
+									</ul>
+								</div>
+								<!-- Card body END -->		
+							</div>
+						</div>
+						<!-- Notification dropdown menu END -->
+					</li>
 				</ul>
+				<!-- Notification END -->
 			<% end %>	
 
 			<!-- Dark mode switch START -->
@@ -171,8 +205,5 @@
 			</div>			
 		</div>
 	</nav>
-	<!-- Logo Nav END -->
 </header>
-<!-- Header END -->
-
 

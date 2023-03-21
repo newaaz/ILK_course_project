@@ -1,4 +1,8 @@
 class OrderPolicy < ApplicationPolicy
+  def show?
+    (record.property.owner == user) || record.customer == user
+  end
+  
   def new?
     user.is_a?(Customer)
   end
@@ -17,9 +21,5 @@ class OrderPolicy < ApplicationPolicy
 
   def reject_order?
     record.property.owner == user && record.status == 'received'
-  end
-
-  def show?
-    (record.property.owner == user) || record.customer == user
   end
 end

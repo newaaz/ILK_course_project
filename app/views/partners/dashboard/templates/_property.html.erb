@@ -1,0 +1,38 @@
+<div class="card border p-2">
+  <div class="row g-4">
+    <!-- Card img -->
+    <div class="col-md-4 col-lg-3">
+      <%= link_to image_tag(property.avatar.variant(resize_to_limit: [250, 250]), class: "card-img rounded-2"), property %>  
+    </div>
+
+    <!-- Card body -->
+    <div class="col-md-8 col-lg-9">
+      <div class="card-body position-relative d-flex flex-column p-0 h-100">
+        <!-- Title -->
+        <h4 class="card-title mb-0 me-5"><%= link_to property.title, property %></h4>
+        <small><i class="bi bi-geo-alt me-2"></i><%= property.address %></small>
+        <!-- Price and Button -->
+        <div class="d-sm-flex justify-content-sm-between align-items-center mt-2 ">
+          <!-- Button -->
+          <div class="d-flex align-items-center hstack gap-1">
+            <%= link_to 'Edit', edit_property_path(property), class: 'btn btn-outline-warning btn-sm' %>
+            <%= link_to "Delete", property_path(property), data: { "turbo-method": :delete }, class: 'btn btn-sm btn-outline-danger' %>
+            <%= link_to '+ Add room', new_property_room_path(property), class: 'btn btn-primary btn-sm' %>
+          </div>                          
+        </div>
+
+        <% if property.rooms.any? %>
+          <h4 class="h5 mt-3">Rooms:</h4>
+          <div class="row">
+            <%= render partial: 'partners/dashboard/templates/room', collection: property.rooms, as: :room %>
+          </div>
+        <% end %> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

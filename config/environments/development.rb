@@ -1,6 +1,15 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  config.after_initialize do
+    Bullet.enable        = false
+    Bullet.alert         = true
+    Bullet.bullet_logger = true
+    Bullet.console       = true
+    Bullet.rails_logger  = true
+    Bullet.add_footer    = true
+  end
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
@@ -40,6 +49,17 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # For letter_opener
   config.action_mailer.delivery_method = :letter_opener
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.mail.ru',
+    :port           => '465',
+    :authentication => :plain,
+    :user_name      => Rails.application.credentials.email[:login],
+    :password       => Rails.application.credentials.email[:pass],
+    :tls            => true,
+    #:domain         => 'heroku.com',
+    :enable_starttls_auto => true
+    }
+
   config.action_mailer.perform_deliveries = true
 
   # Don't care if the mailer can't send.
