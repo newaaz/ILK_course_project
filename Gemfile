@@ -56,6 +56,7 @@ gem "oj", "~> 3.14"
 #gem "gon", "~> 6.4"
 
 gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
+gem "rmagick", "~> 5.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

@@ -12,7 +12,7 @@ module Geolocable
                         .where(town_id: self.town_id)
                         .joins(:geolocation)
                         .where(geolocation: { latitude: lat_range, longitude: long_range, geolocable_type: object })
-                        .where.not(geolocation: { geolocable_type: object, geolocable_id: id })
+                        .where.not(geolocation: { geolocable_id: id })
     end
 
     def distance_to(object)
