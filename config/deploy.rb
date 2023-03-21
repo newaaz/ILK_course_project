@@ -4,7 +4,7 @@ lock "~> 3.17.1"
 set :application, "ilk"
 set :repo_url, "git@github.com:newaaz/Think-ILK.git"
 
-set :branch, "deploy"
+set :branch, "main"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

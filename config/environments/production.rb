@@ -65,14 +65,14 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # For DEVISE and email sending
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'ilovekrim.ru' }
   # For letter_opener
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.mail.ru',
     :port           => '465',
     :authentication => :plain,
-    :user_name      => Rails.application.credentials.email[:login],
+    :user_name      => Rails.application.credentials.email[:login_prod],
     :password       => Rails.application.credentials.email[:pass_prod],
     :tls            => true,
     #:domain         => 'heroku.com',
