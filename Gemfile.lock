@@ -416,6 +416,7 @@ DEPENDENCIES
   jsbundling-rails
   launchy (~> 2.5)
   letter_opener (~> 1.8)
+  mini_magick (~> 4.12)
   oj (~> 3.14)
   omniauth (~> 2.1)
   omniauth-github (~> 2.0)

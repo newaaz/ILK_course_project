@@ -99,6 +99,6 @@ create_categories
 create_towns
 
 Property.destroy_all
-35.times { create_property }
+15.times { create_property }
 Property.reindex
 puts "Properties indexed"
