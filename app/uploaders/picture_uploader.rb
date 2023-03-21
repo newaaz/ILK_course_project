@@ -1,7 +1,7 @@
 class PictureUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
-  include CarrierWave::RMagick  
-  #include CarrierWave::MiniMagick
+  #include CarrierWave::RMagick  
+  include CarrierWave::MiniMagick
 
   version :thumb_user, if: :model_user?
 
