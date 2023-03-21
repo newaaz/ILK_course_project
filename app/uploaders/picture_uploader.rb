@@ -18,9 +18,9 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   # Version for carousel?, cards, display in index
-  version :thumb do
-    process resize_to_fill: [225, 150]
-  end
+  # version :thumb do
+  #   process resize_to_fill: [225, 150]
+  # end
 
   version :thumb_user do
     process resize_to_fill: [150, 150]
