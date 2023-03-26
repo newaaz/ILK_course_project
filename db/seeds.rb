@@ -65,8 +65,7 @@ def create_property
                           address:      PROPERTY_ADRESSES.sample,
                           town:         Town.all.sample,
                           category:     Category.all.sample,
-                          owner:        Partner.first
-                         )
+                          owner:        Partner.first)
   
   property.avatar.attach(io: rand_image_path .open, filename: "avatar.jpg")
   5.times do |i|
@@ -76,13 +75,13 @@ def create_property
   # Create Room's
   3.times do |i|
     room = property.rooms.build(title: "Стандартный #{i + 1}-х местный номер",
-    prices: [
-      Price.new(start_date: '01/01/2023', end_date: '31/01/2023', day_cost: 1450),
-      Price.new(start_date: '01/02/2023', end_date: '28/02/2023', day_cost: 1720),
-      Price.new(start_date: '01/03/2023', end_date: '31/03/2023', day_cost: 2100),
-      Price.new(start_date: '01/04/2023', end_date: '30/04/2023', day_cost: 2450),
-      Price.new(start_date: '01/05/2023', end_date: '31/05/2023', day_cost: 2950)
-    ])
+                                prices: [
+                                  Price.new(start_date: '01/01/2023', end_date: '31/01/2023', day_cost: 1450),
+                                  Price.new(start_date: '01/02/2023', end_date: '28/02/2023', day_cost: 1720),
+                                  Price.new(start_date: '01/03/2023', end_date: '31/03/2023', day_cost: 2100),
+                                  Price.new(start_date: '01/04/2023', end_date: '30/04/2023', day_cost: 2450),
+                                  Price.new(start_date: '01/05/2023', end_date: '31/05/2023', day_cost: 2950)
+                                ])
   
     room.avatar.attach(io: rand_image_path .open, filename: 'r(1).jpg')
     3.times do |i|
