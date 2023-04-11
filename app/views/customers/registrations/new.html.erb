@@ -7,7 +7,7 @@
         <h3>Create Customer account</h3>
         <p class="h4 text-secondary">For booking hotels and activities</p>
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |f| %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= render "customers/shared/error_messages", resource: resource %>
 
           <div class="field">
@@ -28,9 +28,15 @@
             <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
           </div>
 
+          <div class="my-4">
+            <%= flash[:recaptcha_error] %>
+            <%= recaptcha_tags %>
+          </div>
+
           <div class="actions">
             <%= f.submit "Sign up" %>
           </div>
+
         <% end %>
 
         <%= render "customers/shared/links" %>

@@ -59,6 +59,8 @@ gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 # gem "rmagick", "~> 5.2"
 # gem "mini_magick", "~> 4.12"
 
+gem "recaptcha", "~> 5.12"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -105,4 +107,5 @@ group :test do
   gem 'pundit-matchers', '~> 1.8.4'
   # gem "rack_session_access", "~> 0.2.0"
 end
+
 
