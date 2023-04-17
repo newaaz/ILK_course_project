@@ -33,6 +33,8 @@
             <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
           </div>
 
+          <%= f.invisible_captcha :subtitle %>
+
           <div class="actions">
             <%= f.submit "Sign up" %>
           </div>

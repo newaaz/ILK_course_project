@@ -2,6 +2,7 @@
 
 class Partners::RegistrationsController < Devise::RegistrationsController
   include Accessibled
+  invisible_captcha only: [:create], honeypot: :subtitle
   
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]

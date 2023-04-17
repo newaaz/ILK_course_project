@@ -2,8 +2,7 @@
 
 class Customers::RegistrationsController < Devise::RegistrationsController
   include Accessibled
-
-  # prepend_before_action :check_captcha, only: [:create]
+  invisible_captcha only: [:create], honeypot: :subtitle
   
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -62,20 +61,5 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
-  # end
-
-  private
-
-  def check_captcha
-    return if verify_recaptcha(action: 'signup') # verify_recaptcha(action: 'signup') for v3
-
-    self.resource = resource_class.new sign_up_params
-    resource.validate # Look for any other validation errors besides reCAPTCHA
-    set_minimum_password_length
-
-    respond_with_navigational(resource) do
-      flash.discard(:recaptcha_error) # We need to discard flash to avoid showing it on the next page reload
-      render :new
-    end
-  end
+  # end  
 end
