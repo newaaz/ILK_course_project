@@ -82,7 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_oauth_providers_on_customer_id"
-    t.index ["uid", "provider"], name: "index_oauth_providers_on_uid_and_provider", unique: true
+    t.index ["provider", "uid"], name: "index_oauth_providers_on_provider_and_uid", unique: true
   end
 
   create_table "orders", force: :cascade do |t|

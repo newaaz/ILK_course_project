@@ -7,7 +7,7 @@ class CreateOauthProviders < ActiveRecord::Migration[7.0]
 
       t.timestamps
 
-      t.index [:uid, :provider], unique: true
+      t.index [:provider, :uid], unique: true
     end
   end
 end

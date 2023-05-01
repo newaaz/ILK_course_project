@@ -12,18 +12,28 @@ class Customers::OmniauthCallbacksController < Devise::OmniauthCallbacksControll
     end
   end
 
-  # More info at:
-  # https://github.com/heartcombo/devise#omniauth
+  private
 
-  # GET|POST /resource/auth/twitter
-  # def passthru
-  #   super
-  # end
+  def sign_in_with_provider
+    @customer = Customer.find_for_oauth(request.env["omniauth.auth"])
 
-  # GET|POST /users/auth/twitter/callback
-  # def failure
-  #   super
-  # end
+    if @customer&.persisted?
+      redirect_unconfirmed_customer unless @customer.confirmed?
+
+      sign_in_and_redirect @customer, event: :authentication
+      set_flash_message(:notice, :success, kind: "#{action_name.capitalize}") if is_navigational_format?
+    else
+      session[:oauth_provider] = request.env['omniauth.auth']['provider']
+      session[:oauth_uid] = request.env['omniauth.auth']['uid']
+ 
+      redirect_to new_customer_registration_path      
+    end
+  end
+
+  def redirect_unconfirmed_user
+    flash[:alert] = 'You have to confirm your email address before continuing.'
+    redirect_to new_customer_session_path
+  end
 
   # protected
 

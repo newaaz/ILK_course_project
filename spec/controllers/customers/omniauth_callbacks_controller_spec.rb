@@ -49,6 +49,7 @@ RSpec.describe Customers::OmniauthCallbacksController, type: :controller do
     
   end
 
+  
   #describe 'sign_in_with_provider' do
 
     # let(:oauth_data)  { mock_auth_hash(:github, 'user@email.com') }
