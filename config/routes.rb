@@ -9,18 +9,19 @@ Rails.application.routes.draw do
   delete 'reset_search_dates', to: 'search#destroy'
 
   devise_for :partners, controllers:  {
-    sessions:           'partners/sessions',
-    registrations:      'partners/registrations',
-    confirmations:      'partners/confirmations',
-    passwords:          'partners/passwords',
-  }
+                          sessions:      'partners/sessions',
+                          registrations: 'partners/registrations',
+                          confirmations: 'partners/confirmations',
+                          passwords:     'partners/passwords',
+                        }
 
-  devise_for :customers, controllers: {
-    sessions:           'customers/sessions',
-    registrations:      'customers/registrations',
-    confirmations:      'customers/confirmations',
-    passwords:          'customers/passwords',
-  }
+  devise_for :customers,  controllers: {
+                            sessions:      'customers/sessions',
+                            registrations: 'customers/registrations',
+                            confirmations: 'customers/confirmations',
+                            passwords:     'customers/passwords',
+                            omniauth_callbacks: 'customers/omniauth_callbacks'
+                          }
 
   namespace :partners do
     root 'dashboard#index'

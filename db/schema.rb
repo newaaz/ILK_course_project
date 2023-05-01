@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_13_122521) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,6 +73,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_13_122521) do
     t.datetime "updated_at", null: false
     t.index ["geolocable_type", "geolocable_id"], name: "index_geolocations_on_geolocable"
     t.index ["latitude", "longitude"], name: "index_geolocations_on_latitude_and_longitude"
+  end
+
+  create_table "oauth_providers", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_oauth_providers_on_customer_id"
+    t.index ["uid", "provider"], name: "index_oauth_providers_on_uid_and_provider", unique: true
   end
 
   create_table "orders", force: :cascade do |t|
@@ -154,6 +164,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_13_122521) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "oauth_providers", "customers"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "properties"
   add_foreign_key "orders", "rooms"
