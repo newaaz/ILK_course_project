@@ -4,7 +4,13 @@ class Customer < ApplicationRecord
           :recoverable,
           :rememberable,
           :validatable,
-          :confirmable
+          :confirmable,
+          :omniauthable, omniauth_providers: %i[github vkontakte]
 
   has_many  :orders, dependent: :destroy
+  has_many  :oauth_providers, dependent: :destroy
+
+  def self.find_for_oauth(auth)
+    FindForOauthService.new(auth).call
+  end
 end

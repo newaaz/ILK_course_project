@@ -9,18 +9,19 @@ Rails.application.routes.draw do
   delete 'reset_search_dates', to: 'search#destroy'
 
   devise_for :partners, controllers:  {
-    sessions:           'partners/sessions',
-    registrations:      'partners/registrations',
-    confirmations:      'partners/confirmations',
-    passwords:          'partners/passwords',
-  }
+                          sessions:      'partners/sessions',
+                          registrations: 'partners/registrations',
+                          confirmations: 'partners/confirmations',
+                          passwords:     'partners/passwords',
+                        }
 
-  devise_for :customers, controllers: {
-    sessions:           'customers/sessions',
-    registrations:      'customers/registrations',
-    confirmations:      'customers/confirmations',
-    passwords:          'customers/passwords',
-  }
+  devise_for :customers,  controllers: {
+                            sessions:      'customers/sessions',
+                            registrations: 'customers/registrations',
+                            confirmations: 'customers/confirmations',
+                            passwords:     'customers/passwords',
+                            omniauth_callbacks: 'customers/omniauth_callbacks'
+                          }
 
   namespace :partners do
     root 'dashboard#index'
@@ -29,6 +30,8 @@ Rails.application.routes.draw do
 
   namespace :customers do
     root 'dashboard#index'
+    get 'new_customer', to: 'customers#new', as: 'new_customer'
+    post 'create_customer'  , to: 'customers#create', as: 'create_customer' 
   end
 
   resources :properties do
@@ -40,4 +43,7 @@ Rails.application.routes.draw do
   resources :orders, only: %i[show new create update]
 
   resources :towns, only: %i[show]
+
+  # for tests
+  # default_url_options :host => "example.com"
 end
