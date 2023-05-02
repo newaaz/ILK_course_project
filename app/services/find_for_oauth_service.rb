@@ -19,7 +19,7 @@ class FindForOauthService
   private
 
   def find_or_create_customer_by_email(email)
-    customer = Customer.find_by(email: email) || Customer.create!(email: email, password: Devise.friendly_token[0, 20], confirmed_at: Time.now)
+    customer = Customer.find_by(email: email) || Customer.create!(email: email, password: Devise.friendly_token.first(8), confirmed_at: Time.now)
     customer.oauth_providers.create(provider: auth.provider, uid: auth.uid)
     customer
   end

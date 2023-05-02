@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   namespace :customers do
     root 'dashboard#index'
+    get 'new_customer', to: 'customers#new', as: 'new_customer'
+    post 'create_customer'  , to: 'customers#create', as: 'create_customer' 
   end
 
   resources :properties do
@@ -41,4 +43,7 @@ Rails.application.routes.draw do
   resources :orders, only: %i[show new create update]
 
   resources :towns, only: %i[show]
+
+  # for tests
+  # default_url_options :host => "example.com"
 end
