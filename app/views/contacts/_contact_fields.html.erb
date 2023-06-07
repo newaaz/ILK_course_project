@@ -1,0 +1,15 @@
+<%= content_tag(:div, class: 'nested-fields', id: "contact_#{f.object.class.name}") do %>
+  <div class="field form-group mb-2">
+    <%= f.label :name, class: 'form-label' %>        
+    <%= f.text_field :name, class: 'form-control form-control-sm' %>
+  </div>
+
+  <div class="field form-group mb-2">
+    <%= f.label :phone_number, class: 'form-label' %>
+    <%= f.text_field :phone_number, class: 'form-control form-control-sm phone-mask' %>
+  </div>
+
+
+
+<% end %>
+

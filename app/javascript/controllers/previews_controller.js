@@ -12,7 +12,7 @@ export default class extends Controller {
   
   connect() {
     const phoneMask = IMask(
-      document.getElementById('phone-mask'), {
+      document.querySelector('.phone-mask'), {
         mask: '+{7}(000)000-00-00'
       });
 

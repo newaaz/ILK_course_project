@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_07_095115) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_095115) do
   create_table "categories", force: :cascade do |t|
     t.string "title", null: false
     t.integer "ordinal_number", limit: 2, default: 1, null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "phone_number"
+    t.string "avatar"
+    t.text "messengers", default: [], array: true
+    t.string "contactable_type", null: false
+    t.bigint "contactable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contactable_type", "contactable_id"], name: "index_contacts_on_contactable"
   end
 
   create_table "customers", force: :cascade do |t|

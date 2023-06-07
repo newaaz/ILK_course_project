@@ -24,6 +24,14 @@ $font-family-serif: "Georgia", "Times New Roman", times, serif !default;
 
 $form-check-input-width:                  1.25em;
 
+hr {
+  margin: 1rem 0;
+  color: #85878a;
+  border: 0;
+  border-top: 1px solid;
+  opacity: 0.25;
+}
+
 
 // Headings
 // $h1-font-size:                $font-size-base * 2.7;

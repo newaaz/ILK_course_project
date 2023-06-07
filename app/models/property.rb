@@ -11,9 +11,13 @@ class Property < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_one  :property_detail, dependent: :destroy
 
+  #TODO move to concern
+  has_one :contact, as: :contactable, dependent: :destroy
+  accepts_nested_attributes_for :contact
+
   validates :title, :address, presence: true
 
   scope :by_category, ->(category) { joins(:category).where(category: { title: category }) }
 
-  accepts_nested_attributes_for :property_detail
+  accepts_nested_attributes_for :property_detail  
 end
