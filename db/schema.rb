@@ -134,6 +134,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
   create_table "properties", force: :cascade do |t|
     t.string "title", null: false
     t.string "address"
+    t.integer "rating", limit: 2, default: 50
+    t.integer "price_from", limit: 2
+    t.integer "distance_to_sea", limit: 2
+    t.string "services"
+    t.boolean "activated", default: false
+    t.boolean "deleted", default: false
+    t.boolean "enabled", default: true
+    t.boolean "blocked", default: false
     t.bigint "owner_id", null: false
     t.bigint "town_id", null: false
     t.bigint "category_id", null: false
@@ -147,8 +155,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
   create_table "rooms", force: :cascade do |t|
     t.bigint "property_id", null: false
     t.string "title", null: false
-    t.integer "guest_base_count", limit: 2, default: 2, null: false
-    t.integer "guest_max_count", limit: 2, default: 4, null: false
+    t.integer "guest_base_count", limit: 2, null: false
+    t.integer "guest_max_count", limit: 2, null: false
+    t.string "description"
+    t.integer "serial_number", limit: 2, default: 1
+    t.integer "room_count", limit: 2, default: 1
+    t.integer "size", limit: 2
+    t.string "services"
+    t.string "amenities"
+    t.string "bathroom"
+    t.string "beds"
+    t.string "furniture"
+    t.string "in_room"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["property_id"], name: "index_rooms_on_property_id"
@@ -159,7 +177,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
     t.string "parent_name", null: false
     t.integer "ordinal_number", limit: 2, default: 1, null: false
     t.string "avatar"
-    t.string "description"
+    t.text "description"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

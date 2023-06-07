@@ -75,6 +75,9 @@ def create_property
   # Create Room's
   3.times do |i|
     room = property.rooms.build(title: "Стандартный #{i + 1}-х местный номер",
+                                guest_base_count: 2,
+                                guest_max_count: rand(1..10),
+                                size:   rand(20..50),
                                 prices: [
                                   Price.new(start_date: '01/01/2023', end_date: '31/01/2023', day_cost: 1450),
                                   Price.new(start_date: '01/02/2023', end_date: '28/02/2023', day_cost: 1720),
@@ -97,7 +100,10 @@ end
 create_categories
 create_towns
 
+Partner.destroy_all
+Partner.create!(email: 'test@test.ru', password: '123456', confirmed_at: Time.zone.now)
+
 Property.destroy_all
-35.times { create_property }
+5.times { create_property }
 Property.reindex
 puts "Properties indexed"
