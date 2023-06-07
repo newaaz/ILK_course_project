@@ -8,16 +8,34 @@
       <div class="card-body">
         <%= f.fields_for :property_detail do |details_form| %>
           <div class="row g-3">
-            <div class="col-md-6">        
-              <%= details_form.label :distance_to_sea, class: 'form-label' %>        
-              <%= details_form.text_field :distance_to_sea, class: 'form-control' %>
-              <small>A catchy name usually includes: House name - Room name - A tourist destination</small>
+            <div class="col-12">
+              <%= details_form.label :short_description, class: 'form-label' %>
+              <%= details_form.text_area :short_description, rows: 6, class: 'form-control' %>
+            </div>  
+
+            <div class="col-12">        
+              <%= details_form.label :food, class: 'form-label' %> <span class="small text-secondary">(предоставляется ли питание, есть ли кухня, или какие-то другие варианты. Необязательно)</span>        
+              <%= details_form.text_field :food, class: 'form-control' %>
             </div>
 
             <div class="col-12">        
-              <%= details_form.label :description, class: 'form-label' %>        
-              <%= details_form.text_area :description, rows:5, class: 'form-control' %>
-              <small>A catchy name usually includes: House name - Room name - A tourist destination</small>
+              <%= details_form.label :parking, class: 'form-label' %> <span class="small text-secondary">(есть ли парковка, размер, во дворе или на улице. Необязательно)</span>        
+              <%= details_form.text_field :parking, class: 'form-control' %>
+            </div> 
+
+            <div class="col-12">        
+              <%= details_form.label :territory, class: 'form-label' %> <span class="small text-secondary">(что находится на территории. Необязательно)</span>        
+              <%= details_form.text_field :territory, class: 'form-control' %>
+            </div> 
+
+            <div class="col-12">        
+              <%= details_form.label :transfer, class: 'form-label' %> <span class="small text-secondary">(возможен ли трансфер? Необязательно)</span>        
+              <%= details_form.text_field :transfer, class: 'form-control' %>
+            </div> 
+
+            <div class="col-12">        
+              <%= details_form.label :additional_info, class: 'form-label' %> <span class="small text-secondary">(правила, условия размещения. Необязательно)</span>        
+              <%= details_form.text_field :additional_info, class: 'form-control' %>
             </div> 
           </div>
         <% end %>
@@ -27,3 +45,6 @@
 
   <%= render 'properties/templates/contacts_fields' %>
 </div>
+
+
+

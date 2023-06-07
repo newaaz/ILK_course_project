@@ -17,7 +17,7 @@ class PropertiesController < ApplicationController
   end
 
   def new
-    @property = Property.new(geolocation: Geolocation.new)
+    @property = Property.new(geolocation: Geolocation.new, property_detail: PropertyDetail.new)
   end
 
   def create
