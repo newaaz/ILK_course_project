@@ -65,7 +65,10 @@ ru:
         parking: 'Парковка'
         territory: 'Территория'
         transfer: 'Трансфер'
-        additional_info: 'Дополнительная информация'        
+        additional_info: 'Дополнительная информация'
+        site: 'Сайт'
+        email: 'Email'
+        vk_group: 'Группа в ВК'    
       room:
         name: 'Название или тип номера'
         description:  "Описание номера"
