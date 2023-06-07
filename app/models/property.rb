@@ -14,4 +14,6 @@ class Property < ApplicationRecord
   validates :title, :address, presence: true
 
   scope :by_category, ->(category) { joins(:category).where(category: { title: category }) }
+
+  accepts_nested_attributes_for :property_detail
 end

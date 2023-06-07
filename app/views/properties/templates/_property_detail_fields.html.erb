@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="card h-100 shadow">  
+      <div class="card-header border-bottom">
+        <h5 class="mb-0">Дополнительная информация</h5>
+      </div>
+
+      <div class="card-body">
+        <%= f.fields_for :property_detail do |details_form| %>
+          <div class="row g-3">
+            <div class="col-md-6">        
+              <%= details_form.label :distance_to_sea, class: 'form-label' %>        
+              <%= details_form.text_field :distance_to_sea, class: 'form-control' %>
+              <small>A catchy name usually includes: House name - Room name - A tourist destination</small>
+            </div>
+
+            <div class="col-12">        
+              <%= details_form.label :description, class: 'form-label' %>        
+              <%= details_form.text_area :description, rows:5, class: 'form-control' %>
+              <small>A catchy name usually includes: House name - Room name - A tourist destination</small>
+            </div> 
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%= render 'properties/templates/contacts_fields' %>
+</div>

@@ -5,15 +5,20 @@ import "./controllers"
 import './custom/add_jquery'
 
 import * as bootstrap from "bootstrap"
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+document.addEventListener("turbo:load", () => {
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+  const toastElList = document.querySelectorAll('.toast')
+  const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl).show())
+})
 
 import "cocoon-js-vanilla";
 
-import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox.js";
+//import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox.js";
 
-// functions of theme
-import "./custom/theme_functions"
+// Fileuploader move to PreviewController
+//import "./custom/plugins/fileuploader.min.js"
 
 // Fotorama
 import "./custom/plugins/fotorama"
@@ -24,5 +29,8 @@ import "./custom/plugins/parallax"
 // LightPicker
 import "./custom/plugins/litepicker"
 
-// work with yandex map
+// functions of theme
+import "./custom/theme_functions"
+
+// fotorama, litepicker, parallax
 import "./custom/custom_functions"

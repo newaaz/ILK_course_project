@@ -2,6 +2,9 @@
 <html>
   <head>
     <title>Ilk</title>
+
+    <%= yield :turbo_cache_control %>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -33,20 +36,15 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    
-    <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %> alert-dismissible fade show" role="alert">
-        <%= message %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    <% end %>
-    <%= turbo_frame_tag 'flash_messages' %>
+
+    <%= render 'shared/notification' %>
     
     <%= yield %>    
 
     <%= render 'shared/footer' %>
 
-    <!-- Back to top -->
     <div class="back-top"></div>
+
+    <%= render 'shared/navbar_mobile' %>
   </body>
 </html>

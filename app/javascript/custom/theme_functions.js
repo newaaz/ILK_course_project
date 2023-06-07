@@ -98,8 +98,8 @@ var e = {
         e.lightBox(),
 //      e.choicesSelect(),
         e.aosFunc(),
-        e.quill(),
-        e.stepper(),
+//      e.quill(),
+//      e.stepper(),
         e.darkMode(),
         e.pricing(),
         e.stickyElement(),
@@ -521,46 +521,46 @@ var e = {
     // END: AOS Animation
 
     // START: 12 Quill Editor
-      quill: function () {
-        var ql = e.select('.quilleditor');
-        if (e.isVariableDefined(ql)) {
-            var element = e.selectAll('.quilleditor');
-            element.forEach(function (item) {
-                var t = item.previousElementSibling;
-                var edt = new Quill(item, {
-                    modules: { toolbar: t },
-                    theme: 'snow'
-                  });
-            });
-        }
-    },
+    //   quill: function () {
+    //     var ql = e.select('.quilleditor');
+    //     if (e.isVariableDefined(ql)) {
+    //         var element = e.selectAll('.quilleditor');
+    //         element.forEach(function (item) {
+    //             var t = item.previousElementSibling;
+    //             var edt = new Quill(item, {
+    //                 modules: { toolbar: t },
+    //                 theme: 'snow'
+    //               });
+    //         });
+    //     }
+    // },
     // END: Quill Editor
 
     // START: 13 Stepper
-    stepper: function () {
-        var stp = e.select('#stepper');
-        if (e.isVariableDefined(stp)) {
-          var nxtBtn = document.querySelectorAll('.next-btn');
-          var prvBtn = document.querySelectorAll('.prev-btn');
+    // stepper: function () {
+    //     var stp = e.select('#stepper');
+    //     if (e.isVariableDefined(stp)) {
+    //       var nxtBtn = document.querySelectorAll('.next-btn');
+    //       var prvBtn = document.querySelectorAll('.prev-btn');
 
-          var stepper = new Stepper(document.querySelector('#stepper'), {
-            linear: false,
-            animation: true
-          });
+    //       var stepper = new Stepper(document.querySelector('#stepper'), {
+    //         linear: false,
+    //         animation: true
+    //       });
 
-          nxtBtn.forEach(function (button) {
-            button.addEventListener("click", () =>{
-            stepper.next()
-          })
-          });
+    //       nxtBtn.forEach(function (button) {
+    //         button.addEventListener("click", () =>{
+    //         stepper.next()
+    //       })
+    //       });
 
-          prvBtn.forEach(function (button) {
-            button.addEventListener("click", () =>{
-            stepper.previous()
-          })
-          });
-        }
-    },
+    //       prvBtn.forEach(function (button) {
+    //         button.addEventListener("click", () =>{
+    //         stepper.previous()
+    //       })
+    //       });
+    //     }
+    // },
     // END: Stepper
     
     // START: 14 Dark mode

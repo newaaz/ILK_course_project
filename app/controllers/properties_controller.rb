@@ -26,7 +26,16 @@ class PropertiesController < ApplicationController
       flash[:success] = "Объявление добавлено и ожидает проверки. Вам на почту придёт письмо, сообщающее об активации и доступности к просмотру всем посетителям сайта"
       redirect_to @property
     else
-      render 'new', status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render 'new', status: :unprocessable_entity }
+      
+        format.turbo_stream do
+          render turbo_stream:
+            turbo_stream.update('forms_errors',
+              partial: 'shared/errors',
+              locals:   { object: @property })
+        end
+      end
     end
   end
 

@@ -1,6 +1,10 @@
+<% provide :turbo_cache_control do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
 <main>
 
-<section class="py-0 pt-sm-5">
+<section class="py-0 pt-sm-4">
 	<div class="container position-relative">
 		<!-- Title and button START -->
 		<div class="row mb-3 border-bottom pb-2">
@@ -13,17 +17,15 @@
 						<!-- Location -->
 						<p class="fw-bold mb-0"><i class="bi bi-geo-alt me-2"></i>
 							<%= "#{@property.town.name}, #{@property.address}" %>
-
-							<!-- Location --
+							
 							<a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">
 								<i class="bi bi-eye-fill me-1"></i>View On Map
-							</a>
-							-- Location -->
+							</a>							
 							
 						</p>						
 					</div>
 
-					<!-- Buttons
+					
 					<ul class="list-inline text-end">
 						<li class="list-inline-item">
 							<a href="#" class="btn btn-sm btn-light px-2"><i class="bi bi-bookmark-heart text-orange" style="font-size: 1.5rem;"></i></a>
@@ -38,7 +40,7 @@
 							</ul>
 						</li>
 					</ul>
-					-->
+					
 				</div>
 			</div>
 		</div>
@@ -73,7 +75,7 @@
 
       <div class="col-lg-4 px-lg-4 px-sm-0">
 				<%#= render 'properties/templates/booking_form' %>
-				<%#= render 'properties/templates/contacts' %>
+				<%= render 'properties/templates/contacts' %>
       </div>			
 		</div>
 	</div>
@@ -82,6 +84,8 @@
 <!-- About -->
 <section class="pt-0">
 	<div class="container" data-sticky-container>
+
+		<%= @property.property_detail %>
 
 		<div class="row g-4 g-xl-5">
 			<!-- Content START -->
@@ -168,7 +172,7 @@
 			<aside class="col-xl-4 order-xl-2">
 				<div data-sticky-dont-work data-margin-top="100" data-sticky-for="1199">
 
-					<%#= render 'properties/templates/price_start' %>
+					<%= render 'properties/templates/price_start' %>
 
 					<%= render 'geolocations/show_map', object: @property, preset_icon: "islands#blueHomeIcon" %>
 
@@ -196,7 +200,7 @@
 			</div>
 			<!-- Map -->
 			<div class="modal-body p-0">				
-				<%= render 'geolocations/show_map', object: @property, preset_icon: "islands#blueHomeIcon" %>	
+				<div class="p-5">Modal map</div>
 			</div>
 			<!-- Button -->
 			<div class="modal-footer">
