@@ -7,8 +7,9 @@ class Property < ApplicationRecord
   belongs_to :town
   belongs_to :category
 
-  has_many  :rooms, dependent: :destroy
-  has_many  :orders, dependent: :destroy
+  has_many :rooms, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  has_one  :property_detail, dependent: :destroy
 
   validates :title, :address, presence: true
 

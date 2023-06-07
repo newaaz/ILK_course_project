@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_07_095115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -152,6 +152,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
     t.index ["town_id"], name: "index_properties_on_town_id"
   end
 
+  create_table "property_details", force: :cascade do |t|
+    t.bigint "property_id", null: false
+    t.text "short_description"
+    t.string "food"
+    t.string "parking"
+    t.string "territory"
+    t.string "transfer"
+    t.string "amenities"
+    t.string "additional_info"
+    t.string "site"
+    t.string "email"
+    t.string "vk_group"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_property_details_on_property_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.bigint "property_id", null: false
     t.string "title", null: false
@@ -190,5 +207,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
   add_foreign_key "properties", "categories"
   add_foreign_key "properties", "partners", column: "owner_id"
   add_foreign_key "properties", "towns"
+  add_foreign_key "property_details", "properties"
   add_foreign_key "rooms", "properties"
 end

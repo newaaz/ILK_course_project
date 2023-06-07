@@ -49,7 +49,9 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:title, :property_id, :guest_base_count, :guest_max_count, :avatar, images: [],
+    params.require(:room).permit(:title, :property_id, :guest_base_count, :guest_max_count, :avatar,
+                                 :description, :serial_number, :room_count, :size, :services, :amenities,
+                                 :bathroom, :beds, :furniture, :in_room, images: [],
                                  prices_attributes: [:id, :start_date, :end_date, :day_cost, :add_guest_cost, :_destroy])
   end
 

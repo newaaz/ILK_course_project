@@ -60,12 +60,26 @@ end
 
 # Create property
 def create_property
-  property = Property.new(geolocation:  Geolocation.new(latitude: "45.05#{rand 0..9}65", longitude: "35.39#{rand 0..9}88"),
-                          title:        PROPERTY_NAMES.sample,
+  property = Property.new(title:        PROPERTY_NAMES.sample,
                           address:      PROPERTY_ADRESSES.sample,
                           town:         Town.all.sample,
                           category:     Category.all.sample,
-                          owner:        Partner.first)
+                          owner:        Partner.first,
+                          activated:    true,
+                          price_from:   rand(1000..5000),
+                          distance_to_sea: rand(250..900),
+                          geolocation:  Geolocation.new(latitude: "45.05#{rand 0..9}65", longitude: "35.39#{rand 0..9}88"),
+                          property_detail: PropertyDetail.new(
+                            short_description: 'Описание',
+                            food: 'оборудованная кухня, возможность готовить еду самостоятельно 2 кухни',
+                            parking: 'бесплатная, на территории',
+                            territory: 'закрытый двор терраса, место для отдыха мангал, место для барбекю',
+                            transfer: 'трансфер из аэропорта в Симферополе 2500 руб',
+                            amenities: 'Удобства для отдыха, отдых в комнатах, отдых в квартирах',
+                            additional_info: 'Услуги за отдельную плату: пользование стиральной машиной. Примечание: если клиент отказывается от бронирования, предоплата не возвращается.',
+                            site: 'ilovekrim.ru',
+                            email: 'email@hotels.ru',
+                            vk_group: 'vk_group_link'))
   
   property.avatar.attach(io: rand_image_path .open, filename: "avatar.jpg")
   5.times do |i|
@@ -87,7 +101,7 @@ def create_property
                                 ])
   
     room.avatar.attach(io: rand_image_path .open, filename: 'r(1).jpg')
-    3.times do |i|
+    6.times do |i|
       room.images.attach(io: rand_image_path .open, filename: "r_#{i + 1}.jpg")
     end    
   end
