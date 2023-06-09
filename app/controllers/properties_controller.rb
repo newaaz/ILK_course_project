@@ -9,7 +9,8 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property = Property.includes([:geolocation, images_attachments: :blob, avatar_attachment: :blob,
+    @property = Property.includes([:geolocation, :property_detail, :contact,
+                                   images_attachments: :blob, avatar_attachment: :blob,
                                    rooms: [:prices, images_attachments: :blob, avatar_attachment: :blob]])
                         .find(params[:id])
 
@@ -21,6 +22,7 @@ class PropertiesController < ApplicationController
   end
 
   def create
+    #debugger
     @property = current_partner.properties.build(property_params)
     if @property.save
       flash[:success] = "Объявление добавлено и ожидает проверки. Вам на почту придёт письмо, сообщающее об активации и доступности к просмотру всем посетителям сайта"
@@ -67,6 +69,7 @@ class PropertiesController < ApplicationController
     params.require(:property).permit(:title, :address, :town_id, :category_id, :avatar, :services,
                                       :distance_to_sea, :price_from, images: [],
                                       geolocation_attributes: [:id, :latitude, :longitude],
+                                      contact_attributes: [:id, :name, :phone_number, messengers: [] ],
                                       property_detail_attributes: [:id, :short_description, :description,
                                         :parking, :rating, :food, :territory, :additional_info,
                                         :transfer, :amenities, :site, :email, :vk_group])

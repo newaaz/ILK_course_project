@@ -4,6 +4,14 @@
 $navbar-brand-height:               75px; //Logo height
 $navbar-brand-padding-y:            5px;
 
+
+$navbar-brand-height-sticky:        60px; //sticky Logo height
+$navbar-brand-padding-y-sticky:     3px;
+$nav-link-line-height-sticky:       $navbar-brand-padding-y-sticky * 2 + $navbar-brand-height-sticky;
+
+$navbar-mobile-brand-height:        60px; //mobile Logo height
+$navbar-mobile-brand-padding-y:     3px;
+
 // Font Families
 
 // $font-family-base:           'Montserrat', sans-serif;   // 'DM Sans', sans-serif;

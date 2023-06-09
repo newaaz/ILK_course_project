@@ -17,18 +17,17 @@
 						<!-- Location -->
 						<p class="fw-bold mb-0"><i class="bi bi-geo-alt me-2"></i>
 							<%= "#{@property.town.name}, #{@property.address}" %>
-							
+							<!--
 							<a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">
 								<i class="bi bi-eye-fill me-1"></i>View On Map
 							</a>							
-							
+							-->
 						</p>						
 					</div>
-
 					
 					<ul class="list-inline text-end">
 						<li class="list-inline-item">
-							<a href="#" class="btn btn-sm btn-light px-2"><i class="bi bi-bookmark-heart text-orange" style="font-size: 1.5rem;"></i></a>
+							<a href="#" class="btn btn-sm btn-light px-2"><i class="bi bi-heart text-orange" style="font-size: 1.5rem;"></i></a>
 						</li>
 						<li class="list-inline-item dropdown">
 							<a href="#" class="btn btn-sm btn-light px-2" role="button" id="dropdownShare" data-bs-toggle="dropdown" aria-expanded="false">
@@ -44,17 +43,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- Title and button END -->
-
-		<div class="alert alert-info alert-dismissible d-flex justify-content-between align-items-center show mb-4 rounded-3 py-4" role="alert">
-			<div class="d-flex">
-				<span class="alert-heading h5 mb-0 me-2"><i class="bi bi-exclamation-octagon-fill"></i></span>
-				<span>
-					<strong class="alert-heading me-2">Демо-объект:</strong>
-					Забронировать в реальности его нельзя
-				</span>
-			</div>
-		</div>
+		<!-- Title and button END -->		
 	</div>
 </section>
 
@@ -86,6 +75,8 @@
 	<div class="container" data-sticky-container>
 
 		<%= @property.property_detail %>
+
+		<%= @property.contact %>
 
 		<div class="row g-4 g-xl-5">
 			<!-- Content START -->
