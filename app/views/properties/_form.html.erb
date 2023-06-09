@@ -51,16 +51,11 @@
   </div>
 
   <%= render 'geolocations/map_fields', f: f %>
-
   <%= render 'attached_images/imagable_fields', f: f %>
-
+  <%= render 'properties/templates/services', f: f %>
   <%= render 'properties/templates/property_detail_fields', f: f %>  
 
   <div class="text-center">
 	  <%= f.submit "Разместить объявление",class:"btn btn-primary my-4" %>
 	</div>
 <% end %>
-
-
-
-

@@ -66,13 +66,13 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:title, :address, :town_id, :category_id, :avatar, :services,
-                                      :distance_to_sea, :price_from, images: [],
+    params.require(:property).permit(:title, :address, :town_id, :category_id, :avatar,
+                                      :distance_to_sea, :price_from, images: [], services: [],
                                       geolocation_attributes: [:id, :latitude, :longitude],
                                       contact_attributes: [:id, :name, :phone_number, messengers: [] ],
-                                      property_detail_attributes: [:id, :short_description, :description,
+                                      property_detail_attributes: [:id, :short_description,
                                         :parking, :rating, :food, :territory, :additional_info,
-                                        :transfer, :amenities, :site, :email, :vk_group])
+                                        :transfer, :site, :email, :vk_group, amenities: []])
   end
 
   def pundit_user

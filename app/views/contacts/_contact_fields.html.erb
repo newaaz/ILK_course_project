@@ -12,7 +12,7 @@
   <% Contact::MESSENGERS.each do |key| %>
     <div class="d-inline mt-3 ms-2">
       <%= f.check_box :messengers, { multiple: true, checked: f.object.messengers&.include?(key.to_s), class: 'form-check-input' }, key, nil %>
-      <%= f.label key, for: "#{f.object.class.name.downcase}_contact_attributes_messengers_#{key}",  class: 'form-check-label' %>
+      <%= f.label key, for: "#{f.object.contactable_type.downcase}_contact_attributes_messengers_#{key}",  class: 'form-check-label' %>
     </div>  
   <% end %>
 <% end %>

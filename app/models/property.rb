@@ -1,4 +1,12 @@
 class Property < ApplicationRecord
+  SERVICES =  {
+                kitchen: 'Кухня',
+                excursions: 'Экскурсии',
+                pool: 'Бассеин',
+                parking: 'Парковка',
+                playground: 'Детская площадка',
+              }.freeze
+
   include Imagable
   include Geolocable
   include Searchable

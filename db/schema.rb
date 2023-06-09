@@ -51,7 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
     t.string "name"
     t.string "phone_number"
     t.string "avatar"
-    t.text "messengers", default: [], array: true
+    t.string "messengers", default: [], array: true
     t.string "contactable_type", null: false
     t.bigint "contactable_id", null: false
     t.datetime "created_at", null: false
@@ -149,7 +149,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
     t.integer "rating", limit: 2, default: 50
     t.integer "price_from", limit: 2
     t.integer "distance_to_sea", limit: 2
-    t.string "services"
+    t.string "services", default: [], array: true
     t.boolean "activated", default: false
     t.boolean "deleted", default: false
     t.boolean "enabled", default: true
@@ -171,7 +171,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
     t.string "parking"
     t.string "territory"
     t.string "transfer"
-    t.string "amenities"
+    t.string "amenities", default: [], array: true
     t.string "additional_info"
     t.string "site"
     t.string "email"
@@ -190,8 +190,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
     t.integer "serial_number", limit: 2, default: 1
     t.integer "room_count", limit: 2, default: 1
     t.integer "size", limit: 2
-    t.string "services"
-    t.string "amenities"
+    t.string "services", default: [], array: true
     t.string "bathroom"
     t.string "beds"
     t.string "furniture"

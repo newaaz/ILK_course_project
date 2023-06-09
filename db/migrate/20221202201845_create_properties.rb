@@ -6,7 +6,7 @@ class CreateProperties < ActiveRecord::Migration[7.0]
       t.integer :rating, limit: 2, default: 50
       t.integer :price_from, limit: 2
       t.integer :distance_to_sea, limit: 2
-      t.string  :services
+      t.string  :services, array: true, default: []
 
       t.boolean :activated, default: false
       t.boolean :deleted, default: false

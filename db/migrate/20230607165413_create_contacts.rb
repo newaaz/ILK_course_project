@@ -4,7 +4,7 @@ class CreateContacts < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :phone_number
       t.string :avatar
-      t.text :messengers, array: true, default: []
+      t.string :messengers, array: true, default: []
       t.references :contactable, polymorphic: true, null: false
 
       t.timestamps

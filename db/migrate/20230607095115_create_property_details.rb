@@ -9,7 +9,7 @@ class CreatePropertyDetails < ActiveRecord::Migration[7.0]
       t.string  :parking
       t.string  :territory
       t.string  :transfer
-      t.string  :amenities
+      t.string  :amenities, array: true, default: []
       t.string  :additional_info
 
       t.string  :site
