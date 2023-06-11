@@ -117,10 +117,10 @@ export default class extends Controller {
   
         })
   
-        document.getElementById('clear-btn').onclick = function(e) {
-          document.getElementById(objectFieldId + 'latitude').value = ''
-          document.getElementById(objectFieldId + 'longitude').value = ''
-        }
+        // document.getElementById('clear-btn').onclick = function(e) {
+        //   document.getElementById(objectFieldId + 'latitude').value = ''
+        //   document.getElementById(objectFieldId + 'longitude').value = ''
+        // }
       } 
     }  
   }

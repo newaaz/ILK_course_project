@@ -14,12 +14,19 @@
 
         <div class="mt-3">
           <% if f.object.avatar.attached? %>
-            <%= image_tag(f.object.avatar, data: { previews_target: "preview" }) %>
+            <%= image_tag(f.object.avatar, data: { previews_target: "preview" }, style: 'max-height: 190px;' , class: 'rounded') %>
           <% else %>
-            <%= image_tag("", data: { previews_target: "preview" }, style: 'max-height: 200px;' , class: 'rounded') %>
+            <%= image_tag("", data: { previews_target: "preview" }, style: 'max-height: 190px;' , class: 'rounded') %>
           <% end %>
         </div>    
-      </div>  
+      </div>
+
+      <% if controller.action_name == 'edit' %>
+        <div class="col-12">
+          <!-- remove images -->
+          <%= render partial: 'attached_images/image_purge', collection: f.object.images, as: :image %>
+        </div>
+      <% end %>
 
       <div class="col-12">
         <div class="form-group">

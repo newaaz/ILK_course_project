@@ -25,7 +25,7 @@ class PropertiesController < ApplicationController
     #debugger
     @property = current_partner.properties.build(property_params)
     if @property.save
-      flash[:success] = "Объявление добавлено и ожидает проверки. Вам на почту придёт письмо, сообщающее об активации и доступности к просмотру всем посетителям сайта"
+      flash[:success] = "Объявление добавлено и ожидает проверки. Вам на почту придёт письмо, сообщающее об активации и доступности к просмотру"
       redirect_to @property
     else
       respond_to do |format|
