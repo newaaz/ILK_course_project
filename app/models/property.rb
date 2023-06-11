@@ -18,7 +18,6 @@ class Property < ApplicationRecord
   has_many :rooms, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_one  :property_detail, dependent: :destroy
-
   #TODO move to concern
   has_one :contact, as: :contactable, dependent: :destroy
   accepts_nested_attributes_for :contact

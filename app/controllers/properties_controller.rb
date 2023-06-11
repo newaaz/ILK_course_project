@@ -42,6 +42,7 @@ class PropertiesController < ApplicationController
   end
 
   def edit
+    
   end
 
   def update
@@ -62,14 +63,14 @@ class PropertiesController < ApplicationController
   private
 
   def set_property
-    @property = Property.includes(:geolocation).find(params[:id])
+    @property = Property.includes([:geolocation, :contact, :property_detail]).find(params[:id])
   end
 
   def property_params
     params.require(:property).permit(:title, :address, :town_id, :category_id, :avatar,
                                       :distance_to_sea, :price_from, images: [], services: [],
                                       geolocation_attributes: [:id, :latitude, :longitude],
-                                      contact_attributes: [:id, :name, :phone_number, messengers: [] ],
+                                      contact_attributes: [:id, :email, :name, :phone_number, messengers: [] ],
                                       property_detail_attributes: [:id, :short_description,
                                         :parking, :rating, :food, :territory, :additional_info,
                                         :transfer, :site, :email, :vk_group, amenities: []])

@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
   end
 
   create_table "contacts", force: :cascade do |t|
+    t.string "email"
     t.string "name"
     t.string "phone_number"
     t.string "avatar"
