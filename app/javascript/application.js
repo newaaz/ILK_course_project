@@ -26,11 +26,8 @@ import "./custom/plugins/fotorama"
 // Parallax
 import "./custom/plugins/parallax"
 
-// LightPicker
-import "./custom/plugins/litepicker"
-
 // functions of theme
 import "./custom/theme_functions"
 
-// fotorama, litepicker, parallax
+// fotorama, parallax
 import "./custom/custom_functions"

@@ -1,4 +1,4 @@
-<%= form_with model:[@property, @room], class: 'room-form w-75', data: {turbo: false} do |f| %>
+<%= form_with model:[@property, @room], class: '', data: {turbo: false} do |f| %>
 
   <%= render 'shared/errors', object: f.object %>
 
@@ -20,14 +20,25 @@
   <%= render 'attached_images/imagable_fields', f: f %>
 
   <h4>Prices:</h4>
-  <div class="price_fields">
-    <%= f.fields_for :prices do |price| %>
-      <%= render 'prices/price_fields', f: price %>
+  <div data-controller="nested-prices">
+
+    <template data-target='nested-prices.template'>
+      <%= f.fields_for :prices, Price.new, child_index: 'NEW_RECORD' do |price_form| %>
+        <%= render 'prices/form', f: price_form %>
+      <% end %>
+    </template>
+
+    <%= f.fields_for :prices do |price_form| %>
+      <%= render 'prices/form', f: price_form %>
     <% end %>
-    <div class="prices mt-2">
-      <%= link_to_add_association 'add price', f, :prices, partial: 'prices/price_fields' %>
+
+    <div data-target="nested-prices.add_price">
+      <%= link_to "Add Price", "#", data: { action:"click->nested-prices#add_association" } %>
     </div>
+
   </div>
 
-  <%= f.submit "Save",class:"btn btn-primary my-4" %>
+  <div class="text-center">
+    <%= f.submit f.object.new_record? ? "Добавить Номер" : "Сохранить изменения",class:"btn btn-primary my-4" %>
+  </div>
 <% end %>

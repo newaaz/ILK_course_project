@@ -10,5 +10,8 @@ application.register("hello", HelloController)
 import MapsController from "./maps_controller"
 application.register("maps", MapsController)
 
+import NestedPricesController from "./nested_prices_controller"
+application.register("nested-prices", NestedPricesController)
+
 import PreviewsController from "./previews_controller"
 application.register("previews", PreviewsController)

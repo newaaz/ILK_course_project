@@ -5,6 +5,7 @@ class CreatePrices < ActiveRecord::Migration[7.0]
       t.date :start_date, null: false
       t.date :end_date, null: false
       t.integer :day_cost, null: false
+      t.integer :add_guest_cost
 
       t.timestamps
     end

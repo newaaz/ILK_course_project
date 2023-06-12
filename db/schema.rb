@@ -139,6 +139,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.integer "day_cost", null: false
+    t.integer "add_guest_cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_prices_on_room_id"
