@@ -13,10 +13,19 @@ class RoomsController < ApplicationController
     authorize(@room)
     
     if @room.save
-      flash[:success] = 'Room was added'
+      flash[:success] = 'Номер добавлен'
       redirect_to partners_root_path
     else
-      render 'new'
+      respond_to do |format|
+        format.html { render 'new', status: :unprocessable_entity }
+      
+        format.turbo_stream do
+          render turbo_stream:
+            turbo_stream.update('forms_errors',
+              partial: 'shared/errors',
+              locals:   { object: @room })
+        end
+      end
     end
   end
 

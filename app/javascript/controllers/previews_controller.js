@@ -11,14 +11,16 @@ export default class extends Controller {
   static targets = ["input", "preview"]
   
   connect() {
-    //Phone mask field (need move to some else controller)
-    const phoneMaskField = document.querySelector('.phone-mask');
+    const phoneMaskField = document.getElementById('phone-mask');
+
     if (phoneMaskField) {
-      const phoneMask = IMask(
-        document.querySelector(phoneMaskField), {
+      var phoneMask = IMask(
+        phoneMaskField, {
           mask: '+{7}(000)000-00-00'
         });
-    }  
+    }
+
+  
 
     // enable fileuploader plugin for images
     $('.images-upload-field').fileuploader({

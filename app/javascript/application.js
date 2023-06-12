@@ -13,8 +13,6 @@ document.addEventListener("turbo:load", () => {
   const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl).show())
 })
 
-import "cocoon-js-vanilla";
-
 //import { Fancybox } from "@fancyapps/ui/src/Fancybox/Fancybox.js";
 
 // Fileuploader move to PreviewController

@@ -1,6 +1,7 @@
-<%= form_with model:[@property, @room], class: '', data: {turbo: false} do |f| %>
-
-  <%= render 'shared/errors', object: f.object %>
+<%= form_with model:[@property, @room], class: 'vstack gap-4' do |f| %>
+  <div id="forms_errors">
+    <%= render 'shared/errors', object: f.object %>
+  </div>
 
   <div class="form-group mb-2">
     <%= f.label :title, class: 'form-label' %>        
