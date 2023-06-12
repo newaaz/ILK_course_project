@@ -1,9 +1,13 @@
+<% provide :turbo_cache_control do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
 <section class="pb-0">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 text-center">
 				<h1 class="fs-3 mb-2">Добавить номер</h1>
-				<p class="fs-5 mb-0"><%= "#{@property.title}: добавление нового номера" %></p>
+				<p class="fs-5 mb-0"><%= "#{property.title}: добавление нового номера" %></p>
 			</div>
 		</div>
 	</div>
@@ -13,7 +17,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 mx-auto">
-        <%= render 'form' %>
+				<%= link_to 'Вставить информацию с предыдущего номера', new_property_room_path(property), data: { turbo_stream: true } %>
+
+        <%= render partial: 'form', locals: { property: property, room: room } %>
 			</div>
 		</div>
 	</div>

@@ -2,9 +2,25 @@ class RoomsController < ApplicationController
   after_action  :verify_authorized
 
   def new
-    @property = Property.find(params[:property_id])
-    @room = @property.rooms.build(prices: [Price.new]) 
-    authorize(@room)
+    property = Property.find(params[:property_id])
+    room = property.rooms.build(prices: [Price.new]) 
+    authorize(room)     
+    
+    #debugger
+
+    respond_to do |format|
+      format.html { render 'new', locals: { property: property, room: room } }
+    
+      format.turbo_stream do
+        room_last = property.rooms[-2]
+        render turbo_stream:
+          turbo_stream.update('new_room',
+            partial: 'rooms/form',
+            locals:   { property: property, room: room_last.sample_data })
+      end
+    end
+
+    
   end
 
   def create    
@@ -17,7 +33,7 @@ class RoomsController < ApplicationController
       redirect_to partners_root_path
     else
       respond_to do |format|
-        format.html { render 'new', status: :unprocessable_entity }
+        format.html { render 'new', locals: { property: @property, room: @room }, status: :unprocessable_entity }
       
         format.turbo_stream do
           render turbo_stream:

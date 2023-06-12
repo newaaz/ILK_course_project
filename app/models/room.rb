@@ -23,6 +23,16 @@ class Room < ApplicationRecord
 
   accepts_nested_attributes_for :prices, reject_if: :all_blank, allow_destroy: true
 
+  def sample_data
+    sample_room = self.dup 
+    
+    self.prices.each do |price|
+      sample_room.prices << price.dup  
+    end
+
+    sample_room
+  end
+
   #TODO validates_each
   def check_overlap_price_date_ranges
     all_prices = self.prices.to_a

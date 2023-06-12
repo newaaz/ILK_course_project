@@ -1,7 +1,7 @@
-<%= form_with model:[@property, @room], class: 'vstack gap-4' do |f| %>
+<%= form_with model:[property, room], class: 'vstack gap-4', id: 'new_room' do |f| %>
   <div id="forms_errors">
     <%= render 'shared/errors', object: f.object %>
-  </div>
+  </div>  
 
   <div class="card shadow">  
     <div class="card-header border-bottom">
