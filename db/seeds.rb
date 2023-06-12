@@ -69,7 +69,9 @@ def create_property
                           price_from:   rand(1000..5000),
                           distance_to_sea: rand(250..900),
                           services: ["kitchen", "excursions", "pool", "parking", "playground"],
-                          geolocation:  Geolocation.new(latitude: "45.05#{rand 0..9}65", longitude: "35.39#{rand 0..9}88"),
+                          geolocation:  Geolocation.new(
+                            latitude: "45.05#{rand 0..9}65",
+                            longitude: "35.39#{rand 0..9}88"),
                           contact:      Contact.new(
                             phone_number: '+7(978)117-54-21',
                             email: 'partner@email.com',
@@ -97,7 +99,14 @@ def create_property
     room = property.rooms.build(title: "Стандартный #{i + 1}-х местный номер",
                                 guest_base_count: 2,
                                 guest_max_count: rand(1..10),
+                                rooms_count: 1,
                                 size:   rand(20..50),
+                                description: "Номера «люкс» подойдут для размещения четырех человек – отличный вариант для большой семьи",
+                                services: ["sea_view", "mountain_view", "balcony", "tv", "satellite", "kettle"],
+                                bathroom: "Туалет и душ в номере, санузел совмещенный",
+                                beds: "2 кровати",
+                                furniture: "шкаф тумбочки",
+                                in_room: "полный комплект посуды, посудомоечная машина, стиральная машина-автомат",
                                 prices: [
                                   Price.new(start_date: '01/01/2023', end_date: '31/01/2023', day_cost: 1450),
                                   Price.new(start_date: '01/02/2023', end_date: '28/02/2023', day_cost: 1720),

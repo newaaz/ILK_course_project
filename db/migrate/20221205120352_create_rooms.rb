@@ -8,7 +8,7 @@ class CreateRooms < ActiveRecord::Migration[7.0]
 
       t.string  :description
       t.integer :serial_number, limit:1, default: 1
-      t.integer :room_count, limit:1, default: 1
+      t.integer :rooms_count, limit:1, default: 1
       t.integer :size, limit:2
       t.string  :services, array: true, default: []
       t.string  :bathroom

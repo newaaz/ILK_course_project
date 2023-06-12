@@ -1,4 +1,16 @@
 class Room < ApplicationRecord
+  SERVICES =  {
+    sea_view: 'Вид на море',
+    mountain_view: 'Вид на горы',
+    balcony: 'Балкон',
+    wifi: 'WiFi',
+    tv: 'Телевизор',
+    satellite: 'Спутниковое, цифровое ТВ',
+    fridge: 'Холодильник',
+    conditioner: 'Кондиционер',
+    kettle: 'Эл чайник'
+  }.freeze
+
   include Imagable
   
   belongs_to :property

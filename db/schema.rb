@@ -190,7 +190,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
     t.integer "guest_max_count", limit: 2, null: false
     t.string "description"
     t.integer "serial_number", limit: 2, default: 1
-    t.integer "room_count", limit: 2, default: 1
+    t.integer "rooms_count", limit: 2, default: 1
     t.integer "size", limit: 2
     t.string "services", default: [], array: true
     t.string "bathroom"
