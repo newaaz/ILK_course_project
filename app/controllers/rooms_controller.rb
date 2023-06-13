@@ -14,7 +14,7 @@ class RoomsController < ApplicationController
       format.html { render 'new', locals: { property: property, room: room } }
       format.turbo_stream do
         render turbo_stream:
-          turbo_stream.update('new_room',
+          turbo_stream.update('room_form',
             partial: 'rooms/form',
             locals:   { property: property, room: Room.sample_data(params[:sample_room].to_i) })
       end
@@ -35,7 +35,7 @@ class RoomsController < ApplicationController
       redirect_to partners_root_path
     else
       respond_to do |format|
-        #format.html { render 'new', locals: { property: @property, room: @room }, status: :unprocessable_entity }
+        format.html { render 'new', locals: { property: @property, room: @room }, status: :unprocessable_entity }
       
         format.turbo_stream do
           render turbo_stream:

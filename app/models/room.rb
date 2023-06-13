@@ -21,7 +21,7 @@ class Room < ApplicationRecord
   validates :title, :guest_base_count, :guest_max_count, presence: true
   validate  :check_overlap_price_date_ranges
 
-  accepts_nested_attributes_for :prices, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :prices, allow_destroy: true
 
   def self.sample_data(room_id)
     if room_id == 0
