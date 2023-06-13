@@ -89,12 +89,12 @@
     <div class="card-body">
       <div class="row g-3">
         <div class="col-12">
-            <% Room::SERVICES.each do |key, value| %>
-              <div class="d-inline mx-2">
-                <%= f.check_box :services, { multiple: true, checked: f.object.services&.include?(key.to_s), class: 'form-check-input' }, key, nil %>
-                <%= f.label value, for: "room_services_#{key}",  class: 'form-check-label mb-4' %>
-              </div>  
-            <% end %>              
+          <% Room::SERVICES.each do |key, value| %>
+            <div class="d-inline mx-2">
+              <%= f.check_box :services, { multiple: true, checked: f.object.services&.include?(key.to_s), class: 'form-check-input' }, key, nil %>
+              <%= f.label value, for: "room_services_#{key}",  class: 'form-check-label mb-4' %>
+            </div>  
+          <% end %>              
         </div>
       </div>
     </div>
@@ -102,23 +102,32 @@
 
   <%= render 'attached_images/imagable_fields', f: f %>
 
-  <h4>Prices:</h4>
-  <div data-controller="nested-prices">
-
-    <template data-target='nested-prices.template'>
-      <%= f.fields_for :prices, Price.new, child_index: 'NEW_RECORD' do |price_form| %>
-        <%= render 'prices/form', f: price_form %>
-      <% end %>
-    </template>
-
-    <%= f.fields_for :prices do |price_form| %>
-      <%= render 'prices/form', f: price_form %>
-    <% end %>
-
-    <div data-target="nested-prices.add_price">
-      <%= link_to "Add Price", "#", data: { action:"click->nested-prices#add_association" } %>
+  <div class="card shadow">  
+    <div class="card-header border-bottom">
+      <h5 class="mb-0">Стоимость проживания</h5>
     </div>
 
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-12">
+          <div data-controller="nested-prices">
+            <template data-target='nested-prices.template'>
+              <%= f.fields_for :prices, Price.new, child_index: 'NEW_RECORD' do |price_form| %>
+                <%= render 'prices/form', f: price_form %>
+              <% end %>
+            </template>
+
+            <%= f.fields_for :prices do |price_form| %>
+              <%= render 'prices/form', f: price_form %>
+            <% end %>
+
+            <div data-target="nested-prices.add_price" class="mt-4">
+              <%= link_to "+ Добавить ценовой период", "#", data: { action:"click->nested-prices#add_association" }, class: 'btn-sm btn btn-secondary' %>
+            </div>
+          </div>              
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="text-center">

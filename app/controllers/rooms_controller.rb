@@ -4,7 +4,11 @@ class RoomsController < ApplicationController
   def new
     property = Property.find(params[:property_id])
     room = property.rooms.build(prices: [Price.new]) 
-    authorize(room)     
+    authorize(room)
+
+    if property.rooms.any?
+      @sample_rooms = property.rooms.select(:id, :title)
+    end
     
     #debugger
 
@@ -12,7 +16,10 @@ class RoomsController < ApplicationController
       format.html { render 'new', locals: { property: property, room: room } }
     
       format.turbo_stream do
-        room_last = property.rooms[-2]
+
+
+
+        room_last = Room.find params[:sample_room].to_i
         render turbo_stream:
           turbo_stream.update('new_room',
             partial: 'rooms/form',

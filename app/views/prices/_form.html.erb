@@ -1,25 +1,38 @@
-<div class="nested-fields">
+<div class="nested-fields mb-3">
+  <div class="row g-3">  
+    <div class="col-auto">
+      <div class="d-flex align-items-center">
+        <%= f.label :start_date, class: 'form-label me-2' %>
+        <%= f.date_field :start_date, class: 'start-date form-control', style: "width: 170px;" %>    
+      </div>     
+    </div>
 
-  <div class="form-group mb-2">
-    <%= f.label :start_date, class: 'form-label' %>        
-    <%= f.date_field :start_date, class: 'start-date form-control', placeholder: 'start-date' %>
+    <div class="col-auto">  
+      <div class="d-flex align-items-center">
+        <%= f.label :end_date, class: 'form-label me-2' %>
+        <%= f.date_field :end_date, class: 'end-date form-control', style: "width: 170px;" %>  
+      </div>
+    </div>
+
+
+    <div class="col-auto">
+      <div class="d-flex align-items-center">
+        <%= f.label :day_cost, class: 'form-label me-2' %>  
+        <div class="input-group"  style="width: 170px;"> 
+          <%= f.number_field :day_cost, class: 'form-control' %>
+          <span class="input-group-text">₽</span>
+        </div>
+      </div>  
+    </div>
+
+    <div class="col-auto">
+      <%= link_to "#", data: { action:"click->nested-prices#remove_association" },
+                       class: "btn btn-outline-danger rounded-circle p-2 lh-1" do %>
+        <i class="bi bi-x-lg"></i><span class="visually-hidden">Dismiss</span>
+      <% end %>
+    </div>
+
+    <%= f.hidden_field :_destroy %>    
   </div>
-
-  <div class="form-group mb-2">
-    <%= f.label :end_date, class: 'form-label' %>        
-    <%= f.date_field :end_date, class: 'end-date form-control', placeholder: 'end-date' %>
-  </div>
-
-  <div class="form-group mb-2">
-    <%= f.label :day_cost, class: 'form-label' %>        
-    <%= f.number_field :day_cost, class: 'form-control', placeholder: 'day-cost' %>
-  </div>
-
-  <div class="form-group mb-2">
-    <%= f.hidden_field :_destroy %>
-  </div>
-
-  <%= link_to 'remove', "#", data: { action:"click->nested-prices#remove_association" } %>
-
 </div>
 
