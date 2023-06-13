@@ -9,38 +9,33 @@ class RoomsController < ApplicationController
     if property.rooms.any?
       @sample_rooms = property.rooms.select(:id, :title)
     end
-    
-    #debugger
 
     respond_to do |format|
       format.html { render 'new', locals: { property: property, room: room } }
-    
       format.turbo_stream do
-
-
-
-        room_last = Room.find params[:sample_room].to_i
         render turbo_stream:
           turbo_stream.update('new_room',
             partial: 'rooms/form',
-            locals:   { property: property, room: room_last.sample_data })
+            locals:   { property: property, room: Room.sample_data(params[:sample_room].to_i) })
       end
-    end
-
-    
+    end    
   end
 
   def create    
     @property = Property.find(params[:property_id])    
     @room = @property.rooms.build(room_params)
     authorize(@room)
+
+    if @property.rooms.any?
+      @sample_rooms = @property.rooms.select(:id, :title)
+    end
     
     if @room.save
       flash[:success] = 'Номер добавлен'
       redirect_to partners_root_path
     else
       respond_to do |format|
-        format.html { render 'new', locals: { property: @property, room: @room }, status: :unprocessable_entity }
+        #format.html { render 'new', locals: { property: @property, room: @room }, status: :unprocessable_entity }
       
         format.turbo_stream do
           render turbo_stream:

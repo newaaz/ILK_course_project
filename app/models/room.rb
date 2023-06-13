@@ -23,14 +23,20 @@ class Room < ApplicationRecord
 
   accepts_nested_attributes_for :prices, reject_if: :all_blank, allow_destroy: true
 
-  def sample_data
-    sample_room = self.dup 
-    
-    self.prices.each do |price|
-      sample_room.prices << price.dup  
-    end
+  def self.sample_data(room_id)
+    if room_id == 0
+      Room.new(prices: [Price.new])
+    else
+      original_room = Room.find(room_id)
+      sample_room = original_room.dup
 
-    sample_room
+      original_room.prices.each do |price|
+        price.day_cost = nil
+        sample_room.prices << price.dup
+      end
+  
+      sample_room
+    end
   end
 
   #TODO validates_each

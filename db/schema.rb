@@ -136,9 +136,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
 
   create_table "prices", force: :cascade do |t|
     t.bigint "room_id", null: false
-    t.date "start_date", null: false
-    t.date "end_date", null: false
-    t.integer "day_cost", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "day_cost"
     t.integer "add_guest_cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -15,3 +15,9 @@
   --color-glint:            hsl(210, 100%, 82%);
 }
 
+
+/* Поля с ошибками*/
+.field_with_errors {
+  label { color: #DC143C }
+  input, textarea { border-color: #DC143C }
+}

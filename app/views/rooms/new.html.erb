@@ -16,30 +16,24 @@
 <section>
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12 mx-auto">
-
-
-				<% if @sample_rooms.any? %>
-
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username with two button addons">
-						<a class="btn btn-outline-secondary" type="button">Button</a>
-						<button class="btn btn-outline-secondary" type="button">Button</button>
-					</div>
-				
-					<%= link_to 'Вставить информацию с предыдущего номера', new_property_room_path(property), data: { turbo_stream: true } %>
-
+			
+			<% if @sample_rooms.any? %>		
+				<div class="col-lg-8">		
 					<%= form_with(url: new_property_room_path(property), method: "get", data: { turbo_stream: true }) do |f| %>
-					
-						<%= f.collection_select :sample_room, @sample_rooms, :id, :title, { prompt: "Выбрать..." }, class:"form-select" %>
-
-						<%= f.submit "Вставить данные из выбранного номера", class:"btn btn-primary my-4" %>
+						<span class="d-block text-secondary mb-2">Вставить шаблон данных с ранее добавленого номера</span>
+						<div class="input-group mb-4">
+							
+							<%= link_to 'Очистить', new_property_room_path(property),
+																			class: 'btn btn-outline-secondary',
+																			data: { turbo_stream: true } %>
+							<%= f.collection_select :sample_room, @sample_rooms, :id, :title, { prompt: "Выбрать номер" }, class:"form-select" %>
+							<%= f.submit "Вставить", class:"btn btn-secondary" %>
+						</div>
 					<% end %>
-				
-				<% end %>
+				</div>
+			<% end %>
 
-
-
+			<div class="col-lg-12 mx-auto">
         <%= render partial: 'form', locals: { property: property, room: room } %>
 			</div>
 		</div>

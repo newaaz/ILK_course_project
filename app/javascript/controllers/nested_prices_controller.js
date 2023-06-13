@@ -8,7 +8,10 @@ export default class extends Controller {
   static targets = [ "add_price", "template" ]
 
   connect() {
-    requireLitepickerTo(document.querySelector('.start-date'), document.querySelector('.end-date'))
+    const dateForms = document.querySelectorAll(".nested-fields")
+    dateForms.forEach(form => {
+      requireLitepickerTo(form.querySelector('.start-date'), form.querySelector('.end-date'))
+    })
   }
 
   add_association(event) {
