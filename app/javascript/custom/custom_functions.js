@@ -1,33 +1,5 @@
 document.addEventListener("turbo:load", () => {
-  // LitePicker
-  const form = document.getElementById('new_order')
-  if (form) {
-    new Litepicker({
-      element: (document.getElementById('order_check_in') || document.getElementById('check_in')),
-      elementEnd: (document.getElementById('order_check_out') || document.getElementById('check_out')),
-      plugins: ['mobilefriendly'],
-      format: 'YYYY-MM-DD',
-      resetButton: true,
-      minDate: Date.now(),
-      numberOfColumns: 2,
-      numberOfMonths: 2,
-      lang: 'ru-RO',
-      singleMode: false,
-      tooltipText: {
-        one: 'ночь',
-        few: 'ночи',
-        many: 'ночей',
-        other: 'ночей'
-      },
-      tooltipNumber: (totalDays) => {
-        return totalDays - 1;
-      },
-      allowRepick: true        
-    });
-  }
 
-
-  
   // Fotorama
   $(function () {
     // Initialize main fotorama
@@ -59,6 +31,6 @@ document.addEventListener("turbo:load", () => {
   });
 
   // Parallax
-  $('.parallax-window').parallax({zIndex:1});
+  //$('.parallax-window').parallax({zIndex:1});
 })
 

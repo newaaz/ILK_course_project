@@ -27,19 +27,19 @@
 
     <div class="col-sm-12 pt-4 col-md-2">
       <div class="mb-1"></div>
-      <%= f.submit "Search", class: "btn btn-primary btn-sm" %>
-
-      <% if session['check_in'] && session['check_out'] %>
-        <small>
-          <%= "#{session['check_in'].to_date.strftime('%d.%m')}-#{session['check_out'].to_date.strftime('%d.%m')}" %>
-        </small>
-        <%= link_to reset_search_dates_path, data: { "turbo-method": :delete }, class: 'btn btn-sm bg-danger-soft-hover' do %>
-          <i class="bi bi-arrow-counterclockwise fa-fw me-1"></i>
-          Reset
-        <% end %>
-      <% end %>    
+      <%= f.submit "Search", class: "btn btn-primary btn-sm" %>   
     </div>
   <% end %>
+
+  <% if session['check_in'] && session['check_out'] %>
+    <small>
+      <%= "#{session['check_in'].to_date.strftime('%d.%m')}-#{session['check_out'].to_date.strftime('%d.%m')}" %>
+    </small>
+    <%= link_to reset_search_dates_path, data: { "turbo-method": :delete }, class: 'btn btn-sm bg-danger-soft-hover' do %>
+      <i class="bi bi-arrow-counterclockwise fa-fw me-1"></i>
+      Reset
+    <% end %>
+  <% end %> 
 </div>
 
 
