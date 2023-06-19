@@ -1,7 +1,9 @@
 <div class="tab-pane show active" id="tab-description">
   <div class="card bg-transparent">
     <div class="card-header border-bottom bg-transparent px-0 pt-0">
-      <h3 class="mb-0">Описание</h3>
+      <div class="d-sm-flex justify-content-sm-between align-items-center">
+        <h3 class="fs-4 mb-2 mb-sm-0">Описание</h3>								
+      </div>
     </div>
 
     <div class="card-body pt-4 p-0">
@@ -18,18 +20,49 @@
             <%= PropertyDetail::AMENITIES[service.to_sym] %>
           </span>
         <% end %>
-      </div>						
+      </div>				
+      <div class="bg-light rounded border p-3 mb-4">
+        <% if @property.property_detail.short_description.size > 626 %>        
+          <div class="content_block hide">
+            <%= @property.property_detail.short_description %>          
+          </div>
+          <a class="content_toggle text-secondary" href="#"><i class="bi bi-caret-down me-1"></i>Показать текст</a>
+        <% else %>
+          <p class="mb-3"><%= @property.property_detail.short_description %></p>
+        <% end %>
+      </div>
 
-      <% if @property.property_detail.short_description.size > 626 %>        
-        <div class="content_block hide">
-          <%= @property.property_detail.short_description %>          
+      <h5 class="fw-light mb-2">Инфраструктура</h5>
+
+      <div class="px-3">
+        <div class="row bg-secondary bg-opacity-10 rounded-top py-2">
+          <div class="col-md-3 fw-semibold">Питание:</div>
+          <div class="col-md-9"><%= @property.property_detail.food %></div>
+        </div>        
+
+        <div class="row bg-light py-2">
+          <div class="col-md-3 fw-semibold">Парковка:</div>
+          <div class="col-md-9"><%= @property.property_detail.parking %></div>
         </div>
-        <a class="content_toggle text-secondary" href="#"><i class="bi bi-caret-down me-1"></i>Показать текст</a>
-      <% else %>
-        <p class="mb-3"><%= @property.property_detail.short_description %></p>
-      <% end %>	
+
+        <div class="row bg-secondary bg-opacity-10 py-2">
+          <div class="col-md-3 fw-semibold">Территория:</div>
+          <div class="col-md-9"><%= @property.property_detail.territory %></div>
+        </div>
+
+        <div class="row bg-light py-2">
+          <div class="col-md-3 fw-semibold">Трансфер:</div>
+          <div class="col-md-9"><%= @property.property_detail.transfer %></div>
+        </div>
+
+        <div class="row bg-secondary bg-opacity-10 rounded-bottom py-2">
+          <div class="col-md-3 fw-semibold">Дополнительно:</div>
+          <div class="col-md-9"><%= @property.property_detail.additional_info %></div>
+        </div>
+      </div>
 
       
+
     </div>
   </div>
 </div>

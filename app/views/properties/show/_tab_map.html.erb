@@ -1,14 +1,14 @@
-<div class="tab-pane" id="tab-rooms">					
+<div class="tab-pane" id="tab-map">					
   <div class="card bg-transparent">
     <div class="card-header border-bottom bg-transparent px-0 pt-0">
       <div class="d-sm-flex justify-content-sm-between align-items-center">
-        <h3 class="fs-4 mb-2 mb-sm-0">Номера</h3>								
+        <h3 class="fs-4 mb-2 mb-sm-0">Карта</h3>								
       </div>
     </div>
 
     <div class="card-body pt-4 p-0">
       <div class="vstack gap-4">
-        <%= render @property.rooms %>
+        <%= render 'geolocations/show_map', object: @property, preset_icon: "islands#blueHomeIcon" %>
       </div>
     </div>
   </div>
