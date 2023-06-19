@@ -9,7 +9,7 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property = Property.includes([:geolocation, :property_detail, :contact,
+    @property = Property.includes([:geolocation, :property_detail, :contact, :town, :category,
                                    images_attachments: :blob, avatar_attachment: :blob,
                                    rooms: [:prices, images_attachments: :blob, avatar_attachment: :blob]])
                         .find(params[:id])

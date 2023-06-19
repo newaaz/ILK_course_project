@@ -4,7 +4,7 @@ lock "~> 3.17.1"
 set :application, "ilk"
 set :repo_url, "git@github.com:newaaz/Think-ILK.git"
 
-set :branch, "main"
+set :branch, "add_info_to_property"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

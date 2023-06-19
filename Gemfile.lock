@@ -117,7 +117,6 @@ GEM
       image_processing (~> 1.1)
       marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
-    cocoon (1.2.15)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     cssbundling-rails (1.1.2)
@@ -399,7 +398,6 @@ DEPENDENCIES
   capistrano-rbenv (~> 2.1, >= 2.1.4)
   capybara
   carrierwave (>= 3.0.0.beta, < 4.0)
-  cocoon (~> 1.2)
   cssbundling-rails
   database_cleaner-active_record (~> 2.0)
   debug

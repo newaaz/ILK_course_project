@@ -23,3 +23,7 @@ application.register("parallax", ParallaxController)
 
 import PreviewsController from "./previews_controller"
 application.register("previews", PreviewsController)
+
+import PropertyShowController from "./property_show_controller"
+application.register("property-show", PropertyShowController)
+

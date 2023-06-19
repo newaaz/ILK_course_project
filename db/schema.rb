@@ -48,7 +48,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "email"
     t.string "name"
     t.string "phone_number"
     t.string "avatar"
@@ -118,6 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
   create_table "partners", force: :cascade do |t|
     t.string "name"
     t.string "phone_number"
+    t.string "avatar"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

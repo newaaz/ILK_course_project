@@ -1,0 +1,81 @@
+<div class="row gx-2 mb-3">
+  <div class="col">
+    <div class="distance-sea bg-success bg-opacity-50 text-white">
+      <i class="bi bi-wallet2 me-1 text-success"></i>
+      от <span><%= @property.price_from %></span><small>р</small>/сутки
+    </div>      
+  </div>
+  <% if @property.distance_to_sea %>
+  <div class="col">    
+    <div class="distance-sea bg-success bg-opacity-50 text-white">
+      <i class="bi bi-water me-1 text-primary"></i>
+      море ~ <span><%= @property.distance_to_sea %></span><small>м</small>
+    </div>
+  </div>
+  <% end %>
+</div>
+  
+<div class="card shadow">  
+  <div class="card-header border-bottom">
+    <h6 class="mb-0">Контакты</h6>
+  </div>
+
+  <div class="card-body">
+    
+    <div class="text-center">
+      <span class="fw-semibold me-3"><%= @property.contact.name %></span>
+
+      <% if @property.contact.avatar.blank? %>
+        <%= image_tag @property.avatar.variant(resize_to_fill: [50, 50]), class: "rounded-circle" %>                  
+      <% else %>
+        <%= image_tag(@property.contact.avatar.variant(resize_to_fill: [50, 50]), class: "shadow-sm mx-auto") %>
+      <% end %>    
+    </div>
+
+    <div class="my-4 vstack gap-3">
+      <% if @property.property_detail.site %>
+        <a href="http://<%= @property.property_detail.site %>" target="_blank">
+        <span class="badge bg-secondary bg-opacity-10 text-black-50"><i class="bi bi-globe"></i></span>
+          
+          &nbsp;<%= @property.property_detail.site %>
+        </a>  
+      <% end %>
+    
+      <% if @property.property_detail.vk_group %>
+        <a href="https://vk.com/<%= @property.property_detail.vk_group %>" target="_blank">
+          <span class="badge bg-secondary bg-opacity-10 text-black-50">VK</span>
+          &nbsp;<%= @property.property_detail.vk_group %>
+        </a>  
+      <% end %>  
+    </div>
+
+    <a class="btn btn-primary-soft btn-sm w-100" data-bs-toggle="collapse" href="#collapseContacts" role="button" aria-expanded="false" aria-controls="collapseContacts">
+      Показать контакты
+    </a>
+
+    <div class="collapse" id="collapseContacts">
+      <div class="my-4 vstack gap-3 ">
+        <% if @property.property_detail.email %>
+          <div>
+            <span class="badge bg-secondary bg-opacity-10 text-black-50"><i class="bi bi-envelope"></i></span>
+            <%= @property.property_detail.email %>
+          </div>
+        <% end %>
+
+        <a href=<%= "tel:#{@property.contact.phone_number}" %>>
+          <span class="badge bg-secondary bg-opacity-10 text-black-50"><i class="bi bi-telephone"></i></span>            
+          <%= @property.contact.phone_number %>
+        </a>    
+      </div>
+
+      <div class="text-center">
+        <% @property.contact.messengers.each do |messenger| %>
+          <%= link_to_messenger(messenger, @property.contact.phone_number) %>          
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -73,12 +73,11 @@ def create_property
                             latitude: "45.05#{rand 0..9}65",
                             longitude: "35.39#{rand 0..9}88"),
                           contact:      Contact.new(
-                            phone_number: '+7(978)117-54-21',
-                            email: 'partner@email.com',
+                            phone_number: '+7(978)117-54-21',                      
                             name: 'Мария Ивановна',
                             messengers: ["whatsapp", "viber", "telegram"]),
                           property_detail: PropertyDetail.new(
-                            short_description: 'Описание',
+                            short_description: "Гостиница находится в одном из лучших районов города. До моря идти 7-10 минут неспешным шагом, направится можно на два разных пляжа. Первый пляж 'Динамо' - песчанный с ровным песчанным дном. Второй из мелкой перетёртой ракушки - пляж санатория Восход. Вход на все пляжи Феодосии бесплатный. В гостинице сдаются 2-х, 3-х и 4-х местные номера класса Люкс. В номерах имеется всё что нужно для комфортного отдыха в Феодосии. А именно: кровати, телевизор, кондиционер, шкаф, сан.узел, кухонка с микроволновой печью, холодильником, раковиной, посудой и кухонной мебелью. Во дворе гостиницы бассейн, декоративный водоём с рыбками, цветы, ландшафтный дизайн, декоративные растения, беседка, виноградник - очень красиво. У номеров на втором этаже есть общий балкон со столиками у номеров.",
                             food: 'оборудованная кухня, возможность готовить еду самостоятельно 2 кухни',
                             parking: 'бесплатная, на территории',
                             territory: 'закрытый двор терраса, место для отдыха мангал, место для барбекю',
@@ -87,7 +86,7 @@ def create_property
                             additional_info: 'Услуги за отдельную плату: пользование стиральной машиной. Примечание: если клиент отказывается от бронирования, предоплата не возвращается.',
                             site: 'ilovekrim.ru',
                             email: 'email@hotels.ru',
-                            vk_group: 'vk_group_link'))
+                            vk_group: 'i_lovekrim'))
   
   property.avatar.attach(io: rand_image_path .open, filename: "avatar.jpg")
   5.times do |i|
@@ -133,6 +132,6 @@ Partner.destroy_all
 Partner.create!(email: 'test@test.ru', password: '123456', confirmed_at: Time.zone.now)
 
 Property.destroy_all
-5.times { create_property }
+35.times { create_property }
 Property.reindex
 puts "Properties indexed"
