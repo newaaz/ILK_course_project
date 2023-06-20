@@ -4,6 +4,26 @@ class PropertiesController < ApplicationController
 
   after_action  :verify_authorized
 
+  def calculate_price
+    @property = Property.find(params[:id])
+
+    if params[:commit] == 'Сброс'
+      session.delete(:check_in)
+      session.delete(:check_out)
+      @dates_status = :reset
+      return
+    end
+
+    if params[:check_in].blank? || params[:check_out].blank?
+      @dates_status = :empty
+      return
+    end
+
+    session[:check_in] = params[:check_in]
+    session[:check_out] = params[:check_out]
+    @dates_status = :set
+  end
+
   def index
     @properties = Property.take 3
   end

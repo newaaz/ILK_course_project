@@ -1,5 +1,5 @@
 <div id="search-form" class="border rounded p-3 my-3 bg-light bg-opacity-75 shadow">
-  <%= form_with url: search_path, method: :post, data: { turbo: false }, id: 'new_order', class: "row g-3" do |f| %>
+  <%= form_with url: search_path, data: { turbo: false }, id: 'new_order', class: "row g-3" do |f| %>
 
     <div class="col-sm-12 col-md-2">
       <%= f.label :town, class: "form-label" %>

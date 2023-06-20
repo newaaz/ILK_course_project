@@ -91,7 +91,7 @@
 					<%#= render 'properties/show/price_start' %>
 
 					<div id="check_in_form" class="card card-body border mb-3 py-3 px-3">
-						<%= render 'properties/show/check_in_form' %>
+						<%= render partial: 'properties/show/check_in_form', locals: { property: @property } %>
 					</div>
 					
 					<%= render 'properties/show/contacts' %>

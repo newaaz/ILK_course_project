@@ -2,7 +2,7 @@
   <form class="row g-1">
     <div class="row align-items-end g-0">
       <!-- Check in -->
-      <div class="col-md-5">
+      <div class="col-md-4">
         <label class="small">Check in</label>
         <div class="form-border-bottom form-control-transparent d-flex align-items-center">
           <i class="bi bi-calendar text-secondary d-block me-2"></i>
@@ -13,7 +13,7 @@
       </div>
 
       <!-- Check Out -->
-      <div class="col-md-5">
+      <div class="col-md-4">
         <label class="small">Check Out</label>
         <div class="form-border-bottom form-control-transparent d-flex align-items-center">
           <i class="bi bi-calendar text-secondary d-block me-2"></i>
@@ -24,7 +24,7 @@
       </div>
 
       <!-- Reset Dates -->
-      <div class="col-md-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Сбросить даты">    
+      <div class="col-md-4">    
         <%= link_to reset_search_dates_path, data: { "turbo-method": :delete }, class: 'btn btn-sm btn-primary-soft' do %>
           <i class="bi bi-arrow-counterclockwise fa-fw me-1"></i>
         <% end %>
@@ -95,4 +95,25 @@
     <button class="btn btn-sm btn-primary-soft w-100 mb-0">Посчитать</button>
   </div>
 </form>
+
+<%= form_with url: calculate_price_property_path(property), id: 'new_order_for_datepicker', class: "row g-3" do |f| %>
+
+  <div class="">
+    <%= f.label :check_in, class: "form-label" %>
+    <%= f.date_field :check_in, class: "form-control form-control-sm", value: session['check_in'] %>
+  </div>
+  <div class="">
+    <%= f.label :check_out, class: "form-label" %>
+    <%= f.date_field :check_out, class: "form-control form-control-sm", value: session['check_out'] %>
+  </div>
+
+    <div class="col-12 mt-3">
+    <%= f.submit "Сброс", class:"btn btn-sm btn-secondary-soft w-100 mb-0" %>
+  </div>
+
+  <div class="col-12 mt-3">
+    <%= f.submit "Посчитать", class:"btn btn-sm btn-primary-soft w-100 mb-0" %>
+  </div>
+
+<% end %>
 

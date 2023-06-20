@@ -56,6 +56,6 @@
   <%= render 'properties/templates/property_detail_fields', f: f %>  
 
   <div class="text-center">
-	  <%= f.submit "Разместить объявление",class:"btn btn-primary my-4" %>
+    <%= f.submit f.object.new_record? ? "Разместить объявление" : "Сохранить изменения", class:"btn btn-primary my-4" %>
 	</div>
 <% end %>

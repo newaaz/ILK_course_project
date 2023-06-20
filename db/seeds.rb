@@ -58,6 +58,10 @@ def rand_image_path
   Pathname.new(Rails.root.join("app/assets/images/seed/property/p (#{rand 1..15}).jpg"))
 end
 
+def rand_price
+  (rand(1000..2500) / 50).round * 50
+end
+
 # Create property
 def create_property
   property = Property.new(title:        PROPERTY_NAMES.sample,
@@ -106,12 +110,11 @@ def create_property
                                 beds: "2 кровати",
                                 furniture: "шкаф тумбочки",
                                 in_room: "полный комплект посуды, посудомоечная машина, стиральная машина-автомат",
-                                prices: [
-                                  Price.new(start_date: '01/01/2023', end_date: '31/01/2023', day_cost: 1450),
-                                  Price.new(start_date: '01/02/2023', end_date: '28/02/2023', day_cost: 1720),
-                                  Price.new(start_date: '01/03/2023', end_date: '31/03/2023', day_cost: 2100),
-                                  Price.new(start_date: '01/04/2023', end_date: '30/04/2023', day_cost: 2450),
-                                  Price.new(start_date: '01/05/2023', end_date: '31/05/2023', day_cost: 2950)
+                                prices: [                                  
+                                  Price.new(start_date: '01/03/2023', end_date: '31/03/2023', day_cost: rand_price),
+                                  Price.new(start_date: '01/04/2023', end_date: '30/04/2023', day_cost: rand_price),
+                                  Price.new(start_date: '01/05/2023', end_date: '31/05/2023', day_cost: rand_price),
+                                  Price.new(start_date: '01/06/2023', end_date: '30/09/2023', day_cost: rand_price),
                                 ])
   
     room.avatar.attach(io: rand_image_path .open, filename: 'r(1).jpg')
