@@ -27,3 +27,5 @@ application.register("previews", PreviewsController)
 import PropertyShowController from "./property_show_controller"
 application.register("property-show", PropertyShowController)
 
+import ToastController from "./toast_controller"
+application.register("toast", ToastController)

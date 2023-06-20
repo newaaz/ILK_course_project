@@ -1,31 +1,98 @@
-<div class="card card-body border">
   
-  <!-- Title -->
-  <div class="d-sm-flex justify-content-sm-between align-items-center mb-3">
-    <div>
-      <span>Price Start at</span>
-      <h4 class="card-title mb-0">$3,500</h4>
-    </div>
-    <div>
-      <h6 class="fw-normal mb-0">1 room per night</h6>
-      <small>+ $285 taxes & fees</small>
-    </div>
-  </div>		
+  <form class="row g-1">
+    <div class="row align-items-end g-0">
+      <!-- Check in -->
+      <div class="col-md-5">
+        <label class="small">Check in</label>
+        <div class="form-border-bottom form-control-transparent d-flex align-items-center">
+          <i class="bi bi-calendar text-secondary d-block me-2"></i>
+          <div class="form-fs-sm">
+            <input type="text" class="form-control flatpickr" data-date-format="d/M/Y" placeholder="Select Date">
+          </div>
+        </div>
+      </div>
 
-  <!-- Rating -->
-  <ul class="list-inline mb-2">
-    <li class="list-inline-item me-1 h6 fw-light mb-0"><i class="bi bi-arrow-right me-2"></i>4.5</li>
-    <li class="list-inline-item me-0 small"><i class="bi bi-star-fill text-warning"></i></li>
-    <li class="list-inline-item me-0 small"><i class="bi bi-star-fill text-warning"></i></li>
-    <li class="list-inline-item me-0 small"><i class="bi bi-star-fill text-warning"></i></li>
-    <li class="list-inline-item me-0 small"><i class="bi bi-star-fill text-warning"></i></li>
-    <li class="list-inline-item me-0 small"><i class="bi bi-star-half text-warning"></i></li>
-  </ul>
+      <!-- Check Out -->
+      <div class="col-md-5">
+        <label class="small">Check Out</label>
+        <div class="form-border-bottom form-control-transparent d-flex align-items-center">
+          <i class="bi bi-calendar text-secondary d-block me-2"></i>
+          <div class="form-fs-sm">
+            <input type="text" class="form-control flatpickr" data-date-format="d/M/Y" placeholder="Select Date">
+          </div>	
+        </div>
+      </div>
 
-  <p class="h6 fw-light mb-4"><i class="bi bi-arrow-right me-2"></i>Free breakfast available</p>
+      <!-- Reset Dates -->
+      <div class="col-md-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Сбросить даты">    
+        <%= link_to reset_search_dates_path, data: { "turbo-method": :delete }, class: 'btn btn-sm btn-primary-soft' do %>
+          <i class="bi bi-arrow-counterclockwise fa-fw me-1"></i>
+        <% end %>
+      </div>
+    </div>
+
+  <!-- Guests 
+  <div class="col-md-12">
+    <label class="small">Guests</label>
+    <div class="form-border-bottom form-control-transparent d-flex align-items-center">
+      <i class="bi bi-people text-secondary d-block me-2"></i>
+      <div class="form-fs-sm">
+        <div class="dropdown guest-selector me-2">
+          <input type="text" class="form-guest-selector form-control selection-result" placeholder="Select guests" id="dropdownShare" data-bs-auto-close="outside" data-bs-toggle="dropdown">
+        
+          <ul class="dropdown-menu guest-selector-dropdown" aria-labelledby="dropdownShare">
+            <li class="d-flex justify-content-between">
+              <div>
+                <h6 class="mb-0">Adults</h6>
+                <small>Ages 13 or above</small>
+              </div>
+
+              <div class="hstack gap-1 align-items-center">
+                <button type="button" class="btn btn-link adult-remove p-0 mb-0"><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
+                <h6 class="guest-selector-count mb-0 adults">2</h6>
+                <button type="button" class="btn btn-link adult-add p-0 mb-0"><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
+              </div>
+            </li>
+
+            <li class="dropdown-divider"></li>
+
+            <li class="d-flex justify-content-between">
+              <div>
+                <h6 class="mb-0">Child</h6>
+                <small>Ages 13 below</small>
+              </div>
+
+              <div class="hstack gap-1 align-items-center">
+                <button type="button" class="btn btn-link child-remove p-0 mb-0" ><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
+                <h6 class="guest-selector-count mb-0 child">0</h6>
+                <button type="button" class="btn btn-link child-add p-0 mb-0" ><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
+              </div>
+            </li>
+
+            <li class="dropdown-divider"></li>
+
+            <li class="d-flex justify-content-between">
+              <div>
+                <h6 class="mb-0">Rooms</h6>
+                <small>Max room 8</small>
+              </div>
+
+              <div class="hstack gap-1 align-items-center">
+                <button type="button" class="btn btn-link room-remove p-0 mb-0" ><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
+                <h6 class="guest-selector-count mb-0 rooms">1</h6>
+                <button type="button" class="btn btn-link room-add p-0 mb-0" ><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>	
+    </div>
+  </div>
+  Guests -->
 
   <!-- Button -->
-  <div class="d-grid">
-    <a href="#room-options" class="btn btn-lg btn-primary-soft mb-0">View All Rooms</a>
+  <div class="col-12 mt-3">
+    <button class="btn btn-sm btn-primary-soft w-100 mb-0">Посчитать</button>
   </div>
-</div>
+</form>
+

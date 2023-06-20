@@ -23,7 +23,10 @@ class SearchController < ApplicationController
 
   def destroy
     reset_search_dates
-    redirect_back fallback_location: root_path
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }    
+      format.turbo_stream
+    end
   end
 
   private
