@@ -22,7 +22,7 @@
   input, textarea { border-color: #DC143C }
 }
 
-/* hotel description more */
+/* property description more */
 .content_block {
 	overflow: hidden;
 	position: relative;    
@@ -38,24 +38,5 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #f5f5f6 95%)
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 95%)
 }
-
-/* distance to sea */
-.distance-sea {
-	border-radius: 9px;
-	text-align: center;
-	padding: 5px 1px;
-	//color: #777;
-	//-webkit-box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.5); 
-  //box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.5);
-	/*background: rgba(0, 0, 0, 0) linear-gradient(to right, $color-yellow, #fec771) no-repeat scroll center;*/
-	/*background: rgba(0, 0, 0, 0) linear-gradient(to right, #0e64ac, #1e80c5) no-repeat scroll center;*/
-	/*	background: rgba(0, 0, 0, 0) linear-gradient(to right, #a3a3a3, rgb(200, 200, 200), ) no-repeat scroll center;*/
-	span {		
-		font-size: 16px;
-		font-weight: 600;
-		//color: #666;
-	}
-}
-

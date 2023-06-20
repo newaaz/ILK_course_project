@@ -5,7 +5,7 @@ module PropertiesHelper
     icon_class = "'bi bi-#{Contact::MESSENGERS_URLS[messenger.to_sym][:icon]} me-1'"
     
     link_to url, class: color_class, target: '_blank' do
-      "<i class=#{icon_class}'></i>".html_safe + messenger.capitalize  
+      "<i class=#{icon_class}></i>".html_safe + messenger.capitalize  
     end  
   end
 end

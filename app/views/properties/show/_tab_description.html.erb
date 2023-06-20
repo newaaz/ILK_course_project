@@ -9,60 +9,61 @@
     <div class="card-body pt-4 p-0">
       <div class="mb-3">
         <% @property.services.each do |service| %>									
-          <span class="badge bg-primary bg-opacity-10 text-success fs-6 mb-3 me-2 ">
-            <i class="bi bi-patch-check-fill text-success me-1"></i>
+          <span class="badge bg-success bg-opacity-10 text-success fs-6 mb-3 me-2 ">
+            <i class="bi bi-check-circle-fill text-success me-1"></i>
             <%= Property::SERVICES[service.to_sym] %>
           </span>
         <% end %>
         <% @property.property_detail.amenities.each do |service| %>									
-          <span class="badge bg-primary bg-opacity-10 text-success fs-6 mb-3 me-2">
-            <i class="bi bi-patch-check-fill text-success me-1"></i>
+          <span class="badge bg-success bg-opacity-10 text-success fs-6 mb-3 me-2">
+            <i class="bi bi-check-circle-fill text-success me-1"></i>
             <%= PropertyDetail::AMENITIES[service.to_sym] %>
           </span>
         <% end %>
-      </div>				
-      <div class="bg-light rounded border p-3 mb-4">
+      </div>
+
+      <div class="card card-body border mb-4">
         <% if @property.property_detail.short_description.size > 626 %>        
           <div class="content_block hide">
             <%= @property.property_detail.short_description %>          
           </div>
-          <a class="content_toggle text-secondary" href="#"><i class="bi bi-caret-down me-1"></i>Показать текст</a>
+          <a class="content_toggle text-secondary mb-3" href="#"><i class="bi bi-caret-down me-1"></i>Ещё</a>
         <% else %>
           <p class="mb-3"><%= @property.property_detail.short_description %></p>
         <% end %>
+
+        <hr>
+
+        <h5 class="mb-2 mt-3">Инфраструктура</h5>
+        <div class="px-3">
+          <div class="row bg-light py-2">
+            <div class="col-md-3 fw-semibold">Питание:</div>
+            <div class="col-md-9"><%= @property.property_detail.food %></div>
+          </div>        
+
+          <div class="row py-2">
+            <div class="col-md-3 fw-semibold">Парковка:</div>
+            <div class="col-md-9"><%= @property.property_detail.parking %></div>
+          </div>
+
+          <div class="row bg-light py-2">
+            <div class="col-md-3 fw-semibold">Территория:</div>
+            <div class="col-md-9"><%= @property.property_detail.territory %></div>
+          </div>
+
+          <div class="row  py-2">
+            <div class="col-md-3 fw-semibold">Трансфер:</div>
+            <div class="col-md-9"><%= @property.property_detail.transfer %></div>
+          </div>
+
+          <div class="row bg-light rounded-bottom py-2">
+            <div class="col-md-3 fw-semibold">Дополнительно:</div>
+            <div class="col-md-9"><%= @property.property_detail.additional_info %></div>
+          </div>
+        </div>
       </div>
-
-      <h5 class="fw-light mb-2">Инфраструктура</h5>
-
-      <div class="px-3">
-        <div class="row bg-secondary bg-opacity-10 rounded-top py-2">
-          <div class="col-md-3 fw-semibold">Питание:</div>
-          <div class="col-md-9"><%= @property.property_detail.food %></div>
-        </div>        
-
-        <div class="row bg-light py-2">
-          <div class="col-md-3 fw-semibold">Парковка:</div>
-          <div class="col-md-9"><%= @property.property_detail.parking %></div>
-        </div>
-
-        <div class="row bg-secondary bg-opacity-10 py-2">
-          <div class="col-md-3 fw-semibold">Территория:</div>
-          <div class="col-md-9"><%= @property.property_detail.territory %></div>
-        </div>
-
-        <div class="row bg-light py-2">
-          <div class="col-md-3 fw-semibold">Трансфер:</div>
-          <div class="col-md-9"><%= @property.property_detail.transfer %></div>
-        </div>
-
-        <div class="row bg-secondary bg-opacity-10 rounded-bottom py-2">
-          <div class="col-md-3 fw-semibold">Дополнительно:</div>
-          <div class="col-md-9"><%= @property.property_detail.additional_info %></div>
-        </div>
-      </div>
-
-      
-
     </div>
   </div>
 </div>
+
+
