@@ -14,7 +14,7 @@ class PropertiesController < ApplicationController
                                    rooms: [:prices, images_attachments: :blob, avatar_attachment: :blob]])
                         .find(params[:id])
 
-    @nearby_properties = @property.nearby_objects('Property')
+    @nearby_properties = @property.nearby_objects('Property', 20)
   end
 
   def new

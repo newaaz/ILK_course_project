@@ -132,6 +132,6 @@ Partner.destroy_all
 Partner.create!(email: 'test@test.ru', password: '123456', confirmed_at: Time.zone.now)
 
 Property.destroy_all
-15.times { create_property }
+25.times { create_property }
 Property.reindex
 puts "Properties indexed"

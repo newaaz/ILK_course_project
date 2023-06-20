@@ -88,6 +88,9 @@
 
 				<aside class="col-lg-4 px-lg-4 px-sm-0 mt-3">
 					<%#= render 'properties/show/booking_form' %>
+					<%#= render 'properties/show/price_start' %>
+
+					<%= render 'properties/show/check_in_form' %>
 					<%= render 'properties/show/contacts' %>
 				</aside>			
 			</div>
@@ -127,19 +130,11 @@
 
 				<!-- Right side content START -->
 				<aside class="col-lg-4 px-lg-4 px-sm-0 mt-3 order-2">
-					<div data-sticky-dont-work data-margin-top="100" data-sticky-for="1199">
-
-						<%= render 'properties/templates/price_start' %>
-
-
-						<% if @nearby_properties.any? %>
-							<%= render 'properties/templates/nearby_properties' %>
-						<% end %>
-					</div>	
+					<% if @nearby_properties.any? %>
+						<%= render 'properties/show/nearby_properties' %>
+					<% end %>
 				</aside>
 				<!-- Right side content END -->
-
-
 			</div>
 		</div>
 	</section>

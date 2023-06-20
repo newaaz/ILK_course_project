@@ -22,7 +22,7 @@
         <% end %>
       </div>
 
-      <div class="card card-body border mb-4">
+      <div class="card card-body border py-3 mb-4">
         <% if @property.property_detail.short_description.size > 626 %>        
           <div class="content_block hide">
             <%= @property.property_detail.short_description %>          
@@ -35,7 +35,7 @@
         <hr>
 
         <h5 class="mb-2 mt-3">Инфраструктура</h5>
-        <div class="px-3">
+        <div class="px-2">
           <div class="row bg-light py-2">
             <div class="col-md-3 fw-semibold">Питание:</div>
             <div class="col-md-9"><%= @property.property_detail.food %></div>
