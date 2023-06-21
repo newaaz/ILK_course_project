@@ -105,7 +105,7 @@ def create_property
                                 rooms_count: 1,
                                 size:   rand(20..50),
                                 description: "Номера «люкс» подойдут для размещения четырех человек – отличный вариант для большой семьи",
-                                services: ["sea_view", "mountain_view", "balcony", "tv", "satellite", "kettle"],
+                                services: ["sea_view", "mountain_view", "balcony", "tv", "satellite"],
                                 bathroom: "Туалет и душ в номере, санузел совмещенный",
                                 beds: "2 кровати",
                                 furniture: "шкаф тумбочки",

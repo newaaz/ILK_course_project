@@ -19,9 +19,19 @@ class PropertiesController < ApplicationController
       return
     end
 
-    session[:check_in] = params[:check_in]
-    session[:check_out] = params[:check_out]
-    @dates_status = :set
+    begin
+      session[:check_in] = params[:check_in].to_date
+      session[:check_out] = params[:check_out].to_date
+      @dates_status = :set
+    rescue Date::Error
+      render turbo_stream: turbo_stream.update('flash_messages',
+                                                  partial: 'shared/flash_message',
+                                                  locals: {
+                                                    message_type: 'info',
+                                                    message: 'Неправильный формат даты'
+                                                  })
+    end
+    
   end
 
   def index

@@ -18,9 +18,7 @@ export default class extends Controller {
         phoneMaskField, {
           mask: '+{7}(000)000-00-00'
         });
-    }
-
-  
+    }  
 
     // enable fileuploader plugin for images
     $('.images-upload-field').fileuploader({
@@ -142,8 +140,5 @@ export default class extends Controller {
     } else {
       preview.src = "https://via.placeholder.com/300x200";
     }
-
   }
-
-
 }

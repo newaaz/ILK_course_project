@@ -1,22 +1,20 @@
 <% if @dates_status == :empty %>
-  <%= turbo_stream.update('flash_messages', partial: 'shared/flash_message', locals: { 
+  <%= turbo_stream.update('flash_messages', partial: 'shared/flash_message', locals: {
                                                                                 message_type: 'info',
                                                                                 message: 'Требуются обе даты'
                                                                               }) %>
 
 <% else %>
-  <%= turbo_stream.update('check_in_form', partial: 'properties/show/check_in_form', locals: { property: @property }) %>
-
-  <%= turbo_stream.update('property_rooms', partial: 'rooms/room', collection: @property.rooms, as: :room) %>
-
+  <%= turbo_stream.update('check_in_form', partial: 'properties/show/check_in_form', locals: { property_id: @property.id }) %>
   <%= turbo_stream.update('flash_messages', partial: 'shared/flash_message', locals: { 
                                                                                 message_type: 'info',
                                                                                 message: 'Даты и цены обновлены'
                                                                               }) %>
+
+  <%#= turbo_stream.update('property_rooms', partial: 'rooms/room', collection: @property.rooms, as: :room) %>
+  <% @property.rooms.each do |room| %>  
+    <%= turbo_stream.update("price_#{dom_id(room)}", partial: 'rooms/display_price', locals: { room: room }) %>  
+  <% end %>
 <% end %>
-
-
-
-
 
 

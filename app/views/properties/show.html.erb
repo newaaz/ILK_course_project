@@ -72,12 +72,12 @@
 	</section>
 
 	<!-- Photo & contacts -->
-	<section class="card-grid pt-0" data-controller="fotorama">
+	<section class="card-grid pt-0">
 		<div class="container">
 			<div class="row g-2">
 				<div class="col-lg-8 px-0">
 					<!-- fotorama begin -->        
-					<div class="fotoramain mt-2 property-images">
+					<div class="fotoramain mt-2 property-images" data-controller="fotorama" data-object="main">
 						<%= link_to image_tag(@property.avatar.variant(resize_to_limit: [100, 100])), @property.avatar %>
 						<% @property.images.each do |image| %>
 							<%= link_to image_tag(image.variant(resize_to_limit: [100, 100])), image %>
@@ -91,7 +91,7 @@
 					<%#= render 'properties/show/price_start' %>
 
 					<div id="check_in_form" class="card card-body border mb-3 py-3 px-3">
-						<%= render partial: 'properties/show/check_in_form', locals: { property: @property } %>
+						<%= render partial: 'properties/show/check_in_form', locals: { property_id: @property.id } %>
 					</div>
 					
 					<%= render 'properties/show/contacts' %>
