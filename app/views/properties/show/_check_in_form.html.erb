@@ -1,12 +1,11 @@
-
 <%= form_with url: calculate_price_property_path(property_id), class: "row g-1" do |f| %>
-  <div class="row align-items-end g-0">
+  <div class="row align-items-end g-0" data-controller="lite-pickers">
     <!-- Check in -->
     <div class="col-md-5">
       <div class="form-border-bottom form-control-transparent d-flex align-items-center">
         <i class="bi bi-calendar text-secondary d-block"></i>
         <div class="form-fs-sm">
-          <input type="text" class="form-control" name="check_in" id="check_in" placeholder="Заезд">
+          <%= f.text_field :check_in, class: "start-date form-control ", value: session['check_in'], placeholder: "Заезд" %>
         </div>
       </div>
     </div>
@@ -15,26 +14,21 @@
     <div class="col-md-5">
       <div class="form-border-bottom form-control-transparent d-flex align-items-center">
         <i class="bi bi-calendar text-secondary d-block"></i>
-        <div class="form-fs-sm">
-          <input type="text" class="form-control" name="check_out" id="check_out" placeholder="Выезд">
+        <div class="form-fs-sm">        
+          <%= f.text_field :check_out, class: "end-date form-control ", value: session['check_out'], placeholder: "Выезд" %>
         </div>	
       </div>
     </div>
 
     <!-- Reset Dates -->
     <div class="col-md-2">
-      <%= button_tag(type: "submit", name: "commit", value: "Сброс", class: "btn btn-sm btn-secondary-soft mb-0") do %>
+      <%= button_tag(type: "submit", name: "commit", value: "reset", class: "btn btn-sm btn-secondary-soft mb-0") do %>
         <i class="bi bi-x-circle fa-fw me-1"></i>
       <% end %> 
     </div>
   </div>
 
-
-
-
   <div class="col-12 mt-3">
     <%= f.submit "Посчитать", class:"btn btn-sm btn-primary-soft w-100 mb-0" %>
   </div>
-
 <% end %>
-

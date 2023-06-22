@@ -7,9 +7,10 @@ class PropertiesController < ApplicationController
   def calculate_price
     @property = Property.find(params[:id])
 
-    if params[:commit] == 'Сброс'
+    if params[:commit] == 'reset'
       session.delete(:check_in)
       session.delete(:check_out)
+      session.delete(:days_count)
       @dates_status = :reset
       return
     end
@@ -20,8 +21,8 @@ class PropertiesController < ApplicationController
     end
 
     begin
-      session[:check_in] = params[:check_in].to_date
-      session[:check_out] = params[:check_out].to_date
+      session[:check_in], session[:check_out] = params[:check_in].to_date, params[:check_out].to_date    
+      session[:days_count] = (session[:check_out] - session[:check_in]).to_i + 1
       @dates_status = :set
     rescue Date::Error
       render turbo_stream: turbo_stream.update('flash_messages',

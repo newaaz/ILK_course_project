@@ -3,8 +3,8 @@ class SearchController < ApplicationController
     @properties = BookingSearchService.call(params).includes([:avatar_attachment])
 
     if params[:check_in].present? && params[:check_out].present?        
-      session[:check_in] = params[:check_in].to_date
-      session[:check_out] = params[:check_out].to_date
+      session[:check_in], session[:check_out] = params[:check_in].to_date, params[:check_out].to_date    
+      session[:days_count] = (session[:check_out] - session[:check_in]).to_i + 1
     else
       reset_search_dates
     end

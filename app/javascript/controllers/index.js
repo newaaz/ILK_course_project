@@ -12,6 +12,9 @@ application.register("fotorama", FotoramaController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import LitePickersController from "./lite_pickers_controller"
+application.register("lite-pickers", LitePickersController)
+
 import MapsController from "./maps_controller"
 application.register("maps", MapsController)
 
