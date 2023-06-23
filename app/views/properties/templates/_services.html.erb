@@ -1,0 +1,33 @@
+<div class="card shadow">  
+  <div class="card-header border-bottom">
+    <h5 class="mb-0">Сервисы и удобства</h5>
+  </div>
+
+  <div class="card-body">
+    <div class="row g-3">
+
+      <div class="col-12">
+
+          <% Property::SERVICES.each do |key, value| %>
+            <div class="d-inline ms-3">
+              <%= f.check_box :services, { multiple: true, checked: f.object.services&.include?(key.to_s), class: 'form-check-input' }, key, nil %>
+              <%= f.label value, for: "property_services_#{key}",  class: 'form-check-label mb-4' %>
+            </div>  
+          <% end %>
+
+          <%= f.fields_for :property_detail do |details_amenitites| %>
+
+            <% PropertyDetail::AMENITIES.each do |key, value| %>
+              <div class="d-inline ms-3">
+                <%= details_amenitites.check_box :amenities, { multiple: true, checked: details_amenitites.object.amenities&.include?(key.to_s), class: 'form-check-input' }, key, nil %>
+                <%= details_amenitites.label value, for: "property_property_detail_attributes_amenities_#{key}",  class: 'form-check-label mb-4' %>
+              </div>  
+            <% end %>
+
+
+          <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -82,6 +82,7 @@ $theme-colors: (
   "light":      $light,
   "dark":       $dark,
   "orange":     $orange,
+  "purple":     $purple,
   "mode":       $mode,
   "lime":       $lime
 );
@@ -198,9 +199,12 @@ $transition-base:               all .3s ease-in-out;
 // Fonts
 //
 // Font Families
+@import url(https://fonts.googleapis.com/css?family=Exo+2:400&subset=latin,cyrillic);
 
 $font-family-base:           'DM Sans', sans-serif;
-$font-family-heading:        'Poppins', sans-serif;
+$font-family-heading:        'Exo 2', sans-serif;  //'Poppins', sans-serif;
+
+
 
 // Font Sizes
 

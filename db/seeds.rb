@@ -58,33 +58,67 @@ def rand_image_path
   Pathname.new(Rails.root.join("app/assets/images/seed/property/p (#{rand 1..15}).jpg"))
 end
 
+def rand_price
+  (rand(1000..2500) / 50).round * 50
+end
+
 # Create property
 def create_property
-  property = Property.new(geolocation:  Geolocation.new(latitude: "45.05#{rand 0..9}65", longitude: "35.39#{rand 0..9}88"),
-                          title:        PROPERTY_NAMES.sample,
+  property = Property.new(title:        PROPERTY_NAMES.sample,
                           address:      PROPERTY_ADRESSES.sample,
                           town:         Town.all.sample,
                           category:     Category.all.sample,
-                          owner:        Partner.first)
+                          owner:        Partner.first,
+                          activated:    true,
+                          price_from:   rand(1000..5000),
+                          distance_to_sea: (rand(200..1500) / 50).round * 50,
+                          services: ["kitchen", "excursions", "pool", "parking", "playground"],
+                          geolocation:  Geolocation.new(
+                            latitude: "45.05#{rand 0..9}65",
+                            longitude: "35.39#{rand 0..9}88"),
+                          contact:      Contact.new(
+                            phone_number: '+7(978)117-54-21',                      
+                            name: 'Мария Ивановна',
+                            messengers: ["whatsapp", "viber", "telegram"]),
+                          property_detail: PropertyDetail.new(
+                            short_description: "Гостиница находится в одном из лучших районов города. До моря идти 7-10 минут неспешным шагом, направится можно на два разных пляжа. Первый пляж 'Динамо' - песчанный с ровным песчанным дном. Второй из мелкой перетёртой ракушки - пляж санатория Восход. Вход на все пляжи Феодосии бесплатный. В гостинице сдаются 2-х, 3-х и 4-х местные номера класса Люкс. В номерах имеется всё что нужно для комфортного отдыха в Феодосии. А именно: кровати, телевизор, кондиционер, шкаф, сан.узел, кухонка с микроволновой печью, холодильником, раковиной, посудой и кухонной мебелью. Во дворе гостиницы бассейн, декоративный водоём с рыбками, цветы, ландшафтный дизайн, декоративные растения, беседка, виноградник - очень красиво. У номеров на втором этаже есть общий балкон со столиками у номеров.",
+                            food: 'оборудованная кухня, возможность готовить еду самостоятельно 2 кухни',
+                            parking: 'бесплатная, на территории',
+                            territory: 'закрытый двор терраса, место для отдыха мангал, место для барбекю',
+                            transfer: 'трансфер из аэропорта в Симферополе 2500 руб',
+                            amenities: ["washer", "closed_yard", "terrace", "brazier", "printer", "notebok"],
+                            additional_info: 'Услуги за отдельную плату: пользование стиральной машиной. Примечание: если клиент отказывается от бронирования, предоплата не возвращается.',
+                            site: 'ilovekrim.ru',
+                            email: 'email@hotels.ru',
+                            vk_group: 'i_lovekrim'))
   
   property.avatar.attach(io: rand_image_path .open, filename: "avatar.jpg")
-  5.times do |i|
+  35.times do |i|
     property.images.attach(io: rand_image_path .open, filename: "p_#{i + 1}.jpg")
   end    
   
   # Create Room's
   3.times do |i|
     room = property.rooms.build(title: "Стандартный #{i + 1}-х местный номер",
-                                prices: [
-                                  Price.new(start_date: '01/01/2023', end_date: '31/01/2023', day_cost: 1450),
-                                  Price.new(start_date: '01/02/2023', end_date: '28/02/2023', day_cost: 1720),
-                                  Price.new(start_date: '01/03/2023', end_date: '31/03/2023', day_cost: 2100),
-                                  Price.new(start_date: '01/04/2023', end_date: '30/04/2023', day_cost: 2450),
-                                  Price.new(start_date: '01/05/2023', end_date: '31/05/2023', day_cost: 2950)
+                                guest_base_count: 2,
+                                guest_max_count: rand(1..10),
+                                rooms_count: 1,
+                                size:   rand(20..50),
+                                description: "Номера «люкс» подойдут для размещения четырех человек – отличный вариант для большой семьи",
+                                services: ["sea_view", "mountain_view", "balcony", "tv", "satellite"],
+                                bathroom: "Туалет и душ в номере, санузел совмещенный",
+                                beds: "2 кровати",
+                                furniture: "шкаф тумбочки",
+                                in_room: "полный комплект посуды, посудомоечная машина, стиральная машина-автомат",
+                                prices: [                                  
+                                  Price.new(start_date: '01/03/2023', end_date: '31/03/2023', day_cost: rand_price),
+                                  Price.new(start_date: '01/04/2023', end_date: '30/04/2023', day_cost: rand_price),
+                                  Price.new(start_date: '01/05/2023', end_date: '31/05/2023', day_cost: rand_price),
+                                  Price.new(start_date: '01/06/2023', end_date: '30/09/2023', day_cost: rand_price),
                                 ])
   
     room.avatar.attach(io: rand_image_path .open, filename: 'r(1).jpg')
-    3.times do |i|
+    6.times do |i|
       room.images.attach(io: rand_image_path .open, filename: "r_#{i + 1}.jpg")
     end    
   end
@@ -97,7 +131,10 @@ end
 create_categories
 create_towns
 
+Partner.destroy_all
+Partner.create!(email: 'test@test.ru', password: '123456', confirmed_at: Time.zone.now)
+
 Property.destroy_all
-35.times { create_property }
+25.times { create_property }
 Property.reindex
 puts "Properties indexed"

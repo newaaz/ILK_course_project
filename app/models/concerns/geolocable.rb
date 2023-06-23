@@ -4,7 +4,7 @@ module Geolocable
     has_one :geolocation, as: :geolocable, dependent: :destroy
     accepts_nested_attributes_for :geolocation
 
-    def nearby_objects(object)
+    def nearby_objects(object, count = 10)
       lat_range = (geolocation.latitude - 0.0090)..(geolocation.latitude + 0.0090)
       long_range = (geolocation.longitude - 0.0127)..(geolocation.longitude + 0.0127)
 
@@ -13,6 +13,7 @@ module Geolocable
                         .joins(:geolocation)
                         .where(geolocation: { latitude: lat_range, longitude: long_range, geolocable_type: object })
                         .where.not(geolocation: { geolocable_id: id })
+                        .take(count)
     end
 
     def distance_to(object)

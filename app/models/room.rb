@@ -1,4 +1,16 @@
 class Room < ApplicationRecord
+  SERVICES =  {
+    sea_view: 'Вид на море',
+    mountain_view: 'Вид на горы',
+    balcony: 'Балкон',
+    wifi: 'WiFi',
+    tv: 'Телевизор',
+    satellite: 'Спутниковое, цифровое ТВ',
+    fridge: 'Холодильник',
+    conditioner: 'Кондиционер',
+    kettle: 'Эл чайник'
+  }.freeze
+
   include Imagable
   
   belongs_to :property
@@ -9,7 +21,23 @@ class Room < ApplicationRecord
   validates :title, :guest_base_count, :guest_max_count, presence: true
   validate  :check_overlap_price_date_ranges
 
-  accepts_nested_attributes_for :prices, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :prices, allow_destroy: true
+
+  def self.sample_data(room_id)
+    if room_id == 0
+      Room.new(prices: [Price.new])
+    else
+      original_room = Room.find(room_id)
+      sample_room = original_room.dup
+
+      original_room.prices.each do |price|
+        price.day_cost = nil
+        sample_room.prices << price.dup
+      end
+  
+      sample_room
+    end
+  end
 
   #TODO validates_each
   def check_overlap_price_date_ranges

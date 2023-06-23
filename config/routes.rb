@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   resources :properties do
     resources :rooms, except: %i[index show], shallow: true
+    post :calculate_price, on: :member
   end
 
   delete 'images/:id/purge', to: 'images#purge', as: 'purge_image'

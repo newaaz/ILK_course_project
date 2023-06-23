@@ -8,10 +8,15 @@
 
 @import 'plugins/fotorama.scss';
 
+@import 'plugins/fileuploader.scss';
+@import 'plugins/fileuploader-thumbnails.scss';
+@import 'plugins/font-fileuploader.scss';
+
 @import 'base';
 
 @import './custom/parallax.scss';
 @import './custom/top_line.scss';
 @import './custom/logo.scss';
 @import './custom/prices.scss';
+@import './custom/images.scss';
 

@@ -9,7 +9,7 @@ module Accessibled
   def check_user
     if current_partner
       flash.clear
-      flash[:info] = 'You are partner (from Acessibled)'
+      flash[:info] = 'Вы вошли как Партнёр'
       redirect_to partners_root_path and return
     elsif current_customer
       flash.clear

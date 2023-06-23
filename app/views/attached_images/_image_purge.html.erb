@@ -1,0 +1,8 @@
+<%= content_tag(:div, id: dom_id(image), class: 'd-inline-flex del-image') do %>
+  <%= link_to purge_image_path(image), data: { "turbo-method": :delete } do %>
+    &times;
+  <% end %>
+  <%= image_tag image.variant(resize_to_limit: [150, 150]) %>
+<% end %>
+
+

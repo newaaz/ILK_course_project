@@ -36,7 +36,6 @@ gem "omniauth-github", "~> 2.0"
 gem "omniauth-vkontakte", "~> 1.8"
 
 gem "pundit", "~> 2.2"
-gem "cocoon", "~> 1.2"
 gem "geocoder", "~> 1.8"
 
 gem "aasm", "~> 5.4"

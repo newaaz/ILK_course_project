@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
   create_table "categories", force: :cascade do |t|
     t.string "title", null: false
     t.integer "ordinal_number", limit: 2, default: 1, null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "phone_number"
+    t.string "avatar"
+    t.string "messengers", default: [], array: true
+    t.string "contactable_type", null: false
+    t.bigint "contactable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contactable_type", "contactable_id"], name: "index_contacts_on_contactable"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -105,6 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
   create_table "partners", force: :cascade do |t|
     t.string "name"
     t.string "phone_number"
+    t.string "avatar"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -123,9 +136,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
 
   create_table "prices", force: :cascade do |t|
     t.bigint "room_id", null: false
-    t.date "start_date", null: false
-    t.date "end_date", null: false
-    t.integer "day_cost", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "day_cost"
+    t.integer "add_guest_cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_prices_on_room_id"
@@ -134,6 +148,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
   create_table "properties", force: :cascade do |t|
     t.string "title", null: false
     t.string "address"
+    t.integer "rating", limit: 2, default: 50
+    t.integer "price_from", limit: 2
+    t.integer "distance_to_sea", limit: 2
+    t.string "services", default: [], array: true
+    t.boolean "activated", default: false
+    t.boolean "deleted", default: false
+    t.boolean "enabled", default: true
+    t.boolean "blocked", default: false
     t.bigint "owner_id", null: false
     t.bigint "town_id", null: false
     t.bigint "category_id", null: false
@@ -144,11 +166,37 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
     t.index ["town_id"], name: "index_properties_on_town_id"
   end
 
+  create_table "property_details", force: :cascade do |t|
+    t.bigint "property_id", null: false
+    t.text "short_description"
+    t.string "food"
+    t.string "parking"
+    t.string "territory"
+    t.string "transfer"
+    t.string "amenities", default: [], array: true
+    t.string "additional_info"
+    t.string "site"
+    t.string "email"
+    t.string "vk_group"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_property_details_on_property_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.bigint "property_id", null: false
     t.string "title", null: false
-    t.integer "guest_base_count", limit: 2, default: 2, null: false
-    t.integer "guest_max_count", limit: 2, default: 4, null: false
+    t.integer "guest_base_count", limit: 2, null: false
+    t.integer "guest_max_count", limit: 2, null: false
+    t.string "description"
+    t.integer "serial_number", limit: 2, default: 1
+    t.integer "rooms_count", limit: 2, default: 1
+    t.integer "size", limit: 2
+    t.string "services", default: [], array: true
+    t.string "bathroom"
+    t.string "beds"
+    t.string "furniture"
+    t.string "in_room"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["property_id"], name: "index_rooms_on_property_id"
@@ -159,7 +207,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
     t.string "parent_name", null: false
     t.integer "ordinal_number", limit: 2, default: 1, null: false
     t.string "avatar"
-    t.string "description"
+    t.text "description"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -172,5 +220,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_195239) do
   add_foreign_key "properties", "categories"
   add_foreign_key "properties", "partners", column: "owner_id"
   add_foreign_key "properties", "towns"
+  add_foreign_key "property_details", "properties"
   add_foreign_key "rooms", "properties"
 end

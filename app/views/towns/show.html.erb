@@ -1,4 +1,8 @@
-<section class="parallax-window" data-parallax="scroll" data-image-src="<%= @town.avatar.url %>">
+<% provide :turbo_cache_control do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
+<section class="parallax-window" data-controller="parallax" data-parallax="scroll" data-image-src="<%= @town.avatar.url %>">
   <div class="parallax-content-2">
     <div class="container">
       <div class="row">

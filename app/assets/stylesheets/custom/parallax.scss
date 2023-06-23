@@ -12,7 +12,7 @@
 	z-index: 600;
 	padding: 25px 0 20px 0;
 	color: #fff;
-	font-size: 13px;
+	font-size: 14px;
 	/*
 	background: -webkit-linear-gradient(top,transparent,#000);
     background: linear-gradient(to bottom,transparent,#000);
@@ -27,6 +27,7 @@
 	font-weight: bold;
 	color: #fff;
 	margin: 0;
+	letter-spacing: 0.05em;
 }
 
 .parallax-content-2 .rating {
@@ -37,10 +38,12 @@
 @media (max-width: 767px) {
   .parallax-content-2 {
     padding-bottom: 15px;
+		text-align: center;
   }
 
   .parallax-content-2 div h1 {
-    font-size: 22px;
+    font-size: 26px;
+		
   }
 
   .parallax-content-2 .rating {

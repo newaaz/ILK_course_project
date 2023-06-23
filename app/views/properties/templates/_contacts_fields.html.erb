@@ -1,0 +1,52 @@
+<div class="card h-100 shadow">  
+  <div class="card-header border-bottom">
+    <h5 class="mb-0">Контакты</h5>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="row g-3 pb-3">
+        <%= f.fields_for :property_detail do |details_form| %>
+          <div class="col-12">        
+            <%= details_form.label :email, class: 'form-label' %> <span class="small text-secondary">(обязательно)</span>        
+            <div class="input-group"> 
+              <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+              <%= details_form.email_field :email, class: 'form-control' %>            
+            </div> 
+          </div>
+
+          <div class="col-12">        
+            <%= details_form.label :site, class: 'form-label' %> <span class="small text-secondary">(если есть)</span>        
+            <div class="input-group"> 
+              <span class="input-group-text">www</span>
+              <%= details_form.text_field :site, class: 'form-control' %>            
+            </div> 
+          </div>
+
+          <div class="col-12">        
+            <%= details_form.label :vk_group, class: 'form-label' %> <span class="small text-secondary">(если есть)</span>        
+            <div class="input-group"> 
+              <span class="input-group-text">vk.com/</i></span>
+              <%= details_form.text_field :vk_group, class: 'form-control' %>            
+            </div> 
+          </div>
+        <% end %>
+      </div>
+    </li>
+
+    <li class="list-group-item">    
+      <div class="row g-3">
+        <div class="col-12">
+          <div class="contact_fields">
+            <%= f.fields_for :contact do |contact| %>
+              <%= render 'contacts/contact_fields', f: contact %>
+            <% end %>            
+          </div>  
+        </div>            
+      </div>    
+    </li>
+  </ul>    
+</div>
+
+
+    

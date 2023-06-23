@@ -4,6 +4,14 @@
 $navbar-brand-height:               75px; //Logo height
 $navbar-brand-padding-y:            5px;
 
+
+$navbar-brand-height-sticky:        60px; //sticky Logo height
+$navbar-brand-padding-y-sticky:     3px;
+$nav-link-line-height-sticky:       $navbar-brand-padding-y-sticky * 2 + $navbar-brand-height-sticky;
+
+$navbar-mobile-brand-height:        60px; //mobile Logo height
+$navbar-mobile-brand-padding-y:     3px;
+
 // Font Families
 
 // $font-family-base:           'Montserrat', sans-serif;   // 'DM Sans', sans-serif;
@@ -21,6 +29,16 @@ $font-family-base: unquote("#{if($font-local, "#{$font-local}, ", ' ')}#{if($fon
 $font-family-monospace: unquote("#{if($font-google-monospaced, "#{$font-google-monospaced}, ", '')}") Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
 $font-family-serif: "Georgia", "Times New Roman", times, serif !default;
 
+
+$form-check-input-width:                  1.25em;
+
+hr {
+  margin: 1rem 0;
+  color: #85878a;
+  border: 0;
+  border-top: 1px solid;
+  opacity: 0.25;
+}
 
 
 // Headings

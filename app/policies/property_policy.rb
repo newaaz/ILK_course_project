@@ -25,4 +25,8 @@ class PropertyPolicy < ApplicationPolicy
   def destroy?
     user == record.owner
   end
+
+  def calculate_price?
+    true
+  end
 end

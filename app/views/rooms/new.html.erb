@@ -1,5 +1,41 @@
-<div class="container">
-<h1><%= "#{@property.title}: New room" %></h1>
-<%= render 'form' %>
-</div>
+<% provide :turbo_cache_control do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
 
+<section class="pb-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1 class="fs-3 mb-2">Добавить номер</h1>
+				<p class="fs-5 mb-0"><%= "#{property.title}: добавление нового номера" %></p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="container">
+		<div class="row">
+			
+			<% if @sample_rooms.any? %>		
+				<div class="col-lg-8">		
+					<%= form_with(url: new_property_room_path(property), method: "get", data: { turbo_stream: true }) do |f| %>
+						<span class="d-block text-secondary mb-2">Вставить шаблон данных с ранее добавленого номера</span>
+						<div class="input-group mb-4">
+							
+							<%= link_to 'Очистить', new_property_room_path(property),
+																			class: 'btn btn-outline-secondary',
+																			data: { turbo_stream: true } %>
+							<%= f.collection_select :sample_room, @sample_rooms, :id, :title, { prompt: "Выбрать номер" }, class:"form-select" %>
+							<%= f.submit "Вставить", class:"btn btn-secondary" %>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+
+			<div class="col-lg-12 mx-auto" id='room_form'>
+        <%= render partial: 'form', locals: { property: property, room: room } %>
+			</div>
+		</div>
+	</div>
+</section>
