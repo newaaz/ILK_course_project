@@ -4,11 +4,13 @@ class OrderPolicy < ApplicationPolicy
   end
   
   def new?
-    user.is_a?(Customer)
+    #user.is_a?(Customer)
+    true
   end
 
   def create?
-    user.is_a?(Customer)
+    #user.is_a?(Customer)
+    true
   end
 
   def pay_order?

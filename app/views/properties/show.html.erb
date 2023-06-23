@@ -41,18 +41,15 @@
 						<ul class="list-inline text-center">
 							<li class="list-inline-item me-3">		
 								<i class="bi bi-wallet2 me-1 text-success"></i>
+									<div id="price_from" class="d-inline">
+										<%= render 'properties/show/price_from' %>
+									</div>
 
-
-								<div id="price_from" class="d-inline">
-									<%= render 'properties/show/price_from' %>
-								</div>
-
-
-								<% if @property.distance_to_sea %>
-									<div class="mx-1 vr"></div>
-									<i class="bi bi-water me-1 text-primary"></i>
-									море ~ <span class="fw-semibold"><%= @property.distance_to_sea %></span><small>м</small>
-								<% end %>								
+									<% if @property.distance_to_sea %>
+										<div class="mx-1 vr"></div>
+										<i class="bi bi-water me-1 text-primary"></i>
+										море ~ <span class="fw-semibold"><%= @property.distance_to_sea %></span><small>м</small>
+									<% end %>								
 							</li>							
 							
 							<li class="list-inline-item">
@@ -150,9 +147,14 @@
 	</section>
 </main>
 
+
+
+<%= render 'properties/show/booking_modal' %>
+
+
 <!-- Map modal START -->
 <div class="modal fade" id="mapmodal" tabindex="-1" aria-labelledby="mapmodalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered modal-lg">
+	<div class="modal-dialog">
 		<div class="modal-content">
 			<!-- Title -->
 			<div class="modal-header">
@@ -161,7 +163,11 @@
 			</div>
 			<!-- Map -->
 			<div class="modal-body p-0">				
-				<div class="p-5">Modal map</div>
+				<div class="p-2">
+				
+
+				
+				</div>
 			</div>
 			<!-- Button -->
 			<div class="modal-footer">

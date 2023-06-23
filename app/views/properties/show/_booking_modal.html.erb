@@ -1,0 +1,66 @@
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="bookingModalLabel">New message</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: @order) do |f| %>
+
+          <div class="">
+            <div class="form-group mt-3">
+              <label>
+                Ваше имя
+              </label>            
+              <%= f.text_field :guest_name, class:"form-control form-control-sm", required: true %>
+            </div>
+        
+            <div class="row mt-2">
+              <div class="col-6">
+                <div class="form-group">
+                  <%= f.label "Email" %>            
+                  <%= f.email_field :guest_email, class:"form-control form-control-sm", required: true %>             
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <%= f.label "Номер телефона" %>                
+                  <%= f.telephone_field :guest_phone, class:"form-control form-control-sm", required: true %>
+                </div>
+              </div>
+            </div>
+          </div>            
+        
+          <% if @property.rooms.any? %>
+            <div class="form-group mt-3">
+              <%= f.label "Тип номера" %>
+              <%= f.collection_select :room_id, @property.rooms, :id, :title, { prompt: "Выбрать", include_blank: false },
+                                      class: "form-select form-select-sm" %>             
+            </div>
+          <% end %> 
+              
+          <div class="my-3">
+            <%= f.label "Текст:", class: 'form-label' %>          
+            <%= f.text_area :message, class:"form-control", rows:3 %>
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <%= button_tag "Отправить", type: 'submit', class:"w-50 btn btn-primary" %>
+          </div>
+            
+        <% end %>   
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

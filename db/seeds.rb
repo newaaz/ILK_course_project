@@ -131,8 +131,10 @@ end
 create_categories
 create_towns
 
-Partner.destroy_all
-Partner.create!(email: 'test@test.ru', password: '123456', confirmed_at: Time.zone.now)
+# Partner.destroy_all
+# Partner.create!(email: 'test@test.ru', password: '123456', confirmed_at: Time.zone.now)
+# Customer.destroy_all
+# Customer.create!(email: 'test@test.ru', password: '123456', confirmed_at: Time.zone.now)
 
 Property.destroy_all
 25.times { create_property }
