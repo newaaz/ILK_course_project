@@ -6,8 +6,6 @@ import "../custom/plugins/litepicker"
 // Connects to data-controller="lite-pickers"
 export default class extends Controller {
   connect() {
-    console.log('LitePicker connected')
-
     new Litepicker({
       element: this.element.querySelector('.start-date'),
       elementEnd: this.element.querySelector('.end-date'),

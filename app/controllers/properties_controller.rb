@@ -15,14 +15,15 @@ class PropertiesController < ApplicationController
       return
     end
 
-    if params[:check_in].blank? || params[:check_out].blank?
-      @dates_status = :empty
+    if params[:check_in].blank? || params[:check_out].blank? || params[:check_in].to_date > params[:check_out].to_date
+      @dates_status = :invalid
       return
     end
 
     begin
       session[:check_in], session[:check_out] = params[:check_in].to_date, params[:check_out].to_date    
-      session[:days_count] = (session[:check_out] - session[:check_in]).to_i + 1
+      session[:days_count] = (session[:check_out] - session[:check_in]).to_i
+
       @dates_status = :set
     rescue Date::Error
       render turbo_stream: turbo_stream.update('flash_messages',

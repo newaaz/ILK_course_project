@@ -1,7 +1,7 @@
-<% if @dates_status == :empty %>
+<% if @dates_status == :invalid %>
   <%= turbo_stream.update('flash_messages', partial: 'shared/flash_message', locals: {
                                                                                 message_type: 'info',
-                                                                                message: 'Требуются обе даты'
+                                                                                message: 'Требуются подходящие даты'
                                                                               }) %>
 
 <% else %>
@@ -15,5 +15,7 @@
   <% @property.rooms.each do |room| %>  
     <%= turbo_stream.update("price_#{dom_id(room)}", partial: 'rooms/display_price', locals: { room: room }) %>  
   <% end %>
+
+  <%= turbo_stream.update('price_from', partial: 'properties/show/price_from') %>
 <% end %>
 

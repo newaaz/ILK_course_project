@@ -133,10 +133,10 @@ ru:
         many: "%{count} минут"
         other: "%{count} минуты"
       x_days:
-        one: "%{count} день"
-        few: "%{count} дня"
-        many: "%{count} дней"
-        other: "%{count} дня"
+        one: "%{count} сутки"
+        few: "%{count} суток"
+        many: "%{count} суток"
+        other: "%{count} суток"
       x_months:
         one: "%{count} месяц"
         few: "%{count} месяца"

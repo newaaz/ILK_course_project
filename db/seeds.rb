@@ -71,7 +71,7 @@ def create_property
                           owner:        Partner.first,
                           activated:    true,
                           price_from:   rand(1000..5000),
-                          distance_to_sea: rand(250..900),
+                          distance_to_sea: (rand(200..1500) / 50).round * 50,
                           services: ["kitchen", "excursions", "pool", "parking", "playground"],
                           geolocation:  Geolocation.new(
                             latitude: "45.05#{rand 0..9}65",
@@ -93,7 +93,7 @@ def create_property
                             vk_group: 'i_lovekrim'))
   
   property.avatar.attach(io: rand_image_path .open, filename: "avatar.jpg")
-  5.times do |i|
+  35.times do |i|
     property.images.attach(io: rand_image_path .open, filename: "p_#{i + 1}.jpg")
   end    
   
