@@ -7,23 +7,14 @@
 	<div class="container">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#">Home</a></li>
-				<li class="breadcrumb-item"><a href="#">Library</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Data</li>
+				<li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
+				<li class="breadcrumb-item"><%= link_to @property.town.name, @property.town %></li>
+				<li class="breadcrumb-item"><%= link_to "Жильё", properties_town_path(@property.town) %></li>				
+				<li class="breadcrumb-item"><%= link_to @property.category.title, properties_town_path(@property.town, { cat: @property.category.id }) %></li>
+				<li class="breadcrumb-item active"><%= @property.title %></li> 
 			</ol>
 		</nav>
 	</div>
-
-	<div class="alert alert-info alert-dismissible d-flex justify-content-between align-items-center show mb-4 rounded-3 py-4" role="alert">
-		<div class="d-flex">
-			<span class="alert-heading h5 mb-0 me-2"><i class="bi bi-exclamation-octagon-fill"></i></span>
-			<span>
-				<strong class="alert-heading me-2">Демо-объект:</strong>
-				Забронировать в реальности его нельзя
-			</span>
-		</div>
-	</div>
-
 
 	<!-- title -->
 	<section class="py-0">

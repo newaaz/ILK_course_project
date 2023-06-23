@@ -93,7 +93,7 @@ def create_property
                             vk_group: 'i_lovekrim'))
   
   property.avatar.attach(io: rand_image_path .open, filename: "avatar.jpg")
-  35.times do |i|
+  5.times do |i|
     property.images.attach(io: rand_image_path .open, filename: "p_#{i + 1}.jpg")
   end    
   

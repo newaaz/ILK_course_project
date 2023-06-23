@@ -1,13 +1,13 @@
-
-
-
 <section class="parallax-window" data-controller="parallax" data-parallax="scroll" data-image-src="<%= @town.avatar.url %>">
   <div class="parallax-content-2">
     <div class="container">
       <div class="row">
         <div class="col-md-8">          
-          <h1><%= @town.name %></h1>  
-					<span>Страница города</span>         
+					<% unless @properties_category %>
+            <h1>Жильё в <%= @town.parent_name %></h1>           
+          <% else %>      
+            <h1><%= @properties_category %> в <%= @town.parent_name %></h1>
+          <% end %>        
         </div>
         <div class="col-md-4">
           <div id="price_single_main" class="hotel">
@@ -24,54 +24,27 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
-      <li class="breadcrumb-item active"><%= @town.name %></li>  
+      <li class="breadcrumb-item"><%= link_to @town.name, @town %></li>
+      <% unless @properties_category %>
+        <li class="breadcrumb-item active"><%= "Жильё в #{@town.parent_name}" %></li>       
+      <% else %>        
+        <li class="breadcrumb-item"><%= link_to "Жильё в #{@town.parent_name}", properties_town_path(@town) %></li> 
+        <li class="breadcrumb-item active"><%= @properties_category %></li>    
+      <% end %>
     </ol>
   </nav>
 </div>
 
-<section class="pt-0 pb-3">
-	<div class="container">
-		<div class="bg-light rounded border p-3 p-sm-4">	
-			<div class="align-items-center position-relative">
-				
-				<p class="mb-3 mb-lg-0 fs-6"><%= @town.description %></p>
-				
-			</div> <!-- Row END -->
-		</div>
-	</div>
-</section>
-
-
-<section class="py-3">
-	<div class="container">
-		
-    <%= link_to "Жильё в #{@town.parent_name}", properties_town_path(@town), class: 'btn btn-primary btn-lg' %>
-
-	</div>
-</section>
-
-
 <section class="py-3">
   <div class="container">
-    <h2 class="h3">Жильё <%= @town.parent_name %></h2>  
-
     <div class="categories my-3">
       <%= link_to 'Все категории', properties_town_path(@town), class: 'btn btn-light btn-sm' %>
       <% @categories.each do |cat| %>
-        <%= link_to cat.title, properties_town_path(@town, { cat: cat.id }), class: 'btn btn-light btn-sm' %>
+        <%= link_to cat.title, { cat: cat.id }, class: 'btn btn-light btn-sm' %>
       <% end %>
     </div>
-
+    <div class="row gx-3">
+      <%= render @properties %>
+    </div>
   </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-

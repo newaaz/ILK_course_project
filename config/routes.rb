@@ -43,7 +43,9 @@ Rails.application.routes.draw do
 
   resources :orders, only: %i[show new create update]
 
-  resources :towns, only: %i[show]
+  resources :towns, only: %i[show] do
+    get :properties, on: :member
+  end
 
   # for tests
   # default_url_options :host => "example.com"
