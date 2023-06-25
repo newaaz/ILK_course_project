@@ -1,3 +1,5 @@
+<% provide(:title, "#{@property.name} - #{@property.category.title} в #{@property.town.name}") %>
+
 <% provide :turbo_cache_control do %>
   <meta name="turbo-cache-control" content="no-cache">
 <% end %>

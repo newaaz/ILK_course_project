@@ -8,5 +8,5 @@ InvisibleCaptcha.setup do |config|
 
   # Leave these unset if you want to use I18n (see below)
   # config.sentence_for_humans     = 'If you are a human, ignore this field'
-  config.timestamp_error_message = 'Sorry, that was too quick! Please resubmit.'
+  config.timestamp_error_message = 'Извините, это было слишком быстро. Пожалуйста, попробуйте еще раз через 5 секунд'
 end
