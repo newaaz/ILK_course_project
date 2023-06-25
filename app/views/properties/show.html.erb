@@ -151,6 +151,42 @@
 
 <%= render 'properties/show/booking_modal' %>
 
+<script>
+
+	const bookingModal = document.getElementById('bookingModal')
+	bookingModal.addEventListener('show.bs.modal', event => {
+		// Button that triggered the modal
+		const button = event.relatedTarget
+		// Extract info from data-bs-* attributes
+		const recipient = button.getAttribute('data-bs-room')
+
+		const roomTitle = document.getElementById("room_" + recipient).querySelector('h5').innerText
+
+		document.getElementById('room-id-field').value = recipient
+
+		console.log(recipient)
+
+		const modalTitle = bookingModal.querySelector('.modal-title')
+		// const modalBodyInput = bookingModal.querySelector('.modal-body input')
+
+		modalTitle.textContent = roomTitle
+		// modalBodyInput.value = recipient
+	})
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- Map modal START -->
 <div class="modal fade" id="mapmodal" tabindex="-1" aria-labelledby="mapmodalLabel" aria-hidden="true">

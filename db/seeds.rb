@@ -128,15 +128,19 @@ def create_property
   puts "Property #{property.title} created"
 end
 
-create_categories
-create_towns
+time = Benchmark.measure do
+  create_categories
+  create_towns
 
-# Partner.destroy_all
-# Partner.create!(email: 'test@test.ru', password: '123456', confirmed_at: Time.zone.now)
-# Customer.destroy_all
-# Customer.create!(email: 'test@test.ru', password: '123456', confirmed_at: Time.zone.now)
+  Partner.destroy_all
+  Partner.create!(email: 'test@test.ru', password: '123456', confirmed_at: Time.zone.now)
+  Customer.destroy_all
+  Customer.create!(email: 'test@test.ru', password: '123456', confirmed_at: Time.zone.now)
 
-Property.destroy_all
-25.times { create_property }
-Property.reindex
-puts "Properties indexed"
+  Property.destroy_all
+  25.times { create_property }
+  Property.reindex
+  puts "Properties indexed"
+end
+
+puts "Время выполнения: #{time.real} секунд"
