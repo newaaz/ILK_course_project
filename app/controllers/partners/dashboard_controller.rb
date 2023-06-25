@@ -3,7 +3,7 @@ class Partners::DashboardController < ApplicationController
   after_action  :verify_authorized
 
   def index
-  	@properties = current_partner.properties.includes(:orders).includes(:rooms)
+  	@properties = current_partner.properties.includes([:orders, :town, :category, avatar_attachment: :blob, rooms: [avatar_attachment: :blob]])
   end
 
   def orders

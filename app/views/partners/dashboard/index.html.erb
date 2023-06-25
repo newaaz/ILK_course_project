@@ -1,4 +1,59 @@
-<%= render 'partners/dashboard/templates/nav_section' %>
+<% provide(:title, "Кабинет") %>
+
+<section class="pt-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-xl-3">
+        <%= render 'partners/dashboard/templates/nav_section' %>
+			</div>
+		
+			<div class="col-lg-8 col-xl-9 px-0 px-md-2">
+				<!-- Offcanvas menu button -->
+				<div class="mb-0 d-lg-none text-end">
+					<button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+						<i class="bi bi-arrow-bar-left"></i> Меню
+					</button>
+				</div>
+
+				<!-- Wishlist START -->
+				<div class="card border">
+					<!-- Card header -->
+					<div class="card-header border-bottom">
+						<h4 class="card-header-title">Личный кабинет</h4>
+					</div>
+
+					<!-- Card body START -->
+					<div class="card-body px-0 px-md-3 py-0 py-md-3 vstack gap-4">
+						<!-- Select and button 
+						<form class="d-flex justify-content-between">
+							<div class="col-6 col-xl-3">
+								<select class="form-select form-select-sm js-choice border-0">
+									<option value="">Sort by</option>
+									<option>Recently search</option>
+									<option>Most popular</option>
+									<option>Top rated</option>
+								</select>
+							</div>
+							
+							<button class="btn btn-danger-soft mb-0"><i class="bi bi-trash3 me-2"></i></i>Remove all</button>
+						</form>
+            Select and button -->
+
+            <%= render partial: 'partners/dashboard/templates/property', collection: @properties, as: :property %>
+
+					</div>
+					<!-- Card body END -->
+				</div>
+				<!-- Wishlist END -->
+
+			</div>
+			<!-- Main content END -->
+		</div>
+	</div>
+</section>
+
+
+
 
 <section class="pt-0">
 	<div class="container vstack gap-4">

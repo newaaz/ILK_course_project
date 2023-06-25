@@ -1,97 +1,37 @@
 <% provide(:title, "ILK: Контакты") %>
 
-
 <div class="container">
-
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-light">Light</button>
-<button type="button" class="btn btn-white">White</button>
-<button type="button" class="btn btn-dark">Dark</button>
-<button type="button" class="btn btn-link">Link</button>
-
-<hr>
-
-<a class="btn btn-primary-soft" href="#">Primary</a>
-<a class="btn btn-dark-soft" href="#">Dark</a>
-<a class="btn btn-light-soft" href="#">Light</a>
-<a class="btn btn-secondary-soft" href="#">Secondary</a>
-<a class="btn btn-success-soft" href="#">Success</a>
-<a class="btn btn-danger-soft" href="#">Danger</a>
-<a class="btn btn-warning-soft" href="#">Warning</a>
-<a class="btn btn-info-soft" href="#">Info</a>
-
-<hr>
-
-<a class="btn btn-primary" href="#"><i class="bi bi-arrow-up-right-circle me-2"></i>Primary</a>
-<a class="btn btn-dark" href="#">Dark <i class="bi bi-arrow-up-right-circle ms-2"></i></a>
-<a class="btn btn-primary btn-round btn-sm" href="#"><i class="bi bi-arrow-up-right-circle"></i></a>
-<a class="btn btn-primary btn-round" href="#"><i class="bi bi-arrow-up-right-circle"></i></a>
-<a class="btn btn-primary btn-round btn-lg" href="#"><i class="bi bi-arrow-up-right-circle"></i></a>
-
-<hr>
-
-<a class="btn btn-primary btn-xs" href="#">x Small</a>
-<a class="btn btn-primary btn-sm" href="#">Small</a>
-<a class="btn btn-primary" href="#">Default</a>
-<a class="btn btn-primary btn-lg" href="#">Large</a>
-
-<hr>
-
-<ul class="nav nav-tabs nav-bottom-line mb-3">
-	<li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#tab-3-1"> Research </a> </li>
-	<li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#tab-3-2"> Design </a> </li>
-	<li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#tab-3-3"> Develop </a> </li>
-</ul>
-<div class="tab-content">
-	<div class="tab-pane show active" id="tab-3-1">
-		We have a strong foundation built on legacy and emerging technologies, including excellent track record of on-time deliveries. We are emerging as one of the most promising private talent sourcing and management firms in the world. The real challenge before companies in today's world is to make their products and services appealing to everyone.
-	</div>
-	<div class="tab-pane" id="tab-3-2">
-		We pride ourselves on the service we give to our clients. Our friendly team members are always willing to help you understand your present technology requirements and provide suggestions on your future needs. It can be the packaging of an item or the design of its website and Applications.
-	</div>
-	<div class="tab-pane" id="tab-3-3">
-		Social an innovative Internet marketing solutions company that offers comprehensive web development, SMO services, SEO strategies and various other types of Internet marketing related services. With us at your side, you will find the IT solution to achieve your strategic and financial goals.
-	</div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
+      <li class="breadcrumb-item active">Контакты</li>  
+    </ol>
+  </nav>
 </div>
 
-<hr>
 
-<ul class="nav nav-pills nav-pills-primary-soft mb-3" id="tour-pills-tab" role="tablist">
-	<li class="nav-item me-2">
-		<a class="nav-link active" data-bs-toggle="tab" href="#tab-research">Research</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" data-bs-toggle="tab" href="#tab-design">Design</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" data-bs-toggle="tab" href="#tab-develope">Develope</a>
-	</li>
-</ul>
 
-<div class="tab-content">
-	<div class="tab-pane show active" id="tab-research">
-		We have a strong foundation built on legacy and emerging technologies, including excellent track record of on-time deliveries. We are emerging as one of the most promising private talent sourcing and management firms in the world. The real challenge before companies in today's world is to make their products and services appealing to everyone.
+
+
+<div class="container my-4">
+	<div class="resources-title mb-4 text-center">		
+		<h1 class="fs-3">Контакты</h1>		
 	</div>
-	<div class="tab-pane" id="tab-design">
-		We pride ourselves on the service we give to our clients. Our friendly team members are always willing to help you understand your present technology requirements and provide suggestions on your future needs. It can be the packaging of an item or the design of its website and Applications.
-	</div>
-	<div class="tab-pane" id="tab-develope">
-		On the service we give to our clients. Our friendly team members are always willing to help you understand your present technology requirements and provide suggestions on your future needs. It can be the packaging of an item or the design of its website and Applications.
-	</div>
-</div>
+	
+	<div class="bg-white border rounded p-3">
+		По всем вопросам, связанным с работой сайта вы можете: <br>
+			&emsp;Написать нам:&emsp;<a href="mailto:ilove-krim@mail.ru">ilove-krim@mail.ru</a><br>
+			&emsp;Позвонить:&emsp;+7(978)265-19-47 <span class="text-secondary">(каждый день с 9-00 до 18-00)</span>
+	</div> 	 
+</div>	
 
-<hr>								      
 
-<%= link_to @town.name, @town, class: "btn btn-success-soft" %>
 
 
 <section class="py-0 py-md-3">
 	<div class="container">
+		<%= link_to @town.name, @town, class: "btn btn-success-soft" %>
+
 		<div class="position-relative rounded overflow-hidden p-2 p-sm-5" style="background-image:url(<%= @town.avatar.url %>); background-position: center left; background-size: cover;">
 			<div class="row position-relative z-index-9">
 				<div class="col-md-9 col-xl-8">
@@ -107,265 +47,3 @@
 		</div>
 	</div>
 </section>
-
-<br><br>
-
-<div class="row gx-2">
-	<% @properties.each do |property| %>
-		<div class="col-6 col-lg-4 px-0 mb-4">
-			<div class="card mx-2 shadow-lg  h-100 hotel-card">      
-				
-				<%= link_to image_tag(property.avatar.variant(resize_to_limit: [400, 300]), class: "rounded-top"), property %>   
-
-				<div class="card-body py-1 px-2">
-					<%= link_to property do %>      
-						<%= property.title %>
-					<% end %>
-				</div>
-
-				<div class="card-footer px-2">
-					<small >
-						<i class="bi bi-geo-alt"></i>&nbsp;<%= property.address %>        
-					</small>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-6 col-xl-4">
-			<div class="card card-hover-shadow pb-0 h-100">
-				<!-- Overlay item -->
-				<div class="position-relative">
-					<!-- Image -->
-					
-					<%= image_tag(property.avatar.variant(resize_to_limit: [400, 300]), class: "card-img-top") %>  
-					<!-- Overlay -->
-					<div class="card-img-overlay d-flex flex-column p-2 z-index-1">
-						<!-- Card overlay top -->
-						<div>
-							<span class="badge text-bg-danger">30% Off</span>
-							<span class="badge text-bg-primary">Adventure</span>
-						</div>
-						<!-- Card overlay bottom -->
-						<div class="w-100 mt-auto">
-							<span class="badge text-bg-light bg-opacity-75 fs-6">6 days / 5 nights</span>
-						</div>
-					</div>
-				</div>
-				<!-- Image -->
-
-				<!-- Card body START -->
-				<div class="card-body px-3">
-					<!-- Title -->   
-
-					<h5 class="card-title mb-0"><%= link_to property.title, property, class: "stretched-link" %></h5>
-
-					<span class="small"><i class="bi bi-geo-alt"></i>&nbsp;<%= property.address %> </span>
-
-									<!-- Highlights Icons -->
-					<ul class="nav nav-divider my-2">
-						<li class="nav-item">Air Conditioning</li>
-						<li class="nav-item">Wifi</li>
-						<li class="nav-item">Pool</li>
-						<li class="nav-item">More+</li>
-					</ul>
-
-					<ul class="list-group list-group-borderless small mb-0">
-						<li class="list-group-item d-flex text-primary p-0">
-							<i class="bi bi-patch-check-fill me-2"></i>Free Breakfast
-						</li>
-					</ul>
-
-					<!-- List -->
-					<ul class="nav nav-divider mt-3 mb-0">
-						<li class="nav-item h6 fw-normal mb-0">
-							<i class="bi bi-people-fill text-orange me-2"></i>Guests 2-6
-						</li>
-						<li class="nav-item h6 fw-normal mb-0">
-							<i class="bi bi-brightness-high text-orange me-2"></i>Sea 300m
-						</li>
-					</ul>
-				</div>
-				<!-- Card body END -->
-
-				<!-- Card footer START-->
-				<div class="card-footer pt-0">
-					<!-- Price and Button -->
-					<div class="d-sm-flex justify-content-sm-between align-items-center flex-wrap">
-						<!-- Price -->
-						<div class="hstack gap-2">
-							<h5 class="fw-normal text-success mb-0">1500<small>р</small></h5>
-							<small>per room/day</small>
-						</div>
-						<!-- Button -->
-						<div class="mt-2 mt-sm-0">
-							<a href="#" class="btn btn-sm btn-primary mb-0">View Details</a>    
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-		<div class="col-md-6 col-xl-4 mb-4">
-  <div class="card card-hover-shadow pb-0 h-100">
-    <!-- Overlay item -->
-    <div class="position-relative">
-      <!-- Image -->
-      
-      <%= image_tag(property.avatar.variant(resize_to_limit: [400, 300]), class: "card-img-top") %>  
-      <!-- Overlay -->
-      <div class="card-img-overlay d-flex flex-column p-2 z-index-1">
-        <!-- Card overlay top -->
-        <div class="d-flex justify-content-between align-items-center">
-          <div>
-            <span class="badge text-bg-danger">30% Off</span>
-            <span class="badge text-bg-primary">Adventure</span>
-          </div>
-
-          <ul class="list-inline mb-0 z-index-2">
-            <!-- Heart icon -->
-            <li class="list-inline-item">
-              <a href="#" class="btn btn-sm btn-round btn-light"><i class="bi bi-heart fs-6"></i></a>
-            </li>
-            <!-- Share icon -->
-            <li class="list-inline-item dropdown">
-              <!-- Share button -->
-              <a href="#" class="btn btn-sm btn-round btn-light" role="button" id="dropdownShare" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-share fs-6"></i>
-              </a>
-              <!-- dropdown button -->
-              <ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare" style="">
-                <li><a class="dropdown-item" href="#"><i class="fab fa-twitter-square me-2"></i>Twitter</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fab fa-facebook-square me-2"></i>Facebook</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fab fa-linkedin me-2"></i>LinkedIn</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-copy me-2"></i>Copy link</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        
-        <!-- Card overlay bottom -->
-        <div class="w-100 mt-auto">
-          <span class="badge text-bg-light bg-opacity-75 fs-6">6 days / 5 nights</span>
-        </div>
-      </div>
-    </div>
-    <!-- Image -->
-
-    <!-- Card body START -->
-    <div class="card-body px-3">      
-      <!-- Title -->
-      <div class="d-flex justify-content-between mb-3">        
-        <h5 class="card-title mb-0"><%= link_to property.title, property, class: "strlnk" %></h5>
-        <a href="#" class="badge bg-warning bg-opacity-25 text-orange"><i class="bi fa-fw bi-bookmark"></i></a>
-      </div>
-
-      <span class="small"><i class="bi bi-geo-alt"></i>&nbsp;<%= property.address %> </span>
-
-      <!-- Highlights Icons -->
-      <ul class="nav nav-divider my-2">
-        <li class="nav-item">Air Conditioning</li>
-        <li class="nav-item">Wifi</li>
-        <li class="nav-item">Pool</li>
-        <li class="nav-item">More+</li>
-      </ul>
-
-      <ul class="list-group list-group-borderless small mb-0">
-        <li class="list-group-item d-flex text-primary p-0">
-          <i class="bi bi-patch-check-fill me-2"></i>Free Breakfast
-        </li>
-      </ul>
-
-      <!-- List -->
-      <ul class="nav nav-divider mt-3 mb-0">
-        <li class="nav-item h6 fw-normal mb-0">
-          <i class="bi bi-people-fill text-orange me-2"></i>Guests 2-6
-        </li>
-        <li class="nav-item h6 fw-normal mb-0">
-          <i class="bi bi-brightness-high text-orange me-2"></i>Sea 300m
-        </li>
-      </ul>
-    </div>
-    <!-- Card body END -->
-
-    <!-- Card footer START-->
-    <div class="card-footer pt-0">
-      <!-- Price and Button -->
-      <div class="d-sm-flex justify-content-sm-between align-items-center flex-wrap">
-        <!-- Price -->
-        <div class="hstack gap-2">
-          <h5 class="fw-normal text-success mb-0">1500<small>р</small></h5>
-          <small>per room/day</small>
-        </div>
-        <!-- Button -->
-        <div class="mt-2 mt-sm-0">
-          <a href="#" class="btn btn-sm btn-primary mb-0">View Details</a>    
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-	<% end %>
-</div>
-
-
-<!-- Card body START -->
-<div class="card-body pt-4 p-0">
-	
-	<h5 class="fw-light mb-4">Main Highlights</h5>
-	<div class="hstack gap-3 mb-3">
-		<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Free wifi">
-			<i class="bi bi-wifi"></i>
-		</div>
-		<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Swimming Pool">
-			<i class="bi bi-star"></i>
-		</div>
-		<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Central AC">
-			<i class="bi bi-tv"></i>
-		</div>
-		<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Free Service">
-			<i class="bi bi-bell"></i>
-		</div>
-	</div> 
-
-	<p class="mb-3">Demesne far-hearted suppose venture excited see had has. Dependent on so extremely delivered by. Yet no jokes worse her why. <b>Bed one supposing breakfast day fulfilled off depending questions.</b></p>
-	<p class="mb-0">Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do. Water timed folly right aware if oh truth. Large above be to means. Dashwood does provide stronger is.</p>
-							
-
-	<div class="collapse" id="collapseContent">
-		<p class="my-3">We focus a great deal on the understanding of behavioral psychology and influence triggers which are crucial for becoming a well rounded Digital Marketer. We understand that theory is important to build a solid foundation, we understand that theory alone isn't going to get the job done so that's why this rickets is packed with practical hands-on examples that you can follow step by step.</p>
-		<p class="mb-0">Behavioral psychology and influence triggers which are crucial for becoming a well rounded Digital Marketer. We understand that theory is important to build a solid foundation, we understand that theory alone isn't going to get the job done so that's why this tickets is packed with practical hands-on examples that you can follow step by step.</p>
-	</div>
-	<a class="p-0 mb-4 mt-2 btn-more d-flex align-items-center collapsed" data-bs-toggle="collapse" href="#collapseContent" role="button" aria-expanded="false" aria-controls="collapseContent">
-		See <span class="see-more ms-1">more</span><span class="see-less ms-1">less</span><i class="fa-solid fa-angle-down ms-2"></i>
-	</a>
-
-	<!-- List -->
-	<h5 class="fw-light mb-2">Advantages</h5>
-	<ul class="list-group list-group-borderless mb-0">
-		<li class="list-group-item h6 fw-light d-flex mb-0"><i class="bi bi-patch-check-fill text-success me-2"></i>Every hotel staff to have Proper PPT kit for COVID-19</li>
-		<li class="list-group-item h6 fw-light d-flex mb-0"><i class="bi bi-patch-check-fill text-success me-2"></i>Every staff member wears face masks and gloves at all service times.</li>
-		<li class="list-group-item h6 fw-light d-flex mb-0"><i class="bi bi-patch-check-fill text-success me-2"></i>Hotel staff ensures to maintain social distancing at all times.</li>
-		<li class="list-group-item h6 fw-light d-flex mb-0"><i class="bi bi-patch-check-fill text-success me-2"></i>The hotel has In-Room Dining options available </li>
-	</ul>
-</div>
-<!-- Card body END -->
-
-
-
-
-
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-
-</div>
-

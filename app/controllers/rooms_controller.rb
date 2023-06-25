@@ -55,8 +55,6 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     authorize(@room)
-    # FIXME cocoon add all nested forms from edit
-    #@room.prices.destroy_all
     if @room.update room_params
       flash[:success] = 'Room successfully updated'
       redirect_to partners_root_path

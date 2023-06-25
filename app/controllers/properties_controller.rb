@@ -88,8 +88,15 @@ class PropertiesController < ApplicationController
 
   def destroy
     @property.destroy
-    flash[:success] = 'Объявление удалено'
-    redirect_to partners_root_path
+
+    respond_to do |format|
+      format.html { redirect_to partners_root_path, flash[:success] = 'Объявление удалено' }
+    
+      format.turbo_stream do
+        render turbo_stream:
+          turbo_stream.remove("property_#{@property.id}")
+      end
+    end
   end
 
   private
