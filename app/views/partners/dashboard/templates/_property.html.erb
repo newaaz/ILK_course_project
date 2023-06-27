@@ -68,9 +68,16 @@
           </div>
         <% end %>
 
-        <div class="mt-2">
+        <div class="my-2">
           <i class="bi bi-wallet2 me-1 text-success"></i> от <span class="fw-semibold"><%= property.price_from %></span><small>р</small>/сутки
         </div>
+        <!-- show modal map -->
+        <%= link_to '#', data: { controller: 'maps', 'action': 'click->maps#showMapModal',
+                                 latitude: property.geolocation.latitude,
+                                 longitude: property.geolocation.longitude },
+                         class: 'text-decoration-underline' do %>
+          <i class="bi bi-eye-fill me-1"></i> Показать на карте
+        <% end %>
 
         <div class="mt-2 mb-4">
           <span class="">Заявок:</span>
@@ -82,7 +89,7 @@
             <i class="bi bi-caret-down me-1"></i>Номера (<%= property.rooms.count %>)
           </a>
           <a data-bs-toggle="collapse" href="#detail-collapse-<%= dom_id(property) %>" role="button" aria-expanded="false" aria-controls="detail-collapse-<%= dom_id(property) %>" class="btn btn-primary-soft btn-sm mb-0 w-100">
-            <i class="bi bi-caret-down me-1"></i>Описание
+            <i class="bi bi-caret-down me-1"></i>Подробнее
           </a>
         </div> 
       </div>
@@ -123,12 +130,9 @@
           <% end %>          
         </div>
 
-        <div class="py-3 mb-4">
-    
-          <p class="mb-3"><%= property.property_detail.short_description %></p>          
-
+        <div class="py-3 mb-4">    
+          <p class="mb-3"><%= property.property_detail.short_description %></p>
           <hr>
-
           <h5 class="mb-2 mt-3">Инфраструктура</h5>
           <div class="px-2">
             <div class="row bg-light py-2">
@@ -156,11 +160,15 @@
               <div class="col-md-9"><%= property.property_detail.additional_info %></div>
             </div>
           </div>
+        </div>
       </div>
 
+      <div class="border-top text-end pt-4">      
+        <%= link_to property_path(property), data: { "turbo-method": :delete, turbo_confirm: "Точно удалить - Вы уверены?" }, class: 'btn btn-sm btn-outline-danger' do %>
+          <i class="bi bi-trash3 fa-fw me-1"></i>Удалить объект
+        <% end %>
       </div>
-    </div>
-  
+    </div>  
   </div>
 </div>
 

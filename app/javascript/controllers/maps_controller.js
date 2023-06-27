@@ -1,5 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
+import * as bootstrap from "bootstrap"
+
+
 // Connects to data-controller="maps"
 export default class extends Controller {
   connect() {
@@ -123,5 +126,30 @@ export default class extends Controller {
         // }
       } 
     }  
+  }
+
+  showMapModal(e) {
+    e.preventDefault()
+    document.getElementById('map').innerHTML = ''
+    ymaps.ready(init);
+    function init(){
+      const coords = [e.target.dataset.latitude, e.target.dataset.longitude]      
+      const myMap = new ymaps.Map("map", {
+          center: coords,
+          zoom: 14,
+          behaviors: ['drag','dblClickZoom', 'multiTouch']
+      });    
+      const myPlacemark = new ymaps.Placemark(coords, {
+        balloonContentHeader: 'Header',
+        balloonContentBody: 'Body',
+        balloonContentFooter: 'Footer',
+        hintContent: 'Hint'
+      }, {
+        preset: "islands#blueHomeIcon"
+      });
+      myMap.geoObjects.add(myPlacemark);
+
+      new bootstrap.Modal('#mapmodal').show()
+    }
   }
 }

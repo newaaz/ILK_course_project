@@ -74,8 +74,8 @@ def create_property
                           distance_to_sea: (rand(200..1500) / 50).round * 50,
                           services: ["kitchen", "excursions", "pool", "parking", "playground"],
                           geolocation:  Geolocation.new(
-                            latitude: "45.05#{rand 0..9}65",
-                            longitude: "35.39#{rand 0..9}88"),
+                            latitude: "45.0#{rand 60..80}65",
+                            longitude: "35.3#{rand 60..80}88"),
                           contact:      Contact.new(
                             phone_number: '+7(978)117-54-21',                      
                             name: 'Мария Ивановна',
