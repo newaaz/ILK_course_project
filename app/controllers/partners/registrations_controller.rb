@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Partners::RegistrationsController < Devise::RegistrationsController
-  include Accessibled
+  # for multiplies models (Partner and Customer)
+  #include Accessibled
+
   invisible_captcha only: [:create], honeypot: :subtitle
   
   layout 'light'
@@ -20,9 +22,9 @@ class Partners::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+  end
 
   # PUT /resource
   # def update
@@ -30,9 +32,9 @@ class Partners::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  def destroy
-    super
-  end
+  # def destroy
+  #   super
+  # end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

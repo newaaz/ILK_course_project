@@ -28,7 +28,9 @@ Rails.application.routes.draw do
     get 'orders', to: 'dashboard#orders'
     get 'profile', to: 'dashboard#profile'
     get 'add_listing', to: 'dashboard#add_listing'
+    delete 'delete_account', to: 'registrations#destroy'    
   end
+  resources :partners, only: %i[destroy]
 
   namespace :customers do
     root 'dashboard#index'

@@ -1,7 +1,8 @@
 <% provide(:title, 'Войти') %>
 
 <main class="form-signin text-center">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
+    <%= render "partners/shared/error_messages", resource: resource %>
 
     <%= link_to image_tag('logo.png', class:'my-5', style: 'width: 220px;'), root_path %>    
     <h1 class="h3 mb-3 fw-normal">Войти</h1>    

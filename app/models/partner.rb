@@ -11,4 +11,8 @@ class Partner < ApplicationRecord
   def owner_orders
     Order.where(property_id: property_ids)
   end
+
+  def name_or_email
+    name.presence || email.split('@').first
+  end
 end

@@ -22,7 +22,7 @@
 						<h4 class="card-header-title">Профиль</h4>
 					</div>
 					<!-- Card body START -->
-					<div class="card-body px-0 px-md-3 py-0 py-md-3 vstack gap-4">
+					<div class="card-body">
 							<!-- Form START -->
 							<form class="row g-3">
 								<!-- Profile photo -->
@@ -55,54 +55,11 @@
 									<input type="email" class="form-control" value="hello@gmail.com" placeholder="Enter your email id">
 								</div>
 
-								<!-- Mobile -->
-								<div class="col-md-6">
-									<label class="form-label">Mobile number<span class="text-danger">*</span></label>
-									<input type="text" class="form-control" value="222 555 666" placeholder="Enter your mobile number">
-								</div>
-
-								<!-- Nationality -->
-								<div class="col-md-6">
-									<label class="form-label">Nationality<span class="text-danger">*</span></label>
-									<input type="text" class="form-control" value="222 555 666" placeholder="Enter your mobile number">
-								</div>
-
 								<!-- Date of birth -->
 								<div class="col-md-6">
 									<label class="form-label">Date of Birth<span class="text-danger">*</span></label>
 									<input type="text" class="form-control flatpickr flatpickr-input" value="29 Aug 1996" placeholder="Enter date of birth" data-date-format="d M Y" readonly="readonly">
-								</div>
-
-								<!-- Gender -->
-								<div class="col-md-6">
-									<label class="form-label">Select Gender<span class="text-danger">*</span></label>
-									<div class="d-flex gap-4">
-										<div class="form-check radio-bg-light">
-											<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked="">
-											<label class="form-check-label" for="flexRadioDefault1">
-												Male
-											</label>
-										</div>
-										<div class="form-check radio-bg-light">
-											<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-											<label class="form-check-label" for="flexRadioDefault2">
-												Female
-											</label>
-										</div>
-										<div class="form-check radio-bg-light">
-											<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-											<label class="form-check-label" for="flexRadioDefault3">
-												Others
-											</label>
-										</div>
-									</div>
-								</div>
-
-								<!-- Address -->
-								<div class="col-12">
-									<label class="form-label">Address</label>
-									<textarea class="form-control" rows="3" spellcheck="false">2119 N Division Ave, New Hampshire, York, United States</textarea>
-								</div>
+								</div>		
 
 								<!-- Button -->
 								<div class="col-12 text-end">
@@ -126,7 +83,7 @@
 					</div>
 
 					<!-- Card body START -->
-					<div class="card-body px-0 px-md-3 py-0 py-md-3 gap-4">
+					<div class="card-body ">
 						<h6>Before you go...</h6>
 						<ul>
 							<li>Take a backup of your data <a href="#">Here</a> </li>
@@ -137,7 +94,10 @@
 							<label class="form-check-label" for="deleteaccountCheck">Yes, I'd like to delete my account</label>
 						</div>
 						<a href="#" class="btn btn-success-soft btn-sm mb-2 mb-sm-0">Keep my account</a>
-						<a href="#" class="btn btn-danger btn-sm mb-0">Delete my account</a>
+
+						<%= link_to partner_path(current_partner), class: 'btn btn-danger btn-sm mb-0', data: { "turbo-method": :delete, turbo_confirm: "Точно удалить - Вы уверены? Все ваши данные и объявления будут удалены" } do %>
+              <i class="bi bi-trash fa-fw me-2"></i>Удалить свой аккаунт
+            <% end %>
 					</div>
 					<!-- Card body END -->
 				</div>
