@@ -9,45 +9,37 @@
 		
 			<div class="col-lg-8 col-xl-9 px-0 px-md-2">
 				<!-- Offcanvas menu button -->
-				<div class="mb-0 d-lg-none text-end">
+				<div class="mb-0 d-lg-none text-end pe-3">
 					<button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
 						<i class="bi bi-arrow-bar-left"></i> Меню
 					</button>
 				</div>
 
-				<!-- Wishlist START -->
-				<div class="card border">
-					<!-- Card header -->
+				<div class="card border shadow">
 					<div class="card-header border-bottom">
-						<h4 class="card-header-title">Личный кабинет</h4>
+						<h4 class="card-header-title">Кабинет</h4>
 					</div>
+					<div class="card-body">
+						Создание и управление вашими объявлениями и профилем
+					</div>					
+				</div> <br>
 
-					<!-- Card body START -->
-					<div class="card-body px-0 px-md-3 py-0 py-md-3 vstack gap-4">
-						<!-- Select and button 
-						<form class="d-flex justify-content-between">
-							<div class="col-6 col-xl-3">
-								<select class="form-select form-select-sm js-choice border-0">
-									<option value="">Sort by</option>
-									<option>Recently search</option>
-									<option>Most popular</option>
-									<option>Top rated</option>
-								</select>
-							</div>
-							
-							<button class="btn btn-danger-soft mb-0"><i class="bi bi-trash3 me-2"></i></i>Remove all</button>
-						</form>
-            Select and button -->
-
-            <%= render partial: 'partners/dashboard/templates/property', collection: @properties, as: :property %>
-
+				<% if @properties.any? %>
+					<%= render partial: 'partners/dashboard/templates/property', collection: @properties, as: :property %>
+				<% else %>
+					<div class="card border shadow">		
+						<div class="card-body px-0 px-md-3 py-0 py-md-3 vstack gap-4">
+							Ещё нет объявлений.
+							Вы можете разместить свою гостиницу, гостевой дом или другой объект для сдачи жилья отдыхающим.
+							Активный отдых
+							Кафе, бары, рестораны и места где можно вкусно перекусить и провести время
+							Различные услуги: массаж, маникюр, ремонт телефонов, обуви и другое
+							Также можно разместить статью о достопримечательностях городов Крыма
+							Размещение всех объявлений бесплатное
+						</div>
 					</div>
-					<!-- Card body END -->
-				</div>
-				<!-- Wishlist END -->
-
+				<% end %>	
 			</div>
-			<!-- Main content END -->
 		</div>
 	</div>
 </section>
@@ -55,29 +47,7 @@
 
 
 
-<section class="pt-0">
-	<div class="container vstack gap-4">
-		<!-- Title START -->
-		<div class="row">
-			<div class="col-12">
-				<h1 class="fs-4 mb-0"><i class="bi bi-house-door fa-fw me-1"></i>Dashboard</h1>
-			</div>
-		</div>	
-		<!-- Title END -->    		
-			
-    <div class="card border">
-      <!-- Card header -->
-      <div class="card-header border-bottom">
-        <h5 class="card-header-title">My Listings
-      </div>
-      
-      <div class="card-body vstack gap-3">
-        <%= render partial: 'partners/dashboard/templates/property', collection: @properties, as: :property %>
-      </div>
-    </div>
 
-	</div>
-</section>
 
 
 

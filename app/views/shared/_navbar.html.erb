@@ -1,4 +1,15 @@
-<div class="top_line_menu py-3">
+<!--  -->
+<div class="top_line_menu  text-end">
+	<div class="container py-1" style="font-size: 14px;">
+			<%= link_to cart_path(1), class: "text-light mx-1" do %>
+				<i class="bi bi-heart text-orange"></i>
+				<span class="text-light small ">Избранное</span>
+			<% end %>
+			<span class="text-secondary">|</span>
+			<%= link_to "Вход", new_partner_session_path, class: 'mx-1 text-light small' %>
+			<span class="text-secondary">|</span>
+			<%= link_to "Регистрация", new_partner_registration_path, class: 'mx-1 text-light small' %>
+	</div>
 </div>
 
 <header class="navbar-light header-sticky shadow">
@@ -24,21 +35,10 @@
 			<!-- Main navbar START -->
 			<div class="navbar-collapse collapse" id="navbarCollapse">
 				<ul class="navbar-nav navbar-nav-scroll me-auto">
-					<% if Rails.env.development? %>
-						<!-- Nav item Listing -->
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="listingMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Static pages
-							</a>
-							<ul class="dropdown-menu" aria-labelledby="listingMenu">
-								<li><%= link_to 'Contacts', contacts_path, class: 'dropdown-item' %></li>		
-								<li><%= link_to 'Privacy', privacy_path, class: 'dropdown-item' %></li>					
-							</ul>
-						</li>
-					<% end %>
-
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="pageMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Towns</a>
+						<a class="nav-link dropdown-toggle" href="#" id="pageMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Курорты
+						</a>
 						<ul class="dropdown-menu" aria-labelledby="pageMenu">
 							<% Town.find_each do |town| %>
 								<li><%= link_to town.name, town, class: 'dropdown-item' %></li>	
@@ -49,15 +49,27 @@
 			</div>
 			<!-- Main navbar END -->
 
-			<% if current_partner %>
-				<!-- PARTNER NAV START -->
-				<ul class="nav flex-row align-items-center list-unstyled ms-xl-auto nav-partner">				
-					<!-- Profile dropdown START -->
+			<ul class="nav flex-row align-items-center list-unstyled ms-1 ">
+				
+				<li class="nav-item ms-3 ms-md-2">	
+					<%= link_to cart_path(1), class: "btn btn-primary-soft btn-sm px-2 py-1 mb-0" do %>
+						<i class="bi bi-heart text-orange" style="font-size: 1.2rem;"></i>
+						<span class="d-none d-md-inline">Избранное</span>
+					<% end %>
+				</li> 
+
+				<% if current_partner %>				
 					<li class="nav-item ms-3 dropdown">
-						<!-- Avatar -->
+						<!--
 						<a class="avatar avatar-xs p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
 							<%= image_tag("theme/user.png", class: 'avatar-img rounded-circle', alt: "avatar") %>
-						</a>
+						</a> --> 
+
+						<div class="avatar mt-2 mt-md-1" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+							<div class="avatar-img rounded-circle bg-primary bg-opacity-25 text-primary"><span class="position-absolute top-50 start-50 translate-middle fw-bold">
+								ЛК</span>
+							</div>
+						</div>
 
 						<!-- Profile dropdown START -->
 						<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
@@ -66,7 +78,10 @@
 								<div class="d-flex align-items-center">
 									<!-- Avatar -->
 									<div class="avatar me-3">
-										<%= image_tag("theme/user.png", class: 'avatar-img rounded-circle shadow', alt: "avatar") %>
+										<%#= image_tag("theme/user.png", class: 'avatar-img rounded-circle shadow', alt: "avatar") %>
+										<div class="avatar-img rounded-circle bg-secondary bg-opacity-25 text-white"><span class="position-absolute top-50 start-50 translate-middle fw-bold">
+											<i class="bi bi-person" style="font-size: 1.8rem;"></i></span>
+										</div>
 									</div>
 									<div>									
 										<span class="h6 mt-2 mt-sm-0">Partner</span>
@@ -76,82 +91,38 @@
 							</li>
 
 							<!-- Links -->
-							<li> <hr class="dropdown-divider"></li>
-
+							<li><hr class="dropdown-divider"></li>
 							<li>
 								<%= link_to partners_root_path, class: 'dropdown-item' do %>
-									<i class="bi bi-house-door fa-fw me-2"></i>Dashboard
+									<i class="bi bi-house-door fa-fw me-2"></i>Кабинет
 								<% end %>
 							</li>
-
 							<li>
 								<%= link_to partners_orders_path, class: 'dropdown-item' do %>
-									<i class="bi bi-bookmark-heart fa-fw me-2"></i>Orders
+									<i class="bi bi-bookmark-heart fa-fw me-2"></i>Заявки
 								<% end %>
 							</li>
-
 							<li>
 								<%= link_to destroy_partner_session_path, data: { "turbo-method": :delete }, class: 'dropdown-item bg-danger-soft-hover' do %>
-									<i class="bi bi-box-arrow-right fa-fw me-2"></i>Sign Out
+									<i class="bi bi-box-arrow-right fa-fw me-2"></i>Выход
 								<% end %>
 							</li>
-						</ul>
-						<!-- Profile dropdown END -->
-					</li>
-					<!-- Profile dropdown END -->
-				</ul>
-			<% elsif current_customer %>
-				<!-- CUSTOMER NAV START -->
-				<ul class="nav flex-row align-items-center list-unstyled ms-xl-auto nav-customer">				
-					<!-- Profile dropdown START -->
-					<li class="nav-item ms-3 dropdown">
-						<!-- Avatar -->
-						<a class="avatar avatar-xs p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-							<%= image_tag("theme/guest.png", class: 'avatar-img rounded-circle', alt: "avatar") %>
-						</a>
-
-						<!-- Profile dropdown START -->
-						<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
-							<!-- Profile info -->
-							<li class="px-3 mb-3">
-								<div class="d-flex align-items-center">
-									<!-- Avatar -->
-									<div class="avatar me-3">
-										<%= image_tag("theme/guest.png", class: 'avatar-img rounded-circle shadow', alt: "avatar") %>
-									</div>
-									<div>									
-										<span class="h6 mt-2 mt-sm-0">Customer</span>
-										<p class="small m-0"><%= current_customer.email %></p>
-									</div>
+							<li><hr class="dropdown-divider"></li>
+							<li class="text-end">
+								<div class="modeswitch-wrap" id="darkModeSwitch">
+									<div class="modeswitch-item">
+										<div class="modeswitch-icon"></div>
+									</div>				
 								</div>
 							</li>
-
-							<!-- Links -->
-							<li> <hr class="dropdown-divider"></li>
-
-							<li>
-								<%= link_to customers_root_path, class: 'dropdown-item' do %>
-									<i class="bi bi-house-door fa-fw me-2"></i>Dashboard
-								<% end %>
-							</li>				
-
-							<li>
-								<%= link_to destroy_customer_session_path, data: { "turbo-method": :delete }, class: 'dropdown-item bg-danger-soft-hover' do %>
-									<i class="bi bi-box-arrow-right fa-fw me-2"></i>Sign Out
-								<% end %>
-							</li>
 						</ul>
 						<!-- Profile dropdown END -->
-					</li>
-					<!-- Profile dropdown END -->
-				</ul>
-			<% else %>
-				<!-- UNAUTHENTICATED -->
-				<ul class="nav flex-row align-items-center list-unstyled ms-xl-auto">
-					<li class="nav-item dropdown ms-3 ms-md-3">		
+					</li>				
+				<% else %>
+					<li class="nav-item dropdown dropstart ms-2">		
 						<!-- Notification button -->
-						<a class="nav-notification btn btn-primary-soft btn-sm p-0 mb-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-							<i class="bi bi-person-add" style="font-size: 1.5rem;"></i>
+						<a class="btn btn-primary-soft btn-sm px-2 py-1 mb-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+							<i class="bi bi-person-add me-1" style="font-size: 1.2rem;"></i>Войти
 						</a>
 
 						<!-- Notification dropdown menu START -->
@@ -166,15 +137,15 @@
 								<div class="card-body p-3">
 									<ul class="list-group list-group-flush list-unstyled p-2">
 										<!-- Notification item -->
-										<li class="mb-4">											
-											<h6 class="mb-2"><i class="bi bi-building-fill-add"></i><span class="ms-1">For Partners</span></h6>
-											Регистрируйтесь в качестве Партнёра для размещения объявлений
+										<li class="mb-2 text-center">											
+											<!--<h6 class="mb-2"><i class="bi bi-building-fill-add"></i><span class="ms-1">For Partners</span></h6> -->
+											Регистрируйтесь в качестве партнёра для размещения объявлений
 											<div class="row mt-3">
 												<div class="col-sm-6">
-													<%= link_to "Login Partner", new_partner_session_path, class: 'btn btn-primary-soft btn-sm' %>
+													<%= link_to "Вход", new_partner_session_path, class: 'btn btn-primary-soft btn-sm w-100' %>
 												</div>
 												<div class="col-sm-6">
-													<%= link_to "Signup Partner", new_partner_registration_path, class: 'btn btn-primary-soft btn-sm' %>
+													<%= link_to "Регистрация", new_partner_registration_path, class: 'btn btn-primary-soft btn-sm w-100' %>
 												</div>
 											</div>									
 										</li>
@@ -194,21 +165,21 @@
 										Notification item -->
 									</ul>
 								</div>
-								<!-- Card body END -->		
+								<!-- Card body END -->
+								<div class="card-footer bg-transparent text-end border-top">
+									
+									<div class="modeswitch-wrap" id="darkModeSwitch">
+										<div class="modeswitch-item">
+											<div class="modeswitch-icon"></div>
+										</div>				
+									</div>
+								</div>
 							</div>
 						</div>
 						<!-- Notification dropdown menu END -->
 					</li>
-				</ul>
-				<!-- Notification END -->
-			<% end %>	
-
-			<!-- Dark mode switch START -->
-			<div class="modeswitch-wrap" id="darkModeSwitch">
-				<div class="modeswitch-item">
-					<div class="modeswitch-icon"></div>
-				</div>				
-			</div>			
+				<% end %>	
+			</ul>
 		</div>
 	</nav>
 </header>

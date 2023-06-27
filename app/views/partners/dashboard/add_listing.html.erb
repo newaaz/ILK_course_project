@@ -1,0 +1,142 @@
+<% provide(:title, "Добавить объявление") %>
+
+<section class="pt-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-xl-3">
+        <%= render 'partners/dashboard/templates/nav_section' %>
+			</div>
+		
+			<div class="col-lg-8 col-xl-9 px-0 px-md-2">
+				<!-- Offcanvas menu button -->
+				<div class="mb-0 d-lg-none text-end pe-3">
+					<button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+						<i class="bi bi-arrow-bar-left"></i>Меню
+					</button>
+				</div>
+
+				<!-- CARD START -->
+				<div class="card border shadow">
+					<!-- Card header -->
+					<div class="card-header border-bottom">
+						<h4 class="card-header-title">Добавить объявление</h4>
+					</div>
+					<!-- Card body START -->
+					<div class="card-body px-2 px-md-3 py-2 py-md-3">
+						<div class="row g-4">
+              <!-- Action box item -->
+              <div class="col-md-6 position-relative overflow-hidden">
+                <div class="bg-primary bg-opacity-25 rounded-3 h-100 p-4">
+                  <!-- Content -->
+                  <div class="d-flex">
+                    <!-- Icon -->
+                    <div class="icon-lg text-white bg-primary rounded-circle flex-shrink-0"><i class="bi bi-house-add"></i></div>
+                    <!-- Content -->
+                    <div class="ms-3">
+                      <h4 class="mb-1">Жильё</h4>
+                      <p class="mb-3">Для сдачи в аренду отдыхающим</p>
+                      <%= link_to '+ Добавить жильё', new_property_path, class: 'btn btn-primary mb-0' %>
+                      
+                    </div>	
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action box item -->
+              <div class="col-md-6 position-relative overflow-hidden">
+                <div class="bg-warning bg-opacity-25 rounded-3 h-100 p-4">
+                  <!-- Content -->
+                  <div class="d-flex">
+                    <!-- Icon -->
+                    <div class="icon-lg text-white bg-warning rounded-circle flex-shrink-0"><i class="bi bi-star-fill"></i></div>
+                    <!-- Content -->
+                    <div class="ms-3">
+                      <h4 class="mb-1">Активный отдых</h4>
+                      <p class="mb-3">Прогулки, туризм и другое</p>
+                      <a href="#" class="btn btn-warning mb-0">+ Добавить активный отдых</a>
+                    </div>	
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action box item -->
+              <div class="col-md-6 position-relative overflow-hidden">
+                <div class="bg-lime bg-opacity-25 rounded-3 h-100 p-4">
+                  <!-- Content -->
+                  <div class="d-flex">
+                    <!-- Icon -->
+                    <div class="icon-lg text-white bg-lime rounded-circle flex-shrink-0"><i class="bi bi-star-fill"></i></div>
+                    <!-- Content -->
+                    <div class="ms-3">
+                      <h4 class="mb-1">Кафе, бар, ресторан</h4>
+                      <p class="mb-3">Место где можно поесть</p>
+                      <a href="#" class="btn btn-lime mb-0">+ Добавить Кафе</a>
+                    </div>	
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action box item -->
+              <div class="col-md-6 position-relative overflow-hidden">
+                <div class="bg-info bg-opacity-25 rounded-3 h-100 p-4">
+                  <!-- Content -->
+                  <div class="d-flex">
+                    <!-- Icon -->
+                    <div class="icon-lg text-white bg-info rounded-circle flex-shrink-0"><i class="bi bi-star-fill"></i></div>
+                    <!-- Content -->
+                    <div class="ms-3">
+                      <h4 class="mb-1">Услуги</h4>
+                      <p class="mb-3">Массаж, маникюр, ремонт и другое</p>
+                      <a href="#" class="btn btn-info mb-0">+ Добавить услугу</a>
+                    </div>	
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action box item -->
+              <div class="col-md-6 position-relative overflow-hidden">
+                <div class="bg-orange bg-opacity-25 rounded-3 h-100 p-4">
+                  <!-- Content -->
+                  <div class="d-flex">
+                    <!-- Icon -->
+                    <div class="icon-lg text-white bg-orange rounded-circle flex-shrink-0"><i class="bi bi-star-fill"></i></div>
+                    <!-- Content -->
+                    <div class="ms-3">
+                      <h4 class="mb-1">Место</h4>
+                      <p class="mb-3">Парки, горы, интересные места</p>
+                      <a href="#" class="btn btn-orange mb-0">+ Место</a>
+                    </div>	
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action box item -->
+              <div class="col-md-6 position-relative overflow-hidden">
+                <div class="bg-primary bg-opacity-25 rounded-3 h-100 p-4">
+                  <!-- Content -->
+                  <div class="d-flex">
+                    <!-- Icon -->
+                    <div class="icon-lg text-white bg-primary rounded-circle flex-shrink-0"><i class="bi bi-house-add"></i></div>
+                    <!-- Content -->
+                    <div class="ms-3">
+                      <h4 class="mb-1">Жильё</h4>
+                      <p class="mb-3">Для сдачи в аренду отдыхающим</p>
+                      <%= link_to '+ Добавить жильё', new_property_path, class: 'btn btn-primary mb-0' %>
+                      
+                    </div>	
+                  </div>
+                </div>
+              </div>
+            </div>
+					</div>
+					<!-- Card body END -->
+				</div>
+				<!-- CARD END -->
+
+
+			</div>
+		</div>
+	</div>
+</section>
+
+

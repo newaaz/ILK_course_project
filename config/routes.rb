@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   namespace :partners do
     root 'dashboard#index'
     get 'orders', to: 'dashboard#orders'
+    get 'profile', to: 'dashboard#profile'
+    get 'add_listing', to: 'dashboard#add_listing'
   end
 
   namespace :customers do
@@ -46,6 +48,8 @@ Rails.application.routes.draw do
   resources :towns, only: %i[show] do
     get :properties, on: :member
   end
+
+  resources :carts, only: [:show, :destroy]
 
   # for tests
   # default_url_options :host => "example.com"

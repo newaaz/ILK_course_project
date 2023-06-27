@@ -3,11 +3,19 @@ class Partners::DashboardController < ApplicationController
   after_action  :verify_authorized
 
   def index
-  	@properties = current_partner.properties.includes([:orders, :town, :category, avatar_attachment: :blob, rooms: [avatar_attachment: :blob]])
+  	@properties = current_partner.properties.includes([:orders, :town, :category, :property_detail,
+                                                        avatar_attachment: :blob,
+                                                        rooms: [avatar_attachment: :blob]])
   end
 
   def orders
     @orders = current_partner.owner_orders
+  end
+
+  def profile
+  end
+
+  def add_listing
   end
 
   private
