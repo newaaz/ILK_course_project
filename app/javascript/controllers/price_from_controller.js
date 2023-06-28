@@ -12,9 +12,6 @@ export default class extends Controller {
         return priceValue < min ? priceValue : min
       }, Infinity)
     
-      console.log(minPrice)
-      console.log(prices[0].dataset.daysCount)
-
       this.element.querySelector('#min_price').innerText = minPrice
     }
   }

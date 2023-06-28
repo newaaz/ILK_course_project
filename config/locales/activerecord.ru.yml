@@ -32,11 +32,12 @@ ru:
         longitude: 'Требуется долгота,'
       partner:
         name: 'Имя'
-        email: 'email'
-        phone: 'номер телефона'
+        email: 'Email'
+        phone_number: 'Номер телефона'
         avatar: 'Фото профиля'
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
+        current_password: 'Текущий пароль'
       town:
         name: 'Название'
         parent_name: 'Название в падеже'

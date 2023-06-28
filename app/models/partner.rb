@@ -8,6 +8,8 @@ class Partner < ApplicationRecord
           
   has_many :properties, foreign_key: 'owner_id', class_name: 'Property', dependent: :destroy
 
+  mount_uploader  :avatar, PictureUploader
+
   def owner_orders
     Order.where(property_id: property_ids)
   end

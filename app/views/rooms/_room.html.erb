@@ -18,9 +18,9 @@
           data-loop="true"
           data-keyboard="true"
           data-auto="false">      
-        <%= link_to image_tag(room.avatar.variant(resize_to_limit: [150, 150])), room.avatar %>      
+        <%= link_to image_tag(room.avatar.variant(resize_to_limit: [100, 100])), room.avatar %>      
         <% room.images.each do |image| %> 
-          <%= link_to image_tag(image.variant(resize_to_limit: [150, 150])), image %>            
+          <%= link_to image_tag(image.variant(resize_to_limit: [100, 100])), image %>            
         <% end %>
       </div>
       <!-- fotorama end --> 
