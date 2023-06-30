@@ -13,7 +13,9 @@ Rails.application.routes.draw do
                           registrations: 'partners/registrations',
                           confirmations: 'partners/confirmations',
                           passwords:     'partners/passwords',
-                        }
+                        },
+                        path: 'partners',
+                        path_names: { edit: 'profile' }
 
   devise_for :customers,  controllers: {
                             sessions:      'customers/sessions',
@@ -26,11 +28,12 @@ Rails.application.routes.draw do
   namespace :partners do
     root 'dashboard#index'
     get 'orders', to: 'dashboard#orders'
-    get 'profile', to: 'dashboard#profile'
+    #get 'profile', to: 'dashboard#profile'
     get 'add_listing', to: 'dashboard#add_listing'
-    delete 'delete_account', to: 'registrations#destroy'    
+    #delete 'delete_account', to: 'registrations#destroy'    
   end
-  resources :partners, only: %i[destroy]
+  # destroy with devise
+  # resources :partners, only: %i[destroy]
 
   namespace :customers do
     root 'dashboard#index'

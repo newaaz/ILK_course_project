@@ -24,7 +24,7 @@
 					<!-- Card body START -->
 					<div class="card-body">
 						<!-- Form START -->
-						<%= form_for(current_partner, url: registration_path('partner'), html: { method: :put }) do |f| %>
+						<%= form_for(current_partner, url: registration_path('partner'), html: { method: :put }, data: {turbo: false}) do |f| %>
 							<%= render "partners/shared/error_messages", resource: current_partner %>
 							<div class="row g-3">
 								<div class="col-12" data-controller="previews">

@@ -7,10 +7,10 @@ class Partners::RegistrationsController < Devise::RegistrationsController
 
   invisible_captcha only: [:create], honeypot: :subtitle
   
-  layout 'light'
+  layout 'light', only: [:new]
 
   # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -23,9 +23,9 @@ class Partners::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  def edit
-    partners_profile_path
-  end
+  # def edit
+  #   super
+  # end
 
   # PUT /resource
   # def update
@@ -49,7 +49,7 @@ class Partners::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_update_path_for(resource)
-    partners_profile_path
+    edit_partner_registration_path
   end
 
   # If you have extra params to permit, append them to the sanitizer.
