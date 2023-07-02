@@ -51,9 +51,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_02_121441) do
     t.string "guest_name"
     t.string "guest_email"
     t.string "guest_phone"
-    t.string "wishes"
+    t.string "message"
     t.integer "adults", limit: 2
-    t.integer "kids", limit: 2
+    t.integer "children", limit: 2
     t.integer "total_amount", default: 0
     t.integer "status", default: 0
     t.datetime "created_at", null: false

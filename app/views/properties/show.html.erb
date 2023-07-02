@@ -158,12 +158,20 @@
 	bookingModal.addEventListener('show.bs.modal', event => {
 		const modalTitle = bookingModal.querySelector('.modal-title')
 		const button = event.relatedTarget
-		const recipient = button.getAttribute('data-bs-room')
-		const roomTitle = document.getElementById("room_" + recipient).querySelector('h5').innerText
 
-		document.getElementById('room-id-field').value = recipient
+		const roomId = button.getAttribute('data-bs-room')	
+		
+		if (roomId) {
+			document.getElementById('room-id-field').value = roomId			
+			const roomTitle = document.getElementById("room_" + roomId).querySelector('h5').innerText
+			modalTitle.textContent = roomTitle
+		}
 
-		modalTitle.textContent = roomTitle
+	})
+
+	bookingModal.addEventListener('hide.bs.modal', event => {
+		const modalTitle = bookingModal.querySelector('.modal-title')
+		modalTitle.textContent = 'Написать сообщение'
 	})
 </script>
 

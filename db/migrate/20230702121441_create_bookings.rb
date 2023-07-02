@@ -11,10 +11,10 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.string :guest_name
       t.string :guest_email
       t.string :guest_phone
-      t.string :wishes
+      t.string :message
 
       t.integer :adults, limit:1
-      t.integer :kids, limit:1
+      t.integer :children, limit:1
       t.integer :total_amount, default: 0
       t.integer :status, default: 0
 

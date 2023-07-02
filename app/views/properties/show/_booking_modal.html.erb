@@ -1,12 +1,12 @@
 <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content px-2">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="bookingModalLabel">Написать сообщение</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <%= form_with(model: @order) do |f| %>
+      <div class="modal-body" id="modal-booking-body">
+        <%= form_with(model: [@property, @booking]) do |f| %> 
 
           <div id="forms_errors">
             <%= render 'shared/errors', object: f.object %>
@@ -36,42 +36,48 @@
             </div>
           </div>
 
-          <% if @property.rooms.any? %>
-            <div class="form-group mt-3">
-              <%= f.label "Тип номера" %>  <!-- @property.rooms, :id, :title, { selected: room.id  } -->
-              <%= f.collection_select :room_id, @property.rooms, :id, :title, { prompt: "Выбрать", include_blank: false },
-                                      class: "form-select" %>             
-            </div>
-          <% end %> 
-
-          <div class="">
-            <div class="form-group mt-3">
-              <label>
-                Ваше имя
-              </label>            
-              <%= f.text_field :guest_name, class:"form-control" %>
-            </div>
-
-            <div class="row mt-2">
-              <div class="col-6">
-                <div class="form-group">
-                  <%= f.label "Email" %>            
-                  <%= f.email_field :guest_email, class:"form-control" %>             
-                </div>
-              </div>
-
-              <div class="col-6" data-controller="previews">
-                <div class="form-group">
-                  <%= f.label "Номер телефона" %>                
-                  <%= f.telephone_field :guest_phone, id: "phone-mask", class:"form-control" %>
-                </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <div class="form-group">
+                <%= f.label "Взрослых" %>            
+                <%= f.number_field :adults, class:"form-control", value: 2 %>             
               </div>
             </div>
-          </div>
-                        
-          <div class="my-3">
-            <%= f.label "Текст:", class: 'form-label' %>          
-            <%= f.text_area :message, class:"form-control", rows:3 %>
+
+            <div class="col-6">
+              <div class="form-group">
+                <%= f.label "Детей" %>                
+                <%= f.number_field :children, class:"form-control", value: 0 %>
+              </div>
+            </div>
+
+            <div class="col-12 mt-3">
+              <div class="form-group ">
+                <label>
+                  Ваше имя
+                </label>            
+                <%= f.text_field :guest_name, class:"form-control" %>
+              </div>
+            </div>
+
+            <div class="col-6 mt-3">
+              <div class="form-group">
+                <%= f.label "Email" %>            
+                <%= f.email_field :guest_email, class:"form-control" %>             
+              </div>
+            </div>
+
+            <div class="col-6 mt-3" data-controller="previews">
+              <div class="form-group">
+                <%= f.label "Номер телефона" %>                
+                <%= f.telephone_field :guest_phone, id: "phone-mask", class:"form-control" %>
+              </div>
+            </div>
+
+            <div class="col-12 my-3">
+              <%= f.label "Сообщение:", class: 'form-label' %>          
+              <%= f.text_area :message, class:"form-control", rows:3 %>
+            </div>
           </div>
 
           <div class="d-flex justify-content-center">
