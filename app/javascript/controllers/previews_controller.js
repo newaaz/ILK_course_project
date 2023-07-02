@@ -8,7 +8,7 @@ import IMask from 'imask';
 
 // Connects to data-controller="previews"
 export default class extends Controller {
-  static targets = ["input", "preview"]
+  static targets = ["input", "preview", "placeholder"]
   
   connect() {
     const phoneMaskField = document.getElementById('phone-mask');
@@ -136,6 +136,8 @@ export default class extends Controller {
     }
 
     if (file) {
+      this.placeholderTarget.classList.add('d-none')
+      this.previewTarget.classList.remove('d-none')
       reader.readAsDataURL(file);
     } else {
       preview.src = "https://via.placeholder.com/300x200";

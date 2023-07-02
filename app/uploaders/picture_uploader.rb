@@ -6,7 +6,7 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   process resize_to_fit: [1400, 1400], if: :is_listing?
 
-  version :thumb_user, if: :is_user?
+  #version :thumb_user, if: :is_user?
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -25,13 +25,6 @@ class PictureUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [225, 150]
   end
 
-  version :thumb_100 do
-    process resize_to_fill: [100, 100]
-  end
-
-  version :thumb_user do
-    process resize_to_fill: [150, 150]
-  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)

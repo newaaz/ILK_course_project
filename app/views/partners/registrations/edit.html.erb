@@ -33,13 +33,14 @@
 									<div class="d-flex align-items-center">
 										<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
 											<% if f.object.avatar.present? %>
-												<span class="avatar avatar-xl">
+												<span class="avatar avatar-xl"> 
 													<%= image_tag(f.object.avatar.url, data: { previews_target: "preview" }, class: 'avatar-img rounded-circle border border-white border-3 shadow') %>
 												</span>
 											<% else %>
 												<!-- Avatar place holder -->
 												<span class="avatar avatar-xl">
-													<div class="avatar-img rounded-circle bg-secondary bg-opacity-25 text-white"><span class="position-absolute top-50 start-50 translate-middle fw-bold">
+													<%= image_tag("", data: { previews_target: "preview" }, class: 'd-none avatar-img rounded-circle border border-white border-3 shadow') %>
+													<div data-previews-target="placeholder" class="avatar-img rounded-circle bg-secondary bg-opacity-25 text-white"><span class="position-absolute top-50 start-50 translate-middle fw-bold">
 														<i class="bi bi-person" style="font-size: 3rem;"></i></span>
 													</div>
 												</span>

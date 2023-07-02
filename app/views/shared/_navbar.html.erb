@@ -60,16 +60,10 @@
 
 				<% if current_partner %>				
 					<li class="nav-item ms-3 dropdown">
-						<!--
-						<a class="avatar avatar-xs p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-							<%= image_tag("theme/user.png", class: 'avatar-img rounded-circle', alt: "avatar") %>
-						</a> --> 
-
-						<div class="avatar mt-2 mt-md-1" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-							<div class="avatar-img rounded-circle bg-primary bg-opacity-25 text-primary"><span class="position-absolute top-50 start-50 translate-middle fw-bold">
-								ЛК</span>
-							</div>
-						</div>
+						
+						<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+							<%= partner_avatar_or_placeholder %>						
+						</a>	
 
 						<!-- Profile dropdown START -->
 						<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
@@ -78,10 +72,7 @@
 								<div class="d-flex align-items-center">
 									<!-- Avatar -->
 									<div class="avatar me-3">
-										<%#= image_tag("theme/user.png", class: 'avatar-img rounded-circle shadow', alt: "avatar") %>
-										<div class="avatar-img rounded-circle bg-secondary bg-opacity-25 text-white"><span class="position-absolute top-50 start-50 translate-middle fw-bold">
-											<i class="bi bi-person" style="font-size: 1.8rem;"></i></span>
-										</div>
+										<%= partner_avatar_or_placeholder %>
 									</div>
 									<div>									
 										<span class="h6 mt-2 mt-sm-0"><%= current_partner.name_or_email %></span>

@@ -293,13 +293,13 @@ var e = {
         if (e.isVariableDefined(stickyNav)) {
             var stickyHeight = stickyNav.offsetHeight;
             stickyNav.insertAdjacentHTML('afterend', '<div id="sticky-space"></div>');
-            var stickySpace = e.select('#sticky-space');
+            var stickySpace = e.select('#sticky-space'); 
             if (e.isVariableDefined(stickySpace)) {
                 document.addEventListener('scroll', function (event) {
                     var scTop = window.pageYOffset || document.documentElement.scrollTop;
                     if (scTop >= 400) {
-                        stickySpace.addClass('active');
-                        e.select("#sticky-space.active").style.height = stickyHeight + 'px';
+                      //  stickySpace.addClass('active');                                   ------- CHANGED
+                      //  e.select("#sticky-space.active").style.height = stickyHeight + 'px';
                         stickyNav.addClass('header-sticky-on');
                     } else {
                         stickySpace.removeClass('active');

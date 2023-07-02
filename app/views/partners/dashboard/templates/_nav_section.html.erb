@@ -23,13 +23,10 @@
 				<div class="text-center mb-3">
 					<!-- Avatar -->
 					<div class="avatar avatar-xl mb-2">
-						<%#= image_tag("theme/user.png", class: 'avatar-img rounded-circle border border-2 border-white', alt: "avatar") %>
-						<div class="avatar-img rounded-circle bg-secondary bg-opacity-25 text-white"><span class="position-absolute top-50 start-50 translate-middle fw-bold">
-							<i class="bi bi-person" style="font-size: 3rem;"></i></span>
-						</div>
+						<%= partner_avatar_or_placeholder %>
 					</div>
 					<h6 class="mb-0"><%= current_partner.name_or_email %></h6>
-					<a href="#" class="text-reset text-primary-hover small"><%= current_partner.email %></a>
+					<span class="text-reset small"><%= current_partner.email %></span>
 					<hr>
 				</div>
 
