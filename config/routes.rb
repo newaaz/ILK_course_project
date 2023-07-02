@@ -28,12 +28,8 @@ Rails.application.routes.draw do
   namespace :partners do
     root 'dashboard#index'
     get 'orders', to: 'dashboard#orders'
-    #get 'profile', to: 'dashboard#profile'
     get 'add_listing', to: 'dashboard#add_listing'
-    #delete 'delete_account', to: 'registrations#destroy'    
   end
-  # destroy with devise
-  # resources :partners, only: %i[destroy]
 
   namespace :customers do
     root 'dashboard#index'

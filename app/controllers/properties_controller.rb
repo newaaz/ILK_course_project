@@ -14,7 +14,7 @@ class PropertiesController < ApplicationController
       @dates_status = :reset
       return
     end
-
+    
     if params[:check_in].blank? || params[:check_out].blank? || params[:check_in].to_date > params[:check_out].to_date
       @dates_status = :invalid
       return
@@ -54,7 +54,6 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    #debugger
     @property = current_partner.properties.build(property_params)
     if @property.save
       flash[:success] = "Объявление добавлено и ожидает проверки. Вам на почту придёт письмо, сообщающее об активации и доступности к просмотру"
@@ -73,16 +72,24 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def edit
-    
+  def edit    
   end
 
   def update
     if @property.update property_params
-      flash[:success] = 'Property successfully updated'
+      flash[:success] = 'Данные успешно обновлены'
       redirect_to @property
     else
-      render 'edit', status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render 'edit', status: :unprocessable_entity }
+      
+        format.turbo_stream do
+          render turbo_stream:
+            turbo_stream.update('forms_errors',
+              partial: 'shared/errors',
+              locals:   { object: @property })
+        end
+      end
     end
   end
 
@@ -90,12 +97,8 @@ class PropertiesController < ApplicationController
     @property.destroy
 
     respond_to do |format|
-      format.html { redirect_to partners_root_path, flash[:success] = 'Объявление удалено' }
-    
-      format.turbo_stream do
-        render turbo_stream:
-          turbo_stream.remove("property_#{@property.id}")
-      end
+      format.html { redirect_to partners_root_path, notice: 'Объект удален' }    
+      format.turbo_stream
     end
   end
 

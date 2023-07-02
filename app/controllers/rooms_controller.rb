@@ -56,10 +56,19 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     authorize(@room)
     if @room.update room_params
-      flash[:success] = 'Room successfully updated'
+      flash[:success] = 'Данные успешно обновлены'
       redirect_to partners_root_path
     else
-      render 'edit'
+      respond_to do |format|
+        format.html { render 'new', locals: { room: @room }, status: :unprocessable_entity }
+      
+        format.turbo_stream do
+          render turbo_stream:
+            turbo_stream.update('forms_errors',
+              partial: 'shared/errors',
+              locals:   { object: @room })
+        end
+      end
     end
   end
 
@@ -67,8 +76,11 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     authorize(@room)
     @room.destroy
-    flash[:success] = 'Room was destroyed'
-    redirect_to partners_root_path
+
+    respond_to do |format|
+      format.html { redirect_to partners_root_path, notice: 'Номер удален' }    
+      format.turbo_stream
+    end
   end
 
   private

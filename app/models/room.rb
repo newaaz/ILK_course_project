@@ -45,7 +45,7 @@ class Room < ApplicationRecord
     if all_prices.count > 1
       compare_price = all_prices.shift
       all_prices.each do |price|
-        errors.add(:prices, "- there are intersect date ranges in prices") if compare_price.date_range.overlaps? price.date_range
+        errors.add(:prices, "- есть пересечение в датах") if compare_price.date_range.overlaps? price.date_range
       end
     end
   end
