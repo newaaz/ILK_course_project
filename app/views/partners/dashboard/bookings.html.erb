@@ -1,0 +1,58 @@
+<% provide(:title, "Заявки") %>
+
+<section class="pt-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-xl-3">
+        <%= render 'partners/dashboard/templates/nav_section' %>
+			</div>
+		
+			<div class="col-lg-8 col-xl-9 px-0 px-md-2">
+				<!-- Offcanvas menu button -->
+				<div class="mb-0 d-lg-none text-end pe-3">
+					<button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+						<i class="bi bi-arrow-bar-left"></i>Меню
+					</button>
+				</div>
+
+				<!-- CARD START -->
+				<div class="card border shadow">
+					<!-- Card header -->
+					<div class="card-header border-bottom">
+						<h4 class="card-header-title"><i class="bi bi-star me-1 text-secondary"></i> Заявки</h4>
+					</div>
+					<!-- Card body START -->
+					<div class="card-body px-2 px-md-3 py-2 py-md-3">  
+						<div class="table-responsive border-0">
+							<table class="table align-middle p-4 mb-0 table-hover table-shrink">
+								<!-- Table head -->
+								<thead class="table-light">
+									<tr>
+										<th scope="col" class="border-0 rounded-start">#</th>
+										<th scope="col" class="border-0">Название</th>
+										<th scope="col" class="border-0">Даты/Кол-во гостей</th>
+										<th scope="col" class="border-0">Контактные данные</th>
+										<!--
+										<th scope="col" class="border-0 rounded-end">Action</th>
+										-->
+									</tr>
+								</thead>
+
+								<!-- Table body START -->
+								<tbody class="border-top-0">
+									<!-- Table items -->
+									<%= render partial: 'bookings/booking', collection: @bookings, as: :booking %>									
+								</tbody>
+								<!-- Table body END -->
+							</table>
+						</div>
+					</div>
+					<!-- Card body END -->
+				</div>
+				<!-- CARD END -->
+			</div>
+		</div>
+	</div>
+</section>
+
+

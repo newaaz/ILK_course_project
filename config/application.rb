@@ -24,7 +24,7 @@ module Ilk
 
     config.autoload_paths += [config.root.join('app')]
 
-    config.active_storage.replace_on_assign_to_many = false
+    config.active_storage.replace_on_assign_to_many = true
 
     config.generators do |g|
       g.test_framework :rspec,

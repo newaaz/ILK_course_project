@@ -50,7 +50,9 @@ class PropertiesController < ApplicationController
   end
 
   def new
-    @property = Property.new(geolocation: Geolocation.new, property_detail: PropertyDetail.new, contact: Contact.new)
+    @property = Property.new(geolocation: Geolocation.new,
+                             property_detail: PropertyDetail.new(email: current_partner.email),
+                             contact: Contact.new(name: current_partner.name))
   end
 
   def create
@@ -112,7 +114,7 @@ class PropertiesController < ApplicationController
     params.require(:property).permit(:title, :address, :town_id, :category_id, :avatar,
                                       :distance_to_sea, :price_from, images: [], services: [],
                                       geolocation_attributes: [:id, :latitude, :longitude],
-                                      contact_attributes: [:id, :email, :name, :phone_number, messengers: [] ],
+                                      contact_attributes: [:id, :email, :name, :avatar, :phone_number, messengers: [] ],
                                       property_detail_attributes: [:id, :short_description,
                                         :parking, :rating, :food, :territory, :additional_info,
                                         :transfer, :site, :email, :vk_group, amenities: []])

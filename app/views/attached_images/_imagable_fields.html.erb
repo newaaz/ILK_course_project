@@ -17,6 +17,9 @@
             <%= image_tag(f.object.avatar, data: { previews_target: "preview" }, style: 'max-height: 190px;' , class: 'rounded') %>
           <% else %>
             <%= image_tag("", data: { previews_target: "preview" }, style: 'max-height: 190px;' , class: 'rounded') %>
+            <div data-previews-target="placeholder" class="d-none avatar-img rounded-circle bg-secondary bg-opacity-25 text-white"><span class="position-absolute top-50 start-50 translate-middle fw-bold">
+              <i class="bi bi-person" style="font-size: 3rem;"></i></span>
+            </div>
           <% end %>
         </div>    
       </div>

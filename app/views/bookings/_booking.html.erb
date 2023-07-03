@@ -1,0 +1,18 @@
+<tr>
+  <td><h6 class="mb-0"><%= booking.id %></h6></td>
+  <td>
+    <h6 class="mb-0"><%= link_to booking.property.title, booking.property %></h6>
+    <%= "Стандартный 2-х местный номер" %>
+  </td>
+  <td>
+    <%= "С #{to_day_and_month(booking.check_in)} по #{to_day_and_month(booking.check_out)}" %> <br>
+    <%= "Взрослых: #{booking.adults}, детей: #{booking.children}" %>
+  </td>
+  <td>
+    <h6 class="mb-0 fw-light"><%= booking.guest_name %></h6>
+    <%= "#{booking.guest_email}, #{booking.guest_phone}" %>
+  </td>
+  <!--
+  <td><a href="#" class="btn btn-sm btn-light mb-0">View</a></td>
+  -->
+</tr>

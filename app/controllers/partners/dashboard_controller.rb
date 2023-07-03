@@ -12,6 +12,10 @@ class Partners::DashboardController < ApplicationController
     @orders = current_partner.owner_orders
   end
 
+  def bookings
+    @bookings = current_partner.as_hoster_bookings.includes(:property)
+  end
+
   def profile
   end
 

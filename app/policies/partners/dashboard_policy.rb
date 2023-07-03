@@ -14,4 +14,8 @@ class Partners::DashboardPolicy < ApplicationPolicy
   def add_listing?
     user.is_a?(Partner)
   end
+
+  def bookings?
+    user.is_a?(Partner)
+  end
 end

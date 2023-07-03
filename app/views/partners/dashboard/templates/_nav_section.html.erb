@@ -34,12 +34,12 @@
 				<ul class="nav nav-pills-primary-soft flex-column">
 					<li class="nav-item">
 						<%= link_to partners_root_path, class: 'nav-link' do %>
-							<i class="bi bi-house me-1"></i>Кабинет
+							<i class="bi bi-person-workspace me-1"></i>Кабинет
 						<% end %>
 					</li>
 					<li class="nav-item">
-						<%= link_to partners_orders_path, class: 'nav-link' do %>
-							<i class="bi bi-bookmark-heart me-1"></i>Bookings
+						<%= link_to partners_bookings_path, class: 'nav-link' do %>
+							<i class="bi bi-star me-1"></i>Заявки
 						<% end %>
 					</li>
 					<li class="nav-item">
@@ -49,13 +49,13 @@
 					</li>			
 					<li class="nav-item">
 						<%= link_to partners_add_listing_path, class: 'nav-link' do %>
-							<i class="bi bi-house-add me-2"></i>Добавить объявление
+							<i class="bi bi-folder-plus me-2"></i>Добавить объявление
 						<% end %>
 					</li>
+					<!--
 					<li class="nav-item">
 						<a class="nav-link" href="account-bookings.html"><i class="bi bi-ticket-perforated me-2"></i>Заявки</a>
 					</li>
-					<!--
 					<li class="nav-item">
 						<a class="nav-link" href="account-profile.html"><i class="bi bi-person me-2"></i>Профиль</a>
 					</li>
