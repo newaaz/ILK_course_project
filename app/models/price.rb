@@ -15,6 +15,6 @@ class Price < ApplicationRecord
   end
 
   def check_start_end_dates
-    errors.add(:start_date, "should be earlier end date") if start_date >= end_date
+    errors.add(:start_date, "должна быть раньше даты оконачания") if start_date >= end_date
   end
 end

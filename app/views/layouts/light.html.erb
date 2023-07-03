@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+
+    <%= yield :turbo_cache_control %>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- Google Font -->
+	  <link rel="preconnect" href="https://fonts.googleapis.com">
+	  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap">
+
+
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script> 
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+
+    <!-- Dark mode -->
+    <script type="text/javascript">
+      const theme = localStorage.getItem('data-theme');
+      const root = document.documentElement;
+      if (theme === 'dark' && theme !== undefined) {
+        root.classList.add('dark-mode');
+      } else {
+        root.classList.remove('dark-mode');
+      }
+    </script>
+  </head>
+
+  <body>
+    <%#= render 'shared/navbar' %>
+
+    <%= render 'shared/notification' %>
+    
+    <%= yield %>    
+
+    <%#= render 'shared/footer' %>
+
+    <div class="back-top"></div>
+
+    <%#= render 'shared/navbar_mobile' %>
+  </body>
+</html>

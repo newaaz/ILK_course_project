@@ -1,13 +1,13 @@
 ru:
   activerecord:
-    models:      
+    models:
+      price: 'Стоимость проживания'
       partner: 'Партнёр'  
       town: 'Город'
       category: 'Категория'
       property: 'Объект'
       property_detail: 'Детальная информация'
-      room: 'Номер'
-      price: 'Ценовой период'
+      room: 'Номер'        
       activity: 'Активный отдых'
       service: 'Услуга/Сервис'           
       cafebar: 'Кафе/Ресторан'
@@ -32,11 +32,12 @@ ru:
         longitude: 'Требуется долгота,'
       partner:
         name: 'Имя'
-        email: 'email'
-        phone: 'номер телефона'
+        email: 'Email'
+        phone_number: 'Номер телефона'
         avatar: 'Фото профиля'
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
+        current_password: 'Текущий пароль'
       town:
         name: 'Название'
         parent_name: 'Название в падеже'
@@ -74,68 +75,28 @@ ru:
         name: 'Имя'
         phone_number: 'Номер телефона'
         messengers: 'Мессенджеры'
+      price:
+        start_date: 'Начало периода'
+        end_date: 'Конец периода'
+        day_cost: 'Стоимость в сутки' 
       room:
-        name: 'Название или тип номера'
+        title: 'Название или тип номера'
         description:  "Описание номера"
         hotel_id: "Гостиница"
         avatar: "Главная фотография номера"
         images: "Фотографии номера"
-        number: "Порядковый номер"
+        serial_number: "Порядковый номер"
         rooms: "Количество комнат"
         size: "Площадь"
-        guests: "Кол-во гостей"
-        floor: "Этаж"
+        guest_base_count: 'Базовое количество гостей'
+        guest_max_count: 'Максимальное количество гостей'
         furniture: "Мебель"
+        beds: 'Спальные места'
         bathroom: "Санузел/душ/ванна"
         in_room: "В номере"
         addition: "Дополнительно"
-      active:
-        name: 'Название'
-        active_category_id: 'Категория'
-        price: 'Стоимость'
-        description: 'Описание'
-        avatar: 'Главное фото'
-        images: 'Остальные фото'
-      service:
-        name: 'Название'
-        service_category_id: 'Категория'
-        address: 'Адрес'
-        description: 'Описание'
-        price: 'Стоимость'
-        addition: 'Дополнительно'
-        avatar: 'Главное фото'
-        images: 'Остальные фото'
-      cafebar:
-        name: 'Название'
-        avatar: 'Главное фото'
-        images: 'Фотографии'
-        town_id: 'Населённый пункт'
-        latitude: 'Требуются координаты.'
-        address: 'Адрес'
-        phone: 'Телефон'
-        site: 'Сайт'    
-        instagram: 'Профиль в Instagram'
-        vk:      'Профиль в VK'   
-        description: 'Описание'
-        menu: 'Меню'
-      order:
-        guest_name: 'Ваше имя'
-        guest_email: 'Ваш email'
-        guest_phone: 'Ваш номер телефона'
-        check_in: 'Поле: дата заезда'
-        check_out: 'Поле: дата выезда'
-        adults: 'Поле: взрослых'
-        kids: 'Дети'
-        wishes: 'Комментарии и пожелания'
-        owner_comment: ''
-        total_amount: ''
-      order_active:
-        guest_name: 'Ваше имя'
-        guest_email: 'Ваш email'
-        guest_phone: 'Ваш номер телефона'
-        wish_date: 'Желаемая дата'
-        adults: 'Поле: взрослых'
-        wishes: 'Комментарии и пожелания'
+        prices: 'Стоимость проживания'  
+
     errors:
       messages:
         blank:  'не может быть пустым'

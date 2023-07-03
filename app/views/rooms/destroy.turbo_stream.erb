@@ -1,0 +1,8 @@
+<%= turbo_stream.remove dom_id(@room) %>
+
+<%= turbo_stream.update('flash_messages', partial: 'shared/flash_message', locals: { 
+                                                                              message_type: 'warning',
+                                                                              message: 'Номер удален'
+                                                                            }) %>
+
+

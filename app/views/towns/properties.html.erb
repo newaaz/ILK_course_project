@@ -1,0 +1,52 @@
+<% provide(:title, "Жильё в #{ @town.parent_name }") %>
+
+<section class="parallax-window" data-controller="parallax" data-parallax="scroll" data-image-src="<%= @town.avatar.url %>">
+  <div class="parallax-content-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">          
+					<% unless @properties_category %>
+            <h1>Жильё в <%= @town.parent_name %></h1>           
+          <% else %>      
+            <h1><%= @properties_category %> в <%= @town.parent_name %></h1>
+          <% end %>        
+        </div>
+        <div class="col-md-4">
+          <div id="price_single_main" class="hotel">
+            <span><sup></sup></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- breadcrumbs -->
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
+      <li class="breadcrumb-item"><%= link_to @town.name, @town %></li>
+      <% unless @properties_category %>
+        <li class="breadcrumb-item active"><%= "Жильё в #{@town.parent_name}" %></li>       
+      <% else %>        
+        <li class="breadcrumb-item"><%= link_to "Жильё в #{@town.parent_name}", properties_town_path(@town) %></li> 
+        <li class="breadcrumb-item active"><%= @properties_category %></li>    
+      <% end %>
+    </ol>
+  </nav>
+</div>
+
+<section class="py-3">
+  <div class="container">
+    <div class="categories my-3">
+      <%= link_to 'Все категории', properties_town_path(@town), class: 'btn btn-light btn-sm' %>
+      <% @categories.each do |cat| %>
+        <%= link_to cat.title, { cat: cat.id }, class: 'btn btn-light btn-sm' %>
+      <% end %>
+    </div>
+    <div class="row gx-3">
+      <%= render @properties %>
+    </div>
+  </div>
+</section>

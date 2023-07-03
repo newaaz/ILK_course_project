@@ -1,36 +1,178 @@
-<div class="card border p-2">
-  <div class="row g-4">
-    <!-- Card img -->
-    <div class="col-md-4 col-lg-3">
-      <%= link_to image_tag(property.avatar.variant(resize_to_limit: [250, 250]), class: "card-img rounded-2"), property %>  
-    </div>
+<div class="card border shadow" id="<%= dom_id property %>">
 
-    <!-- Card body -->
-    <div class="col-md-8 col-lg-9">
-      <div class="card-body position-relative d-flex flex-column p-0 h-100">
-        <!-- Title -->
-        <h4 class="card-title mb-0 me-5"><%= link_to property.title, property %></h4>
-        <small><i class="bi bi-geo-alt me-2"></i><%= property.address %></small>
-        <!-- Price and Button -->
-        <div class="d-sm-flex justify-content-sm-between align-items-center mt-2 ">
-          <!-- Button -->
-          <div class="d-flex align-items-center hstack gap-1">
-            <%= link_to 'Edit', edit_property_path(property), class: 'btn btn-outline-warning btn-sm' %>
-            <%= link_to "Delete", property_path(property), data: { "turbo-method": :delete }, class: 'btn btn-sm btn-outline-danger' %>
-            <%= link_to '+ Add room', new_property_room_path(property), class: 'btn btn-primary btn-sm' %>
-          </div>                          
-        </div>
+  <div class="card-header border-bottom">
+    <div class="d-flex justify-content-between align-items-center">
+      <h4 class="card-header-title"><%= link_to property.title, property %></h4>
 
-        <% if property.rooms.any? %>
-          <h4 class="h5 mt-3">Rooms:</h4>
-          <div class="row">
-            <%= render partial: 'partners/dashboard/templates/room', collection: property.rooms, as: :room %>
-          </div>
-        <% end %> 
-      </div>
+      <div class="">
+        <%= link_to edit_property_path(property), class: 'btn btn-outline-primary btn-sm' do %>
+          <i class="bi bi-pencil-square me-1"></i>Изменить
+        <% end %>
+        <!-- DELETE OBJECT 
+        <%= link_to property_path(property), data: { "turbo-method": :delete, turbo_confirm: "Точно удалить - Вы уверены?" }, class: 'btn btn-sm btn-outline-danger' do %>
+          <i class="bi bi-trash3 fa-fw me-1"></i>Удалить
+        <% end %> -->
+      </div> 
     </div>
   </div>
+
+  <div class="card-body">  
+    <div class="row">
+      <!-- Avatar -->
+      <div class="col-md-6 px-0 px-md-2">
+        <%= link_to image_tag(property.avatar.variant(resize_to_limit: [250, 250]), class: "card-img rounded-2"), property %>  
+      </div>
+
+      <div class="col-md-6 mt-3">
+        <!-- Category Address Rating and buttons -->
+        <div class="d-flex justify-content-between align-items-center">
+          <!-- Rating
+          <ul class="list-inline small mb-0">
+            <li class="list-inline-item me-0"><i class="bi bi-star-fill text-warning"></i></li>
+            <li class="list-inline-item me-0"><i class="bi bi-star-fill text-warning"></i></li>
+            <li class="list-inline-item me-0"><i class="bi bi-star-fill text-warning"></i></li>
+            <li class="list-inline-item me-0"><i class="bi bi-star-fill text-warning"></i></li>
+            <li class="list-inline-item"><i class="bi bi-star-half text-warning"></i></li>
+          </ul>
+          Rating -->
+    
+          <!-- Actions
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item dropdown">
+              <a href="#" class="btn btn-sm btn-round btn-light mb-0" role="button" id="dropdownShare2" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-three-dots-vertical"></i>
+              </a>              
+              <ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare2">
+                <li>
+                  <%= link_to edit_property_path(property), class: 'dropdown-item' do %>
+                    <i class="bi bi-pencil-square me-2"></i>Изменить
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to property_path(property), class: 'dropdown-item text-danger bg-danger-soft-hover', data: { "turbo-method": :delete, turbo_confirm: "Точно удалить - Вы уверены?" } do %>
+                    <i class="bi bi-trash fa-fw me-2"></i>Удалить
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          Actions -->
+        </div>
+
+        <div class="small"><i class="bi bi-building me-2"></i><%= property.category.title %></div>
+        <div class="small mt-2"><i class="bi bi-geo-alt me-2"></i><%= "#{property.town.name}, #{property.address}" %></div>
+        
+        <% if property.distance_to_sea %>
+          <div class="mt-2">
+            <i class="bi bi-water me-1 text-primary"></i>море ~ <span class="fw-semibold"><%= property.distance_to_sea %></span><small>м</small>
+          </div>
+        <% end %>
+
+        <div class="my-2">
+          <i class="bi bi-wallet2 me-1 text-success"></i> от <span class="fw-semibold"><%= property.price_from %></span><small>р</small>/сутки
+        </div>
+        <!-- show modal map -->
+        <%= link_to '#', data: { controller: 'maps', 'action': 'click->maps#showMapModal',
+                                 latitude: property.geolocation.latitude,
+                                 longitude: property.geolocation.longitude },
+                         class: 'text-decoration-underline' do %>
+          <i class="bi bi-eye-fill me-1"></i> Показать на карте
+        <% end %>
+
+        <div class="mt-2 mb-4">
+          <span class="">Заявок:</span>
+          <span class="mb-0 ms-2"><%= property.orders.count %></span>
+        </div>
+
+        <div class="hstack gap-2">
+          <a data-bs-toggle="collapse" href="#rooms-collapse-<%= dom_id(property) %>" role="button" aria-expanded="false" aria-controls="rooms-collapse-<%= dom_id(property) %>" class="btn btn-primary-soft btn-sm mb-0 w-100">
+            <i class="bi bi-caret-down me-1"></i>Номера (<%= property.rooms.count %>)
+          </a>
+          <a data-bs-toggle="collapse" href="#detail-collapse-<%= dom_id(property) %>" role="button" aria-expanded="false" aria-controls="detail-collapse-<%= dom_id(property) %>" class="btn btn-primary-soft btn-sm mb-0 w-100">
+            <i class="bi bi-caret-down me-1"></i>Подробнее
+          </a>
+        </div> 
+      </div>
+    </div>
+
+    <div class="collapse" id="rooms-collapse-<%= dom_id(property) %>">
+      <div class="my-3 py-2 ps-3 pe-3 bg-primary bg-opacity-10 border-top border-primary rounded-top d-flex justify-content-between align-items-center">
+        <h5>Номера</h5>
+         <%= link_to '+ Добавить номер', new_property_room_path(property), class: 'btn btn-primary-soft btn-sm' %>
+      </div>
+
+      <div class="row p-1">
+        <%= render partial: 'partners/dashboard/templates/room', collection: property.rooms, as: :room %>
+      </div>
+    </div>
+
+    <div class="collapse" id="detail-collapse-<%= dom_id(property) %>">
+      <div class="my-3 py-2 ps-3 pe-3 bg-primary bg-opacity-10 border-top border-primary rounded-top d-flex justify-content-between align-items-center">
+        <h5>Подробнее</h5>
+        <%= link_to edit_property_path(property), class: 'btn btn-primary-soft btn-sm' do %>
+          <i class="bi bi-pencil-square me-1"></i>Изменить
+        <% end %>
+      </div>
+
+      <div class="p-1">
+        <div class="mb-3">
+          <% property.services.each do |service| %>									
+            <span class="badge bg-success bg-opacity-10 text-success fs-6 mb-3 me-2 ">
+              <i class="bi bi-check-circle-fill text-success me-1"></i>
+              <%= Property::SERVICES[service.to_sym] %>
+            </span>
+          <% end %>
+          <% property.property_detail.amenities.each do |service| %>									
+            <span class="badge bg-success bg-opacity-10 text-success fs-6 mb-3 me-2">
+              <i class="bi bi-check-circle-fill text-success me-1"></i>
+              <%= PropertyDetail::AMENITIES[service.to_sym] %>
+            </span>
+          <% end %>          
+        </div>
+
+        <div class="py-3 mb-4">    
+          <p class="mb-3"><%= property.property_detail.short_description %></p>
+          <hr>
+          <h5 class="mb-2 mt-3">Инфраструктура</h5>
+          <div class="px-2">
+            <div class="row bg-light py-2">
+              <div class="col-md-3 fw-semibold">Питание:</div>
+              <div class="col-md-9"><%= property.property_detail.food %></div>
+            </div>        
+
+            <div class="row py-2">
+              <div class="col-md-3 fw-semibold">Парковка:</div>
+              <div class="col-md-9"><%= property.property_detail.parking %></div>
+            </div>
+
+            <div class="row bg-light py-2">
+              <div class="col-md-3 fw-semibold">Территория:</div>
+              <div class="col-md-9"><%= property.property_detail.territory %></div>
+            </div>
+
+            <div class="row  py-2">
+              <div class="col-md-3 fw-semibold">Трансфер:</div>
+              <div class="col-md-9"><%= property.property_detail.transfer %></div>
+            </div>
+
+            <div class="row bg-light rounded-bottom py-2">
+              <div class="col-md-3 fw-semibold">Дополнительно:</div>
+              <div class="col-md-9"><%= property.property_detail.additional_info %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-top text-end pt-4">      
+        <%= link_to property_path(property), data: { "turbo-method": :delete, turbo_confirm: "Точно удалить - Вы уверены?" }, class: 'btn btn-sm btn-outline-danger' do %>
+          <i class="bi bi-trash3 fa-fw me-1"></i>Удалить объект
+        <% end %>
+      </div>
+    </div>  
+  </div>
 </div>
+
+<br>
 
 
 

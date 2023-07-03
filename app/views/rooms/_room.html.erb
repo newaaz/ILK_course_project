@@ -18,9 +18,9 @@
           data-loop="true"
           data-keyboard="true"
           data-auto="false">      
-        <%= link_to image_tag(room.avatar.variant(resize_to_limit: [150, 150])), room.avatar %>      
+        <%= link_to image_tag(room.avatar.variant(resize_to_limit: [100, 100])), room.avatar %>      
         <% room.images.each do |image| %> 
-          <%= link_to image_tag(image.variant(resize_to_limit: [150, 150])), image %>            
+          <%= link_to image_tag(image.variant(resize_to_limit: [100, 100])), image %>            
         <% end %>
       </div>
       <!-- fotorama end --> 
@@ -79,8 +79,13 @@
           <a data-bs-toggle="collapse" href="#collapse-<%= dom_id(room) %>" role="button" aria-expanded="false" aria-controls="collapse-<%= dom_id(room) %>" class="btn btn-primary-soft btn-sm mb-0 w-100">
             <i class="bi bi-caret-down me-1"></i>Подробнее
           </a>
-
-          <%= link_to 'Выбрать', new_order_path(room_id: room.id), class: "btn btn-orange-soft btn-sm mb-0 w-100" %>   
+          <a href="#" class="btn btn-orange-soft btn-sm mb-0 w-100"
+                      data-bs-toggle="modal"
+                      data-bs-target="#bookingModal"
+                      data-bs-room="<%= room.id %>">
+            Выбрать
+          </a>
+          <%#= link_to 'Выбрать', new_order_path(room_id: room.id), class: "btn btn-orange-soft btn-sm mb-0 w-100" %>   
         </div>        
       </div>
     </div>

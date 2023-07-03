@@ -8,7 +8,7 @@
       <div class="row g-3 pb-3">
         <%= f.fields_for :property_detail do |details_form| %>
           <div class="col-12">        
-            <%= details_form.label :email, class: 'form-label' %> <span class="small text-secondary">(обязательно)</span>        
+            <%= details_form.label :email, class: 'form-label' %> <span class="small text-secondary"></span>        
             <div class="input-group"> 
               <span class="input-group-text"><i class="bi bi-envelope"></i></span>
               <%= details_form.email_field :email, class: 'form-control' %>            

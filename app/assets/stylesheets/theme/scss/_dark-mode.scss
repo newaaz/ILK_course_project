@@ -198,12 +198,12 @@
     // z-index: 99999;
     .modeswitch-mini-item {
       .modeswitch-mini-icon {
-        font-size: 24px;
-        color: $warning;
+        font-size: 20px;
+        color: $primary;
         transition: all 0.3s;
         &:before {
-          content: "\f185";
-          font-family: 'Font Awesome 6 Free';
+          content: "\f494";
+          font-family: 'bootstrap-icons';
           font-weight: 700;
           border: none;
           line-height: 26px;
@@ -215,8 +215,8 @@
     }
   }
   .dark-mode .modeswitch-mini .modeswitch-mini-icon:before {
-    content: "\f186";
-    color: $white;
+    content: "\f1d1";
+    color: $warning;
   }
 }
 

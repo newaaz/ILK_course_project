@@ -27,4 +27,12 @@ class Partners::ConfirmationsController < Devise::ConfirmationsController
   # def after_confirmation_path_for(resource_name, resource)
   #   super(resource_name, resource)
   # end
+
+  #private
+  
+  # Login partner after confirmation
+  # def after_confirmation_path_for(resource_name, resource)
+  #   sign_in(resource) # In case you want to sign in the user
+  #   partners_root_path
+  # end
 end

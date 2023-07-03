@@ -14,7 +14,7 @@ class PropertiesController < ApplicationController
       @dates_status = :reset
       return
     end
-
+    
     if params[:check_in].blank? || params[:check_out].blank? || params[:check_in].to_date > params[:check_out].to_date
       @dates_status = :invalid
       return
@@ -45,16 +45,17 @@ class PropertiesController < ApplicationController
                                    images_attachments: :blob, avatar_attachment: :blob,
                                    rooms: [:prices, images_attachments: :blob, avatar_attachment: :blob]])
                         .find(params[:id])
-
     @nearby_properties = @property.nearby_objects('Property', 20)
+    @booking = Booking.new(property: @property)
   end
 
   def new
-    @property = Property.new(geolocation: Geolocation.new, property_detail: PropertyDetail.new, contact: Contact.new)
+    @property = Property.new(geolocation: Geolocation.new,
+                             property_detail: PropertyDetail.new(email: current_partner.email),
+                             contact: Contact.new(name: current_partner.name))
   end
 
   def create
-    #debugger
     @property = current_partner.properties.build(property_params)
     if @property.save
       flash[:success] = "Объявление добавлено и ожидает проверки. Вам на почту придёт письмо, сообщающее об активации и доступности к просмотру"
@@ -73,23 +74,34 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def edit
-    
+  def edit    
   end
 
   def update
     if @property.update property_params
-      flash[:success] = 'Property successfully updated'
+      flash[:success] = 'Данные успешно обновлены'
       redirect_to @property
     else
-      render 'edit', status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render 'edit', status: :unprocessable_entity }
+      
+        format.turbo_stream do
+          render turbo_stream:
+            turbo_stream.update('forms_errors',
+              partial: 'shared/errors',
+              locals:   { object: @property })
+        end
+      end
     end
   end
 
   def destroy
     @property.destroy
-    flash[:success] = 'Объявление удалено'
-    redirect_to partners_root_path
+
+    respond_to do |format|
+      format.html { redirect_to partners_root_path, notice: 'Объект удален' }    
+      format.turbo_stream
+    end
   end
 
   private
@@ -102,7 +114,7 @@ class PropertiesController < ApplicationController
     params.require(:property).permit(:title, :address, :town_id, :category_id, :avatar,
                                       :distance_to_sea, :price_from, images: [], services: [],
                                       geolocation_attributes: [:id, :latitude, :longitude],
-                                      contact_attributes: [:id, :email, :name, :phone_number, messengers: [] ],
+                                      contact_attributes: [:id, :email, :name, :avatar, :phone_number, messengers: [] ],
                                       property_detail_attributes: [:id, :short_description,
                                         :parking, :rating, :food, :territory, :additional_info,
                                         :transfer, :site, :email, :vk_group, amenities: []])

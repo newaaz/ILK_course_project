@@ -1,28 +1,31 @@
-<div class="container">
-  <h2>Log in</h2>
+<% provide(:title, 'Войти') %>
 
+<main class="form-signin text-center">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
+    <%= render "partners/shared/error_messages", resource: resource %>
 
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= link_to image_tag('logo.png', class:'my-5', style: 'width: 220px;'), root_path %>    
+    <h1 class="h3 mb-3 fw-normal">Войти</h1>    
+   
+    <div class="w-75 mx-auto">   
+    <%= f.email_field :email, class:"form-control round-top", placeholder: "Email", autofocus: true %>    
+    <%= f.password_field :password, class:"form-control round-bottom", placeholder:"Пароль" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
-      <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+      <div class="mb-4 mt-3 field">
+        <%= f.check_box :remember_me, class:"form-check-input" %>
+        <%= f.label :remember_me, "Запомнить меня", class: "form-check-label" %>
       </div>
-    <% end %>
+    <% end %>    
 
-    <div class="actions">
-      <%= f.submit "Log in" %>
-    </div>
+    <%= f.submit "Войти", class:"actions w-50 btn btn-primary mb-4" %>
+
+    <br>
+    <small>
+      <%= render "partners/shared/links" %>
+    </small>  
   <% end %>
+</main>
 
-  <%= render "partners/shared/links" %>
-</div>
+

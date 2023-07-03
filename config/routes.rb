@@ -13,7 +13,9 @@ Rails.application.routes.draw do
                           registrations: 'partners/registrations',
                           confirmations: 'partners/confirmations',
                           passwords:     'partners/passwords',
-                        }
+                        },
+                        path: 'partners',
+                        path_names: { edit: 'profile' }
 
   devise_for :customers,  controllers: {
                             sessions:      'customers/sessions',
@@ -26,6 +28,8 @@ Rails.application.routes.draw do
   namespace :partners do
     root 'dashboard#index'
     get 'orders', to: 'dashboard#orders'
+    get 'add_listing', to: 'dashboard#add_listing'
+    get 'bookings', to: 'dashboard#bookings'
   end
 
   namespace :customers do
@@ -36,6 +40,7 @@ Rails.application.routes.draw do
 
   resources :properties do
     resources :rooms, except: %i[index show], shallow: true
+    resources :bookings, only: %i[create]
     post :calculate_price, on: :member
   end
 
@@ -43,7 +48,11 @@ Rails.application.routes.draw do
 
   resources :orders, only: %i[show new create update]
 
-  resources :towns, only: %i[show]
+  resources :towns, only: %i[show] do
+    get :properties, on: :member
+  end
+
+  resources :carts, only: [:show, :destroy]
 
   # for tests
   # default_url_options :host => "example.com"

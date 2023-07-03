@@ -5,18 +5,18 @@
 
   <div class="card-body py-2 px-3">
     
-    <div class="text-center">
-      <span class="fw-semibold me-3"><%= @property.contact.name %></span>
-
-      <% if @property.contact.avatar.blank? %>
-        <%= image_tag @property.avatar.variant(resize_to_fill: [50, 50]), class: "rounded-circle" %>                  
-      <% else %>
-        <%= image_tag(@property.contact.avatar.variant(resize_to_fill: [50, 50]), class: "shadow-sm mx-auto") %>
-      <% end %>    
+    <div class="text-center pt-2">
+      <span class="fw-semibold"><%= @property.contact.name %></span>
+      
+      <div class="avatar">            
+        <% if @property.owner.avatar.present? %>
+          <%= image_tag(@property.owner.avatar.thumb.url, class: 'avatar-img rounded-circle shadow ms-4') %>    
+        <% end %>
+      </div>
     </div>
 
     <div class="my-4 vstack gap-3 ps-3">
-      <% if @property.property_detail.site %>
+      <% if @property.property_detail.site.present? %>
         <a href="http://<%= @property.property_detail.site %>" target="_blank">
         <span class="badge bg-secondary bg-opacity-10 text-black-50"><i class="bi bi-globe"></i></span>
           
@@ -24,7 +24,7 @@
         </a>  
       <% end %>
     
-      <% if @property.property_detail.vk_group %>
+      <% if @property.property_detail.vk_group.present? %>
         <a href="https://vk.com/<%= @property.property_detail.vk_group %>" target="_blank">
           <span class="badge bg-secondary bg-opacity-10 text-black-50">VK</span>
           &nbsp;<%= @property.property_detail.vk_group %>
@@ -37,9 +37,18 @@
         <i class="bi bi-caret-down me-1"></i>Контакты
       </a>
 
+      <a href="#" class="btn btn-orange-soft btn-sm w-100"
+                  data-bs-toggle="modal"
+                  data-bs-target="#bookingModal"
+                  data-bs-room="">
+        <i class="bi bi-envelope me-1"></i>Написать
+      </a>
+      
+      <!--
       <%= link_to new_order_path, class: "btn btn-orange-soft btn-sm w-100" do %>
         <i class="bi bi-envelope me-1"></i>Написать
       <% end %>   
+      -->
     </div>
 
     <div class="collapse" id="collapseContacts">

@@ -1,9 +1,12 @@
 class PictureUploader < CarrierWave::Uploader::Base
+  LISTINGS = %w[Property Activity Point Service Restaurant]
   # Include RMagick or MiniMagick support:
   #include CarrierWave::RMagick  
   include CarrierWave::MiniMagick
 
-  version :thumb_user, if: :model_user?
+  process resize_to_fit: [1400, 1400], if: :is_listing?
+
+  #version :thumb_user, if: :is_user?
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -22,9 +25,6 @@ class PictureUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [225, 150]
   end
 
-  version :thumb_user do
-    process resize_to_fill: [150, 150]
-  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -60,7 +60,11 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   private
 
-  def model_user? picture
+  def is_user? picture
     model.model_name.name == 'Partner' || 'Customer'
+  end
+
+  def is_listing? picture
+    LISTINGS.include? model.model_name.name
   end
 end

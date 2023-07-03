@@ -1,50 +1,49 @@
-<div class="container">
-  <h2 class="mt-4">Sign up as partner</h2>
+<% provide(:title, 'Регистрация') %>
 
-  <div class="bg-mode shadow rounded p-3 my-4">
+<main class="form-signin text-center">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |f| %>
+    <%= render "partners/shared/error_messages", resource: resource %>
 
-    <div class="row">
-
-      <div class="col-md-6">
-        <%= image_tag("theme/element/signin.svg", alt: "") %>
-      </div>
-    
-      <div class="col-md-6">
-        <h3>Create Partner account</h3>
-        <p class="h4 text-secondary">And add new listings</p>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= render "partners/shared/error_messages", resource: resource %>
-
-          <div class="field">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </div>
-
-          <div class="field">
-            <%= f.label :password %>
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password" %>
-          </div>
-
-          <div class="field">
-            <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-          </div>
-
-          <%= f.invisible_captcha :subtitle %>
-
-          <div class="actions">
-            <%= f.submit "Sign up" %>
-          </div>
-        <% end %>
-
-        <%= render "partners/shared/links" %>
-      </div>
-    
+    <%= link_to image_tag('logo.png', class:'my-5', style: 'width: 220px;'), root_path %>    
+    <h1 class="h3 mb-3 fw-normal">Регистрация</h1>    
+  
+    <div class="form-group text-start w-75 mx-auto">
+      <%= f.label :email %>
+      <%= f.email_field :email, class:"form-control mt-2 mb-3", autofocus: true %>
+    </div>
+    <div class="form-group text-start w-75 mx-auto">
+      <%= f.label :password %><small class="form-text">&nbsp; / не менее 6 символов</small>
+      <%= f.password_field :password, class:"form-control mt-2 mb-2" %>      
+    </div>
+    <div class="form-group text-start w-75 mx-auto">
+        <%= f.label :password_confirmation, "Подтверждение пароля" %>
+        <%= f.password_field :password_confirmation, class:"form-control mt-2 mb-3" %>
     </div>
 
-  </div>
-</div>
+    <%= f.invisible_captcha :subtitle %>
 
+    <div class="mb-4 mt-3">
+      <input type="checkbox" id="politics" onclick="check();" value="" class="form-check-input" autocomplete="off" required />
+      <label class="form-check-label" for="politics"><small>
+        Даю <%= link_to "согласие на обработку персональных данных", privacy_url %>.</small>
+      </label>
+    </div> 
+
+    <%= f.submit "Зарегистрироваться", class:"btn btn-primary mb-4", style: "width: 230px;", disabled:"" %>
+
+    <br>
+    <small>
+      <%= render "partners/shared/links" %>
+    </small>     
+  <% end %>
+</main>
+
+<script>
+  function check() {
+    var submit = document.getElementsByName('commit')[0];
+    if (document.getElementById('politics').checked)
+      submit.disabled = '';
+    else
+      submit.disabled = 'disabled';
+  }
+</script>

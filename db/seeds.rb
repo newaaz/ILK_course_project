@@ -74,8 +74,8 @@ def create_property
                           distance_to_sea: (rand(200..1500) / 50).round * 50,
                           services: ["kitchen", "excursions", "pool", "parking", "playground"],
                           geolocation:  Geolocation.new(
-                            latitude: "45.05#{rand 0..9}65",
-                            longitude: "35.39#{rand 0..9}88"),
+                            latitude: "45.0#{rand 60..80}65",
+                            longitude: "35.3#{rand 60..80}88"),
                           contact:      Contact.new(
                             phone_number: '+7(978)117-54-21',                      
                             name: 'Мария Ивановна',
@@ -93,7 +93,7 @@ def create_property
                             vk_group: 'i_lovekrim'))
   
   property.avatar.attach(io: rand_image_path .open, filename: "avatar.jpg")
-  35.times do |i|
+  5.times do |i|
     property.images.attach(io: rand_image_path .open, filename: "p_#{i + 1}.jpg")
   end    
   
@@ -128,13 +128,14 @@ def create_property
   puts "Property #{property.title} created"
 end
 
-create_categories
-create_towns
+time = Benchmark.measure do
+  create_categories
+  create_towns
 
-Partner.destroy_all
-Partner.create!(email: 'test@test.ru', password: '123456', confirmed_at: Time.zone.now)
+  Property.destroy_all
+  45.times { create_property }
+  Property.reindex
+  puts "Properties indexed"
+end
 
-Property.destroy_all
-25.times { create_property }
-Property.reindex
-puts "Properties indexed"
+puts "Время выполнения: #{time.real} секунд"

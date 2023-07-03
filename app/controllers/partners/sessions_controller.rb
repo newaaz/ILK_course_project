@@ -4,6 +4,8 @@ class Partners::SessionsController < Devise::SessionsController
   include Accessibled  
   skip_before_action :check_user, only: :destroy
 
+  layout 'light'
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

@@ -1,28 +1,79 @@
-<%= render 'partners/dashboard/templates/nav_section' %>
+<% provide(:title, "Кабинет") %>
 
-<section class="pt-0">
-	<div class="container vstack gap-4">
-		<!-- Title START -->
+<section class="pt-3">
+	<div class="container">
 		<div class="row">
-			<div class="col-12">
-				<h1 class="fs-4 mb-0"><i class="bi bi-house-door fa-fw me-1"></i>Dashboard</h1>
+			<div class="col-lg-4 col-xl-3">
+        <%= render 'partners/dashboard/templates/nav_section' %>
 			</div>
-		</div>	
-		<!-- Title END -->    		
-			
-    <div class="card border">
-      <!-- Card header -->
-      <div class="card-header border-bottom">
-        <h5 class="card-header-title">My Listings
-      </div>
-      
-      <div class="card-body vstack gap-3">
-        <%= render partial: 'partners/dashboard/templates/property', collection: @properties, as: :property %>
-      </div>
-    </div>
+		
+			<div class="col-lg-8 col-xl-9 px-0 px-md-2">
+				<!-- Offcanvas menu button -->
+				<div class="mb-0 d-lg-none text-end pe-3">
+					<button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+						<i class="bi bi-arrow-bar-left"></i> Меню
+					</button>
+				</div>
 
+				<div class="card border shadow">
+					<div class="card-header border-bottom">
+						<h4 class="card-header-title"><i class="bi bi-person-workspace me-1 text-secondary"></i> Кабинет</h4>
+					</div>
+					<div class="card-body">
+						Создание и управление вашими объявлениями и профилем
+					</div>					
+				</div> <br>
+
+				<% if @properties.any? %>
+					<%= render partial: 'partners/dashboard/templates/property', collection: @properties, as: :property %>
+				<% else %>
+					<div class="card border shadow">		
+						<div class="card-body px-0 px-md-3 py-0 py-md-3 vstack gap-4">
+							Ещё нет объявлений.
+							Вы можете разместить свою гостиницу, гостевой дом или другой объект для сдачи жилья отдыхающим.
+							Активный отдых
+							Кафе, бары, рестораны и места где можно вкусно перекусить и провести время
+							Различные услуги: массаж, маникюр, ремонт телефонов, обуви и другое
+							Также можно разместить статью о достопримечательностях городов Крыма
+							Размещение всех объявлений бесплатное
+						</div>
+					</div>
+				<% end %>	
+			</div>
+		</div>
 	</div>
 </section>
+
+<section></section>
+
+<!-- Map modal START -->
+<div class="modal fade" id="mapmodal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!-- Title -->
+			<div class="modal-header">
+				<h5 class="modal-title">Расположение на карте</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<!-- Map -->
+			<div class="modal-body p-0">				
+				<div id="map"
+					style="height: 350px">
+				</div>
+			</div>
+			<!-- Button -->
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Map modal END -->
+
+
+
+
+
+
 
 
 

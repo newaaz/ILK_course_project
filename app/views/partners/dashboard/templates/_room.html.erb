@@ -1,9 +1,34 @@
 <%= content_tag(:div, id: dom_id(room), class: "col-md-4") do %>
-  <h6><%= room.title %></h6>
-  <%= link_to 'Edit', edit_room_path(room), class: 'btn btn-outline-warning btn-sm' %>
-  <%= link_to "Delete", room_path(room), data: { "turbo-method": :delete }, class: 'btn btn-outline-danger btn-sm' %>
-  <br>
-  <div class="room-images">
-    <%= image_tag room.avatar_thumb, alt: room.avatar.filename.to_s %>
+
+  <div class="">
+    <%= image_tag room.avatar, class: "img-fluid rounded-top", alt: room.avatar.filename.to_s %>
   </div>
+
+  <div class="d-flex justify-content-between align-items-center p-3 bg-primary rounded-bottom mb-3 bg-opacity-10">  
+    <h6><%= room.title %></h6>
+
+    <ul class="list-inline mb-0">
+      <li class="list-inline-item dropdown">
+        <a href="#" class="btn btn-sm btn-round btn-primary-soft mb-0" role="button" id="dropdownShare2" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-three-dots-vertical"></i>
+        </a>
+        <!-- dropdown button -->
+        <ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare2">
+          <li>
+            <%= link_to edit_room_path(room), class: 'dropdown-item' do %>
+              <i class="bi bi-pencil-square me-2"></i>Изменить
+            <% end %>
+          </li>
+          <li>
+            <%= link_to room_path(room), class: 'dropdown-item text-danger bg-danger-soft-hover', data: { "turbo-method": :delete, turbo_confirm: "Точно удалить - Вы уверены?" } do %>
+              <i class="bi bi-trash fa-fw me-2"></i>Удалить
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  
+
 <% end %>

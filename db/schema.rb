@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_02_121441) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "property_id", null: false
+    t.integer "guest_id", null: false
+    t.integer "room_id"
+    t.date "check_in"
+    t.date "check_out"
+    t.string "guest_name"
+    t.string "guest_email"
+    t.string "guest_phone"
+    t.string "message"
+    t.integer "adults", limit: 2
+    t.integer "children", limit: 2
+    t.integer "total_amount", default: 0
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_bookings_on_property_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -212,6 +231,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_165413) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "properties"
   add_foreign_key "oauth_providers", "customers"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "properties"
