@@ -1,4 +1,4 @@
-<%= form_with model:[property.present? ? '' : property, room], class: 'vstack gap-4' do |f| %>
+<%= form_with model:[property.present? ? property : nil, room], class: 'vstack gap-4' do |f| %>
   <div id="forms_errors">
     <%= render 'shared/errors', object: f.object %> 
   </div>  
