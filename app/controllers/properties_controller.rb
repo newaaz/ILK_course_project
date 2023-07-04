@@ -37,6 +37,7 @@ class PropertiesController < ApplicationController
   end
 
   def show
+    @rooms = @property.rooms.with_attached_images.with_attached_avatar
     @nearby_properties = @property.nearby_objects('Property', 20)
     @booking = Booking.new(property: @property)
   end
@@ -99,9 +100,8 @@ class PropertiesController < ApplicationController
   private
 
   def set_property
-    @property = Property.includes([:geolocation, :property_detail, :contact, :town, :category,
-                            images_attachments: :blob, avatar_attachment: :blob,
-                            rooms: [:prices, images_attachments: :blob, avatar_attachment: :blob]])
+    @property = Property.with_attached_images.with_attached_avatar
+                        .includes([:geolocation, :property_detail, :contact, :town, :category])
                         .find(params[:id])
   end
 

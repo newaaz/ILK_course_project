@@ -11,6 +11,7 @@ module Searchable
         indexes :town_id,     type: :long
         indexes :category_id, type: :long
         indexes :title,       type: :text
+        indexes :activated,   type: :boolean
         indexes :rooms, type: :nested, properties: {
                   id:               { type: :long },
                   title:            { type: :text },
@@ -58,13 +59,14 @@ module Searchable
 
     # Searchkick
     searchkick
-    scope :search_import, -> { includes(:rooms, :orders) }
+    scope :search_import, -> { includes(:rooms) }
 
     def search_data
       {
         title:                title,
         town_id:              town_id,
         category_id:          category_id,
+        activated:            activated,
         rooms:                self.room_availabilities   
       }
     end

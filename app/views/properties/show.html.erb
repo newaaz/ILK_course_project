@@ -137,7 +137,7 @@
 							<a class="nav-link active" data-bs-toggle="tab" href="#tab-description">Описание</a>
 						</li>
 
-						<% if @property.rooms.any? %>
+						<% if @rooms.any? %>
 							<li class="nav-item">
 								<a class="nav-link" data-bs-toggle="tab" href="#tab-rooms">Номера</a>
 							</li>
@@ -151,7 +151,7 @@
 					<div class="tab-content">
 						<%= render 'properties/show/tab_description' %><!-- DESCRIPTION -->
 
-						<% if @property.rooms.any? %>
+						<% if @rooms.any? %>
 							<%= render 'properties/show/tab_rooms' %><!-- ROOMS -->
 						<% end %>			
 
@@ -176,6 +176,7 @@
 <%= render 'properties/show/booking_modal' %>
 
 <script>
+document.addEventListener("turbo:load", () => {
 	const bookingModal = document.getElementById('bookingModal')
 	bookingModal.addEventListener('show.bs.modal', event => {
 		const modalTitle = bookingModal.querySelector('.modal-title')
@@ -195,6 +196,7 @@
 		const modalTitle = bookingModal.querySelector('.modal-title')
 		modalTitle.textContent = 'Написать сообщение'
 	})
+})
 </script>
 
 
@@ -202,7 +204,7 @@
 
 
 
-<!-- Map modal START -->
+<!-- Map modal START (don't used) -->
 <div class="modal fade" id="mapmodal" tabindex="-1" aria-labelledby="mapmodalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">

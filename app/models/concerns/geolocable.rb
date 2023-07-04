@@ -10,7 +10,9 @@ module Geolocable
       lat_range = (geolocation.latitude - 0.0090)..(geolocation.latitude + 0.0090)
       long_range = (geolocation.longitude - 0.0127)..(geolocation.longitude + 0.0127)
 
-      object.constantize.includes([:geolocation, avatar_attachment: :blob])
+      object.constantize.activated
+                        .with_attached_avatar
+                        .includes([:geolocation])
                         .where(town_id: self.town_id)
                         .joins(:geolocation)
                         .where(geolocation: { latitude: lat_range, longitude: long_range, geolocable_type: object })

@@ -24,7 +24,7 @@ export default class extends Controller {
                                           nav: "thumbs"
                                         });
                                       })
-                                 .on('fotorama:fullscreenexit',
+                                .on('fotorama:fullscreenexit',
                                       function (e, fotorama) {        
                                         fotorama.setOptions({
                                           nav: "false"
