@@ -1,12 +1,12 @@
 class StaticPagesController < ApplicationController
   def home
     @towns = Town.all
-    @properties = Property.includes([:avatar_attachment]).take 6
+    @properties = Property.activated.includes([:avatar_attachment]).take 6
   end
 
   def contacts
     @town = Town.first
-    @properties = Property.includes([:avatar_attachment]).take 6
+    @properties = Property.activated.includes([:avatar_attachment]).take 6
   end
 
   def about

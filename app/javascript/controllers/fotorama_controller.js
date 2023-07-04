@@ -18,19 +18,20 @@ export default class extends Controller {
       })
     } else if (this.element.dataset.object == "widget") {      
       // Fotorama for rooms or widgets
-      $(this.element).fotorama()
-      .on('fotorama:fullscreenenter',
-            function (e, fotorama) {        
-              fotorama.setOptions({
-                nav: "thumbs"
-              });
-            })
-      .on('fotorama:fullscreenexit',
-            function (e, fotorama) {      
-              fotorama.setOptions({
-                nav: "false"
-              });
-            })
+      $(this.element).fotorama().on('fotorama:fullscreenenter',
+                                      function (e, fotorama) {        
+                                        fotorama.setOptions({
+                                          nav: "thumbs"
+                                        });
+                                      })
+                                 .on('fotorama:fullscreenexit',
+                                      function (e, fotorama) {        
+                                        fotorama.setOptions({
+                                          nav: "false"
+                                        });
+                                      });;
+      
+      
     }
   }
 }

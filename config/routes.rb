@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     post 'create_customer'  , to: 'customers#create', as: 'create_customer' 
   end
 
-  resources :properties do
+  resources :properties, except: %i[index] do
     resources :rooms, except: %i[index show], shallow: true
     resources :bookings, only: %i[create]
     post :calculate_price, on: :member

@@ -69,7 +69,7 @@ def create_property
                           town:         Town.all.sample,
                           category:     Category.all.sample,
                           owner:        Partner.first,
-                          activated:    true,
+                          activated:    false,
                           price_from:   rand(1000..5000),
                           distance_to_sea: (rand(200..1500) / 50).round * 50,
                           services: ["kitchen", "excursions", "pool", "parking", "playground"],
@@ -124,16 +124,18 @@ def create_property
   end
 
   property.save!
-
   puts "Property #{property.title} created"
 end
+
+Partner.destroy_all
+Partner.create!(email: 'test@test.ru', name: 'Лидия Ивановна', password: '123456', confirmed_at: Time.zone.now)
 
 time = Benchmark.measure do
   create_categories
   create_towns
 
   Property.destroy_all
-  45.times { create_property }
+  15.times { create_property }
   Property.reindex
   puts "Properties indexed"
 end

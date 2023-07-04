@@ -25,6 +25,9 @@ class Property < ApplicationRecord
   accepts_nested_attributes_for :contact
 
   validates :title, :address, presence: true
+  
+  #TODO move to concern
+  scope :activated, -> { where(activated: true) }
 
   scope :by_category, ->(category) { joins(:category).where(category: { title: category }) }
 
