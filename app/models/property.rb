@@ -10,6 +10,7 @@ class Property < ApplicationRecord
   include Imagable
   include Geolocable
   include Searchable
+  include ListingActivatable
   
   belongs_to :owner, class_name: 'Partner'
   belongs_to :town
@@ -25,9 +26,6 @@ class Property < ApplicationRecord
   accepts_nested_attributes_for :contact
 
   validates :title, :address, presence: true
-  
-  #TODO move to concern
-  scope :activated, -> { where(activated: true) }
 
   scope :by_category, ->(category) { joins(:category).where(category: { title: category }) }
 
