@@ -1,5 +1,6 @@
 <div class="d-flex align-items-center booking-cost bg-white bg-opacity-50 ps-3 py-1">
   <% if session['check_in'] && session['check_out'] && (all_dates_cost = room.calculate_booking(session[:check_in], session[:check_out])) != 0 %>
+    <span class="me-2">от</span>
     <h6 class="calculated-price fs-4 fw-bold mb-0 me-1" data-price="<%= all_dates_cost %>">
       <%= all_dates_cost %><small>₽</small>
     </h6>

@@ -1,5 +1,7 @@
 <h1>Listing created</h1>
 
+<%= link_to @listing.title, @listing %>
+
 <% @listing.attributes.each do |attribute, value| %>
   <%= "#{attribute}: #{value}" %> <br>
 <% end %>

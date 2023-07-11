@@ -8,7 +8,7 @@ module ListingActivatable
     private
 
     def send_listing_creating_email
-      ListingMailer.listing_created(self).deliver_now unless self.activated?
+      ListingMailer.listing_created(self).deliver_later unless self.activated?
     end  
   end  
 end
