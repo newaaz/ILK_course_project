@@ -16,6 +16,11 @@ class Partner < ApplicationRecord
     Order.where(property_id: property_ids)
   end
 
+  #TODO CHANGE this shit
+  def admin?
+    email == 'admin@admin.ru'
+  end
+
   def name_or_email
     name.presence || email.split('@').first
   end

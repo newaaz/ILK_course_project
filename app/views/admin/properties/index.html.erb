@@ -1,0 +1,12 @@
+<div class="container">
+
+  <% @properties.each do |property| %>
+    <%= "#{property.title} | #{property.activated}" %>    
+    
+    <%= button_to 'Activate', admin_activate_listing_path(property, model_name: property.model_name.name), method: :patch %>
+  <% end %>
+
+</div>
+
+
+

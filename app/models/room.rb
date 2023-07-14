@@ -11,6 +11,8 @@ class Room < ApplicationRecord
     kettle: 'Эл чайник'
   }.freeze
 
+  after_save -> { self.property.reindex }
+
   include Imagable
   
   belongs_to :property

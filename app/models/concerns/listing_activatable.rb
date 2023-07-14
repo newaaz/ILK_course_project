@@ -5,6 +5,13 @@ module ListingActivatable
 
     scope :activated, -> { where(activated: true) }
 
+    def activate!
+      unless self.activated?
+        self.toggle!(:activated)
+        ListingMailer.listing_activated(self).deliver_later
+      end
+    end
+
     private
 
     def send_listing_creating_email

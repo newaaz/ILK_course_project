@@ -2,39 +2,40 @@ module Searchable
   extend ActiveSupport::Concern
 
   included do
-    include Elasticsearch::Model
-    include Elasticsearch::Model::Callbacks
+    # Oficial gem Elasticsearch
+    # include Elasticsearch::Model
+    # include Elasticsearch::Model::Callbacks
 
-    settings index: { number_of_shards: 1 } do
-      mapping dynamic: false do
-        indexes :id,          type: :long
-        indexes :town_id,     type: :long
-        indexes :category_id, type: :long
-        indexes :title,       type: :text
-        indexes :activated,   type: :boolean
-        indexes :rooms, type: :nested, properties: {
-                  id:               { type: :long },
-                  title:            { type: :text },
-                  guest_base_count: { type: :byte },
-                  guest_max_count:  { type: :byte },                  
-                  start_available:  { type: :date },
-                  end_available:    { type: :date },
-                  prices:           { type: :nested, properties: {
-                    start_date: { type: :date },
-                    end_date:   { type: :date },
-                    day_cost:   { type: :long }
-                  }}
-        }
-      end
-    end
+    # settings index: { number_of_shards: 1 } do
+    #   mapping dynamic: false do
+    #     indexes :id,          type: :long
+    #     indexes :town_id,     type: :long
+    #     indexes :category_id, type: :long
+    #     indexes :title,       type: :text
+    #     indexes :activated,   type: :boolean
+    #     indexes :rooms, type: :nested, properties: {
+    #               id:               { type: :long },
+    #               title:            { type: :text },
+    #               guest_base_count: { type: :byte },
+    #               guest_max_count:  { type: :byte },                  
+    #               start_available:  { type: :date },
+    #               end_available:    { type: :date },
+    #               prices:           { type: :nested, properties: {
+    #                 start_date: { type: :date },
+    #                 end_date:   { type: :date },
+    #                 day_cost:   { type: :long }
+    #               }}
+    #     }
+    #   end
+    # end
 
-    def as_indexed_json(_options = {})
-      self.as_json(
-            only: %i[id title town_id category_id]
-          ).merge({
-              rooms: room_availabilities
-            })
-    end
+    # def as_indexed_json(_options = {})
+    #   self.as_json(
+    #         only: %i[id title town_id category_id]
+    #       ).merge({
+    #           rooms: room_availabilities
+    #         })
+    # end
 
     def room_availabilities
       if rooms.any?

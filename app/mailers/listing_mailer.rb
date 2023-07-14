@@ -8,7 +8,12 @@ class ListingMailer < ApplicationMailer
   def listing_created(listing)
     @listing = listing
 
-    mail to: Rails.application.credentials.email[:login],
-         subject: "New listing created"
+    mail to: Rails.application.credentials.email[:login], subject: "New listing created"
+  end
+
+  def listing_activated(listing)
+    @listing = listing
+    
+    mail to: @listing.owner.email, subject: "Люблю Крым: Ваше объявление активировано и опубликовано"
   end
 end

@@ -1,4 +1,11 @@
-Rails.application.routes.draw do  
+Rails.application.routes.draw do
+  authenticate :partner, lambda { |p| p.admin?  } do
+    namespace :admin do
+      resources :properties, only: %i[index]
+      patch 'listings/:id/activate_listing', to: 'listings#activate_listing', as: 'activate_listing'
+    end
+  end
+
   root 'static_pages#home'
 
   get '/contacts', to: 'static_pages#contacts'
