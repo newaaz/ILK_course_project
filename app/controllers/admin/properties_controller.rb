@@ -1,4 +1,4 @@
-class Admin::PropertiesController < ApplicationController
+class Admin::PropertiesController < Admin::BaseController
   def index
     @properties = Property.all
   end
