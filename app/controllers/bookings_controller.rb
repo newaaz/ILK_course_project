@@ -1,13 +1,15 @@
 class BookingsController < ApplicationController
   def new
     @property = Property.find(params[:property_id])
-    @booking = Booking.new
     authorize @property, policy_class: BookingPolicy
+    @booking = Booking.new
+    @room = @property.rooms.select(:id, :title).find(params[:room].to_i) if params[:room].present?
   end
 
-  def create
+  def create  
     @property = Property.find(params[:property_id])
     authorize @property, policy_class: BookingPolicy
+    @room = @property.rooms.select(:id, :title).find(params[:booking][:room_id].to_i) if params[:booking][:room_id].present?
     # TODO redefine guest
     guest = Partner.first
 

@@ -3,19 +3,27 @@
     <div class="turbo-modal-content card border">      
       <div class="card-header border-bottom">
         <div class="d-flex justify-content-between align-items-center">
-          <h1 class="modal-title fs-5" id="bookingModalLabel">Написать сообщение</h1>
+          <h1 class="modal-title fs-5" id="bookingModalLabel">
+            <% if @room.present? %>
+              <%= @room.title %>
+            <% else %>
+              Написать сообщение
+            <% end %>
+          </h1>
           <button type="button" class="btn-close close" ></button>
         </div>
       </div>
 
       <div class="card-body my-3 py-2 px-4">
         <%= form_with(model: [@property, @booking]) do |f| %> 
-
           <div id="forms_errors">
             <%= render 'shared/errors', object: f.object %>
           </div>
 
-          <%= f.hidden_field :room_id, id: "room-id-field" %>
+          <% if @room.present? %>
+            <%= f.hidden_field :room_id, value: @room.id %>
+          <% end %>
+          
 
           <div class="row align-items-end g-0" data-controller="lite-pickers">
             <!-- Check in -->

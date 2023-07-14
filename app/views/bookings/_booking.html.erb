@@ -4,6 +4,8 @@
     <h6 class="mb-0"><%= link_to booking.property.title, booking.property %></h6>
     <% if booking.room_id.present? %>
       <%= booking.property.rooms.find(booking.room_id).title %> <br>
+    <% else %>
+      Отправлено как сообщение
     <% end %>
   </td>
   <td>
@@ -15,7 +17,10 @@
     <%= booking.guest_email %> <br>
     <%= booking.guest_phone %>
   </td>
+  <td>
+    <%= booking.message %>
+  </td>
   <!--
   <td><a href="#" class="btn btn-sm btn-light mb-0">View</a></td>
-  -->
+  -->  
 </tr>
