@@ -7,7 +7,7 @@ class PropertyPolicy < ApplicationPolicy
   end
 
   def show?
-    record.activated? ||user == record.owner
+    record.activated? ||user == record.owner || user.admin?
   end
   
   def create?

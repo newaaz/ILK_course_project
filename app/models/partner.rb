@@ -16,9 +16,8 @@ class Partner < ApplicationRecord
     Order.where(property_id: property_ids)
   end
 
-  #TODO CHANGE this shit
   def admin?
-    email == 'admin@admin.ru'
+    email == Rails.application.credentials.email[:admin]
   end
 
   def name_or_email
