@@ -35,16 +35,12 @@
   </head>
 
   <body>
+    <%= turbo_frame_tag :modal %>
     <%= render 'shared/navbar' %>
-
     <%= render 'shared/notification' %>
-    
     <%= yield %>    
-
     <%= render 'shared/footer' %>
-
     <div class="back-top"></div>
-
     <%= render 'shared/navbar_mobile' %>
   </body>
 </html>

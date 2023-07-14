@@ -124,17 +124,17 @@
 				<div class="col-xl-8 order-1">
 					<ul class="nav nav-tabs nav-bottom-line mb-3">
 						<li class="nav-item me-2">
-							<a class="nav-link active" data-bs-toggle="tab" href="#tab-description">Описание</a>
+							<a class="nav-link active" data-bs-toggle="tab" href="#tab-description"><span class="fs-5">Описание</span></a>
 						</li>
 
 						<% if @rooms.any? %>
 							<li class="nav-item">
-								<a class="nav-link" data-bs-toggle="tab" href="#tab-rooms">Номера</a>
+								<a class="nav-link" data-bs-toggle="tab" href="#tab-rooms"><span class="fs-5">Номера</span></a>
 							</li>
 						<% end %>
 				
 						<li class="nav-item">
-							<a class="nav-link" data-bs-toggle="tab" href="#tab-map">Карта</a>
+							<a class="nav-link" data-bs-toggle="tab" href="#tab-map"><span class="fs-5">Карта</span></a>
 						</li>
 					</ul>
 
@@ -161,33 +161,6 @@
 	</section>
 </main>
 
-
-
-<%= render 'properties/show/booking_modal' %>
-
-<script>
-document.addEventListener("turbo:load", () => {
-	const bookingModal = document.getElementById('bookingModal')
-	bookingModal.addEventListener('show.bs.modal', event => {
-		const modalTitle = bookingModal.querySelector('.modal-title')
-		const button = event.relatedTarget
-
-		const roomId = button.getAttribute('data-bs-room')	
-		
-		if (roomId) {
-			document.getElementById('room-id-field').value = roomId			
-			const roomTitle = document.getElementById("room_" + roomId).querySelector('h5').innerText
-			modalTitle.textContent = roomTitle
-		}
-
-	})
-
-	bookingModal.addEventListener('hide.bs.modal', event => {
-		const modalTitle = bookingModal.querySelector('.modal-title')
-		modalTitle.textContent = 'Написать сообщение'
-	})
-})
-</script>
 
 
 

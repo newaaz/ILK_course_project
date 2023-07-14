@@ -35,3 +35,6 @@ application.register("property-show", PropertyShowController)
 
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)
+
+import TurbomodalController from "./turbomodal_controller"
+application.register("turbomodal", TurbomodalController)

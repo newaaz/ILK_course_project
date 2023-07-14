@@ -69,16 +69,20 @@
           </li>
         </ul>
 
-
         <%= content_tag(:div, id: "price_#{dom_id(room)}", class: 'mx-auto my-3') do %>
           <!-- Room price -->
           <%= render partial: 'rooms/display_price', locals: { room: room } %>        
         <% end %>
 
         <div class="hstack gap-2 ">
+          <!--
           <a data-bs-toggle="collapse" href="#collapse-<%= dom_id(room) %>" role="button" aria-expanded="false" aria-controls="collapse-<%= dom_id(room) %>" class="btn btn-primary-soft btn-sm mb-0 w-100">
             <i class="bi bi-caret-down me-1"></i>Подробнее
           </a>
+          -->
+          <%= link_to "New book", new_property_booking_path(room.property, room: room.id),
+                                  data: { turbo_frame: "modal" },
+                                  class: 'btn btn-primary-soft btn-sm mb-0 w-100' %>
           <a href="#" class="btn btn-orange-soft btn-sm mb-0 w-100"
                       data-bs-toggle="modal"
                       data-bs-target="#bookingModal"

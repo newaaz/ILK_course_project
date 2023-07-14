@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   resources :properties, except: %i[index] do
     resources :rooms, except: %i[index show], shallow: true
-    resources :bookings, only: %i[create]
+    resources :bookings, only: %i[new create]
     post :calculate_price, on: :member
   end
 
