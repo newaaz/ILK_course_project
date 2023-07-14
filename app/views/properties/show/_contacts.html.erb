@@ -8,11 +8,11 @@
     <div class="text-center pt-2">
       <span class="fw-semibold"><%= @property.contact.name %></span>
       
-      <div class="avatar">            
-        <% if @property.owner.avatar.present? %>
+      <% if @property.owner.avatar.present? %>
+        <div class="avatar">           
           <%= image_tag(@property.owner.avatar.thumb.url, class: 'avatar-img rounded-circle shadow ms-4') %>    
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
 
     <div class="my-4 vstack gap-3 ps-3">

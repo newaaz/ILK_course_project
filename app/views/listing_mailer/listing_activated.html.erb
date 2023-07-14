@@ -1,0 +1,19 @@
+<h1>Ваше объявление "<%= @listing.title %>" активировано и доступно к просмотру</h1>
+
+Просмотреть его можно по этой ссылке:
+<%= link_to @listing.title, @listing %> <br>
+
+Управлять и просматривать статистику можно в личном кабинете.
+<%= link_to "В кабинет", partners_root_url %>
+<br>
+
+Вся информация находится в личном кабинете - раздел <%= link_to "Информация", partners_info_url %>
+
+<br><br><br>
+
+Это письмо отправлено автоматически с сайта <a href="https://ilovekrim.ru/" target="_blank">ilovekrim.ru</a> <br>
+Отвечать на него не нужно. <br>
+Для связи по возникшим по вопросам пишите: <a href="mailto:admin@ilovekrim.ru">admin@ilovekrim.ru</a>
+
+
+

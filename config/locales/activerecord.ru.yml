@@ -12,7 +12,8 @@ ru:
       service: 'Услуга/Сервис'           
       cafebar: 'Кафе/Ресторан'
       point: 'Достопримечательность'
-      order: 'Заявка - бронирование'
+      order: 'Заявка'
+      booking: 'Бронирования'
       geolocation: 'Точка геолокации'
       contact: 'Контакт'
     attributes:
@@ -95,7 +96,18 @@ ru:
         bathroom: "Санузел/душ/ванна"
         in_room: "В номере"
         addition: "Дополнительно"
-        prices: 'Стоимость проживания'  
+        prices: 'Стоимость проживания'
+      booking:
+        check_in: 'Дата выезда'
+        check_out: 'Дата заезда'
+        guest_name: 'Имя'
+        guest_email: 'email'
+        guest_phone: 'Номер телефона'
+        message: 'Сообщение'
+        adults: 'Количество взрослых'
+        children: 'Количество детей'
+        total_amount: 'Сумма брони'
+        status: 'Статус'
 
     errors:
       messages:

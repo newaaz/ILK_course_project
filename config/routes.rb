@@ -34,9 +34,10 @@ Rails.application.routes.draw do
 
   namespace :partners do
     root 'dashboard#index'
-    get 'orders', to: 'dashboard#orders'
-    get 'add_listing', to: 'dashboard#add_listing'
+    get 'orders', to: 'dashboard#orders'    
     get 'bookings', to: 'dashboard#bookings'
+    get 'add_listing', to: 'dashboard#add_listing'
+    get 'info', to: 'dashboard#info'
   end
 
   namespace :customers do
