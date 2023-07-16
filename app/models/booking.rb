@@ -6,9 +6,19 @@ class Booking < ApplicationRecord
 
   has_one :hoster, through: :property, source: :owner
 
-  validates :guest_name, presence: true
+  validates :guest_name, :guest_email, :guest_phone, presence: true
+  validates :check_out, :check_in, presence: true, if: -> { room_id.present? }
+  validate  :check_dates, if: :dates_present?  
   
   private
+
+  def dates_present?
+    check_in.present? && check_out.present?
+  end
+
+  def check_dates
+    errors.add(:check_in, "должна быть раньше даты оконачания") if check_in >= check_out
+  end
 
   def send_booking_creating_email
     ListingMailer.booking_created(self).deliver_later

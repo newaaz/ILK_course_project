@@ -8,6 +8,7 @@
       <div class="col-md-6">    
         <%= f.label :avatar, class: 'form-label' %>      
         <%= f.file_field :avatar,
+              required: true,
               accept: 'image/*',
               class: 'form-control',
               data: { previews_target: "input", action: "change->previews#preview" } %>  

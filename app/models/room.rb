@@ -11,16 +11,17 @@ class Room < ApplicationRecord
     kettle: 'Эл чайник'
   }.freeze
 
-  after_save -> { self.property.reindex }
-
   include Imagable
+
+  after_save -> { self.property.reindex } 
   
   belongs_to :property
 
   has_many :prices, -> { order(:start_date) }, dependent: :destroy
   has_many :orders, dependent: :destroy
 
-  validates :title, :guest_base_count, :guest_max_count, presence: true
+  validates :title, :guest_base_count, :guest_max_count, :serial_number, :rooms_count, :size, presence: true
+  validates :serial_number, :guest_base_count, :guest_max_count, :rooms_count, :size, numericality: { greater_than: 0, less_than: 9999 }
   validate  :check_overlap_price_date_ranges
 
   accepts_nested_attributes_for :prices, allow_destroy: true
@@ -41,10 +42,9 @@ class Room < ApplicationRecord
     end
   end
 
-  #TODO validates_each
   def check_overlap_price_date_ranges
     all_prices = self.prices.to_a
-    if all_prices.count > 1
+    while all_prices.count > 1
       compare_price = all_prices.shift
       all_prices.each do |price|
         errors.add(:prices, "- есть пересечение в датах") if compare_price.date_range.overlaps? price.date_range

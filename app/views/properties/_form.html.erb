@@ -13,36 +13,36 @@
 		  <div class="row g-3">
         <div class="col-md-6">        
           <%= f.label :title, class: 'form-label' %>        
-          <%= f.text_field :title, class: 'form-control' %>
+          <%= f.text_field :title, class: 'form-control', required: true %>
         </div>
 
         <div class="col-md-6">
           <%= f.label :address, class: 'form-label' %> <span class="small text-secondary">(без города)</span>     
-          <%= f.text_field :address, class: 'form-control' %>
+          <%= f.text_field :address, class: 'form-control', required: true %>
         </div>
 
         <div class="col-md-6">
           <%= f.label :category_id, class: 'form-label' %>       
-          <%= f.collection_select :category_id, Category.all, :id, :title, { prompt: "Выбрать..." }, class:"form-select" %>
+          <%= f.collection_select :category_id, Category.all, :id, :title, { prompt: "Выбрать..." }, class:"form-select", required: true %>
         </div>
 
         <div class="col-md-6">            
           <%= f.label :price_from, class: 'form-label' %> <span class="small text-secondary">(минимальная стоимость аренды за сутки)</span>        
           <div class="input-group"> 
-            <%= f.text_field :price_from, class: 'form-control' %>
+            <%= f.number_field :price_from, class: 'form-control', min: 50, required: true %>
             <span class="input-group-text">&#8381;</span>
           </div> 
         </div>
 
         <div class="col-md-6">
           <%= f.label :town_id, class: 'form-label' %>       
-          <%= f.collection_select :town_id, Town.order(:ordinal_number), :id, :name, { prompt: "Выбрать..." }, class:"form-select" %>
+          <%= f.collection_select :town_id, Town.order(:ordinal_number), :id, :name, { prompt: "Выбрать..." }, class:"form-select", required: true %>
         </div>
 
         <div class="col-md-6">        
           <%= f.label :distance_to_sea, class: 'form-label' %> <span class="small text-secondary">(необязательно)</span>  
           <div class="input-group ">       
-            <%= f.text_field :distance_to_sea, class: 'form-control' %>
+            <%= f.number_field :distance_to_sea, class: 'form-control', min: 10 %>
             <span class="input-group-text">М</span>
           </div>          
         </div>        

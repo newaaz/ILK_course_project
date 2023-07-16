@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  invisible_captcha only: [:create], honeypot: :subtitle
+  
   def new
     @property = Property.find(params[:property_id])
     authorize @property, policy_class: BookingPolicy

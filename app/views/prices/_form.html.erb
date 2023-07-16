@@ -14,11 +14,10 @@
       </div>
     </div>
 
-
     <div class="col-auto">
       <div class="d-flex align-items-center">
         <%= f.label :day_cost, class: 'form-label me-2' %>        
-        <%= f.number_field :day_cost, class: 'form-control', style: "width: 200px;", placeholder: "стоимость в рублях" %>      
+        <%= f.number_field :day_cost, class: 'form-control', style: "width: 200px;", min: 50, step: 50, required: true, placeholder: "стоимость в рублях" %>      
       </div>  
     </div>
 

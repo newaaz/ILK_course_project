@@ -11,6 +11,7 @@ module Geolocable
       long_range = (geolocation.longitude - 0.0127)..(geolocation.longitude + 0.0127)
 
       object.constantize.activated
+                        .select(:id, :title)
                         .with_attached_avatar
                         .includes([:geolocation])
                         .where(town_id: self.town_id)

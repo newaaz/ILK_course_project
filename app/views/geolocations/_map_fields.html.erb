@@ -22,16 +22,13 @@
               <div class="coordinates mt-3" style="width: 200px">
                 <div class="form-group">              
                   <%= l.label :latitude, class: 'form-label' %> 
-                  <%= l.text_field :latitude, class: 'form-control form-control-sm' %>
+                  <%= l.text_field :latitude, class: 'form-control form-control-sm', readonly: true, required: true %>
                 </div>
                 <div class="form-group">              
                   <%= l.label :longitude, class: 'form-label' %> 
-                  <%= l.text_field :longitude, class: 'form-control form-control-sm' %>
+                  <%= l.text_field :longitude, class: 'form-control form-control-sm', readonly: true, required: true %>
                 </div>
                 <br>
-                <!-- 
-                <button type="button" id="clear-btn" class="d-block btn btn-outline-secondary btn-sm">Reset coordinates</button>
-                -->
               </div>
             </div>
           </div>  

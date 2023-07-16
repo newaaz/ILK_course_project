@@ -26,6 +26,8 @@ class Property < ApplicationRecord
   accepts_nested_attributes_for :contact
 
   validates :title, :address, presence: true
+  validates :price_from, numericality: { greater_than: 0, less_than: 999999 }
+  validates :distance_to_sea, numericality: { allow_nil: true, greater_than: 0, less_than: 30000 }
 
   scope :by_category, ->(category) { joins(:category).where(category: { title: category }) }
 
