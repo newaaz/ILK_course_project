@@ -8,4 +8,12 @@ module ApplicationHelper
       page_title
     end
   end
+
+  def towns_hash
+    Town.pluck(:id, :name).to_h
+  end
+
+  def categories_hash
+    Category.pluck(:id, :title).to_h
+  end
 end

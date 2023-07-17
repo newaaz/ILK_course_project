@@ -48,7 +48,7 @@
 
 <section class="pt-2">
   <div class="container">
-    <div>
+    <div class="mb-4">
       <%= link_to 'Все категории', properties_town_path(@town), class: 'btn btn-light btn-sm' %>
       <% @categories.each do |cat| %>
         <%= link_to cat.title, { cat: cat.id }, class: 'btn btn-light btn-sm' %>
