@@ -53,7 +53,7 @@
 				
 				<li class="nav-item ms-3 ms-md-2">	
 					<%= link_to cart_path(1), class: "btn btn-primary-soft btn-sm px-2 py-1 mb-0" do %>
-						<i class="bi bi-heart text-orange" style="font-size: 1.2rem;"></i>
+						<i class="bi bi-heart text-orange fs-6" ></i>
 						<span class="d-none d-md-inline">Избранное</span>
 					<% end %>
 				</li> 
@@ -132,7 +132,7 @@
 					<li class="nav-item dropdown dropstart ms-2">		
 						<!-- Notification button -->
 						<a class="btn btn-primary-soft btn-sm px-2 py-1 mb-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-							<i class="bi bi-person-add me-1" style="font-size: 1.2rem;"></i>Войти
+							<i class="bi bi-person-add me-1 fs-6"></i>Войти
 						</a>
 
 						<!-- Notification dropdown menu START -->
@@ -188,7 +188,11 @@
 						</div>
 						<!-- Notification dropdown menu END -->
 					</li>
-				<% end %>	
+				<% end %>
+
+				<div id="reset_search_button">
+					<%= render 'shared/buttons/reset_search_button' %>
+				</div>
 			</ul>
 		</div>
 	</nav>
