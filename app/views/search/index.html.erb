@@ -1,84 +1,34 @@
+<% provide(:title, "Поиск") %>
+
+<section class="parallax-window" data-controller="parallax" data-parallax="scroll" data-image-src="<%= @town.avatar.url %>">
+  <div class="parallax-content-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">          
+					<% unless @properties_category %>
+            <h1>Жильё в <%= @town.parent_name %></h1>           
+          <% else %>      
+            <h1><%= @properties_category.title %> в <%= @town.parent_name %></h1>
+          <% end %>        
+        </div>
+        <div class="col-md-4">
+          <div id="price_single_main" class="hotel">
+            <span><sup></sup></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="pt-3">
   <div class="container">
     <div class="row mb-lg-4 mb-5">
-      <div class="col-xl-12">
-        <!-- Title
-        <h6 class="d-none d-xl-block mb-3"><i class="bi bi-search text-black-50 me-2"></i>Check Availability</h6>
-        -->
+      <div class="col-xl-12">  
         <!-- Booking from START -->
-        <%= form_with url: search_path, data: { turbo: false }, method: :get, class: "bg-mode shadow rounded-3 position-relative p-3 pe-md-5 pb-5 pb-md-4" do |f| %>
-          <div class="row g-2 align-items-center" data-controller="lite-pickers">
-            <!-- Location -->
-            <div class="col-6 col-lg-3">
-              <div class="form-fs-md d-flex">
-                <i class="bi bi-geo-alt fs-3 me-2 mt-4 mt-md-3"></i>
-                <div class="w-100">
-                  <%= f.label "Курорт", class: "form-label" %>
-                  <%= f.collection_select :town_id, Town.all, :id, :name, {selected: params[:town_id], include_blank: true }, class: "form-select" %>    
-                </div>        
-              </div>
-            </div> 
-
-            <!-- Category -->
-            <div class="col-6 col-lg-2">
-              <div class="">
-                <%= f.label "Тип", class: "form-label" %>
-                <%= f.collection_select :category_id, Category.all, :id, :title, {selected: params[:category_id], include_blank: true }, class: "form-select" %> 
-              </div>
-            </div>
-
-            <!-- Checkin -->
-            <div class="col-6 col-lg-2">
-              <%= f.label "Дата заезда", class: "form-label" %>
-              <div class="form-icon-input ">            
-                <%= f.text_field :check_in, class: "start-date form-control", value: session['check_in'], placeholder: "Выбрать" %>
-                <span class="form-icon"><i class="bi bi-calendar fs-5"></i></span>
-              </div>
-            </div>
-
-            <!-- Checkout -->
-            <div class="col-6 col-lg-2">
-              <%= f.label "Дата выезда", class: "form-label" %>
-              <div class="form-icon-input">
-                <%= f.text_field :check_out, class: "end-date form-control", value: session['check_out'], placeholder: "Выбрать" %>
-                <span class="form-icon"><i class="bi bi-calendar fs-5"></i></span>
-              </div>
-            </div>
-
-            <!-- Guests -->
-            <div class="col-6 col-md-2">
-              <%= f.label "Гостей", class: "form-label" %>
-              <div class="form-icon-input">
-                <%= f.number_field :guests, value: params[:guests], class: "form-control", min: 1 %>
-                <span class="form-icon"><i class="bi bi-person fs-5"></i></span>
-              </div>
-            </div>
-
-
-            <% if session['check_in'] && session['check_out'] %>
-              <div class="col-6 col-lg-1 align-self-end pt-4">              
-                <%= link_to reset_search_dates_path, data: { "turbo-method": :delete }, class: 'ms-2 mt-2 btn btn-secondary-soft btn-round' do %>
-                  <i class="bi bi-arrow-counterclockwise fs-5"></i>
-                <% end %>
-              </div>
-            <% end %> 
-
-
-          </div>
-
-
-          <!-- Button -->
-          <div class="btn-position-md-middle">
-            <%= button_tag(type: "submit", class: "icon-lg btn btn-round btn-primary mb-0") do %>
-              <i class="bi bi-search"></i>
-            <% end %>
-          </div>
-        <% end %>
-        <!-- Booking from END -->
+        <%= render 'search/form' %>
       </div>
     </div>
-
-
 
     <div id="search_result">
       <div class="row gx-4">
@@ -87,7 +37,4 @@
     </div>
   </div>
 </section>
-
-
-
 

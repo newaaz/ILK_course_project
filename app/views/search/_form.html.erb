@@ -1,44 +1,70 @@
-<div id="search-form" class="border rounded p-3 my-3 bg-light bg-opacity-75 shadow">
-  <%= form_with url: search_path, data: { turbo: false }, method: :get, id: 'new_order', class: "row g-3" do |f| %>
-    <div class="col-sm-12 col-md-2">
-      <%= f.label :town, class: "form-label" %>
-      <%= f.collection_select :town_id, Town.all, :id, :name, { include_blank: true }, class: "form-select form-select-sm" %>    
+<%= form_with url: search_path, data: { turbo: false }, method: :get, class: "bg-light shadow rounded-3 bg-opacity-75 position-relative p-3 pe-md-5 pb-5 pb-md-4" do |f| %>
+  <div class="row g-2 align-items-center" data-controller="lite-pickers">
+    <!-- Location -->
+    <div class="col-6 col-lg-3">
+      <div class="form-fs-md d-flex">
+        <i class="bi bi-geo-alt fs-3 me-2 mt-4 mt-md-3"></i>
+        <div class="w-100">
+          <%= f.label "Курорт", class: "form-label" %>
+          <%= f.collection_select :town_id, Town.all, :id, :name, { selected: (@town.present? ? @town.id : params[:town_id]), include_blank: true }, class: "form-select" %>    
+        </div>        
+      </div>
+    </div> 
+
+    <!-- Category -->
+    <div class="col-6 col-lg-3">
+      <div class="">
+        <%= f.label "Тип", class: "form-label" %>
+        <%= f.collection_select :category_id, Category.all, :id, :title, {selected: (@properties_category.present? ? @properties_category.id : params[:category_id]), include_blank: true }, class: "form-select" %> 
+      </div>
     </div>
 
-    <div class="col-sm-12 col-md-2">
-      <%= f.label :category, class: "form-label" %>
-      <%= f.collection_select :category_id, Category.all, :id, :title, { include_blank: true }, class: "form-select form-select-sm" %> 
+    <!-- Checkin -->
+    <div class="col-6 col-lg-2">
+      <%= f.label "Дата заезда", class: "form-label" %>
+      <div class="form-icon-input ">            
+        <%= f.text_field :check_in, class: "start-date form-control", value: session['check_in'], placeholder: "Выбрать" %>
+        <span class="form-icon"><i class="bi bi-calendar fs-5"></i></span>
+      </div>
     </div>
 
+    <!-- Checkout -->
+    <div class="col-6 col-lg-2">
+      <%= f.label "Дата выезда", class: "form-label" %>
+      <div class="form-icon-input">
+        <%= f.text_field :check_out, class: "end-date form-control", value: session['check_out'], placeholder: "Выбрать" %>
+        <span class="form-icon"><i class="bi bi-calendar fs-5"></i></span>
+      </div>
+    </div>
+
+    <!-- Guests -->
     <div class="col-6 col-md-2">
-      <%= f.label :check_in, class: "form-label" %>
-      <%= f.date_field :check_in, class: "form-control form-control-sm" %>
-    </div>
-    <div class="col-6 col-md-2">
-      <%= f.label :check_out, class: "form-label" %>
-      <%= f.date_field :check_out, class: "form-control form-control-sm" %>
-    </div>
-
-    <div class="col-sm-6 col-md-2">
-      <%= f.label :guests, class: "form-label" %>
-      <%= f.number_field :guests, class: "form-control form-control-sm" %>
+      <%= f.label "Гостей", class: "form-label" %>
+      <div class="form-icon-input">
+        <%= f.number_field :guests, value: (params[:guests].present? ? params[:guests] : 2), class: "form-control", min: 1 %>
+        <span class="form-icon"><i class="bi bi-person fs-5"></i></span>
+      </div>
     </div>
 
-    <div class="col-sm-12 pt-4 col-md-2">
-      <div class="mb-1"></div>
-      <%= f.submit "Найти", class: "btn btn-primary btn-sm" %>   
-    </div>
-  <% end %>
-
-  <% if session['check_in'] && session['check_out'] %>
-    <small>
-      <%= "#{session['check_in'].to_date.strftime('%d.%m')}-#{session['check_out'].to_date.strftime('%d.%m')}" %>
-    </small>
-    <%= link_to reset_search_dates_path, data: { "turbo-method": :delete }, class: 'btn btn-sm bg-danger-soft-hover' do %>
-      <i class="bi bi-arrow-counterclockwise fa-fw me-1"></i>
-      Reset
+    <!-- Reset search dates 
+    <% if session['check_in'] && session['check_out'] %>
+      <div class="col-6 col-lg-1 align-self-end pt-4">              
+        <%= link_to reset_search_dates_path, data: { "turbo-method": :delete }, class: 'ms-2 mt-2 btn btn-secondary-soft btn-round' do %>
+          <i class="bi bi-arrow-counterclockwise fs-5"></i>
+        <% end %>
+      </div>
     <% end %>
-  <% end %> 
-</div>
+    -->
+  </div>
+
+  <!-- Button -->
+  <div class="btn-position-md-middle">
+    <%= button_tag(type: "submit", class: "icon-lg btn btn-round btn-primary mb-0") do %>
+      <i class="bi bi-search"></i>
+    <% end %>
+  </div>
+<% end %>
+
+
 
 

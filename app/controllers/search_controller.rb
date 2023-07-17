@@ -7,19 +7,24 @@ class SearchController < ApplicationController
       session[:days_count] = (session[:check_out] - session[:check_in]).to_i + 1
     else
       reset_search_dates
-    end 
+    end
+
+    @town = Town.find(params[:town_id]) if params[:town_id].present?
+    @properties_category = Category.find(params[:category_id]) if params[:category_id].present?
 
     respond_to do |format|
       format.html { render :index }
-      format.turbo_stream do
-        render turbo_stream:
-          turbo_stream.update('search_result',
-            partial: 'search/properties/finded_properties',
-            locals:   { properties: @properties })
-      end
+      # not yet used
+      # format.turbo_stream do
+      #   render turbo_stream:
+      #     turbo_stream.update('search_result',
+      #       partial: 'search/properties/finded_properties',
+      #       locals:   { properties: @properties })
+      # end
     end
   end
 
+  # TODO imeplement reset search
   def destroy
     reset_search_dates
     respond_to do |format|

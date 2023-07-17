@@ -19,7 +19,7 @@ class TownsController < ApplicationController
                           .with_attached_images
                           .where(category_id: params[:cat])
 
-      @properties_category = Category.find(params[:cat]).title
+      @properties_category = Category.find(params[:cat])
     end
   end
 

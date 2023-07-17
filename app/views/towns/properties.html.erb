@@ -8,7 +8,7 @@
 					<% unless @properties_category %>
             <h1>Жильё в <%= @town.parent_name %></h1>           
           <% else %>      
-            <h1><%= @properties_category %> в <%= @town.parent_name %></h1>
+            <h1><%= @properties_category.title %> в <%= @town.parent_name %></h1>
           <% end %>        
         </div>
         <div class="col-md-4">
@@ -31,15 +31,24 @@
         <li class="breadcrumb-item active"><%= "Жильё в #{@town.parent_name}" %></li>       
       <% else %>        
         <li class="breadcrumb-item"><%= link_to "Жильё в #{@town.parent_name}", properties_town_path(@town) %></li> 
-        <li class="breadcrumb-item active"><%= @properties_category %></li>    
+        <li class="breadcrumb-item active"><%= @properties_category.title %></li>    
       <% end %>
     </ol>
   </nav>
 </div>
 
-<section class="py-3">
+<div class="container">
+  <div class="row mb-lg-4 mb-5">
+    <div class="col-xl-12">  
+      <!-- Booking form -->
+      <%= render 'search/form' %>
+    </div>
+  </div>
+</div>
+
+<section class="pt-2">
   <div class="container">
-    <div class="categories my-3">
+    <div>
       <%= link_to 'Все категории', properties_town_path(@town), class: 'btn btn-light btn-sm' %>
       <% @categories.each do |cat| %>
         <%= link_to cat.title, { cat: cat.id }, class: 'btn btn-light btn-sm' %>
