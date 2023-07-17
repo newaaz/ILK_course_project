@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/about',    to: 'static_pages#about'
   get '/privacy',  to: 'static_pages#privacy'
 
-  post 'search', to: 'search#index'
+  get 'search', to: 'search#index'
   delete 'reset_search_dates', to: 'search#destroy'
 
   devise_for :partners, controllers:  {

@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
   invisible_captcha only: [:create], honeypot: :subtitle
+
+  before_action :ensure_frame_response, only: [:new]
   
   def new
     @property = Property.find(params[:property_id])
@@ -35,6 +37,11 @@ class BookingsController < ApplicationController
   end
 
   private
+
+  def ensure_frame_response
+    return unless Rails.env.development?
+    redirect_back(fallback_location: root_path) unless turbo_frame_request?
+  end
 
   def pundit_user
     current_partner

@@ -7,11 +7,10 @@ class SearchController < ApplicationController
       session[:days_count] = (session[:check_out] - session[:check_in]).to_i + 1
     else
       reset_search_dates
-    end
+    end 
 
     respond_to do |format|
       format.html { render :index }
-
       format.turbo_stream do
         render turbo_stream:
           turbo_stream.update('search_result',
@@ -34,5 +33,6 @@ class SearchController < ApplicationController
   def reset_search_dates
     session.delete(:check_in)
     session.delete(:check_out)
+    session.delete(:days_count)
   end
 end
