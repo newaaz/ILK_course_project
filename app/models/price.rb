@@ -2,6 +2,7 @@ class Price < ApplicationRecord
   belongs_to :room
 
   validates :start_date, :end_date, :day_cost, presence: true
+  validates :day_cost, numericality: { greater_than: 0, less_than: 999999 }
   validate  :check_start_end_dates, if: :dates_present?
 
   def date_range

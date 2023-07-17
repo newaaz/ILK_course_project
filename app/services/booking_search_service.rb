@@ -1,6 +1,6 @@
 class BookingSearchService
   def self.call(params)
-    search_params = {}
+    search_params = { activated: true }
     search_params = search_params.merge(town_id:     params[:town_id].to_i)     if params[:town_id].present?
     search_params = search_params.merge(category_id: params[:category_id].to_i) if params[:category_id].present?
 

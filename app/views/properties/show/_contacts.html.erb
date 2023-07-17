@@ -8,11 +8,11 @@
     <div class="text-center pt-2">
       <span class="fw-semibold"><%= @property.contact.name %></span>
       
-      <div class="avatar">            
-        <% if @property.owner.avatar.present? %>
+      <% if @property.owner.avatar.present? %>
+        <div class="avatar">           
           <%= image_tag(@property.owner.avatar.thumb.url, class: 'avatar-img rounded-circle shadow ms-4') %>    
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
 
     <div class="my-4 vstack gap-3 ps-3">
@@ -37,18 +37,9 @@
         <i class="bi bi-caret-down me-1"></i>Контакты
       </a>
 
-      <a href="#" class="btn btn-orange-soft btn-sm w-100"
-                  data-bs-toggle="modal"
-                  data-bs-target="#bookingModal"
-                  data-bs-room="">
-        <i class="bi bi-envelope me-1"></i>Написать
-      </a>
-      
-      <!--
-      <%= link_to new_order_path, class: "btn btn-orange-soft btn-sm w-100" do %>
-        <i class="bi bi-envelope me-1"></i>Написать
-      <% end %>   
-      -->
+      <%= link_to "Написать", new_property_booking_path(@property),
+            data: { turbo_frame: "modal" },
+            class: 'btn btn-orange-soft btn-sm w-100' %>
     </div>
 
     <div class="collapse" id="collapseContacts">

@@ -1,4 +1,4 @@
-<%= form_with model:[property.present? ? '' : property, room], class: 'vstack gap-4' do |f| %>
+<%= form_with model:[property.present? ? property : nil, room], class: 'vstack gap-4' do |f| %>
   <div id="forms_errors">
     <%= render 'shared/errors', object: f.object %> 
   </div>  
@@ -12,33 +12,33 @@
       <div class="row g-3">
         <div class="col-md-8">        
           <%= f.label :title, class: 'form-label' %>        
-          <%= f.text_field :title, class: 'form-control' %>
+          <%= f.text_field :title, class: 'form-control', required: true %>
         </div>
 
         <div class="col-md-4">
           <%= f.label :serial_number, class: 'form-label' %> <span class="small text-secondary">(Порядок в выдаче)</span>     
-          <%= f.number_field :serial_number, class: 'form-control' %>
+          <%= f.number_field :serial_number, class: 'form-control', min: 1 %>
         </div>
 
         <div class="col-md-3">
           <%= f.label :guest_base_count, class: 'form-label' %>       
-          <%= f.number_field :guest_base_count, class: 'form-control' %>
+          <%= f.number_field :guest_base_count, class: 'form-control', min: 1, required: true %>
         </div>
 
         <div class="col-md-3">
           <%= f.label :guest_max_count, class: 'form-label' %>       
-          <%= f.number_field :guest_max_count, class: 'form-control' %>
+          <%= f.number_field :guest_max_count, class: 'form-control', min: 1, required: true %>
         </div>
 
         <div class="col-md-3">
           <%= f.label :rooms_count, class: 'form-label' %>       
-          <%= f.number_field :rooms_count, class: 'form-control' %>
+          <%= f.number_field :rooms_count, class: 'form-control', min: 1, required: true %>
         </div>
 
         <div class="col-md-3">            
           <%= f.label :size, class: 'form-label' %>        
           <div class="input-group"> 
-            <%= f.number_field :size, class: 'form-control' %>
+            <%= f.number_field :size, class: 'form-control', min: 1, required: true %>
             <span class="input-group-text">М<sup><small>2</small></sup></span>
           </div> 
         </div>      

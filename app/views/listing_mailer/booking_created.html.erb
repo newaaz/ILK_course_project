@@ -1,0 +1,31 @@
+<h2>Новая заявка</h2>
+
+Гостевой объект:  <%= @booking.property.title %> <br>
+<% if @booking.room_id.present? %>
+  Номер: <%= @booking.property.rooms.find(@booking.room_id).title %> <br>
+<% end %>
+Дата заезда: <%= @booking.check_in %> <br>
+Дата выезда: <%= @booking.check_out %> <br>
+Кол-во взрослых <%= @booking.adults %> <br>
+Кол-во детей: <%= @booking.children %> <br>
+Сообщение: <%= @booking.message %> <br>
+
+<h4>Контакты</h4>
+Имя: <%= @booking.guest_name %> <br>
+Email: <%= @booking.guest_email %> <br>
+Номер телефона: <%= @booking.guest_phone %>
+
+<h4>Информация по всем заявкам</h4>
+Все заявки посмотреть можно здесь:
+<%= link_to "Заявки", partners_bookings_url %> 
+
+<br><br><br>
+
+Это письмо отправлено автоматически с сайта <a href="https://ilovekrim.ru/" target="_blank">ilovekrim.ru</a> <br>
+Отвечать на него не нужно. <br>
+Для связи по возникшим по вопросам пишите: <a href="mailto:admin@ilovekrim.ru">admin@ilovekrim.ru</a>
+
+
+
+
+

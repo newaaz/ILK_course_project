@@ -1,11 +1,18 @@
-Rails.application.routes.draw do  
+Rails.application.routes.draw do
+  authenticate :partner, lambda { |p| p.admin?  } do
+    namespace :admin do
+      resources :properties, only: %i[index]
+      patch 'listings/:id/activate_listing', to: 'listings#activate_listing', as: 'activate_listing'
+    end
+  end
+
   root 'static_pages#home'
 
   get '/contacts', to: 'static_pages#contacts'
   get '/about',    to: 'static_pages#about'
   get '/privacy',  to: 'static_pages#privacy'
 
-  post 'search', to: 'search#index'
+  get 'search', to: 'search#index'
   delete 'reset_search_dates', to: 'search#destroy'
 
   devise_for :partners, controllers:  {
@@ -27,9 +34,10 @@ Rails.application.routes.draw do
 
   namespace :partners do
     root 'dashboard#index'
-    get 'orders', to: 'dashboard#orders'
-    get 'add_listing', to: 'dashboard#add_listing'
+    get 'orders', to: 'dashboard#orders'    
     get 'bookings', to: 'dashboard#bookings'
+    get 'add_listing', to: 'dashboard#add_listing'
+    get 'info', to: 'dashboard#info'
   end
 
   namespace :customers do
@@ -38,9 +46,9 @@ Rails.application.routes.draw do
     post 'create_customer'  , to: 'customers#create', as: 'create_customer' 
   end
 
-  resources :properties do
+  resources :properties, except: %i[index] do
     resources :rooms, except: %i[index show], shallow: true
-    resources :bookings, only: %i[create]
+    resources :bookings, only: %i[new create]
     post :calculate_price, on: :member
   end
 

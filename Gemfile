@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.1"
 
-gem "rails", "~> 7.0.4"
+gem "rails", "~> 7.0.6"
 gem "sprockets-rails"
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
@@ -54,7 +54,7 @@ gem "oj", "~> 3.14"
 # get your Rails variables in your js
 #gem "gon", "~> 6.4"
 
-gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
+gem 'carrierwave', '>= 3.0.0', '< 4.0'
 # gem "rmagick", "~> 5.2"
 # gem "mini_magick", "~> 4.12"
 

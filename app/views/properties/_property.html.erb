@@ -1,60 +1,53 @@
 <div class="col-md-6 col-xl-4 mb-4">
   <div class="card card-hover-shadow pb-0 h-100">
-    <!-- Overlay item -->
-    <div class="position-relative">
-      <!-- Image -->
-      
-      <%= image_tag(property.avatar.variant(resize_to_limit: [400, 300]), class: "card-img-top") %>  
-      <!-- Overlay -->
-      <div class="card-img-overlay d-flex flex-column p-2 z-index-1">
-        <!-- Card overlay top -->
-        <div class="d-flex justify-content-between align-items-center">
-          <div>
-            <span class="badge text-bg-danger">30% Off</span>
-            <span class="badge text-bg-primary">Adventure</span>
-          </div>
-          <a href="#" class="badge bg-warning bg-opacity-25 text-orange"><i class="bi fa-fw bi-bookmark"></i></a>
-        </div>
-        
-        <!-- Card overlay bottom -->
-        <div class="w-100 mt-auto">
-          <span class="badge text-bg-light bg-opacity-75 fs-6">6 days / 5 nights</span>
-        </div>
-      </div>
+    <!-- fotorama begin -->
+    <div class="" data-controller="fotorama" data-object="widget"
+        data-width="100%"
+        data-ratio="3/2"
+        data-allowfullscreen="false"                
+        data-nav="false"
+        data-loop="true"
+        data-keyboard="true"
+        data-auto="false">      
+      <%= link_to image_tag(property.avatar.variant(resize_to_limit: [3, 2])), property.avatar %>      
+      <% property.images.take(2).each do |image| %> 
+        <%= link_to image_tag(image.variant(resize_to_limit: [3, 2])), image %>     
+      <% end %>
     </div>
-    <!-- Image -->
+    <!-- fotorama end -->   
 
     <!-- Card body START -->
     <div class="card-body px-3">      
       <!-- Title -->
-      <div class="d-flex justify-content-between mb-3">        
-        <h5 class="card-title mb-0"><%= link_to property.title, property, class: "strlnk-dontuse" %></h5>        
+      <div class="d-flex justify-content-between mb-1">        
+        <h5 class="card-title my-0"><%= link_to property.title, property %></h5>        
       </div>
 
-      <span class="small"><i class="bi bi-geo-alt"></i>&nbsp;<%= property.address %> </span>
+      <div class="d-sm-flex justify-content-sm-between align-items-center flex-wrap mt-1 mb-2">
+        <%= link_to town_path(property.town_id), class: 'text-decoration-underline' do %>
+          <span class="small"><i class="bi bi-arrow-return-right"></i>&nbsp;<%= towns_hash[property.town_id] %> </span>
+        <% end %>
+        <%= link_to properties_town_path(property.town_id, cat: property.category_id), class: 'text-decoration-underline' do %>
+          <span class="small"><i class="bi bi-arrow-right"></i>&nbsp;<%= categories_hash[property.category_id] %> </span>
+        <% end %>
+      </div>
+
+      <div class="d-sm-flex justify-content-sm-between align-items-center flex-wrap">
+        <span class="small"><i class="bi bi-geo-alt"></i>&nbsp;<%= property.address %> </span>
+        <% if property.distance_to_sea.present? %>
+          <div class="d-inline">
+            <i class="bi bi-water text-primary"></i>
+            <small>море:</small>
+            <span class=""><%= property.distance_to_sea %></span><small> м</small>
+          </div>      
+        <% end %>
+      </div>
 
       <!-- Highlights Icons -->
-      <ul class="nav nav-divider my-2">
-        <li class="nav-item">Air Conditioning</li>
-        <li class="nav-item">Wifi</li>
-        <li class="nav-item">Pool</li>
-        <li class="nav-item">More+</li>
-      </ul>
-
-      <ul class="list-group list-group-borderless small mb-0">
-        <li class="list-group-item d-flex text-primary p-0">
-          <i class="bi bi-patch-check-fill me-2"></i>Free Breakfast
-        </li>
-      </ul>
-
-      <!-- List -->
-      <ul class="nav nav-divider mt-3 mb-0">
-        <li class="nav-item h6 fw-normal mb-0">
-          <i class="bi bi-people-fill text-orange me-2"></i>Guests 2-6
-        </li>
-        <li class="nav-item h6 fw-normal mb-0">
-          <i class="bi bi-brightness-high text-orange me-2"></i>Sea 300m
-        </li>
+      <ul class="nav nav-divider mt-2">
+        <% property.services.take(3).each do |service| %>        
+          <li class="nav-item"><%= Property::SERVICES[service.to_sym] %></li>            
+        <% end %>
       </ul>
     </div>
     <!-- Card body END -->
@@ -65,12 +58,15 @@
       <div class="d-sm-flex justify-content-sm-between align-items-center flex-wrap">
         <!-- Price -->
         <div class="hstack gap-2">
-          <h5 class="fw-normal text-orange mb-0">1500<small>р</small></h5>
-          <small>per room/day</small>
+          <small>от</small>
+          <h5 class="fw-bold text-orange mb-0">1500<small>р</small></h5><small>/сутки</small>          
         </div>
         <!-- Button -->
         <div class="mt-2 mt-sm-0">
-          <%= link_to "View Details", property, class: "btn btn-sm btn-orange-soft mb-0" %>  
+          <%= link_to property, class: "btn btn-sm btn-primary-soft mb-0" do %>
+            Подробнее
+            <i class="bi bi-arrow-right ms-2"></i>
+          <% end %>  
         </div>
       </div>
     </div>

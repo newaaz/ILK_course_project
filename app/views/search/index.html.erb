@@ -1,8 +1,35 @@
-<section>
+<% provide(:title, "Поиск") %>
+<% if @town.present? %>
+  <section class="parallax-window" data-controller="parallax" data-parallax="scroll" data-image-src="<%= @town.avatar.url %>">
+    <div class="parallax-content-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">          
+            <% unless @properties_category %>
+              <h1>Жильё в <%= @town.parent_name %></h1>           
+            <% else %>      
+              <h1><%= @properties_category.title %> в <%= @town.parent_name %></h1>
+            <% end %>        
+          </div>
+          <div class="col-md-4">
+            <div id="price_single_main" class="hotel">
+              <span><sup></sup></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<section class="pt-3">
   <div class="container">
-    <div class="row mb-4">
-			<h2 class="h3 ps-5"><i class="bi bi-search text-black-50 me-2"></i>Search results</h2>
-		</div>
+    <div class="row mb-lg-4 mb-5">
+      <div class="col-xl-12" id="search_form">  
+        <!-- Booking from START -->
+        <%= render 'search/form' %>
+      </div>
+    </div>
 
     <div id="search_result">
       <div class="row gx-4">
@@ -11,3 +38,4 @@
     </div>
   </div>
 </section>
+

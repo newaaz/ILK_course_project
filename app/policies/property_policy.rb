@@ -6,12 +6,8 @@ class PropertyPolicy < ApplicationPolicy
     # end
   end
 
-  def index?
-    true
-  end
-  
   def show?
-    true
+    record.activated? ||user == record.owner || user.admin?
   end
   
   def create?

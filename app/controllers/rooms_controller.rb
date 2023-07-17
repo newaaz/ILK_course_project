@@ -31,7 +31,7 @@ class RoomsController < ApplicationController
     end
     
     if @room.save
-      flash[:success] = 'Номер добавлен'
+      flash[:success] = 'Номер добавлен'      
       redirect_to partners_root_path
     else
       respond_to do |format|

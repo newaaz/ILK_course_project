@@ -16,8 +16,11 @@
     </div>
   </div>
 
-  <div class="card-body">  
+  <div class="card-body">
     <div class="row">
+      <div class="col-12 px-0 px-md-2"><%= render 'properties/show/not_activated' unless property.activated? %></div>
+
+
       <!-- Avatar -->
       <div class="col-md-6 px-0 px-md-2">
         <%= link_to image_tag(property.avatar.variant(resize_to_limit: [250, 250]), class: "card-img rounded-2"), property %>  

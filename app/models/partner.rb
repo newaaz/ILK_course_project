@@ -16,6 +16,10 @@ class Partner < ApplicationRecord
     Order.where(property_id: property_ids)
   end
 
+  def admin?
+    email == Rails.application.credentials.email[:admin]
+  end
+
   def name_or_email
     name.presence || email.split('@').first
   end

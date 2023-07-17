@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: %i[edit update destroy]
+  before_action :set_property, only: %i[show edit update destroy]
   before_action :authorize_property!
 
   after_action  :verify_authorized
@@ -36,15 +36,8 @@ class PropertiesController < ApplicationController
     
   end
 
-  def index
-    @properties = Property.take 3
-  end
-
   def show
-    @property = Property.includes([:geolocation, :property_detail, :contact, :town, :category,
-                                   images_attachments: :blob, avatar_attachment: :blob,
-                                   rooms: [:prices, images_attachments: :blob, avatar_attachment: :blob]])
-                        .find(params[:id])
+    @rooms = @property.rooms.with_attached_images.with_attached_avatar
     @nearby_properties = @property.nearby_objects('Property', 20)
     @booking = Booking.new(property: @property)
   end
@@ -107,7 +100,9 @@ class PropertiesController < ApplicationController
   private
 
   def set_property
-    @property = Property.includes([:geolocation, :contact, :property_detail]).find(params[:id])
+    @property = Property.with_attached_images.with_attached_avatar
+                        .includes([:geolocation, :property_detail, :contact, :town, :category])
+                        .find(params[:id])
   end
 
   def property_params

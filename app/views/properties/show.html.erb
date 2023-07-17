@@ -21,16 +21,7 @@
 	<!-- title -->
 	<section class="py-0">
 		<div class="container position-relative">
-			<div class="alert alert-info alert-dismissible d-flex justify-content-between align-items-center show mb-4 rounded-3 py-4" role="alert">
-				<div class="d-flex">
-					<span class="alert-heading h5 mb-0 me-2"><i class="bi bi-exclamation-octagon-fill"></i></span>
-					<span>
-						<strong class="alert-heading me-2">Демо-объект:</strong>
-						Забронировать в реальности его нельзя
-					</span>
-				</div>
-			</div>
-
+			<%= render 'properties/show/not_activated' unless @property.activated? %>	
 			<!-- Title and button START -->
 			<div class="row mb-3 border-bottom pb-2">
 				<div class="col-12">
@@ -103,9 +94,6 @@
 				</div>
 
 				<aside class="col-lg-4 px-lg-4 px-sm-0 mt-3">
-					<%#= render 'properties/show/booking_form' %>
-					<%#= render 'properties/show/price_start' %>
-
 					<div id="check_in_form" class="card card-body border mb-3 py-3 px-3">
 						<%= render partial: 'properties/show/check_in_form', locals: { property_id: @property.id } %>
 					</div>
@@ -122,24 +110,24 @@
 				<div class="col-xl-8 order-1">
 					<ul class="nav nav-tabs nav-bottom-line mb-3">
 						<li class="nav-item me-2">
-							<a class="nav-link active" data-bs-toggle="tab" href="#tab-description">Описание</a>
+							<a class="nav-link active" data-bs-toggle="tab" href="#tab-description"><span class="fs-5">Описание</span></a>
 						</li>
 
-						<% if @property.rooms.any? %>
+						<% if @rooms.any? %>
 							<li class="nav-item">
-								<a class="nav-link" data-bs-toggle="tab" href="#tab-rooms">Номера</a>
+								<a class="nav-link" data-bs-toggle="tab" href="#tab-rooms"><span class="fs-5">Номера</span></a>
 							</li>
 						<% end %>
 				
 						<li class="nav-item">
-							<a class="nav-link" data-bs-toggle="tab" href="#tab-map">Карта</a>
+							<a class="nav-link" data-bs-toggle="tab" href="#tab-map"><span class="fs-5">Карта</span></a>
 						</li>
 					</ul>
 
 					<div class="tab-content">
 						<%= render 'properties/show/tab_description' %><!-- DESCRIPTION -->
 
-						<% if @property.rooms.any? %>
+						<% if @rooms.any? %>
 							<%= render 'properties/show/tab_rooms' %><!-- ROOMS -->
 						<% end %>			
 
@@ -159,38 +147,7 @@
 	</section>
 </main>
 
-
-
-<%= render 'properties/show/booking_modal' %>
-
-<script>
-	const bookingModal = document.getElementById('bookingModal')
-	bookingModal.addEventListener('show.bs.modal', event => {
-		const modalTitle = bookingModal.querySelector('.modal-title')
-		const button = event.relatedTarget
-
-		const roomId = button.getAttribute('data-bs-room')	
-		
-		if (roomId) {
-			document.getElementById('room-id-field').value = roomId			
-			const roomTitle = document.getElementById("room_" + roomId).querySelector('h5').innerText
-			modalTitle.textContent = roomTitle
-		}
-
-	})
-
-	bookingModal.addEventListener('hide.bs.modal', event => {
-		const modalTitle = bookingModal.querySelector('.modal-title')
-		modalTitle.textContent = 'Написать сообщение'
-	})
-</script>
-
-
-
-
-
-
-<!-- Map modal START -->
+<!-- Map modal START (don't used) -->
 <div class="modal fade" id="mapmodal" tabindex="-1" aria-labelledby="mapmodalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">

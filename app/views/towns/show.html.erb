@@ -4,14 +4,12 @@
   <div class="parallax-content-2">
     <div class="container">
       <div class="row">
-        <div class="col-md-8">          
+        <div class="col-md-4">          
           <h1><%= @town.name %></h1>  
 					<span>Жильё, активный отдых и услуги в <%= @town.parent_name %></span>         
         </div>
-        <div class="col-md-4">
-          <div id="price_single_main" class="hotel">
-            <span><sup></sup></span>
-          </div>
+        <div class="col-md-8 d-flex">
+            <p class="d-none d-md-block mb-lg-0 fs-6 align-self-end"><%= @town.description %></p>
         </div>
       </div>
     </div>
@@ -28,31 +26,18 @@
   </nav>
 </div>
 
-<section class="pt-0 pb-3">
-	<div class="container">
-		<div class="bg-light rounded border p-3 p-sm-4">	
-			<div class="align-items-center position-relative">
-				
-				<p class="mb-3 mb-lg-0 fs-6"><%= @town.description %></p>
-				
-			</div> <!-- Row END -->
-		</div>
-	</div>
-</section>
-
+<div class="container">
+  <div class="row mb-lg-4 mb-5">
+    <div class="col-xl-12" id="search_form">  
+      <!-- Booking form -->
+      <%= render 'search/form' %>
+    </div>
+  </div>
+</div>
 
 <section class="py-3">
-	<div class="container">
-		
-    <%= link_to "Жильё в #{@town.parent_name}", properties_town_path(@town), class: 'btn btn-primary btn-lg' %>
-
-	</div>
-</section>
-
-
-<section class="py-3">
-  <div class="container">
-    <h2 class="h3">Жильё <%= @town.parent_name %></h2>  
+	<div class="container">		
+    <%= link_to "Жильё в #{@town.parent_name}", properties_town_path(@town), class: 'btn btn-primary' %>
 
     <div class="categories my-3">
       <%= link_to 'Все категории', properties_town_path(@town), class: 'btn btn-light btn-sm' %>
@@ -60,9 +45,14 @@
         <%= link_to cat.title, properties_town_path(@town, { cat: cat.id }), class: 'btn btn-light btn-sm' %>
       <% end %>
     </div>
-
-  </div>
+	</div>
 </section>
+
+
+<section></section>
+<section></section>
+<section></section>
+<section></section>
 
 
 
