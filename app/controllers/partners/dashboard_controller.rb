@@ -23,6 +23,9 @@ class Partners::DashboardController < ApplicationController
   def add_listing
   end
 
+  def info
+  end
+
   private
 
   def pundit_user

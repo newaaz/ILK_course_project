@@ -10,7 +10,7 @@ module Imagable
 
     validates :images, attached: true, content_type: ['image/png', 'image/jpeg', 'image/jpg'],
                 size: { less_than: 5.megabytes, message: '. Изображение должно быть меньше 5 Мб' },
-                limit: { min: 1, max: 2, message: '. Максимальное количество изображений 35' }
+                limit: { min: 1, max: 20, message: '. Максимальное количество изображений 20' }
      
     def avatar_thumb
       avatar.variant(resize_to_limit: [200, 200])

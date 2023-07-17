@@ -28,7 +28,7 @@
           <span class="small"><i class="bi bi-arrow-return-right"></i>&nbsp;<%= towns_hash[property.town_id] %> </span>
         <% end %>
         <%= link_to properties_town_path(property.town_id, cat: property.category_id), class: 'text-decoration-underline' do %>
-          <span class="small"><i class="bi bi-arrow-return-right"></i>&nbsp;<%= categories_hash[property.category_id] %> </span>
+          <span class="small"><i class="bi bi-arrow-right"></i>&nbsp;<%= categories_hash[property.category_id] %> </span>
         <% end %>
       </div>
 

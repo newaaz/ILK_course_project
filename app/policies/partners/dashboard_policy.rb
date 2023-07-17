@@ -18,4 +18,8 @@ class Partners::DashboardPolicy < ApplicationPolicy
   def bookings?
     user.is_a?(Partner)
   end
+
+  def info?
+    user.is_a?(Partner)
+  end
 end

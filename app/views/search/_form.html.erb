@@ -3,7 +3,7 @@
     <!-- Location -->
     <div class="col-6 col-lg-3">
       <div class="form-fs-md d-flex">
-        <i class="bi bi-geo-alt fs-3 me-2 mt-4 mt-md-3"></i>
+        <i class="bi bi-geo-alt fs-3 me-2 mt-4 mt-md-3 d-none d-md-block"></i>
         <div class="w-100">
           <%= f.label "Курорт", class: "form-label" %>
           <%= f.collection_select :town_id, Town.all, :id, :name, { selected: (@town.present? ? @town.id : params[:town_id]), include_blank: true }, class: "form-select" %>    
