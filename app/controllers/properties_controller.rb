@@ -44,8 +44,8 @@ class PropertiesController < ApplicationController
 
   def new
     @property = Property.new(geolocation: Geolocation.new,
-                             property_detail: PropertyDetail.new(email: current_partner.email),
-                             contact: Contact.new(name: current_partner.name))
+                             property_detail: PropertyDetail.new,
+                             contact: Contact.new)
   end
 
   def create

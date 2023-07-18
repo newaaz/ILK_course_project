@@ -25,4 +25,6 @@ class Contact < ApplicationRecord
   mount_uploader  :avatar, PictureUploader
 
   belongs_to :contactable, polymorphic: true
+
+  validates :name, presence: true
 end

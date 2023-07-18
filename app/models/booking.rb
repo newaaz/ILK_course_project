@@ -21,6 +21,6 @@ class Booking < ApplicationRecord
   end
 
   def send_booking_creating_email
-    ListingMailer.booking_created(self).deliver_later
+    ListingMailer.booking_created(self).deliver_now
   end  
 end

@@ -58,6 +58,10 @@
 					<% end %>
 				</li> 
 
+				<div id="reset_search_button">
+					<%= render 'shared/buttons/reset_search_button' %>
+				</div>
+
 				<% if current_partner %>				
 					<li class="nav-item ms-3 dropdown">
 						
@@ -189,10 +193,6 @@
 						<!-- Notification dropdown menu END -->
 					</li>
 				<% end %>
-
-				<div id="reset_search_button">
-					<%= render 'shared/buttons/reset_search_button' %>
-				</div>
 			</ul>
 		</div>
 	</nav>

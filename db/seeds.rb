@@ -114,7 +114,7 @@ def create_property
                                   Price.new(start_date: '01/03/2023', end_date: '31/03/2023', day_cost: rand_price),
                                   Price.new(start_date: '01/04/2023', end_date: '30/04/2023', day_cost: rand_price),
                                   Price.new(start_date: '01/05/2023', end_date: '31/05/2023', day_cost: rand_price),
-                                  Price.new(start_date: '01/06/2023', end_date: '30/09/2023', day_cost: rand_price),
+                                  Price.new(start_date: '01/06/2023', end_date: '30/09/2025', day_cost: rand_price),
                                 ])
   
     room.avatar.attach(io: rand_image_path .open, filename: 'r(1).jpg')

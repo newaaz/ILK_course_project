@@ -8,14 +8,14 @@ module ListingActivatable
     def activate!
       unless self.activated?
         self.toggle!(:activated)
-        ListingMailer.listing_activated(self).deliver_later
+        ListingMailer.listing_activated(self).deliver_now
       end
     end
 
     private
 
     def send_listing_creating_email
-      ListingMailer.listing_created(self).deliver_later unless self.activated?
+      ListingMailer.listing_created(self).deliver_now unless self.activated?
     end  
   end  
 end

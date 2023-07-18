@@ -89,8 +89,8 @@ ru:
         serial_number: "Порядковый номер"
         rooms_count: "Количество комнат"
         size: "Площадь"
-        guest_base_count: 'Базовое количество гостей'
-        guest_max_count: 'Максимальное количество гостей'
+        guest_base_count: 'Базовое кол-во гостей'
+        guest_max_count: 'Максимальное кол-во гостей'
         furniture: "Мебель"
         beds: 'Спальные места'
         bathroom: "Санузел/душ/ванна"

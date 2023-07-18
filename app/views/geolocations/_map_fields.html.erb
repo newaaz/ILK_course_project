@@ -1,6 +1,6 @@
 <div class="card shadow">  
   <div class="card-header border-bottom">
-    <h5 class="mb-0">Расположение на карте</h5>
+    <h5 class="mb-0">Расположение на карте*</h5>    
   </div>
 
   <div class="card-body">
@@ -19,7 +19,12 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="coordinates mt-3" style="width: 200px">
+              <div class="small text-secondary mt-3">
+                <span class="fw-semibold">Поставьте отметку на карте</span> <br>
+                Для указания более точного расположения можно приблизить карту и перемещать маркер
+              </div>
+              
+              <div class="coordinates mt-3" style="width: 200px">  
                 <div class="form-group">              
                   <%= l.label :latitude, class: 'form-label' %> 
                   <%= l.text_field :latitude, class: 'form-control form-control-sm', readonly: true, required: true %>
