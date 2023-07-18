@@ -79,14 +79,14 @@
               </div>
             </div>
 
-            <div class="col-6 mt-3">
+            <div class="col-12 col-md-6 mt-3">
               <div class="form-group">
                 <%= f.label "Email *", class: 'form-label' %>            
                 <%= f.email_field :guest_email, class:"form-control", required: true %>             
               </div>
             </div>
 
-            <div class="col-6 mt-3" data-controller="previews">
+            <div class="col-12 col-md-6 mt-3" data-controller="previews">
               <div class="form-group">
                 <%= f.label "Номер телефона *", class: 'form-label' %>                
                 <%= f.telephone_field :guest_phone, id: "phone-mask", class:"form-control", required: true %>

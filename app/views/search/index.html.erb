@@ -33,7 +33,14 @@
 
     <div id="search_result">
       <div class="row gx-4">
-        <%= render partial: 'properties/property', collection: @properties, as: :property %>
+        <% if @properties.any? %>
+          <%= render partial: 'properties/property', collection: @properties, as: :property %>
+        <% else %>
+          <div class="col-12 text-center">
+            <h1 class="fs-3 mb-2">Нет подходящих предложений</h1>
+            <p class="mb-0">Попробуйте изменить параметры поиска</p>
+          </div>
+        <% end %>      
       </div>
     </div>
   </div>

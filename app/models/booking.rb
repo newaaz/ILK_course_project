@@ -1,4 +1,6 @@
 class Booking < ApplicationRecord
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+
   after_create :send_booking_creating_email
 
   belongs_to :property  
@@ -6,8 +8,11 @@ class Booking < ApplicationRecord
 
   has_one :hoster, through: :property, source: :owner
 
-  validates :guest_name, :guest_email, :guest_phone, presence: true
+  validates :guest_name, :guest_phone, presence: true
   validates :check_out, :check_in, presence: true, if: -> { room_id.present? }
+  validates :guest_email, presence: true,
+                          length: {maximum: 255, minimum: 6},
+                          format: {with: VALID_EMAIL_REGEX}
   validate  :check_dates, if: :dates_present?  
   
   private

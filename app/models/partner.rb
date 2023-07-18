@@ -4,7 +4,8 @@ class Partner < ApplicationRecord
           :recoverable,
           :rememberable,
           :validatable,
-          :confirmable
+          :confirmable,
+          :lockable
           
   has_many :properties, foreign_key: 'owner_id', class_name: 'Property', dependent: :destroy
   has_many :as_hoster_bookings, through: :properties, source: :bookings
