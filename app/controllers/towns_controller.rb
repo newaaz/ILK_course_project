@@ -10,16 +10,19 @@ class TownsController < ApplicationController
     @categories = Category.all
 
     if params[:cat].blank?
-      @properties = @town.properties.activated
-                                    .with_attached_avatar
-                                    .with_attached_images
-    else
-      @properties = @town.properties.activated
-                          .with_attached_avatar
-                          .with_attached_images
-                          .where(category_id: params[:cat])
+      properties = @town.properties.activated
+                                   .with_attached_avatar
+                                   .with_attached_images
 
-      @properties_category = Category.find(params[:cat])  
+      @pagy, @properties = pagy(properties, items: 12)
+    else
+      properties = @town.properties.activated
+                        .with_attached_avatar
+                        .with_attached_images
+                        .where(category_id: params[:cat])
+
+      @properties_category = Category.find(params[:cat])
+      @pagy, @properties = pagy(properties, items: 12)
     end
   end
  

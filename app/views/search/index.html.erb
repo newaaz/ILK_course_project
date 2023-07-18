@@ -22,7 +22,17 @@
   </section>
 <% end %>
 
-<section class="pt-3">
+<!-- breadcrumbs -->
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
+      <li class="breadcrumb-item active">Поиск</li>      
+    </ol>
+  </nav>
+</div>
+
+<section class="pt-0">
   <div class="container">
     <div class="row mb-lg-4 mb-5">
       <div class="col-xl-12" id="search_form">  
@@ -31,17 +41,8 @@
       </div>
     </div>
 
-    <div id="search_result">
-      <div class="row gx-4">
-        <% if @properties.any? %>
-          <%= render partial: 'properties/property', collection: @properties, as: :property %>
-        <% else %>
-          <div class="col-12 text-center">
-            <h1 class="fs-3 mb-2">Нет подходящих предложений</h1>
-            <p class="mb-0">Попробуйте изменить параметры поиска</p>
-          </div>
-        <% end %>      
-      </div>
+    <div class="row gx-4">
+      <%= render 'properties/templates/properties_grid' %>     
     </div>
   </div>
 </section>

@@ -22,6 +22,6 @@ class BookingSearchService
       search_params = search_params.merge date_available_query
     end
 
-    Property.search(where: search_params)  
+    Property.pagy_search(where: search_params)
   end
 end

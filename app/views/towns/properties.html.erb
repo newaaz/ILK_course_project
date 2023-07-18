@@ -52,9 +52,13 @@
         <%= link_to cat.title, { cat: cat.id }, data: { turbo_frame: "town_properties" }, class: 'btn btn-light btn-sm' %>
       <% end %>
     </div>
-    <div class="row gx-3">
-      <%= render @properties %>
+
+
+    <div class="row gx-4">
+      <%= render 'properties/templates/properties_grid' %>       
     </div>
+
+
   </div>
 </section>
 

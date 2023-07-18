@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
   def index
-    @properties = BookingSearchService.call(params).includes([:avatar_attachment, images_attachments: :blob])
+    finded_properties = BookingSearchService.call(params).includes([:avatar_attachment, images_attachments: :blob])
+    @pagy, @properties = pagy_searchkick finded_properties, items: 12
 
     if params[:check_in].present? && params[:check_out].present?        
       session[:check_in], session[:check_out] = params[:check_in].to_date, params[:check_out].to_date  
@@ -14,13 +15,6 @@ class SearchController < ApplicationController
 
     respond_to do |format|
       format.html { render :index }
-      # not yet used
-      # format.turbo_stream do
-      #   render turbo_stream:
-      #     turbo_stream.update('search_result',
-      #       partial: 'search/properties/finded_properties',
-      #       locals:   { properties: @properties })
-      # end
     end
   end
 

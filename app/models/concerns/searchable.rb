@@ -2,6 +2,8 @@ module Searchable
   extend ActiveSupport::Concern
 
   included do
+    extend Pagy::Searchkick
+    
     # Oficial gem Elasticsearch
     # include Elasticsearch::Model
     # include Elasticsearch::Model::Callbacks

@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
     @towns = Town.all
-    @properties = Property.activated.with_attached_avatar.with_attached_images.take 3
+    @properties = Property.activated.with_attached_avatar.with_attached_images.take 6    
   end
 
   def contacts
