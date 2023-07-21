@@ -53,6 +53,8 @@ Rails.application.routes.draw do
     post :calculate_price, on: :member
   end
 
+  resources :activities, except: %i[]
+
   delete 'images/:id/purge', to: 'images#purge', as: 'purge_image'
 
   # resources :orders, only: %i[show new create update]

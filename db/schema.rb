@@ -44,11 +44,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_104628) do
 
   create_table "activities", force: :cascade do |t|
     t.string "title", null: false
-    t.string "avatar"
-    t.json "images"
+    t.string "category_title", null: false
+    t.string "listing_type", null: false
+    t.text "description", null: false
+    t.text "additional_info"
     t.string "address"
     t.integer "price"
-    t.string "price_per"
+    t.string "price_type"
+    t.string "avatar"
+    t.json "images"
     t.integer "rating", limit: 2, default: 10
     t.integer "random_id", limit: 2, default: 1
     t.integer "promouted", limit: 2, default: 0
