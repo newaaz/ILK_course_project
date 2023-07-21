@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_02_121441) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_21_104628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,33 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_02_121441) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "avatar"
+    t.json "images"
+    t.string "address"
+    t.integer "price"
+    t.string "price_per"
+    t.integer "rating", limit: 2, default: 10
+    t.integer "random_id", limit: 2, default: 1
+    t.integer "promouted", limit: 2, default: 0
+    t.boolean "activated", default: false
+    t.boolean "deleted", default: false
+    t.boolean "enabled", default: true
+    t.boolean "blocked", default: false
+    t.bigint "owner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_activities_on_owner_id"
+  end
+
+  create_table "activities_towns", id: false, force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.bigint "town_id", null: false
+    t.index ["activity_id", "town_id"], name: "index_activities_towns_on_activity_id_and_town_id"
+    t.index ["town_id", "activity_id"], name: "index_activities_towns_on_town_id_and_activity_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -235,6 +262,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_02_121441) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "activities", "partners", column: "owner_id"
   add_foreign_key "bookings", "properties"
   add_foreign_key "oauth_providers", "customers"
   add_foreign_key "orders", "customers"
