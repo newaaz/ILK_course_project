@@ -22,28 +22,18 @@
 
     <%= f.invisible_captcha :subtitle %>
 
-    <div class="mb-4 mt-3">
-      <input type="checkbox" id="politics" onclick="check();" value="" class="form-check-input" autocomplete="off" required />
-      <label class="form-check-label" for="politics"><small>
-        Даю <%= link_to "согласие на обработку персональных данных", privacy_url %>.</small>
-      </label>
+    <%= f.submit "Зарегистрироваться", class:"btn btn-primary mt-2", style: "width: 230px;" %>
+
+    <div class="my-3 small">        
+      Регистрируясь на сайте, вы даете согласие на обработку своих персональных данных и принимаете условия
+      <%= link_to "Политики конфиденциальности", privacy_url, target: "_blank" %>
+      и <%= link_to "Пользовательского соглашения", agreement_url, target: "_blank" %>.
     </div> 
 
-    <%= f.submit "Зарегистрироваться", class:"btn btn-primary mb-4", style: "width: 230px;", disabled:"" %>
-
-    <br>
     <small>
       <%= render "partners/shared/links" %>
     </small>     
   <% end %>
 </main>
 
-<script>
-  function check() {
-    var submit = document.getElementsByName('commit')[0];
-    if (document.getElementById('politics').checked)
-      submit.disabled = '';
-    else
-      submit.disabled = 'disabled';
-  }
-</script>
+

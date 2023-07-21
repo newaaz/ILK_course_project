@@ -5,14 +5,17 @@ class StaticPagesController < ApplicationController
   end
 
   def contacts
-    @town = Town.first
-    @properties = Property.activated.with_attached_images.with_attached_avatar.take 6
+    @town = Town.all.sample
   end
 
   def about
+    @town = Town.all.sample    #  Town.find(Town.ids.sample) || Town.find(Town.pluck(:id).sample)
   end
 
   def privacy
+  end
+
+  def agreement    
   end
 end
 

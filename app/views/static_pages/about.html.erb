@@ -1,0 +1,40 @@
+<% provide(:title, "ILK: О проекте") %>
+
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
+      <li class="breadcrumb-item active">О проекте</li>  
+    </ol>
+  </nav>
+</div>
+
+<div class="container my-4">
+	<div class="resources-title mb-4 text-center">		
+		<h1 class="fs-3">О проекте</h1>		
+	</div>
+
+	<div class="bg-white border rounded p-3">
+    &emsp;Ilovekrim.ru - это информационно-туристический портал для поиска аренды жилья, активного отдыха, развлечений и услуг в Крыму.<br>
+    &emsp;Здесь предоставляется разнообразная информация интересная и необходимая отдыхающим - аренда жилья, реклама активного отдыха - всевозможные морские, воздушные, конные прогулки и другие экскурсии.
+    А также - услуги и сервисы которые можно получить в указанном городе (например доставка еды или вызов такси).
+    Интересные места и достопримечательности в городе. В общем - куда сходить и чем заняться чтобы не было скучно на отдыхе.
+  </div>
+</div>
+
+<section class="py-0 py-md-3">
+	<div class="container">
+		<div class="position-relative rounded overflow-hidden p-2 p-sm-5" style="background-image:url(<%= @town.avatar.url %>); background-position: center left; background-size: cover;">
+			<div class="row position-relative z-index-9">
+				<div class="col-md-9 col-xl-8">
+					<div class="rounded shadow bg-light bg-opacity-75 p-sm-4">
+            <h5><%= link_to @town.name, @town, class: "stretched-link"%></h5>
+						<p class="mb-3 text-dark"><%= @town.description %></p>						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+

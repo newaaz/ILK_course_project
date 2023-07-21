@@ -104,7 +104,13 @@
               <i class="bi bi-envelope me-2"></i>Отправить
             <% end %>
           </div>            
-        <% end %>  
+        <% end %>
+
+        <div class="my-3 small">        
+          Отправляя заявку или сообщение, вы даете согласие на обработку своих персональных данных и принимаете условия
+          <%= link_to "Политики конфиденциальности", privacy_url, target: "_blank" %>
+          и <%= link_to "Пользовательского соглашения", agreement_url, target: "_blank" %>.
+        </div> 
       </div>             
     </div>      
   </div>

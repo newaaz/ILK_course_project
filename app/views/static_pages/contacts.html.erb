@@ -9,10 +9,6 @@
   </nav>
 </div>
 
-
-
-
-
 <div class="container my-4">
 	<div class="resources-title mb-4 text-center">		
 		<h1 class="fs-3">Контакты</h1>		
@@ -20,27 +16,19 @@
 	
 	<div class="bg-white border rounded p-3">
 		По всем вопросам, связанным с работой сайта вы можете: <br>
-			&emsp;Написать нам:&emsp;<a href="mailto:ilove-krim@mail.ru">ilove-krim@mail.ru</a><br>
-			&emsp;Позвонить:&emsp;+7(978)265-19-47 <span class="text-secondary">(каждый день с 9-00 до 18-00)</span>
+			&emsp;- Написать нам:&emsp;<a href="mailto:ilove-krim@mail.ru">ilove-krim@mail.ru</a><br>
+			&emsp;- Позвонить:&emsp;+7(978)265-19-47 <span class="text-secondary">(каждый день с 9-00 до 18-00)</span>
 	</div> 	 
 </div>	
 
-
-
-
 <section class="py-0 py-md-3">
 	<div class="container">
-		<%= link_to @town.name, @town, class: "btn btn-success-soft" %>
-
 		<div class="position-relative rounded overflow-hidden p-2 p-sm-5" style="background-image:url(<%= @town.avatar.url %>); background-position: center left; background-size: cover;">
 			<div class="row position-relative z-index-9">
 				<div class="col-md-9 col-xl-8">
 					<div class="rounded shadow bg-light bg-opacity-75 p-sm-4">
-
             <h5><%= link_to @town.name, @town, class: "stretched-link"%></h5>
-
-						<p class="mb-3 text-dark"><%= @town.description %></p>
-						
+						<p class="mb-3 text-dark"><%= @town.description %></p>						
 					</div>
 				</div>
 			</div>

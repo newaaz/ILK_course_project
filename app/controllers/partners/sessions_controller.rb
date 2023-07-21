@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Partners::SessionsController < Devise::SessionsController
-  include Accessibled  
-  skip_before_action :check_user, only: :destroy
+  #include Accessibled  
+  #skip_before_action :check_user, only: :destroy
 
   layout 'light'
 

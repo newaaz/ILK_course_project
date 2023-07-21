@@ -1,3 +1,4 @@
+# for multiple authentications - Partnerss, Customers
 module Accessibled
   extend ActiveSupport::Concern
   included do
