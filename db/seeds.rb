@@ -1,4 +1,4 @@
-PROPERTY_NAMES = ["Гостевой дом 'Одиссей'", "Гостевой дом 'Александра'", "Гостиница 'Орхидея'",
+PROPERTY_TITLES = ["Гостевой дом 'Одиссей'", "Гостевой дом 'Александра'", "Гостиница 'Орхидея'",
                   "Апартаменты 'Парус'", "Эллинг 'Катран'", "Дом под ключ в центре",
                   "3-х комнатная квартира у моря", "Гостиница У Моря", "Эко гостевой дом 'Здоровье'",
                   "Отель 'Бриз'", "Апартаменты 'Хижина Робинзона'", "Вилла 'Santa Fe'", "Апартаменты 'На Черноморской'"].freeze
@@ -6,6 +6,9 @@ PROPERTY_NAMES = ["Гостевой дом 'Одиссей'", "Гостевой 
 PROPERTY_ADRESSES = ["ул. Ленина 15", "Черноморская набережная, д. 1В", "ул. Бусина 35", "ул. Приморская 65 B",
                      "переулок Лазурный, д.7", "ул. Луначарского, д. 16", "Севастопольское шоссе, д. 22", "ул. Ленина, 35 б,
                      эллинг 60"].freeze
+
+ACTIVITY_TITLES = ["Туризм", "Спорт", "Развлекательный отдых", "Туризм", "Джипинг",
+                    "Воздушные прогулки", "Морские прогулки", "Конные прогулки", "Прогулки на квадроциклах"].freeze
 
 # Categories for properties
 def create_categories
@@ -62,9 +65,46 @@ def rand_price
   (rand(1000..2500) / 50).round * 50
 end
 
+# create actitvity
+def create_activity
+  actitvity = Activity.create!(
+                        title:          ACTIVITY_TITLES.sample,
+                        listing_type:   "activity",
+                        category_title: ["Морские прогулки", "Воздушные прогулки", "Конные прогулки", "Джипинг", "Рыбалка", "Рыбалка", "Другое"].sample,
+                        avatar:         File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                        images:         [ File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg"))],
+                        address:        PROPERTY_ADRESSES.sample,
+                        price:          rand_price,
+                        price_type:     "За прогулку",
+                        description:    "Готовься к незабываемому приключению наших морских прогулок! С брызгами океанской волны, свежим морским воздухом и захватывающими видами мы предлагаем заставить ваше сердце забиться быстрее.
+                                        Присоединяйтесь к нам в увлекательных прогулках по побережью! Наша команда экспертов с легкостью проведет вас через изумрудные воды и прекрасные морские пейзажи, раскрывая перед вами уникальные места и секретные пещеры, доступные только с морской стороны.
+                                        Вы сможете почувствовать свободу, когда ветер сопротивляется вашим волосам, а солнечные лучи ласкают вашу кожу. Наша команда специализируется на создании неповторимых и запоминающихся моментов, поэтому вы сможете наслаждаться прогулкой, зная, что о вас позаботятся и создадут неповторимую атмосферу безопасности и комфорта.
+                                        Мы предлагаем разные варианты морских прогулок, от романтических наблюдений заката до экстремальных морских приключений, таких как вейкбординг или подводное плавание с аквалангом. У нас есть опции для всех – от любителей спокойного отдыха до искателей адреналина!",
+                        additional_info: "Бесподобные виды и впечатления: Морская прогулка позволяет насладиться удивительными видами природы, наблюдать диких животных и различные морские развлечения. Открывайте новые горизонты, фотографируйте красивые пейзажи и создавайте воспоминания, которые будут с вами навсегда.
+                                          Не забудьте, что предварительное бронирование обязательно, чтобы убедиться в наличии свободных мест и подготовке к вашему приходу.
+                                          Желаем вам незабываемых морских прогулок и великолепного отдыха на нашем сказочном побережье!",
+                        activated:    true,
+                        site:         'ilovekrim.ru',
+                        email:        'email@email.ru',
+                        vk_group:     'i_lovekrim',
+                        owner:        Partner.first,
+                        town_ids:     Town.ids,
+                        geolocation:  Geolocation.new(
+                          latitude: "45.0#{rand 60..80}65",
+                          longitude: "35.3#{rand 60..80}88"),
+                        contact:      Contact.new(
+                          phone_number: '+7(987)123-45-67',                      
+                          name: 'Геннадий',
+                          messengers: ["whatsapp", "viber", "telegram"]))
+end
+
 # Create property
 def create_property
-  property = Property.new(title:        PROPERTY_NAMES.sample,
+  property = Property.new(title:        PROPERTY_TITLES.sample,
                           address:      PROPERTY_ADRESSES.sample,
                           town:         Town.all.sample,
                           category:     Category.all.sample,
@@ -128,13 +168,16 @@ def create_property
 end
 
 time = Benchmark.measure do
-  create_categories
-  create_towns
+  # create_categories
+  # create_towns
 
-  Property.destroy_all
-  65.times { create_property }
-  Property.reindex
-  puts "Properties indexed"
+  # Property.destroy_all
+  # 65.times { create_property }
+  # Property.reindex
+  # puts "Properties indexed"
+  
+  Activity.destroy_all
+  15.times { create_activity }
 end
 
 puts "Время выполнения: #{time.real} секунд"

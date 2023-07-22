@@ -6,9 +6,9 @@
   <div class="card-body py-2 px-3">
     
     <div class="text-center pt-2">
-      <span class="fw-semibold"><%= @property.contact.name %></span>
+      <span class="fw-semibold"><%= @activity.contact.name %></span>
       
-      <% if @property.owner.avatar.present? %>
+      <% if @activity.owner.avatar.present? %>
         <div class="avatar">           
           <%= image_tag(@property.owner.avatar.thumb.url, class: 'avatar-img rounded-circle shadow ms-4') %>    
         </div>
@@ -16,18 +16,18 @@
     </div>
 
     <div class="my-4 vstack gap-3 ps-3">
-      <% if @property.property_detail.site.present? %>
-        <a href="http://<%= @property.property_detail.site %>" target="_blank">
+      <% if @activity.site.present? %>
+        <a href="http://<%= @activity.site %>" target="_blank">
         <span class="badge bg-secondary bg-opacity-10 text-black-50"><i class="bi bi-globe"></i></span>
           
-          &nbsp;<%= @property.property_detail.site %>
+          &nbsp;<%= @activity.site %>
         </a>  
       <% end %>
     
-      <% if @property.property_detail.vk_group.present? %>
-        <a href="https://vk.com/<%= @property.property_detail.vk_group %>" target="_blank">
+      <% if @activity.vk_group.present? %>
+        <a href="https://vk.com/<%= @activity.vk_group %>" target="_blank">
           <span class="badge bg-secondary bg-opacity-10 text-black-50">VK</span>
-          &nbsp;<%= @property.property_detail.vk_group %>
+          &nbsp;<%= @activity.vk_group %>
         </a>  
       <% end %>  
     </div>
@@ -37,31 +37,31 @@
         <i class="bi bi-caret-down me-1"></i>Контакты
       </a>
 
-      <%= link_to new_property_booking_path(@property),
+      <%= link_to new_property_booking_path(@activity),
             data: { turbo_frame: "modal" },
             class: 'btn btn-orange-soft btn-sm w-100' do %>
         <i class="bi bi-send me-1"></i> Написать
-      <% end %>  
+      <% end %>      
     </div>
 
     <div class="collapse" id="collapseContacts">
       <div class="my-4 vstack gap-3 ">
-        <% if @property.property_detail.email %>
+        <% if @activity.email %>
           <div>
             <span class="badge bg-secondary bg-opacity-10 text-black-50"><i class="bi bi-envelope"></i></span>
-            <%= @property.property_detail.email %>
+            <%= @activity.email %>
           </div>
         <% end %>
 
-        <a href=<%= "tel:#{@property.contact.phone_number}" %>>
+        <a href=<%= "tel:#{@activity.contact.phone_number}" %>>
           <span class="badge bg-secondary bg-opacity-10 text-black-50"><i class="bi bi-telephone"></i></span>            
-          <%= @property.contact.phone_number %>
+          <%= @activity.contact.phone_number %>
         </a>    
       </div>
 
       <div class="text-center">
-        <% @property.contact.messengers.each do |messenger| %>
-          <%= link_to_messenger(messenger, @property.contact.phone_number) %>          
+        <% @activity.contact.messengers.each do |messenger| %>
+          <%= link_to_messenger(messenger, @activity.contact.phone_number) %>          
         <% end %>
       </div>
     </div>

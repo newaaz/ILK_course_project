@@ -83,8 +83,58 @@
       <%= render 'carrierwave_imagable/imagable_fields', f: f %>
     </div>
 
-    <div class="col-md-4 ">  
-      <%= render 'properties/templates/contacts_fields', f: f %>
+    <div class="col-md-4 ">      
+      <div class="card h-100 shadow pb-2">  
+        <div class="card-header border-bottom">
+          <h5 class="mb-0">Контакты</h5>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="row g-3 pb-3">              
+              <div class="col-12">        
+                <%= f.label :email, class: 'form-label' %> <span class="small text-secondary">(если есть)</span>        
+                <div class="input-group"> 
+                  <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                  <%= f.email_field :email, class: 'form-control' %>            
+                </div> 
+              </div>
+
+              <div class="col-12">        
+                <%= f.label :site, class: 'form-label' %> <span class="small text-secondary">(только если есть свой)</span>        
+                <div class="input-group"> 
+                  <span class="input-group-text">www</span>
+                  <%= f.text_field :site, class: 'form-control' %>            
+                </div> 
+              </div>
+
+              <div class="col-12">        
+                <%= f.label :vk_group, class: 'form-label' %> <span class="small text-secondary">(если есть)</span>        
+                <div class="input-group"> 
+                  <span class="input-group-text">vk.com/</i></span>
+                  <%= f.text_field :vk_group, class: 'form-control' %>            
+                </div> 
+              </div>              
+            </div>
+          </li>
+
+          <li class="list-group-item">    
+            <div class="row g-3">
+              <div class="col-12">
+                <div class="contact_fields">
+                  <%= f.fields_for :contact do |contact| %>
+                    <%= render 'contacts/contact_fields', f: contact %>
+                  <% end %>            
+                </div>  
+              </div>            
+            </div>    
+          </li>
+        </ul>    
+      </div>
+
+
+
+
     </div> 
   </div>  
 

@@ -5,19 +5,18 @@ class ActivitiesController < ApplicationController
   after_action  :verify_authorized
 
   def show
-    # @rooms = @property.rooms.with_attached_images.with_attached_avatar
-    # @nearby_properties = @property.nearby_objects('Property', 20)
-    # @booking = Booking.new(property: @property)
+    if @activity.geolocation.present?
+      @nearby_properties = @activity.nearby_objects('Property', 20)
+      @nearby_activities = @activity.nearby_objects('Activity', 20)
+    end
   end
 
   def new
-    @activity = Activity.new(listing_type: params[:listing_type].to_s, geolocation: Geolocation.new, contact: Contact.new)
+    @activity = Activity.new(geolocation: Geolocation.new, contact: Contact.new)
   end
 
   def create
-    
     @activity = current_partner.activities.build(activity_params)
-    #debugger
     if @activity.save
       flash[:success] = "Объявление добавлено и ожидает проверки. Вам на почту придёт письмо, сообщающее об активации и доступности к просмотру"
       redirect_to @activity
@@ -73,10 +72,10 @@ class ActivitiesController < ApplicationController
 
   def activity_params
     params.require(:activity).permit(:title, :address, :category_title, :listing_type, :avatar,
-                                      :description, :additional_info,
+                                      :description, :additional_info, :site, :email, :vk_group,
                                       :price, :price_type, images: [], town_ids: [],
                                       geolocation_attributes: [:id, :latitude, :longitude],
-                                      contact_attributes: [:id, :email, :name, :avatar, :phone_number, messengers: [] ])
+                                      contact_attributes: [:id, :name, :avatar, :phone_number, messengers: [] ])
   end
 
   def pundit_user

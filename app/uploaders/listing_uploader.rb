@@ -13,10 +13,17 @@ class ListingUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
   end
 
+  process resize_to_fit: [1400, 1400]
+
   # Version for carousel?, cards, display in index
   version :thumb do
     process resize_to_fill: [225, 150]
   end
+
+  # For Fotorama
+  version :thumb_100 do
+    process resize_to_fit: [100, 100]
+  end  
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -32,8 +39,7 @@ class ListingUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-  process resize_to_fit: [1400, 1400]
-
+  
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process resize_to_fit: [50, 50]

@@ -1,7 +1,7 @@
 <div class="d-inline" data-controller="price-from">
   <% if session[:days_count] %>   
-    от <span id="min_price" class="fw-semibold"></span><small>р</small> <%= " / суток: #{session[:days_count]}" %>    
+    от <span id="min_price" class="fw-semibold"></span><small>₽</small> <%= " / суток: #{session[:days_count]}" %>    
   <% else %>
-    от <span class="fw-semibold"><%= @property.price_from %></span><small>р</small>/сутки
+    от <span class="fw-semibold"><%= @property.price_from %></span><small>₽</small>/сутки
   <% end %>
 </div>

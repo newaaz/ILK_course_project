@@ -8,7 +8,10 @@ class CreateActivities < ActiveRecord::Migration[7.0]
       t.text    :additional_info
       t.string :address
       t.integer :price
-      t.string :price_type      
+      t.string :price_type
+      t.string :email
+      t.string :site
+      t.string :vk_group
       t.string :avatar
       t.json :images    
 

@@ -51,6 +51,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_104628) do
     t.string "address"
     t.integer "price"
     t.string "price_type"
+    t.string "email"
+    t.string "site"
+    t.string "vk_group"
     t.string "avatar"
     t.json "images"
     t.integer "rating", limit: 2, default: 10

@@ -1,1 +1,160 @@
+<% provide(:title, "#{@activity.title}") %>
+
+<% provide :turbo_cache_control do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
+<!-- breadcrumbs -->
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
+      <li class="breadcrumb-item"><%= link_to "Активный отдых", activities_path %></li>				
+      <li class="breadcrumb-item"><%= link_to @activity.category_title, activities_path %></li>	
+      <li class="breadcrumb-item active"><%= @activity.title %></li> 
+    </ol>
+  </nav>
+</div>
+
+<!-- title -->
+<section class="py-0">
+  <div class="container position-relative">
+    <%= render 'shared/not_activated' unless @activity.activated? %>	
+    <!-- Title and button START -->
+    <div class="row mb-3 border-bottom pb-2">
+      <div class="col-12">
+        <!-- Meta -->
+        <div class="d-lg-flex justify-content-lg-between mb-1">
+          <!-- Title -->
+          <div class="mb-2 mb-lg-0 ">
+            <h1 class="h3"><%= @activity.title %></h1>
+            
+            <% if @activity.address.present? %>
+              <!-- Location -->
+              <p class="fw-bold mb-0"><i class="bi bi-geo-alt me-2"></i>
+                <%= "#{@activity.address}" %>
+                <!--
+                <a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">
+                  <i class="bi bi-eye-fill me-1"></i>View On Map
+                </a>							
+                -->
+              </p>
+            <% end %>  				
+          </div>
+          
+          <ul class="list-inline text-center">            
+            <li class="list-inline-item">
+              <a href="#" class="btn btn-sm btn-orange-soft px-2"><i class="bi bi-heart" style="font-size: 1rem;"></i></a>
+            </li>
+          </ul>          
+        </div>
+      </div>
+    </div>
+    <!-- Title and button END -->		
+  </div>
+</section>
+
+<!-- Photo & contacts -->
+<section class="card-grid pt-0">
+  <div class="container">
+    <div class="row g-2">
+      <div class="col-lg-8 px-0">
+        <!-- fotorama begin -->        
+        <div class="fotoramain mt-2" data-controller="fotorama" data-object="main">
+          <%= link_to image_tag(@activity.avatar.thumb_100.url), @activity.avatar.url %>
+          <% @activity.images.each do |image| %>
+            <%= link_to image_tag(image.thumb_100.url), image.url %>
+          <% end %>
+        </div>        
+        <!-- fotorama end -->
+      </div>
+
+      <aside class="col-lg-4 px-lg-4 px-sm-0 mt-3">
+        <div class="card card-body border bg-transparent mb-3">
+          <% if @activity.price.present? %>
+            <div class="hstack gap-2">
+              <h3 class="card-title mb-0"><%= @activity.price %><small>₽</small></h3>
+              <span class="fs-5">/<%= @activity.price_type %></span>
+            </div>
+          <% end %>
+        </div>
+
+        <%= render 'activities/show/contacts' %>
+      </aside>			
+    </div>
+  </div>
+</section>
+
+
+<!-- Description -->
+<section class="pt-0">
+  <div class="container">
+    <div class="row g-2 g-xl-3">
+      <div class="col-xl-8 order-1">
+        <ul class="nav nav-tabs nav-bottom-line mb-3">
+          <li class="nav-item me-2">
+            <a class="nav-link active" data-bs-toggle="tab" href="#tab-description"><span class="fs-5">Описание</span></a>
+          </li>
+      
+          <% if @activity.additional_info.present? %>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-additional-info"><span class="fs-5">Дополнительно</span></a>
+            </li>
+          <% end %>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane show active" id="tab-description">
+            <div class="card bg-transparent">
+              <div class="card-header border-bottom bg-transparent px-0 pt-0">
+                <div class="d-sm-flex justify-content-sm-between align-items-center">
+                  <h3 class="fs-4 mb-2 mb-sm-0">Описание</h3>								
+                </div>
+              </div>
+
+              <div class="card-body">
+                <%= @activity.description %>
+              </div>
+            </div>
+          </div>
+
+          <% if @activity.additional_info.present? %>
+            <div class="tab-pane" id="tab-additional-info">
+              <div class="card bg-transparent">
+                <div class="card-header border-bottom bg-transparent px-0 pt-0">
+                  <div class="d-sm-flex justify-content-sm-between align-items-center">
+                    <h3 class="fs-4 mb-2 mb-sm-0">Описание</h3>								
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <%= @activity.additional_info %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+    
+      </div>
+
+      <!-- Right side content START -->
+      <aside class="col-lg-4 px-lg-4 px-sm-0 mt-3 order-2">
+        <% if @activity.geolocation.present? %>
+          <% if @nearby_properties.any? %>
+            <%= render 'properties/show/nearby_properties' %>
+          <% end %>
+        <% end %>
+      </aside>
+      <!-- Right side content END -->
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
 
