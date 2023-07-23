@@ -14,4 +14,6 @@ class Activity < ApplicationRecord
   belongs_to :owner, class_name: 'Partner'
 
   validates :title, :category_title, :description, :listing_type, presence: true
+
+  scope :activity_type, -> { where(listing_type: 'Activity') }
 end

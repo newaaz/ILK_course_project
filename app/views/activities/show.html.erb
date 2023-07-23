@@ -10,7 +10,7 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
       <li class="breadcrumb-item"><%= link_to "Активный отдых", activities_path %></li>				
-      <li class="breadcrumb-item"><%= link_to @activity.category_title, activities_path %></li>	
+      <li class="breadcrumb-item"><%= link_to @activity.category_title, activities_path(category_title: @activity.category_title) %></li>	
       <li class="breadcrumb-item active"><%= @activity.title %></li> 
     </ol>
   </nav>
@@ -142,8 +142,12 @@
       <aside class="col-lg-4 px-lg-4 px-sm-0 mt-3 order-2">
         <% if @activity.geolocation.present? %>
           <% if @nearby_properties.any? %>
-            <%= render 'properties/show/nearby_properties' %>
+            <%= render partial: 'properties/show/nearby_properties', locals: { object: @activity } %>
           <% end %>
+
+          <% if @nearby_activities.any? %>
+						<%= render partial: 'activities/show/nearby_activities', locals: { object: @activity } %>
+					<% end %>
         <% end %>
       </aside>
       <!-- Right side content END -->

@@ -39,10 +39,23 @@
 	<div class="container">		
     <%= link_to "Жильё в #{@town.parent_name}", properties_town_path(@town), class: 'btn btn-primary' %>
 
-    <div class="categories my-3">
+    <div class="my-3">
       <%= link_to 'Все категории', properties_town_path(@town), class: 'btn btn-light btn-sm' %>
       <% @categories.each do |cat| %>
         <%= link_to cat.title, properties_town_path(@town, { cat: cat.id }), class: 'btn btn-light btn-sm' %>
+      <% end %>
+    </div>
+	</div>
+</section>
+
+<section class="py-3">
+	<div class="container">		
+    <%= link_to "Активный отдых #{@town.parent_name}", activities_town_path(@town), class: 'btn btn-orange' %>
+
+    <div class="my-3">
+      <%= link_to 'Все категории', activities_town_path(@town), class: 'btn btn-light btn-sm' %>
+      <% Activity::ACTIVITY_CATEGORIES.each do |cat| %>
+        <%= link_to cat, activities_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>
       <% end %>
     </div>
 	</div>

@@ -1,7 +1,9 @@
 class StaticPagesController < ApplicationController
   def home
     @towns = Town.all
-    @properties = Property.activated.with_attached_avatar.with_attached_images.take 6    
+    @properties = Property.activated.with_attached_avatar.with_attached_images.take 3
+    @activities = Activity.activity_type.activated
+                          .select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address).take 6
   end
 
   def contacts

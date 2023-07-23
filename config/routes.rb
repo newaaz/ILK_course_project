@@ -61,6 +61,7 @@ Rails.application.routes.draw do
 
   resources :towns, only: %i[show] do
     get :properties, on: :member
+    get :activities, on: :member
   end
 
   resources :carts, only: [:show, :destroy]

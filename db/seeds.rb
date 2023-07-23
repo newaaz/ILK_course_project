@@ -67,39 +67,40 @@ end
 
 # create actitvity
 def create_activity
-  actitvity = Activity.create!(
-                        title:          ACTIVITY_TITLES.sample,
-                        listing_type:   "activity",
-                        category_title: ["Морские прогулки", "Воздушные прогулки", "Конные прогулки", "Джипинг", "Рыбалка", "Рыбалка", "Другое"].sample,
-                        avatar:         File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                        images:         [ File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg"))],
-                        address:        PROPERTY_ADRESSES.sample,
-                        price:          rand_price,
-                        price_type:     "За прогулку",
-                        description:    "Готовься к незабываемому приключению наших морских прогулок! С брызгами океанской волны, свежим морским воздухом и захватывающими видами мы предлагаем заставить ваше сердце забиться быстрее.
-                                        Присоединяйтесь к нам в увлекательных прогулках по побережью! Наша команда экспертов с легкостью проведет вас через изумрудные воды и прекрасные морские пейзажи, раскрывая перед вами уникальные места и секретные пещеры, доступные только с морской стороны.
-                                        Вы сможете почувствовать свободу, когда ветер сопротивляется вашим волосам, а солнечные лучи ласкают вашу кожу. Наша команда специализируется на создании неповторимых и запоминающихся моментов, поэтому вы сможете наслаждаться прогулкой, зная, что о вас позаботятся и создадут неповторимую атмосферу безопасности и комфорта.
-                                        Мы предлагаем разные варианты морских прогулок, от романтических наблюдений заката до экстремальных морских приключений, таких как вейкбординг или подводное плавание с аквалангом. У нас есть опции для всех – от любителей спокойного отдыха до искателей адреналина!",
-                        additional_info: "Бесподобные виды и впечатления: Морская прогулка позволяет насладиться удивительными видами природы, наблюдать диких животных и различные морские развлечения. Открывайте новые горизонты, фотографируйте красивые пейзажи и создавайте воспоминания, которые будут с вами навсегда.
-                                          Не забудьте, что предварительное бронирование обязательно, чтобы убедиться в наличии свободных мест и подготовке к вашему приходу.
-                                          Желаем вам незабываемых морских прогулок и великолепного отдыха на нашем сказочном побережье!",
-                        activated:    true,
-                        site:         'ilovekrim.ru',
-                        email:        'email@email.ru',
-                        vk_group:     'i_lovekrim',
-                        owner:        Partner.first,
-                        town_ids:     Town.ids,
-                        geolocation:  Geolocation.new(
-                          latitude: "45.0#{rand 60..80}65",
-                          longitude: "35.3#{rand 60..80}88"),
-                        contact:      Contact.new(
-                          phone_number: '+7(987)123-45-67',                      
-                          name: 'Геннадий',
-                          messengers: ["whatsapp", "viber", "telegram"]))
+  actitvity = Activity.create!( title:          ACTIVITY_TITLES.sample,
+                                listing_type:   "Activity",
+                                category_title: ["Морские прогулки", "Воздушные прогулки", "Конные прогулки", "Джипинг", "Рыбалка", "Рыбалка", "Другое"].sample,
+                                avatar:         File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                images:         [ File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                                  File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                                  File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                                  File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                                  File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg"))],
+                                address:        PROPERTY_ADRESSES.sample,
+                                price:          rand_price,
+                                price_type:     "За прогулку",
+                                description:    "Готовься к незабываемому приключению наших морских прогулок! С брызгами океанской волны, свежим морским воздухом и захватывающими видами мы предлагаем заставить ваше сердце забиться быстрее.
+                                                Присоединяйтесь к нам в увлекательных прогулках по побережью! Наша команда экспертов с легкостью проведет вас через изумрудные воды и прекрасные морские пейзажи, раскрывая перед вами уникальные места и секретные пещеры, доступные только с морской стороны.
+                                                Вы сможете почувствовать свободу, когда ветер сопротивляется вашим волосам, а солнечные лучи ласкают вашу кожу. Наша команда специализируется на создании неповторимых и запоминающихся моментов, поэтому вы сможете наслаждаться прогулкой, зная, что о вас позаботятся и создадут неповторимую атмосферу безопасности и комфорта.
+                                                Мы предлагаем разные варианты морских прогулок, от романтических наблюдений заката до экстремальных морских приключений, таких как вейкбординг или подводное плавание с аквалангом. У нас есть опции для всех – от любителей спокойного отдыха до искателей адреналина!",
+                                additional_info: "Бесподобные виды и впечатления: Морская прогулка позволяет насладиться удивительными видами природы, наблюдать диких животных и различные морские развлечения. Открывайте новые горизонты, фотографируйте красивые пейзажи и создавайте воспоминания, которые будут с вами навсегда.
+                                                  Не забудьте, что предварительное бронирование обязательно, чтобы убедиться в наличии свободных мест и подготовке к вашему приходу.
+                                                  Желаем вам незабываемых морских прогулок и великолепного отдыха на нашем сказочном побережье!",
+                                activated:    true,
+                                site:         'ilovekrim.ru',
+                                email:        'email@email.ru',
+                                vk_group:     'i_lovekrim',
+                                owner:        Partner.first,
+                                town_ids:     Town.ids,
+                                geolocation:  Geolocation.new(
+                                  latitude: "45.0#{rand 60..80}65",
+                                  longitude: "35.3#{rand 60..80}88"),
+                                contact:      Contact.new(
+                                  phone_number: '+7(987)123-45-67',                      
+                                  name: 'Геннадий',
+                                  messengers: ["whatsapp", "viber", "telegram"]))
+
+  puts "Activity #{actitvity.title} created"
 end
 
 # Create property

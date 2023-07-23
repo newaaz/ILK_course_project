@@ -4,10 +4,15 @@ class ActivitiesController < ApplicationController
 
   after_action  :verify_authorized
 
+  def index
+    activities = Activity.all
+    @pagy, @activities = pagy(activities, items: 12)
+  end
+
   def show
     if @activity.geolocation.present?
-      @nearby_properties = @activity.nearby_objects('Property', 20)
-      @nearby_activities = @activity.nearby_objects('Activity', 20)
+      @nearby_properties = @activity.nearby_objects('Property', 5)
+      @nearby_activities = @activity.nearby_objects('Activity', 5)
     end
   end
 

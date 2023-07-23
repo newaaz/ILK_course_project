@@ -138,7 +138,11 @@
 				<!-- Right side content START -->
 				<aside class="col-lg-4 px-lg-4 px-sm-0 mt-3 order-2">
 					<% if @nearby_properties.any? %>
-						<%= render 'properties/show/nearby_properties' %>
+						<%= render partial: 'properties/show/nearby_properties', locals: { object: @property } %>
+					<% end %>
+
+					<% if @nearby_activities.any? %>
+						<%= render partial: 'activities/show/nearby_activities', locals: { object: @property } %>
 					<% end %>
 				</aside>
 				<!-- Right side content END -->

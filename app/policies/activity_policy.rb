@@ -6,6 +6,10 @@ class ActivityPolicy < ApplicationPolicy
     # end
   end
 
+  def index?
+    true
+  end
+
   def show?
     record.activated? ||user == record.owner || user.admin?
   end

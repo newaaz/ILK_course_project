@@ -1,23 +1,23 @@
 <div class="mt-4">
-  <h4>Предложения рядом</h4>
+  <h4>Активный отдых рядом</h4>
 
-  <% @nearby_properties.each do |nearby_property| %>
+  <% @nearby_activities.each do |nearby_activity| %>
     <div class="card shadow rounded overflow-hidden my-3">
       <div class="row g-0 align-items-center">
         <!-- Image -->
         <div class="col-5">
-          <%= image_tag(nearby_property.avatar.variant(resize_to_fill: [200, 150]), class: "rounded-start") %>  
+          <%= image_tag(nearby_activity.avatar.thumb.url, class: "rounded-start") %>  
         </div>
 
         <!-- Title and content -->
         <div class="col-7">
           <div class="card-body p-3">
             <h6 class="card-title">
-              <%= link_to nearby_property.title, property_path(nearby_property), class: "stretched-link" %>
+              <%= link_to nearby_activity.title, activity_path(nearby_activity), class: "stretched-link" %>
             </h6>
             <p class="small mb-0">
             <i class="bi bi-pin-map"></i>
-            <%= object.distance_to nearby_property %> m.
+            <%= object.distance_to nearby_activity %> m.
             </p>
           </div>
         </div>
