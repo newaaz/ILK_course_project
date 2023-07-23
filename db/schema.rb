@@ -45,7 +45,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_104628) do
   create_table "activities", force: :cascade do |t|
     t.string "title", null: false
     t.string "category_title", null: false
-    t.string "listing_type", null: false
     t.text "description", null: false
     t.text "additional_info"
     t.string "address"

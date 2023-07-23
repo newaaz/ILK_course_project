@@ -18,10 +18,11 @@
 		</nav>
 	</div>
 
+	<%= render 'shared/not_activated' unless @property.activated? %>	
+
 	<!-- title -->
 	<section class="py-0">
-		<div class="container position-relative">
-			<%= render 'shared/not_activated' unless @property.activated? %>	
+		<div class="container position-relative">			
 			<!-- Title and button START -->
 			<div class="row mb-3 border-bottom pb-2">
 				<div class="col-12">

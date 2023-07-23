@@ -16,10 +16,11 @@
   </nav>
 </div>
 
+<%= render 'shared/not_activated' unless @activity.activated? %>	
+
 <!-- title -->
 <section class="py-0">
-  <div class="container position-relative">
-    <%= render 'shared/not_activated' unless @activity.activated? %>	
+  <div class="container position-relative">    
     <!-- Title and button START -->
     <div class="row mb-3 border-bottom pb-2">
       <div class="col-12">
@@ -87,7 +88,7 @@
 
 
 <!-- Description -->
-<section class="pt-0">
+<section class="pt-0 mb-5 pb-5">
   <div class="container">
     <div class="row g-2 g-xl-3">
       <div class="col-xl-8 order-1">

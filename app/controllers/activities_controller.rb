@@ -76,7 +76,7 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:title, :address, :category_title, :listing_type, :avatar,
+    params.require(:activity).permit(:title, :address, :category_title, :avatar,
                                       :description, :additional_info, :site, :email, :vk_group,
                                       :price, :price_type, images: [], town_ids: [],
                                       geolocation_attributes: [:id, :latitude, :longitude],

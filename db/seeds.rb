@@ -68,7 +68,6 @@ end
 # create actitvity
 def create_activity
   actitvity = Activity.create!( title:          ACTIVITY_TITLES.sample,
-                                listing_type:   "Activity",
                                 category_title: ["Морские прогулки", "Воздушные прогулки", "Конные прогулки", "Джипинг", "Рыбалка", "Рыбалка", "Другое"].sample,
                                 avatar:         File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
                                 images:         [ File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
@@ -168,14 +167,17 @@ def create_property
   puts "Property #{property.title} created"
 end
 
-time = Benchmark.measure do
-  # create_categories
-  # create_towns
+Partner.create!(email: 'test@test.ru', name: 'Лидия Ивановна', password: '159test632', confirmed_at: Time.zone.now)
 
-  # Property.destroy_all
-  # 65.times { create_property }
-  # Property.reindex
-  # puts "Properties indexed"
+
+time = Benchmark.measure do
+  create_categories
+  create_towns
+
+  Property.destroy_all
+  35.times { create_property }
+  Property.reindex
+  puts "Properties indexed"
   
   Activity.destroy_all
   15.times { create_activity }

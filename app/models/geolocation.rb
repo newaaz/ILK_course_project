@@ -1,6 +1,8 @@
 class Geolocation < ApplicationRecord
-  belongs_to :geolocable, polymorphic: true  
-  validates :latitude, :longitude, presence: true
+  COORDINATES_OPTIONAL = %w[Activity].freeze
+
+  belongs_to :geolocable, polymorphic: true
+  validates :latitude, :longitude, presence: true, unless: -> { COORDINATES_OPTIONAL.include?(self.geolocable_type) }
   
   #after_validation :reverse_geocode
   reverse_geocoded_by :latitude, :longitude
