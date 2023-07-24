@@ -43,21 +43,21 @@ class ActivitiesController < ApplicationController
   end
 
   def update
-    # if @property.update property_params
-    #   flash[:success] = 'Данные успешно обновлены'
-    #   redirect_to @property
-    # else
-    #   respond_to do |format|
-    #     format.html { render 'edit', status: :unprocessable_entity }
+    if @activity.update activity_params
+      flash[:success] = 'Данные успешно обновлены'
+      redirect_to @activity
+    else
+      respond_to do |format|
+        format.html { render 'edit', status: :unprocessable_entity }
       
-    #     format.turbo_stream do
-    #       render turbo_stream:
-    #         turbo_stream.update('forms_errors',
-    #           partial: 'shared/errors',
-    #           locals:   { object: @property })
-    #     end
-    #   end
-    # end
+        format.turbo_stream do
+          render turbo_stream:
+            turbo_stream.update('forms_errors',
+              partial: 'shared/errors',
+              locals:   { object: @activity })
+        end
+      end
+    end
   end
 
   def destroy

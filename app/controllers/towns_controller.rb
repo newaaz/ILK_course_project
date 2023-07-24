@@ -28,13 +28,13 @@ class TownsController < ApplicationController
     @town = Town.find(params[:id])
 
     if params[:category_title].present?
-      activities = Activity.activated
+      activities = @town.activities.activated
                            .select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address)
                            .where(category_title: params[:category_title])
       @category_title = params[:category_title]
     else
-      activities = Activity.activated
-                           .select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address)
+      activities = @town.activities.activated
+                          .select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address)
     end
 
     @pagy, @activities = pagy(activities, items: 12)

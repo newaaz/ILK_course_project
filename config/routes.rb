@@ -10,6 +10,14 @@ Rails.application.routes.draw do
     end
   end
 
+  # Carrierwave
+  resources :images, only: [:create]
+  concern :imagable do
+    resources :images, only: [:destroy]
+  end
+  # Active storage
+  delete 'images/:id/purge', to: 'images#purge', as: 'purge_image'
+
   root 'static_pages#home'
 
   get '/contacts', to: 'static_pages#contacts'
@@ -57,9 +65,7 @@ Rails.application.routes.draw do
     post :calculate_price, on: :member
   end
 
-  resources :activities, except: %i[]
-
-  delete 'images/:id/purge', to: 'images#purge', as: 'purge_image'
+  resources :activities, concerns: %i[imagable], except: %i[]
 
   # resources :orders, only: %i[show new create update]
 

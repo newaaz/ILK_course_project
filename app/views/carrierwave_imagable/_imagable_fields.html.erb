@@ -14,7 +14,7 @@
 
         <div class="mt-3">
           <% if f.object.avatar.present? %>
-            <%= image_tag(f.object.avatar, data: { previews_target: "preview" }, style: 'max-height: 190px;' , class: 'rounded') %>
+            <%= image_tag(f.object.avatar.thumb.url, data: { previews_target: "preview" }, style: 'max-height: 190px;' , class: 'rounded') %>
           <% else %>
             <%= image_tag("", data: { previews_target: "preview" }, style: 'max-height: 190px;' , class: 'rounded') %>
             <div data-previews-target="placeholder" class="d-none avatar-img rounded-circle bg-secondary bg-opacity-25 text-white"><span class="position-absolute top-50 start-50 translate-middle fw-bold">
@@ -27,11 +27,15 @@
       <% if controller.action_name == 'edit' %>
         <div class="col-12">
           <!-- remove images -->
-          <%= render partial: 'attached_images/image_purge', collection: f.object.images, as: :image %>
+          <%= render partial: 'carrierwave_imagable/images_destroy', locals: { listing: f.object } %>
         </div>
       <% end %>
 
       <div class="col-12">
+        <% f.object.images.each do |image| %>
+          <%= hidden_field f.object.model_name.singular.to_sym, :images, multiple: true, value: image.identifier %>
+        <% end %>
+
         <div class="form-group">
           <%= f.label :images, class: 'form-label' %>*
           <%= f.file_field :images, multiple: true, accept: 'image/*', class: 'images-upload-field form-control' %>

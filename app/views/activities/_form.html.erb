@@ -3,7 +3,7 @@
     <%= render 'shared/errors', object: f.object %>
   </div>
 
-    <!-- base info -->
+  <!-- base info -->
   <div class="card shadow">  
     <div class="card-header border-bottom">
       <h5 class="mb-0">Основная информация</h5>
@@ -42,8 +42,7 @@
         <div class="col-12">
           <%= f.label :additional_info, class: 'form-label' %>
           <%= f.text_area :additional_info, rows: 6, class: 'form-control' %>
-        </div>
-    
+        </div>    
       </div>
     </div>
   </div>
@@ -58,7 +57,7 @@
         <div class="col-12">
           <% Town.find_each do |town| %>
             <div class="d-inline ms-3">
-              <%= f.check_box :town_ids, { multiple: true, checked: f.object.towns&.include?(town.id.to_s), class: 'form-check-input' }, town.id, nil %>
+              <%= f.check_box :town_ids, { multiple: true, checked: f.object.town_ids&.include?(town.id), class: 'form-check-input' }, town.id, nil %>
               <%= f.label town.name, for: "activity_town_ids_#{town.id}",  class: 'form-check-label mb-4' %>
             </div>  
           <% end %>
@@ -74,10 +73,9 @@
 
   <%= render 'geolocations/map_fields', f: f %>
 
-
   <div class="row g-3">
     <div class="col-md-8">
-      <%= render 'carrierwave_imagable/imagable_fields', f: f %>
+      <%= render 'carrierwave_imagable/imagable_fields', f: f %> 
     </div>
 
     <div class="col-md-4 ">      
@@ -128,10 +126,6 @@
           </li>
         </ul>    
       </div>
-
-
-
-
     </div> 
   </div>  
 

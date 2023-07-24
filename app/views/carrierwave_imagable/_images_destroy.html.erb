@@ -1,0 +1,10 @@
+<% link_to_destroy = listing.model_name.singular + '_image_path' %>
+
+<% listing.images.each_with_index do |image, index| %>
+  <%= content_tag(:div, id: "image_#{index}", class: 'd-inline-flex del-image') do %>
+    <%= link_to send(link_to_destroy, listing, index, listing: listing.model_name.name), data: { "turbo-method": :delete } do %>
+      &times;
+    <% end %>
+    <%= image_tag image.thumb.url, class: 'rounded' %>
+  <% end %>
+<% end %>
