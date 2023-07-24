@@ -2,7 +2,7 @@ module Geolocable
   extend ActiveSupport::Concern
   included do
     has_one :geolocation, as: :geolocable, dependent: :destroy
-    accepts_nested_attributes_for :geolocation, reject_if: :blank_location_optional?
+    accepts_nested_attributes_for :geolocation, reject_if: :optional_location_blank?
 
     def nearby_objects(object, count = 10)
       lat_range = (geolocation.latitude - 0.0090)..(geolocation.latitude + 0.0090)
@@ -18,7 +18,7 @@ module Geolocable
                           .take(count)
       else
         object.constantize.activated
-                          .select(:id, :title)
+                          .select(:id, :title, object == 'Property' ? nil : :avatar)
                           .includes([:geolocation])
                           .where(town_id: self.town_id)
                           .joins(:geolocation)
@@ -26,8 +26,6 @@ module Geolocable
                           .where.not(geolocation: { geolocable_id: id })
                           .take(count)
       end
-
-
     end
 
     def distance_to(object)
@@ -36,7 +34,7 @@ module Geolocable
 
     private
 
-    def blank_location_optional?(attributes)
+    def optional_location_blank?(attributes)
       (attributes[:latitude].blank? || attributes[:longitude].blank?) && coordinates_optional?(self.model_name.name)
     end
 

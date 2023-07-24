@@ -26,19 +26,11 @@
 
 				<% if @properties.any? %>
 					<%= render partial: 'partners/dashboard/templates/property', collection: @properties, as: :property %>
-				<% else %>
-					<div class="card border shadow">		
-						<div class="card-body px-0 px-md-3 py-0 py-md-3 vstack gap-4">
-							Ещё нет объявлений.
-							Вы можете разместить свою гостиницу, гостевой дом или другой объект для сдачи жилья отдыхающим.
-							Активный отдых
-							Кафе, бары, рестораны и места где можно вкусно перекусить и провести время
-							Различные услуги: массаж, маникюр, ремонт телефонов, обуви и другое
-							Также можно разместить статью о достопримечательностях городов Крыма
-							Размещение всех объявлений бесплатное
-						</div>
-					</div>
 				<% end %>	
+
+				<% if @activities.any? %>
+					<%= render partial: 'partners/dashboard/templates/activity', collection: @activities, as: :activity %>
+				<% end %>
 			</div>
 		</div>
 	</div>

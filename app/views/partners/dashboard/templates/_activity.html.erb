@@ -1,0 +1,91 @@
+<div class="card border shadow" id="<%= dom_id activity %>">
+
+  <div class="card-header border-bottom">
+    <div class="d-flex justify-content-between align-items-center">
+      <h4 class="card-header-title"><%= link_to activity.title, activity %></h4>
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item dropdown">
+            <a href="#" class="btn btn-sm btn-round btn-light mb-0" role="button" id="dropdownShare2" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-three-dots-vertical"></i>
+            </a>              
+            <ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare2">
+              <li>
+                <%= link_to edit_activity_path(activity), class: 'dropdown-item' do %>
+                  <i class="bi bi-pencil-square me-2"></i>Изменить
+                <% end %>
+              </li>
+              <li>
+                <%= link_to activity_path(activity), class: 'dropdown-item text-danger bg-danger-soft-hover', data: { "turbo-method": :delete, turbo_confirm: "Точно удалить - Вы уверены?" } do %>
+                  <i class="bi bi-trash fa-fw me-2"></i>Удалить
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12 px-0 px-md-2"><%= render 'shared/not_activated' unless activity.activated? %></div>
+
+      <!-- Avatar -->
+      <div class="col-md-4 px-0 px-md-2">
+        <%= link_to image_tag(activity.avatar.thumb.url, class: "card-img rounded-2"), activity %>  
+      </div>
+
+      <div class="col-md-8 mt-3">
+        <div class="small"><i class="bi bi-star me-2"></i><%= activity.category_title %></div>
+
+        <% if activity.geolocation.present? %>
+          <div class="small mt-2"><i class="bi bi-geo-alt me-2"></i><%= activity.address %></div>
+          <!-- show modal map -->
+          <%= link_to '#', data: { controller: 'maps', 'action': 'click->maps#showMapModal',
+                                  latitude: activity.geolocation.latitude,
+                                  longitude: activity.geolocation.longitude },
+                          class: 'text-decoration-underline' do %>
+            <i class="bi bi-eye-fill me-1"></i> Показать на карте
+          <% end %>
+        <% end %>
+
+        <% if activity.price.present? %>
+          <div class="my-2">
+            <i class="bi bi-wallet2 me-1 text-success"></i>
+            <span class="fw-semibold"><%= activity.price %></span><small>₽</small>/<%= activity.price_type %>
+          </div>
+        <% end %>
+
+        <div class="hstack gap-2">
+          <a data-bs-toggle="collapse" href="#detail-collapse-<%= dom_id(activity) %>" role="button" aria-expanded="false" aria-controls="detail-collapse-<%= dom_id(activity) %>" class="btn btn-primary-soft btn-sm mb-0">
+            <i class="bi bi-caret-down me-1"></i>Подробнее
+          </a>
+        </div> 
+      </div>
+    </div>
+
+    <div class="collapse" id="detail-collapse-<%= dom_id(activity) %>">
+      <div class="my-3 py-2 ps-3 pe-3 border-top border-primary rounded-top d-flex justify-content-between align-items-center">
+        <h5>Подробнее</h5>
+      </div>
+
+      <div class="px-3">
+        <div class="py-3 mb-4">
+          <h5 class="mb-2 mt-3">Описание</h5>
+          <p class="mb-3"><%= activity.description %></p>
+          <hr>
+          <h5 class="mb-2 mt-3">Дополнительно</h5>
+          <p class="mb-3"><%= activity.additional_info %></p>
+        </div>
+      </div>      
+    </div>  
+  </div>
+</div>
+
+<br>
+
+
+
+
+
+
+

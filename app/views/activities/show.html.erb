@@ -34,11 +34,9 @@
               <!-- Location -->
               <p class="fw-bold mb-0"><i class="bi bi-geo-alt me-2"></i>
                 <%= "#{@activity.address}" %>
-                <!--
                 <a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">
-                  <i class="bi bi-eye-fill me-1"></i>View On Map
+                  <i class="bi bi-eye-fill me-1"></i>На карте
                 </a>							
-                -->
               </p>
             <% end %>  				
           </div>
@@ -85,7 +83,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- Description -->
 <section class="pt-0 mb-5 pb-5">
@@ -156,10 +153,26 @@
   </div>
 </section>
 
-
-
-
-
-
-
-
+<% if @activity.address.present? %>
+  <!-- modal map -->
+  <div class="modal fade" id="mapmodal" tabindex="-1" aria-labelledby="mapmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- Title -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="mapmodalLabel">View Our Hotel Location</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- Map -->
+        <div class="modal-body p-0">				
+          <div class="p-2">
+            <%= render 'geolocations/show_map', object: @activity, preset_icon: "islands#blueStarIcon" %>			
+          </div>
+        </div>
+        <!-- Button -->
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,53 @@
+<div class="col-md-6" id="<%= dom_id listing %>">
+  <div class="card border shadow">
+    <div class="card-header border-bottom">
+      <div class="d-flex justify-content-between align-items-center">
+        <h4 class="card-header-title"><%= link_to listing.title, listing %></h4>
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item dropdown">
+              <a href="#" class="btn btn-sm btn-round btn-light mb-0" role="button" id="dropdownShare2" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-three-dots-vertical"></i>
+              </a>              
+              <ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare2">
+                <li>
+                  <%= link_to edit_property_path(listing), class: 'dropdown-item' do %>
+                    <i class="bi bi-pencil-square me-2"></i>Изменить
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to property_path(listing), class: 'dropdown-item text-danger bg-danger-soft-hover', data: { "turbo-method": :delete, turbo_confirm: "Точно удалить - Вы уверены?" } do %>
+                    <i class="bi bi-trash fa-fw me-2"></i>Удалить
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+        <!-- Avatar -->
+        <div class="col-md-4 px-0 px-md-2">
+          <% if listing.avatar.respond_to?(:attached?) %>
+            <%= link_to image_tag(listing.avatar.variant(resize_to_limit: [250, 250]), class: "card-img rounded-2"), listing %> 
+          <% else %>
+            <%= link_to image_tag(listing.avatar.thumb.url, class: "card-img rounded-2"), listing %>
+          <% end %>
+        </div>
+
+        <div class="col-md-8 mt-3">  
+          <div class="hstack gap-2">
+            <% if listing.activated? %>
+              <%= button_to 'Deactivate', admin_deactivate_listing_path(listing, model_name: listing.model_name.name),
+                                            method: :patch, class: 'btn btn-warning-soft btn-sm mb-0' %>
+            <% else %>
+              <%= button_to 'Activate', admin_activate_listing_path(listing, model_name: listing.model_name.name),
+                                          method: :patch, class: 'btn btn-primary-soft btn-sm mb-0' %>
+            <% end %>      
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>

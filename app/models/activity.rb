@@ -1,5 +1,4 @@
 class Activity < ApplicationRecord  
-
   ACTIVITY_CATEGORIES = ["Морские прогулки", "Воздушные прогулки", "Конные прогулки", "Джипинг", "Рыбалка", "Рыбалка", "Другое"]
 
   SERVICE_CATEGORIES =  ["Доставка еды", "Такси", "Спортзалы", "Стадионы", "Рынки"]
@@ -13,5 +12,5 @@ class Activity < ApplicationRecord
 
   belongs_to :owner, class_name: 'Partner'
 
-  validates :title, :category_title, :description, presence: true
+  validates :title, :category_title, :description, :towns, presence: true
 end

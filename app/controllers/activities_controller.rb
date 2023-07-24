@@ -61,12 +61,12 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    # @property.destroy
+    @activity.destroy
 
-    # respond_to do |format|
-    #   format.html { redirect_to partners_root_path, notice: 'Объект удален' }    
-    #   format.turbo_stream
-    # end
+    respond_to do |format|
+      format.html { redirect_to partners_root_path, notice: 'Объявление удалено' }    
+      format.turbo_stream
+    end
   end
 
   private

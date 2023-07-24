@@ -1,7 +1,6 @@
 class TownsController < ApplicationController  
   def show
     @town = Town.find(params[:id])
-
     @categories = Category.all
   end
 
@@ -39,7 +38,6 @@ class TownsController < ApplicationController
     end
 
     @pagy, @activities = pagy(activities, items: 12)
-  end
- 
+  end 
 end
 
