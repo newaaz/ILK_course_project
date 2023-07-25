@@ -25,7 +25,7 @@
         <li class="breadcrumb-item"><%= link_to @town.name, @town %></li>
         <% if @category_title %>
           <li class="breadcrumb-item"><%= link_to "Активный отдых в #{@town.parent_name}", activities_town_path(@town) %></li> 
-          <li class="breadcrumb-item"><%= @category_title %></li>  
+          <li class="breadcrumb-item active"><%= @category_title %></li>  
         <% else %>        
           <li class="breadcrumb-item active"><%= "Активный отдых в #{@town.parent_name}" %></li>    
         <% end %>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :listings, only: %i[index] do
         get 'properties', on: :collection
         get 'activities', on: :collection
+        get 'services', on: :collection
       end
       patch 'listings/:id/activate_listing', to: 'listings#activate_listing', as: 'activate_listing'
       patch 'listings/:id/deactivate_listing', to: 'listings#deactivate_listing', as: 'deactivate_listing'

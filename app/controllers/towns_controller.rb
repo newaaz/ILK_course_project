@@ -38,6 +38,22 @@ class TownsController < ApplicationController
     end
 
     @pagy, @activities = pagy(activities, items: 12)
+  end
+
+  def services
+    @town = Town.find(params[:id])
+
+    if params[:category_title].present?
+      services = @town.services.activated
+                           .select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address)
+                           .where(category_title: params[:category_title])
+      @category_title = params[:category_title]
+    else
+      services = @town.services.activated
+                          .select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address)
+    end
+
+    @pagy, @services = pagy(services, items: 12)
   end 
 end
 

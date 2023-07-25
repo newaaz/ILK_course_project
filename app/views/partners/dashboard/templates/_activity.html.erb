@@ -35,10 +35,13 @@
       </div>
 
       <div class="col-md-8 mt-3">
-        <div class="small"><i class="bi bi-star me-2"></i><%= activity.category_title %></div>
+        <div class="small mb-3"><i class="bi bi-star me-2"></i><%= activity.category_title %></div>
+
+        <% if activity.address.present? %>
+          <div class="small mt-2"><i class="bi bi-geo-alt me-2"></i><%= activity.address %></div>
+        <% end %>
 
         <% if activity.geolocation.present? %>
-          <div class="small mt-2"><i class="bi bi-geo-alt me-2"></i><%= activity.address %></div>
           <!-- show modal map -->
           <%= link_to '#', data: { controller: 'maps', 'action': 'click->maps#showMapModal',
                                   latitude: activity.geolocation.latitude,

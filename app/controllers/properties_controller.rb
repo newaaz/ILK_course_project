@@ -40,6 +40,7 @@ class PropertiesController < ApplicationController
     @rooms = @property.rooms.with_attached_images.with_attached_avatar
     @nearby_properties = @property.nearby_objects('Property', 5)
     @nearby_activities = @property.nearby_objects('Activity', 5)
+    @nearby_services = @property.nearby_objects('Service', 5)
     @booking = Booking.new(property: @property)
   end
 

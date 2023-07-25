@@ -13,6 +13,7 @@ class ActivitiesController < ApplicationController
     if @activity.geolocation.present?
       @nearby_properties = @activity.nearby_objects('Property', 5)
       @nearby_activities = @activity.nearby_objects('Activity', 5)
+      @nearby_services = @activity.nearby_objects('Service', 5)
     end
   end
 

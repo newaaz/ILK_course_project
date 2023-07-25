@@ -36,7 +36,9 @@
           <% end %>
         </div>
 
-        <div class="col-md-8 mt-3">  
+        <div class="col-md-8 mt-3">
+          <div class="mb-2"><%= listing.owner.email %></div>
+
           <div class="hstack gap-2">
             <% if listing.activated? %>
               <%= button_to 'Deactivate', admin_deactivate_listing_path(listing, model_name: listing.model_name.name),

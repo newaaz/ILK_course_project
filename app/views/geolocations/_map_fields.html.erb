@@ -1,6 +1,9 @@
 <div class="card shadow">  
   <div class="card-header border-bottom">
-    <h5 class="mb-0">Расположение на карте</h5>    
+    <h5 class="mb-0">
+      Расположение на карте
+      <%= "(необязательно)" if Geolocation::COORDINATES_OPTIONAL.include?(f.object.model_name.name) %>
+    </h5>    
   </div>
 
   <div class="card-body">

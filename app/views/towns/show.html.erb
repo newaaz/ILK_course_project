@@ -61,6 +61,19 @@
 	</div>
 </section>
 
+<section class="py-3">
+	<div class="container">		
+    <%= link_to "Услуги и сервисы #{@town.parent_name}", services_town_path(@town), class: 'btn btn-info' %>
+
+    <div class="my-3">
+      <%= link_to 'Все категории', services_town_path(@town), class: 'btn btn-light btn-sm' %>
+      <% Service::SERVICE_CATEGORIES.each do |cat| %>
+        <%= link_to cat, services_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>
+      <% end %>
+    </div>
+	</div>
+</section>
+
 
 <section></section>
 <section></section>

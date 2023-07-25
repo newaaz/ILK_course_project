@@ -3,10 +3,10 @@
     <div class="row g-0">
       <!-- Card img -->
       <div class="col-md-5 position-relative">
-        <!-- Overlay item -->
+        <!-- Overlay item 
         <div class="position-absolute top-0 start-0 z-index-1 m-1">
           <div class="badge bg-orange bg-opacity-75 text-light" style="font-size:12px;"><%= activity.category_title %></div>
-        </div>
+        </div> -->
 
         <div class="overflow-hidden rounded-2">
           <div class="" data-controller="fotorama" data-object="widget"
@@ -18,7 +18,7 @@
               data-keyboard="true"
               data-auto="false">      
             <%= link_to image_tag(activity.avatar.thumb_100.url), activity.avatar.thumb.url %>      
-            <% activity.images.take(2).each do |image| %> 
+            <% activity.images.take(4).each do |image| %> 
               <%= link_to image_tag(image.thumb_100.url), image.thumb.url %>     
             <% end %>
           </div>
@@ -37,7 +37,7 @@
 
           <!-- List -->
           <ul class="list-group list-group-borderless small mb-0 mt-2">
-            <li class="list-group-item d-flex text-success p-0">
+            <li class="list-group-item d-flex  p-0">
               <i class="bi bi-star me-2"></i><%= activity.category_title %>
             </li>    
           </ul>

@@ -1,0 +1,66 @@
+<div class="col-md-6">
+  <div class="card shadow p-2">
+    <div class="row g-0">
+      <!-- Card img -->
+      <div class="col-md-4 position-relative">
+        <!-- Overlay item -->
+        <div class="position-absolute top-0 start-0 z-index-1 m-1">
+          <div class="badge bg-info bg-opacity-75 text-light" style="font-size:12px;"><%= service.category_title %></div>
+        </div>
+
+        <div class="overflow-hidden rounded-2">
+          <div class="" data-controller="fotorama" data-object="widget"
+              data-width="100%"
+              data-ratio="3/2"
+              data-allowfullscreen="false"                
+              data-nav="false"
+              data-loop="true"
+              data-keyboard="true"
+              data-auto="false">      
+            <%= link_to image_tag(service.avatar.thumb_100.url), service.avatar.thumb.url %>      
+            <% service.images.take(4).each do |image| %> 
+              <%= link_to image_tag(image.thumb_100.url), image.thumb.url %>     
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card body -->
+      <div class="col-md-8">
+        <div class="card-body py-md-2 d-flex flex-column h-100 position-relative">
+          <!-- Title -->
+          <h5 class="card-title mb-1"><%= link_to service.title, service %></h5>
+
+          <% if service.address.present? %>
+            <small><i class="bi bi-geo-alt me-2"></i><%= service.address %></small>
+          <% end %>
+
+          <!-- List 
+          <ul class="list-group list-group-borderless small mb-0 mt-2">
+            <li class="list-group-item d-flex text-success p-0">
+              <i class="bi bi-star me-2"></i><%= service.category_title %>
+            </li>    
+          </ul> -->
+
+          <!-- Price and Button -->          
+          <% if service.price.present? %>
+            <div class="d-sm-flex justify-content-sm-between align-items-center mt-3 mt-md-auto">
+              <div class="d-flex align-items-center">
+                <h5 class="fw-bold mb-0 me-1"><%= service.price %></h5>
+                <span class="mb-0 me-2">/<%= service.price_type %></span>
+              </div>
+              
+              <div class="mt-3 mt-sm-0">
+                <%= link_to "Подробнее", service, class: "btn btn-sm btn-info-soft mb-0" %>
+              </div>
+            </div>
+          <% else %>
+            <div class="mt-md-auto text-end">
+              <%= link_to "Подробнее", service, class: "btn btn-sm btn-info-soft mb-0" %>
+            </div>
+          <% end %>          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

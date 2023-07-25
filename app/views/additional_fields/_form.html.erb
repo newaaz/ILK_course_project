@@ -3,7 +3,7 @@
     <div class="col-11">
       <div class="d-flex align-items-center">
         <%= f.label :name, class: 'form-label me-2' %>
-        <%= f.text_field :name, class: 'form-control', placeholder: 'Например: Что взять с собой' %>    
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Например: Что входит в стоимость' %>    
       </div>     
     </div>
 
@@ -16,7 +16,7 @@
 
     <div class="col-12">  
       <%= f.label :value, class: 'form-label' %>
-      <%= f.text_area :value, rows: 4, class: 'form-control', placeholder: 'Например: Солнцезащитный крем, очки, воду, головной убор' %>
+      <%= f.text_area :value, rows: 4, class: 'form-control', placeholder: 'Например: Чай/кофе, консультация, +1 дополнительное место' %>
     </div>
 
     <%= f.hidden_field :_destroy %>    

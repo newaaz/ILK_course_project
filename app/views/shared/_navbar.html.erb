@@ -7,8 +7,10 @@
 				<span class="text-secondary">|</span>
 			<% end %> -->
 
-      <%= link_to '+ Добавить активный отдых', new_activity_path, class: 'mx-1 text-light small' %>
-
+      <%= link_to '+ Активный отдых', new_activity_path, class: 'mx-1 text-light small' %>
+			<span class="text-secondary">|</span>
+			<%= link_to '+ Сервис', new_service_path, class: 'mx-1 text-light small' %>
+			<span class="text-secondary">|</span>
 
 			<% if current_partner.present? %>				
 				<%= link_to destroy_partner_session_path, data: { "turbo-method": :delete }, class: 'mx-1 text-light small' do %>

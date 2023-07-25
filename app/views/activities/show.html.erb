@@ -153,7 +153,13 @@
           <% end %>
 
           <% if @nearby_activities.any? %>
-						<%= render partial: 'activities/show/nearby_activities', locals: { object: @activity } %>
+            <h4>Активный отдых рядом</h4>
+						<%= render partial: 'shared/nearby_object', locals: { main_object: @activity, nearby_objects: @nearby_activities } %>
+					<% end %>
+
+          <% if @nearby_services.any? %>
+            <h4>Услуги и сервисы рядом</h4>
+						<%= render partial: 'shared/nearby_object', locals: { main_object: @activity, nearby_objects: @nearby_services } %>
 					<% end %>
         <% end %>
       </aside>
