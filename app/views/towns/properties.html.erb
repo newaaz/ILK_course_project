@@ -40,22 +40,37 @@
         <!-- Booking form -->
         <%= render 'search/form' %>
       </div>
+
+      <div class="col-md-12 mt-5 text-center text-md-start mt-md-3">
+        <%= link_to town_path(@town), class: 'badge bg-primary  text-white mb-3' do %>
+          Страница города<i class="ms-2 bi bi-arrow-right"></i>
+        <% end %>
+        <%= link_to activities_town_path(@town), class: 'badge bg-orange bg-opacity-10 text-orange ms-2 mb-3' do %>
+          <i class="bi bi-star me-2"></i>Активный отдых
+        <% end %>
+        <%= link_to services_town_path(@town), class: 'badge bg-info bg-opacity-10 text-info ms-2 mb-3' do %>
+          <i class="bi bi-box me-2"></i>Услуги и сервисы
+        <% end %>  
+      </div>
     </div>
   </div>
+
+
 
   <section class="pt-2">
     <div class="container">
       <div class="mb-4">
+        <h2 class="fs-4">Где остановиться в <%= @town.parent_name %></h2>
         <%= link_to 'Все категории', properties_town_path(@town), class: 'btn btn-light btn-sm' %>
         <% @categories.each do |cat| %>
-          <%= link_to cat.title, { cat: cat.id }, data: { turbo_frame: "town_properties" }, class: 'btn btn-light btn-sm' %>
+          <%= link_to cat.title, { cat: cat.id }, data: { turbo_frame: :town_properties }, class: 'btn btn-light btn-sm' %>
         <% end %>
       </div>
 
       <div class="row gx-4">
         <% if @properties.any? %>
           <div class="col-12 mb-3">
-            <h1 class="fs-4">Предложений: <%= @pagy.count %></h1>          
+            <h2 class="fs-5">Предложений: <%= @pagy.count %></h2>          
           </div>
 
           <%= render partial: 'properties/property', collection: @properties, as: :property %>

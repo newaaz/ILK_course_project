@@ -25,17 +25,30 @@
         <li class="breadcrumb-item"><%= link_to @town.name, @town %></li>
         <% if @category_title %>
           <li class="breadcrumb-item"><%= link_to "Активный отдых в #{@town.parent_name}", activities_town_path(@town) %></li> 
-          <li class="breadcrumb-item"><%= @category_title %></li>  
+          <li class="breadcrumb-item active"><%= @category_title %></li>  
         <% else %>        
           <li class="breadcrumb-item active"><%= "Активный отдых в #{@town.parent_name}" %></li>    
         <% end %>
       </ol>
     </nav>
+
+    <div class="mt-3 text-center text-md-start">
+      <%= link_to town_path(@town), class: 'badge bg-primary  text-white mb-3' do %>
+        Страница города<i class="ms-2 bi bi-arrow-right"></i>
+      <% end %>
+      <%= link_to properties_town_path(@town), class: 'badge bg-primary bg-opacity-10 text-primary ms-2 mb-3' do %>
+        <i class="bi bi-check2-circle me-2"></i>Где остановиться
+      <% end %>
+      <%= link_to services_town_path(@town), class: 'badge bg-info bg-opacity-10 text-info ms-2 mb-3' do %>
+        <i class="bi bi-box me-2"></i>Услуги и сервисы
+      <% end %>  
+    </div>
   </div>
 
-  <section class="pt-2">
+  <section class="pt-4">
     <div class="container">
-      <div class="my-3">
+      <h2 class="fs-4">Активный отдых в <%= @town.parent_name %></h2>
+      <div class="mb-3 mt-2">
         <%= link_to 'Все категории', activities_town_path(@town), class: 'btn btn-light btn-sm' %>
         <% Activity::ACTIVITY_CATEGORIES.each do |cat| %>
           <%= link_to cat, activities_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>

@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
     @towns = Town.all
     @properties = Property.activated.with_attached_avatar.with_attached_images.take 3
     @activities = Activity.activated.select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address).take 6
+    @services = Service.activated.select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address).take 6
   end
 
   def contacts
@@ -19,4 +20,3 @@ class StaticPagesController < ApplicationController
   def agreement    
   end
 end
-

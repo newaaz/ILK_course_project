@@ -17,7 +17,7 @@ class ListingUploader < CarrierWave::Uploader::Base
 
   # Version for carousel?, cards, display in index
   version :thumb do
-    process resize_to_fill: [225, 150]
+    process resize_to_fill: [450, 300]
   end
 
   # For Fotorama

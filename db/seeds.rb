@@ -3,12 +3,17 @@ PROPERTY_TITLES = ["Гостевой дом 'Одиссей'", "Гостевой
                   "3-х комнатная квартира у моря", "Гостиница У Моря", "Эко гостевой дом 'Здоровье'",
                   "Отель 'Бриз'", "Апартаменты 'Хижина Робинзона'", "Вилла 'Santa Fe'", "Апартаменты 'На Черноморской'"].freeze
 
-PROPERTY_ADRESSES = ["ул. Ленина 15", "Черноморская набережная, д. 1В", "ул. Бусина 35", "ул. Приморская 65 B",
+ADRESSES = ["ул. Ленина 15", "Черноморская набережная, д. 1В", "ул. Бусина 35", "ул. Приморская 65 B",
                      "переулок Лазурный, д.7", "ул. Луначарского, д. 16", "Севастопольское шоссе, д. 22", "ул. Ленина, 35 б",
                      "эллинг 60"].freeze
 
-ACTIVITY_TITLES = ["Туризм", "Спорт", "Развлекательный отдых", "Туризм", "Джипинг",
-                    "Воздушные прогулки", "Морские прогулки", "Конные прогулки", "Прогулки на квадроциклах"].freeze
+ACTIVITY_TITLES = ["Прогулка на каяках у Кара Дага", "Прыжок с парашютом в тандеме", "Конная прогулка к подножию Эчки Дага", "Дайвинг в Береговом",
+                   "Джипинг", "Виндсерфинг в Приморском", "Прогулка на воздушном шаре", "Экскурсия на джипе по горам Феодосии", "Конные прогулки - сердце генценберга",
+                    "Воздушные прогулки", "Морские прогулки", "Конные прогулки - Тепе-Оба", "Прогулки на квадроциклах"].freeze
+
+SERVICES_TITLES = ["Такси 'Девяточка'", "Служба такси 'Виктор'", "Детсая комната 'Одуванчик'", "Ремонт обуви", "Ремонт смартфонов",
+                   "Спортзал 'Аполлон'", "Маникюр/педикюр", "Массаж", "Доставка еды 'БыстроПицца'", "Прокат авто", "Услуги эваукатора",
+                   "Бильярд 'Кий'", "Теннис", "Сауна, русские и турецкие бани ", "Салон красоты 'Loris'"]
 
 # Categories for properties
 def create_categories
@@ -68,10 +73,54 @@ def rand_price
   (rand(1000..2500) / 50).round * 50
 end
 
+# create Service
+def create_service
+  service = Service.create!(title:          SERVICES_TITLES.sample,
+                            category_title: ["Доставка еды", "Такси", "Спортзалы", "Прокат авто", "Эвакуатор", "Прачечные", "Ремонт обуви", "Теннис",
+                                              "Массаж", "Бильярд", "Бани / Сауны", "Красота", "Ремонт телефонов", "Частные клиники", "Детские комнаты"].sample,
+                            avatar:         File.open(File.join(Rails.root, "app/assets/images/seed/services/service (#{rand 1..25}).jpg")),
+                            images:         [ 
+                                              File.open(File.join(Rails.root, "app/assets/images/seed/services/service (#{rand 1..25}).jpg")),
+                                              File.open(File.join(Rails.root, "app/assets/images/seed/services/service (#{rand 1..25}).jpg")),
+                                              File.open(File.join(Rails.root, "app/assets/images/seed/services/service (#{rand 1..25}).jpg")),
+                                              File.open(File.join(Rails.root, "app/assets/images/seed/services/service (#{rand 1..25}).jpg")),
+                                              File.open(File.join(Rails.root, "app/assets/images/seed/services/service (#{rand 1..25}).jpg"))
+                                            ],
+                            address:        ADRESSES.sample,
+                            #price:          rand_price,
+                            #price_type:     "За прогулку",
+                            description:    "ЭТОТ ОБЪЕКТ ПРЕДНАЗНАЧЕН ДЛЯ ДЕМОНСТРАЦИИ РАБОТЫ ПРИЛОЖЕНИЯ. ФОТОГРАФИИ, ИНФОРМАЦИЯ И КОНТАКТЫ ЯВЛЯЮТСЯ ПРИМЕРОМ. ЗАБРОНИРОВАТЬ В РЕАЛЬНОСТИ ЭТОТ ОБЪЕКТ НЕЛЬЗЯ.
+                            Ногтевая студия предлагает услуги маникюра и педикюра. Покрытие гель лаком. Различные виды дизайнов. Наращивание ногтей. Качественные материалы и новое оборудование. Все инструменты проходят все стадии стерилизации. Более 400 оттенков гель лаков! Много новинок. Частое обновление палитры.
+                            Накопительная система бонусов, за каждый визит на личный счёт поступают бонусы, которыми можно оплатить услуги. Таким образом вы всегда получаете скидку, обслуживаясь у нас! Запись по телефону, также ватсап. Очень удобно записываться самостоятельно по онлайн ссылке, она есть в любом поисковике.",
+                            additional_info: "У нас просторная студия, маникюрный зал отделен от педикюрного, для удобства и комфорта клиентов и мастеров.
+                                              Работают 3 топ мастера, старший мастер и мастер, поэтому всегда можно подобрать удобное для вас время. Учитывайте, что у каждого мастера свой стаж и время работы, поэтому стоимость услуг у всех отличается. Также услуги бровиста! В студии работает косметолог.",
+                            activated:    true,
+                            site:         'ilovekrim.ru',
+                            email:        'email@email.ru',
+                            vk_group:     'i_lovekrim',
+                            owner:        Partner.first,
+                            town_ids:     Town.ids,
+                            geolocation:  Geolocation.new(
+                              latitude: "45.0#{rand 60..80}65",
+                              longitude: "35.3#{rand 60..80}88"),
+                            contact:      Contact.new(
+                              phone_number: '+7(987)123-45-67',                      
+                              name:         'Алла',
+                              messengers:   ["whatsapp", "viber", "telegram"]))        
+
+  service.additional_fields.create!([{ name: 'Маникюр с покрытием гель-лаком (1 ч 30 мин.)', value: 'от 1 000 ₽' },
+                                     { name: 'Наращивание ногтей (2 ч)', value: 'от 1 400 ₽' },
+                                     { name: 'Комбинированный маникюр (45 мин.)', value: 'от 500 ₽' },
+                                     { name: 'Покрытие с градиентом (омбре) (30 мин.)', value: 'от 200' }])
+  
+  puts "service #{service.title} created"
+end
+
 # create actitvity
 def create_activity
   actitvity = Activity.create!( title:          ACTIVITY_TITLES.sample,
-                                category_title: ["Морские прогулки", "Воздушные прогулки", "Конные прогулки", "Джипинг", "Рыбалка", "Рыбалка", "Другое"].sample,
+                                category_title: [ "Морские прогулки", "Воздушные прогулки", "Конные прогулки", "Мото прогулки",
+                                                  "Прогулки на квадроциклах", "Джипинг", "Рыбалка", "Другое", "Пешие экскурсии", "Экскурсии"].sample,
                                 avatar:         File.open(File.join(Rails.root, "app/assets/images/seed/activities/activity (#{rand 1..20}).jpg")),
                                 images:         [ 
                                                   File.open(File.join(Rails.root, "app/assets/images/seed/activities/activity (#{rand 1..20}).jpg")),
@@ -80,7 +129,7 @@ def create_activity
                                                   File.open(File.join(Rails.root, "app/assets/images/seed/activities/activity (#{rand 1..20}).jpg")),
                                                   File.open(File.join(Rails.root, "app/assets/images/seed/activities/activity (#{rand 1..20}).jpg"))
                                                 ],
-                                address:        PROPERTY_ADRESSES.sample,
+                                address:        ADRESSES.sample,
                                 price:          rand_price,
                                 price_type:     "За прогулку",
                                 description:    "ЭТОТ ОБЪЕКТ ПРЕДНАЗНАЧЕН ДЛЯ ДЕМОНСТРАЦИИ РАБОТЫ ПРИЛОЖЕНИЯ. ФОТОГРАФИИ, ИНФОРМАЦИЯ И КОНТАКТЫ ЯВЛЯЮТСЯ ПРИМЕРОМ. ЗАБРОНИРОВАТЬ В РЕАЛЬНОСТИ ЭТОТ ОБЪЕКТ НЕЛЬЗЯ. Готовься к незабываемому приключению наших морских прогулок! С брызгами океанской волны, свежим морским воздухом и захватывающими видами мы предлагаем заставить ваше сердце забиться быстрее.
@@ -115,7 +164,7 @@ end
 # Create property
 def create_property
   property = Property.new(title:        PROPERTY_TITLES.sample,
-                          address:      PROPERTY_ADRESSES.sample,
+                          address:      ADRESSES.sample,
                           town:         Town.all.sample,
                           category:     Category.all.sample,
                           owner:        Partner.first,
@@ -179,18 +228,23 @@ def create_property
   puts "Property #{property.title} created"
 end
 
+
+
 time = Benchmark.measure do
-  create_categories
-  # create_towns
+  #create_categories
+  #create_towns
 
   Property.destroy_all
-  65.times { create_property }
+  55.times { create_property }
   
-  #Property.reindex
-  #puts "Properties indexed"
+  # Property.reindex
+  # puts "Properties indexed"
   
   Activity.destroy_all
-  25.times { create_activity }
+  35.times { create_activity }
+
+  Service.destroy_all
+  35.times { create_service }
 end
 
 puts "Время выполнения: #{time.real} секунд"

@@ -1,3 +1,16 @@
+<% provide(:title, "#{@activity.title} - редактирование") %>
+
+<!-- breadcrumbs -->
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
+      <li class="breadcrumb-item"><%= link_to "Личный кабинет", partners_root_path %></li>				
+      <li class="breadcrumb-item active"><%= "Изменить #{@activity.title}" %></li> 
+    </ol>
+  </nav>
+</div>
+
 <section class="pb-0">
 	<div class="container">
 		<div class="row">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_24_105639) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_25_081200) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -268,6 +268,39 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_105639) do
     t.index ["property_id"], name: "index_rooms_on_property_id"
   end
 
+  create_table "services", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "category_title", null: false
+    t.text "description", null: false
+    t.text "additional_info"
+    t.string "address"
+    t.integer "price"
+    t.string "price_type"
+    t.string "email"
+    t.string "site"
+    t.string "vk_group"
+    t.string "avatar"
+    t.json "images"
+    t.integer "rating", limit: 2, default: 10
+    t.integer "random_id", limit: 2, default: 1
+    t.integer "promouted", limit: 2, default: 0
+    t.boolean "activated", default: false
+    t.boolean "deleted", default: false
+    t.boolean "enabled", default: true
+    t.boolean "blocked", default: false
+    t.bigint "owner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_services_on_owner_id"
+  end
+
+  create_table "services_towns", id: false, force: :cascade do |t|
+    t.bigint "service_id", null: false
+    t.bigint "town_id", null: false
+    t.index ["service_id", "town_id"], name: "index_services_towns_on_service_id_and_town_id"
+    t.index ["town_id", "service_id"], name: "index_services_towns_on_town_id_and_service_id"
+  end
+
   create_table "towns", force: :cascade do |t|
     t.string "name", null: false
     t.string "parent_name", null: false
@@ -290,4 +323,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_105639) do
   add_foreign_key "properties", "towns"
   add_foreign_key "property_details", "properties"
   add_foreign_key "rooms", "properties"
+  add_foreign_key "services", "partners", column: "owner_id"
 end

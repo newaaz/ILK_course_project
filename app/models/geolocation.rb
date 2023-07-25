@@ -1,5 +1,5 @@
 class Geolocation < ApplicationRecord
-  COORDINATES_OPTIONAL = %w[Activity].freeze
+  COORDINATES_OPTIONAL = %w[Activity Service].freeze
 
   belongs_to :geolocable, polymorphic: true
   validates :latitude, :longitude, presence: true, unless: -> { COORDINATES_OPTIONAL.include?(self.geolocable_type) }

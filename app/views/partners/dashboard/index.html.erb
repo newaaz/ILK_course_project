@@ -25,11 +25,18 @@
 				</div> <br>
 
 				<% if @properties.any? %>
+					<h3 class="mb-3"><i class="bi bi-check2-circle text-orange me-3"></i>Объявления</h3>
 					<%= render partial: 'partners/dashboard/templates/property', collection: @properties, as: :property %>
 				<% end %>	
 
 				<% if @activities.any? %>
+					<h3 class="mb-3"><i class="bi bi-check2-circle text-orange me-3"></i>Активный отдых</h3>
 					<%= render partial: 'partners/dashboard/templates/activity', collection: @activities, as: :activity %>
+				<% end %>
+
+				<% if @services.any? %>
+					<h3 class="mb-3"><i class="bi bi-check2-circle text-orange me-3"></i>Сервисы и услуги</h3>
+					<%= render partial: 'partners/dashboard/templates/service', collection: @services, as: :service %>
 				<% end %>
 			</div>
 		</div>

@@ -1,0 +1,210 @@
+<% provide(:title, "#{@service.title}") %>
+
+<% provide :turbo_cache_control do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
+<!-- breadcrumbs -->
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
+      <% if @town.present? %>      
+        <li class="breadcrumb-item"><%= link_to @town.name, @town %></li>
+        <li class="breadcrumb-item"><%= link_to "Услуги и сервисы", services_town_path(@town) %></li>
+        <li class="breadcrumb-item"><%= link_to @service.category_title, services_town_path(@town, category_title: @service.category_title) %></li>
+        <li class="breadcrumb-item active"><%= @service.title %></li>
+      <% else %>
+        <li class="breadcrumb-item"><%= link_to "Услуги и сервисы", services_path %></li>	
+        <li class="breadcrumb-item"><%= link_to @service.category_title, services_path(category_title: @service.category_title) %></li>
+        <li class="breadcrumb-item active"><%= @service.title %></li>
+      <% end %>
+    </ol>
+  </nav>
+</div>
+
+<%= render 'shared/not_activated' unless @service.activated? %>	
+
+<!-- title -->
+<section class="py-0">
+  <div class="container position-relative">    
+    <!-- Title and button START -->
+    <div class="row mb-3 border-bottom pb-2">
+      <div class="col-12">
+        <!-- Meta -->
+        <div class="d-lg-flex justify-content-lg-between mb-1">
+          <!-- Title -->
+          <div class="mb-2 mb-lg-0 ">
+            <h1 class="h3"><%= @service.title %></h1>
+              <!-- Location -->
+              <p class="fw-bold mb-0">
+                <% unless @town.present? %>
+                  <i class="bi bi-box me-1"></i>
+                  <span class="me-2">Есть в</span>
+                  <% @service.towns.each do |town| %>
+                    <%= link_to town.parent_name, services_town_path(town, category_title: @service.category_title), class: 'badge bg-primary bg-opacity-10 text-primary' %>
+                  <% end %>
+                <% end %>	
+              </p>
+              
+              <p class="fw-bold mb-0 mt-2">
+                <% if @service.address.present? %>
+                <i class="bi bi-geo-alt me-2"></i><%= "#{@service.address}" %>
+                <% end %>
+
+                <% if @service.geolocation.present? %>
+                <a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">
+                  <i class="bi bi-eye-fill me-1"></i>На карте
+                </a>
+                <% end %>  				
+              </p>
+          </div>
+          
+          <ul class="list-inline text-center">            
+            <li class="list-inline-item">
+              <a href="#" class="btn btn-sm btn-orange-soft px-2"><i class="bi bi-heart" style="font-size: 1rem;"></i></a>
+            </li>
+          </ul>          
+        </div>
+      </div>
+    </div>
+    <!-- Title and button END -->		
+  </div>
+</section>
+
+<!-- Photo & contacts -->
+<section class="card-grid pt-0">
+  <div class="container">
+    <div class="row g-2">
+      <div class="col-lg-8 px-0">
+        <!-- fotorama begin -->        
+        <div class="fotoramain mt-2" data-controller="fotorama" data-object="main">
+          <%= link_to image_tag(@service.avatar.thumb_100.url), @service.avatar.url %>
+          <% @service.images.each do |image| %>
+            <%= link_to image_tag(image.thumb_100.url), image.url %>
+          <% end %>
+        </div>        
+        <!-- fotorama end -->
+      </div>
+
+      <aside class="col-lg-4 px-lg-4 px-sm-0 mt-3">
+        <% if @service.price.present? %>
+        <div class="card card-body border bg-transparent mb-3">
+          <div class="hstack gap-2">
+            <h3 class="card-title mb-0"><%= @service.price %><small>₽</small></h3>
+            <span class="fs-5">/<%= @service.price_type %></span>
+          </div>
+        </div>
+        <% end %>
+
+        <%= render 'services/show/contacts' %>
+      </aside>			
+    </div>
+  </div>
+</section>
+
+<!-- Description -->
+<section class="pt-0 mb-5 pb-5">
+  <div class="container">
+    <div class="row g-2 g-xl-3">
+      <div class="col-xl-8 order-1">
+        <ul class="nav nav-tabs nav-bottom-line mb-3">
+          <li class="nav-item me-2">
+            <a class="nav-link active" data-bs-toggle="tab" href="#tab-description"><span class="fs-5">Описание</span></a>
+          </li>
+      
+          <% if @service.additional_info.present? %>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-additional-info"><span class="fs-5">Дополнительно</span></a>
+            </li>
+          <% end %>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane show active" id="tab-description">
+            <div class="card bg-transparent">
+              <div class="card-header border-bottom bg-transparent px-0 pt-0">
+                <div class="d-sm-flex justify-content-sm-between align-items-center">
+                  <h3 class="fs-4 mb-2 mb-sm-0">Описание</h3>								
+                </div>
+              </div>
+
+              <div class="card-body">
+                <%= @service.description %>
+
+                <% if @service.additional_fields.any? %>
+                  <div class="mt-4">
+                  <% @service.additional_fields.each do |field| %>
+                    <h4 class="fs-5 mb-2 mb-sm-0"><%= field.name %></h4>	
+                    <p><%= field.value %></p>
+                  <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <% if @service.additional_info.present? %>
+            <div class="tab-pane" id="tab-additional-info">
+              <div class="card bg-transparent">
+                <div class="card-header border-bottom bg-transparent px-0 pt-0">
+                  <div class="d-sm-flex justify-content-sm-between align-items-center">
+                    <h3 class="fs-4 mb-2 mb-sm-0">Дополнительно</h3>								
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <%= @service.additional_info %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>    
+      </div>
+
+      <!-- Right side content START -->
+      <aside class="col-lg-4 px-lg-4 px-sm-0 mt-3 order-2">
+        <% if @service.geolocation.present? %>
+          <% if @nearby_properties.any? %>
+            <%= render partial: 'properties/show/nearby_properties', locals: { object: @service } %>
+          <% end %>
+
+          <% if @nearby_activities.any? %>
+            <h4>Активный отдых рядом</h4>
+						<%= render partial: 'shared/nearby_object', locals: { main_object: @service, nearby_objects: @nearby_activities } %>
+					<% end %>
+
+          <% if @nearby_services.any? %>
+            <h4>Услуги и сервисы рядом</h4>
+						<%= render partial: 'shared/nearby_object', locals: { main_object: @service, nearby_objects: @nearby_services } %>
+					<% end %>
+        <% end %>
+      </aside>
+      <!-- Right side content END -->
+    </div>
+  </div>
+</section>
+
+<% if @service.geolocation.present? %>
+  <!-- modal map -->
+  <div class="modal fade" id="mapmodal" tabindex="-1" aria-labelledby="mapmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- Title -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="mapmodalLabel">На карте</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- Map -->
+        <div class="modal-body p-0">				
+          <div class="p-2">
+            <%= render 'geolocations/show_map', object: @service, preset_icon: "islands#darkBlueStarIcon" %>			
+          </div>
+        </div>
+        <!-- Button -->
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
