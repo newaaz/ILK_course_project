@@ -10,12 +10,11 @@ Rails.application.routes.draw do
     end
   end
 
-  # Carrierwave
-  resources :images, only: [:create]
+  # Images Carrierwave
   concern :imagable do
     resources :images, only: [:destroy]
   end
-  # Active storage
+  # Images Active storage
   delete 'images/:id/purge', to: 'images#purge', as: 'purge_image'
 
   root 'static_pages#home'
@@ -66,12 +65,14 @@ Rails.application.routes.draw do
   end
 
   resources :activities, concerns: %i[imagable], except: %i[]
+  resources :services, concerns: %i[imagable], except: %i[]
 
   # resources :orders, only: %i[show new create update]
 
   resources :towns, only: %i[show] do
     get :properties, on: :member
     get :activities, on: :member
+    get :services, on: :member
   end
 
   resources :carts, only: [:show, :destroy]
