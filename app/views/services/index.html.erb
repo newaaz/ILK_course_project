@@ -19,7 +19,7 @@
   <section class="pt-2">
     <div class="container">
       <div class="my-3">
-        <%= link_to 'Все услуги', services_path(@town), class: 'btn btn-light btn-sm' %>
+        <%= link_to 'Все услуги и сервисы', services_path(@town), class: 'btn btn-light btn-sm' %>
         <% Service::SERVICE_CATEGORIES.each do |cat| %>
           <%= link_to cat, services_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>
         <% end %>

@@ -119,7 +119,8 @@ end
 # create actitvity
 def create_activity
   actitvity = Activity.create!( title:          ACTIVITY_TITLES.sample,
-                                category_title: ["Морские прогулки", "Воздушные прогулки", "Конные прогулки", "Джипинг", "Рыбалка", "Рыбалка", "Другое"].sample,
+                                category_title: [ "Морские прогулки", "Воздушные прогулки", "Конные прогулки", "Мото прогулки",
+                                                  "Прогулки на квадроциклах", "Джипинг", "Рыбалка", "Другое", "Пешие экскурсии", "Экскурсии"].sample,
                                 avatar:         File.open(File.join(Rails.root, "app/assets/images/seed/activities/activity (#{rand 1..20}).jpg")),
                                 images:         [ 
                                                   File.open(File.join(Rails.root, "app/assets/images/seed/activities/activity (#{rand 1..20}).jpg")),
@@ -227,25 +228,23 @@ def create_property
   puts "Property #{property.title} created"
 end
 
-Partner.create!(email: 'test@test.ru', name: 'Лидия Ивановна', password: '340242', confirmed_at: Time.zone.now)
-Partner.create!(email: 'jumperka@list.ru', name: 'Георгий', password: '340242', confirmed_at: Time.zone.now)
-Partner.create!(email: '8t_Am_d_mimin@ilovekrim.ru', name: 'Admin', password: '340242', confirmed_at: Time.zone.now)
+
 
 time = Benchmark.measure do
-  create_categories
-  create_towns
+  #create_categories
+  #create_towns
 
   Property.destroy_all
-  35.times { create_property }
+  55.times { create_property }
   
   # Property.reindex
   # puts "Properties indexed"
   
   Activity.destroy_all
-  25.times { create_activity }
+  35.times { create_activity }
 
   Service.destroy_all
-  25.times { create_service }
+  35.times { create_service }
 end
 
 puts "Время выполнения: #{time.real} секунд"

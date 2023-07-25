@@ -9,9 +9,16 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
-      <li class="breadcrumb-item"><%= link_to "Услуги и сервисы", services_path %></li>				
-      <li class="breadcrumb-item"><%= link_to @service.category_title, services_path(category_title: @service.category_title) %></li>	
-      <li class="breadcrumb-item active"><%= @service.title %></li> 
+      <% if @town.present? %>      
+        <li class="breadcrumb-item"><%= link_to @town.name, @town %></li>
+        <li class="breadcrumb-item"><%= link_to "Услуги и сервисы", services_town_path(@town) %></li>
+        <li class="breadcrumb-item"><%= link_to @service.category_title, services_town_path(@town, category_title: @service.category_title) %></li>
+        <li class="breadcrumb-item active"><%= @service.title %></li>
+      <% else %>
+        <li class="breadcrumb-item"><%= link_to "Услуги и сервисы", services_path %></li>	
+        <li class="breadcrumb-item"><%= link_to @service.category_title, services_path(category_title: @service.category_title) %></li>
+        <li class="breadcrumb-item active"><%= @service.title %></li>
+      <% end %>
     </ol>
   </nav>
 </div>
@@ -28,9 +35,19 @@
         <div class="d-lg-flex justify-content-lg-between mb-1">
           <!-- Title -->
           <div class="mb-2 mb-lg-0 ">
-            <h1 class="h3"><%= @service.title %></h1>            
+            <h1 class="h3"><%= @service.title %></h1>
               <!-- Location -->
               <p class="fw-bold mb-0">
+                <% unless @town.present? %>
+                  <i class="bi bi-box me-1"></i>
+                  <span class="me-2">Есть в</span>
+                  <% @service.towns.each do |town| %>
+                    <%= link_to town.parent_name, services_town_path(town, category_title: @service.category_title), class: 'badge bg-primary bg-opacity-10 text-primary' %>
+                  <% end %>
+                <% end %>	
+              </p>
+              
+              <p class="fw-bold mb-0 mt-2">
                 <% if @service.address.present? %>
                 <i class="bi bi-geo-alt me-2"></i><%= "#{@service.address}" %>
                 <% end %>
@@ -39,7 +56,7 @@
                 <a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">
                   <i class="bi bi-eye-fill me-1"></i>На карте
                 </a>
-                <% end %> 						
+                <% end %>  				
               </p>
           </div>
           
@@ -71,14 +88,14 @@
       </div>
 
       <aside class="col-lg-4 px-lg-4 px-sm-0 mt-3">
+        <% if @service.price.present? %>
         <div class="card card-body border bg-transparent mb-3">
-          <% if @service.price.present? %>
-            <div class="hstack gap-2">
-              <h3 class="card-title mb-0"><%= @service.price %><small>₽</small></h3>
-              <span class="fs-5">/<%= @service.price_type %></span>
-            </div>
-          <% end %>
+          <div class="hstack gap-2">
+            <h3 class="card-title mb-0"><%= @service.price %><small>₽</small></h3>
+            <span class="fs-5">/<%= @service.price_type %></span>
+          </div>
         </div>
+        <% end %>
 
         <%= render 'services/show/contacts' %>
       </aside>			

@@ -29,7 +29,7 @@
       <div class="col-md-7">
         <div class="card-body py-md-2 d-flex flex-column h-100 position-relative">
           <!-- Title -->
-          <h5 class="card-title mb-1"><%= link_to activity.title, activity %></h5>
+          <h5 class="card-title mb-1"><%= link_to activity.title, activity_path(activity, town_id: @town.present? ? @town.id : nil) %></h5>
 
           <% if activity.address.present? %>
             <small><i class="bi bi-geo-alt me-2"></i><%= activity.address %></small>
@@ -42,18 +42,23 @@
             </li>    
           </ul>
 
-          <!-- Price and Button -->
-          <div class="d-sm-flex justify-content-sm-between align-items-center mt-3 mt-md-auto">
-            <% if activity.price.present? %>
-            <div class="d-flex align-items-center">
-              <h5 class="fw-bold mb-0 me-1"><%= activity.price %></h5>
-              <span class="mb-0 me-2">/<%= activity.price_type %></span>
+          <!-- Price and Button -->          
+          <% if activity.price.present? %>
+            <div class="d-sm-flex justify-content-sm-between align-items-center mt-3 mt-md-auto">
+              <div class="d-flex align-items-center">
+                <h5 class="fw-bold mb-0 me-1"><%= activity.price %><small>₽</small></h5>
+                <span class="mb-0 me-2">/<%= activity.price_type %></span>
+              </div>
+              
+              <div class="mt-3 mt-sm-0">
+                <%= link_to "Подробнее", activity_path(activity, town_id: @town.present? ? @town.id : nil), class: "btn btn-sm btn-orange-soft mb-0" %>
+              </div>
             </div>
-            <% end %>
-            <div class="mt-3 mt-sm-0">
-              <%= link_to "Подробнее", activity, class: "btn btn-sm btn-orange-soft mb-0 w-100" %>
-            </div>                  
-          </div>
+          <% else %>
+            <div class="mt-md-auto text-end">
+              <%= link_to "Подробнее", activity_path(activity, town_id: @town.present? ? @town.id : nil), class: "btn btn-sm btn-orange-soft mb-0" %>
+            </div>
+          <% end %> 
         </div>
       </div>
     </div>

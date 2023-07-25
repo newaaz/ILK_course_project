@@ -18,6 +18,7 @@ class ServicesController < ApplicationController
   end
 
   def show
+    @town = Town.select(:id, :name, :parent_name).find(params[:town_id]) if params[:town_id].present?
     if @service.geolocation.present?
       @nearby_properties = @service.nearby_objects('Property', 5)
       @nearby_activities = @service.nearby_objects('Activity', 5)

@@ -9,9 +9,16 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
-      <li class="breadcrumb-item"><%= link_to "Активный отдых", activities_path %></li>				
-      <li class="breadcrumb-item"><%= link_to @activity.category_title, activities_path(category_title: @activity.category_title) %></li>	
-      <li class="breadcrumb-item active"><%= @activity.title %></li> 
+      <% if @town.present? %>      
+        <li class="breadcrumb-item"><%= link_to @town.name, @town %></li>
+        <li class="breadcrumb-item"><%= link_to "Активный отдых", activities_town_path(@town) %></li>
+        <li class="breadcrumb-item"><%= link_to @activity.category_title, activities_town_path(@town, category_title: @activity.category_title) %></li>
+        <li class="breadcrumb-item active"><%= @activity.title %></li>
+      <% else %>
+        <li class="breadcrumb-item"><%= link_to "Активный отдых", activities_path %></li>	
+        <li class="breadcrumb-item"><%= link_to @activity.category_title, activities_path(category_title: @activity.category_title) %></li>
+        <li class="breadcrumb-item active"><%= @activity.title %></li>
+      <% end %>
     </ol>
   </nav>
 </div>
@@ -31,6 +38,16 @@
             <h1 class="h3"><%= @activity.title %></h1>            
               <!-- Location -->
               <p class="fw-bold mb-0">
+                <% unless @town.present? %>
+                  <i class="bi bi-box me-1"></i>
+                  <span class="me-2">Есть в</span>
+                  <% @activity.towns.each do |town| %>
+                    <%= link_to town.parent_name, activities_town_path(town, category_title: @activity.category_title), class: 'badge bg-primary bg-opacity-10 text-primary' %>
+                  <% end %>
+                <% end %>	
+              </p>
+
+              <p class="fw-bold mb-0 mt-2">
                 <% if @activity.address.present? %>
                 <i class="bi bi-geo-alt me-2"></i><%= "#{@activity.address}" %>
                 <% end %>
@@ -71,14 +88,14 @@
       </div>
 
       <aside class="col-lg-4 px-lg-4 px-sm-0 mt-3">
-        <div class="card card-body border bg-transparent mb-3">
-          <% if @activity.price.present? %>
+        <% if @activity.price.present? %>
+          <div class="card card-body border bg-transparent mb-3">
             <div class="hstack gap-2">
               <h3 class="card-title mb-0"><%= @activity.price %><small>₽</small></h3>
               <span class="fs-5">/<%= @activity.price_type %></span>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
 
         <%= render 'activities/show/contacts' %>
       </aside>			
