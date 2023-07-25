@@ -2,9 +2,9 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
-
 import '../custom/add_jquery'
+
+import { application } from "./application"
 
 import FotoramaController from "./fotorama_controller"
 application.register("fotorama", FotoramaController)
@@ -17,6 +17,9 @@ application.register("lite-pickers", LitePickersController)
 
 import MapsController from "./maps_controller"
 application.register("maps", MapsController)
+
+import NestedAdditionalFieldsController from "./nested_additional_fields_controller"
+application.register("nested-additional-fields", NestedAdditionalFieldsController)
 
 import NestedPricesController from "./nested_prices_controller"
 application.register("nested-prices", NestedPricesController)

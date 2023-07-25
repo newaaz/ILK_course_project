@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_21_104628) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_24_105639) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,6 +73,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_104628) do
     t.bigint "town_id", null: false
     t.index ["activity_id", "town_id"], name: "index_activities_towns_on_activity_id_and_town_id"
     t.index ["town_id", "activity_id"], name: "index_activities_towns_on_town_id_and_activity_id"
+  end
+
+  create_table "additional_fields", force: :cascade do |t|
+    t.string "name"
+    t.text "value"
+    t.string "additional_fieldable_type", null: false
+    t.bigint "additional_fieldable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["additional_fieldable_type", "additional_fieldable_id"], name: "index_additional_fields_on_additional_fieldable"
   end
 
   create_table "bookings", force: :cascade do |t|

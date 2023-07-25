@@ -17,7 +17,9 @@ class ActivitiesController < ApplicationController
   end
 
   def new
-    @activity = Activity.new(geolocation: Geolocation.new, contact: Contact.new)
+    @activity = Activity.new( geolocation: Geolocation.new,
+                              contact: Contact.new,
+                              additional_fields: [AdditionalField.new])
   end
 
   def create
@@ -72,15 +74,16 @@ class ActivitiesController < ApplicationController
   private
 
   def set_activity
-    @activity = Activity.includes([:geolocation, :contact,]).find(params[:id])
+    @activity = Activity.includes([:geolocation, :contact, :additional_fields]).find(params[:id])
   end
 
   def activity_params
     params.require(:activity).permit(:title, :address, :category_title, :avatar,
                                       :description, :additional_info, :site, :email, :vk_group,
                                       :price, :price_type, images: [], town_ids: [],
-                                      geolocation_attributes: [:id, :latitude, :longitude],
-                                      contact_attributes: [:id, :name, :avatar, :phone_number, messengers: [] ])
+                                      geolocation_attributes: [:id, :latitude, :longitude],                                      
+                                      contact_attributes: [:id, :name, :avatar, :phone_number, messengers: [] ],
+                                      additional_fields_attributes: [:id, :name, :value, :_destroy])
   end
 
   def pundit_user
