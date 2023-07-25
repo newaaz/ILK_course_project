@@ -12,6 +12,14 @@ module ListingActivatable
       end
     end
 
+    def deactivate!
+      if self.activated?
+        self.toggle!(:activated)
+        # need to send email about deactivation?
+        #ListingMailer.listing_activated(self).deliver_now
+      end
+    end
+
     private
 
     def send_listing_creating_email

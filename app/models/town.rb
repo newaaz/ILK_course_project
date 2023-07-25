@@ -1,5 +1,6 @@
 class Town < ApplicationRecord
   has_many  :properties, dependent: :destroy
+  has_and_belongs_to_many :activities
 
   mount_uploader  :avatar, PictureUploader
 

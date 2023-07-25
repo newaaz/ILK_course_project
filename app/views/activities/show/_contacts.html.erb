@@ -1,0 +1,72 @@
+<div class="card border">  
+  <div class="card-header border-bottom">
+    <h6 class="mb-0">Контакты</h6>
+  </div>
+
+  <div class="card-body py-2 px-3">
+    
+    <div class="text-center pt-2">
+      <span class="fw-semibold"><%= @activity.contact.name %></span>
+      
+      <% if @activity.owner.avatar.present? %>
+        <div class="avatar">           
+          <%= image_tag(@property.owner.avatar.thumb.url, class: 'avatar-img rounded-circle shadow ms-4') %>    
+        </div>
+      <% end %>
+    </div>
+
+    <div class="my-4 vstack gap-3 ps-3">
+      <% if @activity.site.present? %>
+        <a href="http://<%= @activity.site %>" target="_blank">
+        <span class="badge bg-secondary bg-opacity-10 text-black-50"><i class="bi bi-globe"></i></span>
+          
+          &nbsp;<%= @activity.site %>
+        </a>  
+      <% end %>
+    
+      <% if @activity.vk_group.present? %>
+        <a href="https://vk.com/<%= @activity.vk_group %>" target="_blank">
+          <span class="badge bg-secondary bg-opacity-10 text-black-50">VK</span>
+          &nbsp;<%= @activity.vk_group %>
+        </a>  
+      <% end %>  
+    </div>
+
+    <div class="hstack gap-2 ">
+      <a class="btn btn-primary-soft btn-sm w-100" data-bs-toggle="collapse" href="#collapseContacts" role="button" aria-expanded="false" aria-controls="collapseContacts">
+        <i class="bi bi-caret-down me-1"></i>Контакты
+      </a>
+
+      <%= link_to new_property_booking_path(@activity),
+            data: { turbo_frame: "modal" },
+            class: 'btn btn-orange-soft btn-sm w-100' do %>
+        <i class="bi bi-send me-1"></i> Написать
+      <% end %>      
+    </div>
+
+    <div class="collapse" id="collapseContacts">
+      <div class="my-4 vstack gap-3 ">
+        <% if @activity.email %>
+          <div>
+            <span class="badge bg-secondary bg-opacity-10 text-black-50"><i class="bi bi-envelope"></i></span>
+            <%= @activity.email %>
+          </div>
+        <% end %>
+
+        <a href=<%= "tel:#{@activity.contact.phone_number}" %>>
+          <span class="badge bg-secondary bg-opacity-10 text-black-50"><i class="bi bi-telephone"></i></span>            
+          <%= @activity.contact.phone_number %>
+        </a>    
+      </div>
+
+      <div class="text-center">
+        <% @activity.contact.messengers.each do |messenger| %>
+          <%= link_to_messenger(messenger, @activity.contact.phone_number) %>          
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

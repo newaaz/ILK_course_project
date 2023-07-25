@@ -1,0 +1,165 @@
+<%= form_with(model: @activity, class: 'vstack gap-4') do |f| %>
+  <div id="forms_errors">
+    <%= render 'shared/errors', object: f.object %>
+  </div>
+
+  <!-- base info -->
+  <div class="card shadow">  
+    <div class="card-header border-bottom">
+      <h5 class="mb-0">Основная информация</h5>
+    </div>
+
+    <div class="card-body">
+		  <div class="row g-3">
+        <div class="col-md-5">        
+          <%= f.label :title, class: 'form-label' %>*     
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+
+        <div class="col-md-3">
+          <%= f.label :category_title, class: 'form-label' %>*     
+          <%= f.collection_select :category_title, Activity::ACTIVITY_CATEGORIES, :to_s, :to_s, { prompt: "Выбрать..." }, class:"form-select" %>
+        </div>
+
+        <div class="col-md-2">
+          <%= f.label :price, class: 'form-label' %> <span class="small text-secondary">(необязательно)</span>        
+          <div class="input-group"> 
+            <%= f.number_field :price, class: 'form-control', min: 50 %>
+            <span class="input-group-text">&#8381;</span>
+          </div> 
+        </div>
+
+        <div class="col-md-2">        
+          <%= f.label :price_type, class: 'form-label' %> 
+          <%= f.text_field :price_type, class: 'form-control' %>
+        </div>
+
+        <div class="col-12">
+          <%= f.label :description, class: 'form-label' %> *
+          <%= f.text_area :description, rows: 6, class: 'form-control' %>
+        </div>
+
+        <div class="col-12">
+          <%= f.label :additional_info, class: 'form-label' %>
+          <%= f.text_area :additional_info, rows: 6, class: 'form-control' %>
+        </div>    
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow">  
+    <div class="card-header border-bottom">
+      <h5 class="mb-0">К каким населёным пунктам относится:</h5>
+    </div>
+
+    <div class="card-body">
+		  <div class="row g-3">        
+        <div class="col-12">
+          <% Town.find_each do |town| %>
+            <div class="d-inline ms-3">
+              <%= f.check_box :town_ids, { multiple: true, checked: f.object.town_ids&.include?(town.id), class: 'form-check-input' }, town.id, nil %>
+              <%= f.label town.name, for: "activity_town_ids_#{town.id}",  class: 'form-check-label mb-4' %>
+            </div>  
+          <% end %>
+        </div>
+
+        <div class="col-md-6">
+          <%= f.label :address, class: 'form-label' %><span class="ms-2 small text-secondary">(если есть. Необязательно)</span>     
+          <%= f.text_field :address, class: 'form-control' %>
+        </div>    
+      </div>
+    </div>
+  </div>
+
+  <% unless controller.action_name == 'edit' && @activity.geolocation.nil? %>
+    <%= render 'geolocations/map_fields', f: f %>
+  <% end %>
+
+  <div class="row g-3">
+    <div class="col-md-8">
+      <%= render 'carrierwave_imagable/imagable_fields', f: f %> 
+    </div>
+
+    <div class="col-md-4 ">      
+      <div class="card h-100 shadow pb-2">  
+        <div class="card-header border-bottom">
+          <h5 class="mb-0">Контакты</h5>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="row g-3 pb-3">              
+              <div class="col-12">        
+                <%= f.label :email, class: 'form-label' %> <span class="small text-secondary">(если есть)</span>        
+                <div class="input-group"> 
+                  <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                  <%= f.email_field :email, class: 'form-control' %>            
+                </div> 
+              </div>
+
+              <div class="col-12">        
+                <%= f.label :site, class: 'form-label' %> <span class="small text-secondary">(только если есть свой)</span>        
+                <div class="input-group"> 
+                  <span class="input-group-text">www</span>
+                  <%= f.text_field :site, class: 'form-control' %>            
+                </div> 
+              </div>
+
+              <div class="col-12">        
+                <%= f.label :vk_group, class: 'form-label' %> <span class="small text-secondary">(если есть)</span>        
+                <div class="input-group"> 
+                  <span class="input-group-text">vk.com/</i></span>
+                  <%= f.text_field :vk_group, class: 'form-control' %>            
+                </div> 
+              </div>              
+            </div>
+          </li>
+
+          <li class="list-group-item">    
+            <div class="row g-3">
+              <div class="col-12">
+                <div class="contact_fields">
+                  <%= f.fields_for :contact do |contact| %>
+                    <%= render 'contacts/contact_fields', f: contact %>
+                  <% end %>            
+                </div>  
+              </div>            
+            </div>    
+          </li>
+        </ul>    
+      </div>
+    </div> 
+  </div>  
+
+  <div class="card shadow">  
+    <div class="card-header border-bottom">
+      <h5 class="mb-0">Добавить поля с информацией</h5>
+    </div>
+
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-12">
+          <div data-controller="nested-additional-fields">
+            <template data-nested-additional-fields-target="template">
+              <%= f.fields_for :additional_fields, AdditionalField.new, child_index: 'NEW_RECORD' do |add_field_form| %>
+                <%= render 'additional_fields/form', f: add_field_form %>
+              <% end %>
+            </template>
+
+            <%= f.fields_for :additional_fields do |add_field_form| %>
+              <%= render 'additional_fields/form', f: add_field_form %>
+            <% end %>
+
+            <div data-nested-additional-fields-target="add_field" class="mt-4">
+              <%= link_to "+ Добавить ещё поле период", "#", data: { action:"click->nested-additional-fields#add_association" }, class: 'btn-sm btn btn-secondary' %>
+            </div>
+          </div>              
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%= f.submit f.object.new_record? ? "Разместить объявление" : "Сохранить изменения", class:"btn btn-primary my-4" %>
+	</div>
+<% end %>

@@ -38,7 +38,8 @@ class PropertiesController < ApplicationController
 
   def show
     @rooms = @property.rooms.with_attached_images.with_attached_avatar
-    @nearby_properties = @property.nearby_objects('Property', 20)
+    @nearby_properties = @property.nearby_objects('Property', 5)
+    @nearby_activities = @property.nearby_objects('Activity', 5)
     @booking = Booking.new(property: @property)
   end
 

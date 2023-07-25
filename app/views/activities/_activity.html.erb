@@ -1,0 +1,61 @@
+<div class="col-md-6">
+  <div class="card shadow p-2">
+    <div class="row g-0">
+      <!-- Card img -->
+      <div class="col-md-5 position-relative">
+        <!-- Overlay item -->
+        <div class="position-absolute top-0 start-0 z-index-1 m-1">
+          <div class="badge bg-orange bg-opacity-75 text-light" style="font-size:12px;"><%= activity.category_title %></div>
+        </div>
+
+        <div class="overflow-hidden rounded-2">
+          <div class="" data-controller="fotorama" data-object="widget"
+              data-width="100%"
+              data-ratio="3/2"
+              data-allowfullscreen="false"                
+              data-nav="false"
+              data-loop="true"
+              data-keyboard="true"
+              data-auto="false">      
+            <%= link_to image_tag(activity.avatar.thumb_100.url), activity.avatar.thumb.url %>      
+            <% activity.images.take(2).each do |image| %> 
+              <%= link_to image_tag(image.thumb_100.url), image.thumb.url %>     
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card body -->
+      <div class="col-md-7">
+        <div class="card-body py-md-2 d-flex flex-column h-100 position-relative">
+          <!-- Title -->
+          <h5 class="card-title mb-1"><%= link_to activity.title, activity %></h5>
+
+          <% if activity.address.present? %>
+            <small><i class="bi bi-geo-alt me-2"></i><%= activity.address %></small>
+          <% end %>
+
+          <!-- List -->
+          <ul class="list-group list-group-borderless small mb-0 mt-2">
+            <li class="list-group-item d-flex text-success p-0">
+              <i class="bi bi-star me-2"></i><%= activity.category_title %>
+            </li>    
+          </ul>
+
+          <!-- Price and Button -->
+          <div class="d-sm-flex justify-content-sm-between align-items-center mt-3 mt-md-auto">
+            <% if activity.price.present? %>
+            <div class="d-flex align-items-center">
+              <h5 class="fw-bold mb-0 me-1"><%= activity.price %></h5>
+              <span class="mb-0 me-2">/<%= activity.price_type %></span>
+            </div>
+            <% end %>
+            <div class="mt-3 mt-sm-0">
+              <%= link_to "Подробнее", activity, class: "btn btn-sm btn-orange-soft mb-0 w-100" %>
+            </div>                  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

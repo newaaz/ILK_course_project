@@ -1,0 +1,72 @@
+<% provide(:title, "Активный отдых в #{ @town.parent_name }") %>
+
+<section class="parallax-window" data-controller="parallax" data-parallax="scroll" data-image-src="<%= @town.avatar.url %>">
+  <div class="parallax-content-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">          
+          <h1>Активный отдых <%= @town.parent_name %></h1>           
+        </div>
+        <div class="col-md-4">
+          <div class="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= turbo_frame_tag :town_activities do %>
+  <!-- breadcrumbs -->
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
+        <li class="breadcrumb-item"><%= link_to @town.name, @town %></li>
+        <% if @category_title %>
+          <li class="breadcrumb-item"><%= link_to "Активный отдых в #{@town.parent_name}", activities_town_path(@town) %></li> 
+          <li class="breadcrumb-item"><%= @category_title %></li>  
+        <% else %>        
+          <li class="breadcrumb-item active"><%= "Активный отдых в #{@town.parent_name}" %></li>    
+        <% end %>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="pt-2">
+    <div class="container">
+      <div class="my-3">
+        <%= link_to 'Все категории', activities_town_path(@town), class: 'btn btn-light btn-sm' %>
+        <% Activity::ACTIVITY_CATEGORIES.each do |cat| %>
+          <%= link_to cat, activities_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>
+        <% end %>
+      </div>      
+        <% if @activities.any? %>
+          <div class="mb-3">
+            <h1 class="fs-4">Объявлений: <%= @pagy.count %></h1>          
+          </div>
+
+          <div class="row g-4">
+            <%= render @activities %>
+          </div>
+
+          <% if @pagy.count > 12 %>
+            <div class="mt-5 d-flex justify-content-center">
+              <%= pagy_bootstrap_nav(@pagy).html_safe %>
+            </div>
+          <% end %>
+          <% else %>
+          <div class="text-center">
+            <h1 class="fs-4 mb-2">Нет подходящих объявлений об активном отдыхе</h1>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </section>
+<% end %>
+
+<section></section>
+<section></section>
+<section></section>
+<section></section>

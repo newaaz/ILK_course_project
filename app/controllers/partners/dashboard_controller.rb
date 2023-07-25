@@ -7,6 +7,7 @@ class Partners::DashboardController < ApplicationController
                                   .with_attached_avatar
                                   .with_attached_images
                                   .includes([:orders, :town, :category, :property_detail])
+    @activities = current_partner.activities
   end
 
   def orders

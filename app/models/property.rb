@@ -11,6 +11,7 @@ class Property < ApplicationRecord
   include Geolocable
   include Searchable
   include ListingActivatable
+  include Contactable
   
   belongs_to :owner, class_name: 'Partner'
   belongs_to :town
@@ -20,10 +21,6 @@ class Property < ApplicationRecord
   has_many :rooms, dependent: :destroy  
   has_many :orders, dependent: :destroy  
   has_many :bookings, dependent: :destroy
-
-  #TODO move to concern
-  has_one :contact, as: :contactable, dependent: :destroy
-  accepts_nested_attributes_for :contact
 
   validates :title, :address, presence: true
   validates :price_from, numericality: { greater_than: 0, less_than: 999999 }

@@ -18,10 +18,11 @@
 		</nav>
 	</div>
 
+	<%= render 'shared/not_activated' unless @property.activated? %>	
+
 	<!-- title -->
 	<section class="py-0">
-		<div class="container position-relative">
-			<%= render 'properties/show/not_activated' unless @property.activated? %>	
+		<div class="container position-relative">			
 			<!-- Title and button START -->
 			<div class="row mb-3 border-bottom pb-2">
 				<div class="col-12">
@@ -138,7 +139,11 @@
 				<!-- Right side content START -->
 				<aside class="col-lg-4 px-lg-4 px-sm-0 mt-3 order-2">
 					<% if @nearby_properties.any? %>
-						<%= render 'properties/show/nearby_properties' %>
+						<%= render partial: 'properties/show/nearby_properties', locals: { object: @property } %>
+					<% end %>
+
+					<% if @nearby_activities.any? %>
+						<%= render partial: 'activities/show/nearby_activities', locals: { object: @property } %>
 					<% end %>
 				</aside>
 				<!-- Right side content END -->

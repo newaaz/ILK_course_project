@@ -7,6 +7,7 @@ class Partner < ApplicationRecord
           :confirmable,
           :lockable
           
+  has_many :activities, foreign_key: 'owner_id', class_name: 'Activity', dependent: :destroy
   has_many :properties, foreign_key: 'owner_id', class_name: 'Property', dependent: :destroy
   has_many :as_hoster_bookings, through: :properties, source: :bookings
   has_many :as_guest_bookings, class_name: 'Booking', foreign_key: 'guest_id', inverse_of: :guest, dependent: :destroy

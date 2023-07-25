@@ -1,5 +1,5 @@
 <div class="mt-4">
-  <h4>Рядом</h4>
+  <h4>Предложения рядом</h4>
 
   <% @nearby_properties.each do |nearby_property| %>
     <div class="card shadow rounded overflow-hidden my-3">
@@ -17,7 +17,7 @@
             </h6>
             <p class="small mb-0">
             <i class="bi bi-pin-map"></i>
-            <%= @property.distance_to nearby_property %> m.
+            <%= object.distance_to nearby_property %> m.
             </p>
           </div>
         </div>

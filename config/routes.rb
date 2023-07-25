@@ -1,10 +1,22 @@
 Rails.application.routes.draw do
   authenticate :partner, lambda { |p| p.admin?  } do
     namespace :admin do
-      resources :properties, only: %i[index]
+      resources :listings, only: %i[index] do
+        get 'properties', on: :collection
+        get 'activities', on: :collection
+      end
       patch 'listings/:id/activate_listing', to: 'listings#activate_listing', as: 'activate_listing'
+      patch 'listings/:id/deactivate_listing', to: 'listings#deactivate_listing', as: 'deactivate_listing'
     end
   end
+
+  # Carrierwave
+  resources :images, only: [:create]
+  concern :imagable do
+    resources :images, only: [:destroy]
+  end
+  # Active storage
+  delete 'images/:id/purge', to: 'images#purge', as: 'purge_image'
 
   root 'static_pages#home'
 
@@ -53,12 +65,13 @@ Rails.application.routes.draw do
     post :calculate_price, on: :member
   end
 
-  delete 'images/:id/purge', to: 'images#purge', as: 'purge_image'
+  resources :activities, concerns: %i[imagable], except: %i[]
 
   # resources :orders, only: %i[show new create update]
 
   resources :towns, only: %i[show] do
     get :properties, on: :member
+    get :activities, on: :member
   end
 
   resources :carts, only: [:show, :destroy]
