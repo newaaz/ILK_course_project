@@ -1,25 +1,27 @@
-<div class="nested-fields mb-3">
-  <div class="row g-3">  
-    <div class="col-11">
-      <div class="d-flex align-items-center">
-        <%= f.label :name, class: 'form-label me-2' %>
-        <%= f.text_field :name, class: 'form-control', placeholder: 'Например: Что входит в стоимость' %>    
-      </div>     
-    </div>
+<div class="card shadow">  
+  <div class="card-header border-bottom">
+    <h5 class="mb-0">Добавить поля с информацией</h5>
+  </div>
 
-    <div class="col-1 text-end">
-      <%= link_to "#", data: { action:"click->nested-additional-fields#remove_association" },
-                       class: "btn btn-outline-danger rounded-circle p-2 lh-1" do %>
-        <i class="bi bi-x-lg"></i>
-      <% end %>
-    </div>
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-12">
+        <div data-controller="nested-additional-fields">
+          <template data-nested-additional-fields-target="template">
+            <%= f.fields_for :additional_fields, AdditionalField.new, child_index: 'NEW_RECORD' do |add_field_form| %>
+              <%= render 'additional_fields/fields', f: add_field_form %>
+            <% end %>
+          </template>
 
-    <div class="col-12">  
-      <%= f.label :value, class: 'form-label' %>
-      <%= f.text_area :value, rows: 4, class: 'form-control', placeholder: 'Например: Чай/кофе, консультация, +1 дополнительное место' %>
-    </div>
+          <%= f.fields_for :additional_fields do |add_field_form| %>
+            <%= render 'additional_fields/fields', f: add_field_form %>
+          <% end %>
 
-    <%= f.hidden_field :_destroy %>    
+          <div data-nested-additional-fields-target="add_field" class="mt-4">
+            <%= link_to "+ Добавить ещё поле", "#", data: { action:"click->nested-additional-fields#add_association" }, class: 'btn-sm btn btn-secondary' %>
+          </div>
+        </div>              
+      </div>
+    </div>
   </div>
 </div>
-

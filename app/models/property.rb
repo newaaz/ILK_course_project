@@ -22,7 +22,7 @@ class Property < ApplicationRecord
   has_many :orders, dependent: :destroy  
   has_many :bookings, dependent: :destroy
 
-  validates :title, :address, presence: true
+  validates :title, :address, :town, :category, :owner, presence: true
   validates :price_from, numericality: { greater_than: 0, less_than: 999999 }
   validates :distance_to_sea, numericality: { allow_nil: true, greater_than: 0, less_than: 30000 }
 

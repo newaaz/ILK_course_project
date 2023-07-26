@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_25_081200) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_26_163559) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -200,6 +200,32 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_081200) do
     t.index ["unlock_token"], name: "index_partners_on_unlock_token", unique: true
   end
 
+  create_table "places", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "category_title", null: false
+    t.text "description", null: false
+    t.string "address"
+    t.text "how_to_get"
+    t.string "email"
+    t.string "site"
+    t.string "vk_group"
+    t.string "avatar"
+    t.json "images"
+    t.integer "rating", limit: 2, default: 10
+    t.integer "random_id", limit: 2, default: 1
+    t.integer "promouted", limit: 2, default: 0
+    t.boolean "activated", default: false
+    t.boolean "deleted", default: false
+    t.boolean "enabled", default: true
+    t.boolean "blocked", default: false
+    t.bigint "owner_id", null: false
+    t.bigint "town_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_places_on_owner_id"
+    t.index ["town_id"], name: "index_places_on_town_id"
+  end
+
   create_table "prices", force: :cascade do |t|
     t.bigint "room_id", null: false
     t.date "start_date"
@@ -317,6 +343,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_081200) do
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "properties"
   add_foreign_key "orders", "rooms"
+  add_foreign_key "places", "partners", column: "owner_id"
+  add_foreign_key "places", "towns"
   add_foreign_key "prices", "rooms"
   add_foreign_key "properties", "categories"
   add_foreign_key "properties", "partners", column: "owner_id"
