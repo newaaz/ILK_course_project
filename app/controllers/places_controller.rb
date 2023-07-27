@@ -10,12 +10,11 @@ class PlacesController < ApplicationController
   end
 
   def show
-    # @town = Town.select(:id, :name, :parent_name).find(params[:town_id]) if params[:town_id].present?
-    # if @activity.geolocation.present?
-    #   @nearby_properties = @activity.nearby_objects('Property', 5)
-    #   @nearby_activities = @activity.nearby_objects('Activity', 5)
-    #   @nearby_services = @activity.nearby_objects('Service', 5)
-    # end
+    @town = @place.town
+    @nearby_properties = @place.nearby_objects('Property', 10)
+    @nearby_activities = @place.nearby_objects('Activity', 10)
+    @nearby_services = @place.nearby_objects('Service', 10)
+    @nearby_places = @place.nearby_objects('Place', 10)
   end
 
   def new
@@ -80,12 +79,11 @@ class PlacesController < ApplicationController
   end
 
   def place_params
-    params.require(:place).permit(:title, :address, :category_title, :avatar,
-                                      :description, :site, :email, :vk_group,
-                                      images: [], town_ids: [],
-                                      geolocation_attributes: [:id, :latitude, :longitude],                                      
-                                      contact_attributes: [:id, :name, :avatar, :phone_number, messengers: [] ],
-                                      additional_fields_attributes: [:id, :name, :value, :_destroy])
+    params.require(:place).permit(:title, :address, :category_title, :avatar, :town_id, :how_to_get,
+                                  :description, :site, :email, :vk_group, images: [],                                  
+                                  geolocation_attributes: [:id, :latitude, :longitude],                                      
+                                  contact_attributes: [:id, :name, :avatar, :phone_number, messengers: [] ],
+                                  additional_fields_attributes: [:id, :name, :value, :_destroy])
   end
 
   def pundit_user

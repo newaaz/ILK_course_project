@@ -11,6 +11,6 @@ class Place < ApplicationRecord
   include Contactable
   include AdditionalFieldable
 
-  validates :title, :category_title, :description, :town, :owner, presence: true
+  validates :title, :category_title, :description, :town_id, presence: true
   validates :category_title, inclusion: { in: PLACE_CATEGORIES }
 end
