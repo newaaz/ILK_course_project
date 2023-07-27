@@ -23,6 +23,7 @@ class ServicesController < ApplicationController
       @nearby_properties = @service.nearby_objects('Property', 5)
       @nearby_activities = @service.nearby_objects('Activity', 5)
       @nearby_services = @service.nearby_objects('Service', 5)
+      @nearby_places = @service.nearby_objects('Place', 5)
     end
   end
 
