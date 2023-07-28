@@ -1,11 +1,11 @@
-<% provide(:title, "Места и достопримечательности в #{ @town.parent_name }") %>
+<% provide(:title, "Локации в #{ @town.parent_name }") %>
 
 <section class="parallax-window" data-controller="parallax" data-parallax="scroll" data-image-src="<%= @town.avatar.url %>">
   <div class="parallax-content-2">
     <div class="container">
       <div class="row">
         <div class="col-md-8">          
-          <h1>Места в <%= @town.parent_name %></h1>           
+          <h1>Локации в <%= @town.parent_name %></h1>           
         </div>
         <div class="col-md-4">
           <div id="price_single_main" class="hotel">
@@ -25,10 +25,10 @@
         <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
         <li class="breadcrumb-item"><%= link_to @town.name, @town %></li>
         <% if @category_title %>
-          <li class="breadcrumb-item"><%= link_to "Места и достопримечательности в #{@town.parent_name}", places_town_path(@town) %></li> 
+          <li class="breadcrumb-item"><%= link_to "Локации в #{@town.parent_name}", places_town_path(@town) %></li> 
           <li class="breadcrumb-item active"><%= @category_title %></li>  
         <% else %>
-          <li class="breadcrumb-item active"><%= "Места и достопримечательности в #{@town.parent_name}" %></li>      
+          <li class="breadcrumb-item active"><%= "Локации в #{@town.parent_name}" %></li>      
         <% end %>
       </ol>
     </nav>
@@ -53,13 +53,13 @@
     <div class="container">
       <div class="mb-3">
         <% if @category_title %>
-          <h1 class="fs-4"><i class="bi bi-pin-map text-warning me-3"></i><%= "Места и достопримечательности. #{@category_title} в #{@town.parent_name} (#{@pagy.count})" %></h1> 
+          <h1 class="fs-4"><i class="bi bi-pin-map text-warning me-3"></i><%= "Локации. #{@category_title} в #{@town.parent_name} (#{@pagy.count})" %></h1> 
         <% else %>
-          <h1 class="fs-4"><i class="bi bi-pin-map text-warning me-3"></i><%= "Места и достопримечательности в #{@town.parent_name} (#{@pagy.count})" %></h1> 
+          <h1 class="fs-4"><i class="bi bi-pin-map text-warning me-3"></i><%= "Локации в #{@town.parent_name} (#{@pagy.count})" %></h1> 
         <% end %>                    
       </div>
       <div class="my-3">
-        <%= link_to 'Все места', places_town_path(@town), class: 'btn btn-light btn-sm' %>
+        <%= link_to 'Все локации', places_town_path(@town), class: 'btn btn-light btn-sm' %>
         <% Place::PLACE_CATEGORIES.each do |cat| %>
           <%= link_to cat, places_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>
         <% end %>
