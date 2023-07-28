@@ -1,18 +1,10 @@
-<div class="col-md-6 col-12">
-  <div class="row g-1">  
-    <div class="col-12 col-lg-5">    
-      <div class="card bg-transparent p-1 h-100 text-center">
-        <div class="avatar avatar-xxxl mx-auto">
-          <%= image_tag town.avatar.thumb.url, class: "avatar-img border border-white border-3 shadow rounded-circle", alt: town.name %>
-        </div>
-        <div class="card-body p-0 pt-3">
-          <h5 class="card-title"><%= link_to town.name, town, class: "stretched-link"%></h5>
-        </div>
-      </div>
+<div class="col-auto">   
+  <div class="card bg-transparent p-1 h-100 text-center">
+    <div class="avatar avatar-xxxl mx-auto">
+      <%= image_tag town.avatar.thumb.url, class: "avatar-img border border-white border-3 shadow rounded-circle", alt: town.name %>
     </div>
-  
-    <div class="col-12 col-lg-7 pt-md-4">
-      <span class=""><%= town.description.truncate(214) %></span>
-    </div>  
+    <div class="card-body p-0 pt-3">
+      <h5 class="card-title"><%= link_to town.name, town, class: "stretched-link"%></h5>
+    </div>
   </div>
 </div>

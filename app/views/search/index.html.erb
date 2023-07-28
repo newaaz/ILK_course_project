@@ -44,7 +44,7 @@
     <div class="row gx-4">
       <% if @properties.any? %>
         <div class="col-12 mb-3">
-          <h1 class="fs-4">Предложений: <%= @pagy.count %></h1>          
+          <h1 class="fs-4"><i class="bi bi-check2-circle text-primary me-3"></i>Где остановиться (<%= @pagy.count %>)</h1>          
         </div>
 
         <%= render partial: 'properties/property', collection: @properties, as: :property %>

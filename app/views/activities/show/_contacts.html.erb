@@ -10,7 +10,7 @@
       
       <% if @activity.owner.avatar.present? %>
         <div class="avatar">           
-          <%= image_tag(@property.owner.avatar.thumb.url, class: 'avatar-img rounded-circle shadow ms-4') %>    
+          <%= image_tag(@activity.owner.avatar.thumb.url, class: 'avatar-img rounded-circle shadow ms-4') %>    
         </div>
       <% end %>
     </div>

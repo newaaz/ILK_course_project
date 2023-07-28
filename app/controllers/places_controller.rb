@@ -5,8 +5,16 @@ class PlacesController < ApplicationController
   after_action  :verify_authorized
 
   def index
-    # activities = Activity.all
-    # @pagy, @activities = pagy(activities, items: 12)
+    if params[:category_title].present?
+      places = Place.activated
+                    .select(:id, :title, :avatar, :images, :category_title, :town_id, :address)
+                    .where(category_title: params[:category_title])
+      @category_title = params[:category_title]
+    else
+      places = Place.activated.select(:id, :title, :avatar, :images, :category_title, :town_id, :address)
+    end
+
+    @pagy, @places = pagy(places, items: 12)
   end
 
   def show

@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     get 'info', to: 'dashboard#info'
   end
 
-  resources :properties, except: %i[index] do
+  resources :properties do
     resources :rooms, except: %i[index show], shallow: true
     resources :bookings, only: %i[new create]
     post :calculate_price, on: :member
@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   resources :places, concerns: %i[imagable], except: %i[]
   resources :restaurants, concerns: %i[imagable], except: %i[]
 
-  resources :towns, only: %i[show] do
+  resources :towns, only: %i[index show] do
     get :properties, on: :member
     get :activities, on: :member
     get :services, on: :member

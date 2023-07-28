@@ -24,6 +24,12 @@ class Admin::ListingsController < Admin::BaseController
     render :listings
   end
 
+  def places
+    places = Place.all
+    @pagy, @listings = pagy(places, items: 12)
+    render :listings
+  end
+
   def activate_listing    
     listing = params[:model_name].constantize.find(params[:id])
     listing.activate!

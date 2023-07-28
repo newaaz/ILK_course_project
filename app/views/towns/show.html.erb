@@ -75,9 +75,25 @@
     <% end %>
 
     <div class="my-3">
-      <%= link_to 'Все категории', services_town_path(@town), class: 'btn btn-light btn-sm' %>
+      <%= link_to 'Все услуги и сервисы', services_town_path(@town), class: 'btn btn-light btn-sm' %>
       <% Service::SERVICE_CATEGORIES.each do |cat| %>
         <%= link_to cat, services_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>
+      <% end %>
+    </div>
+	</div>
+</section>
+
+<section class="py-3">
+	<div class="container">		
+    <%= link_to places_town_path(@town), class: 'btn btn-warning' do %>
+      <i class="bi bi-pin-map me-2"></i>
+      <%= "Места в #{@town.parent_name}" %>
+    <% end %>
+
+    <div class="my-3">
+      <%= link_to 'Все места', places_town_path(@town), class: 'btn btn-light btn-sm' %>
+      <% Place::PLACE_CATEGORIES.each do |cat| %>
+        <%= link_to cat, places_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>
       <% end %>
     </div>
 	</div>
