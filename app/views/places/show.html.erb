@@ -10,7 +10,7 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
       <li class="breadcrumb-item"><%= link_to @town.name, @town %></li>
-      <li class="breadcrumb-item"><%= link_to "Места и достопримечательности", places_town_path(@town) %></li>				
+      <li class="breadcrumb-item"><%= link_to "Локации", places_town_path(@town) %></li>				
       <li class="breadcrumb-item"><%= link_to @place.category_title, places_town_path(@town, { category_title: @place.category_title }) %></li>
       <li class="breadcrumb-item active"><%= @place.title %></li> 
     </ol>
@@ -114,7 +114,8 @@
       <aside class="col-lg-4 px-lg-4 px-sm-0 mt-3 order-2">
 
           <% if @nearby_properties.any? %>
-            <%= render partial: 'properties/show/nearby_properties', locals: { object: @place } %>
+            <h4>Предложения рядом</h4>
+						<%= render partial: 'shared/nearby_object', locals: { main_object: @place, nearby_objects: @nearby_properties } %>
           <% end %>
 
           <% if @nearby_activities.any? %>
@@ -128,7 +129,7 @@
 					<% end %>
 
           <% if @nearby_places.any? %>
-            <h4>Места и достопримечательности рядом</h4>
+            <h4>Локации рядом</h4>
 						<%= render partial: 'shared/nearby_object', locals: { main_object: @place, nearby_objects: @nearby_places } %>
 					<% end %>
       

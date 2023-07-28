@@ -239,8 +239,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_163559) do
 
   create_table "properties", force: :cascade do |t|
     t.string "title", null: false
+    t.string "avatar"
+    t.json "images"
     t.string "address"
     t.integer "rating", limit: 2, default: 50
+    t.integer "random_id", limit: 2, default: 1
+    t.integer "promouted", limit: 2, default: 0
     t.integer "price_from", limit: 2
     t.integer "distance_to_sea", limit: 2
     t.string "services", default: [], array: true
@@ -278,6 +282,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_163559) do
   create_table "rooms", force: :cascade do |t|
     t.bigint "property_id", null: false
     t.string "title", null: false
+    t.string "avatar"
+    t.json "images"
     t.integer "guest_base_count", limit: 2, null: false
     t.integer "guest_max_count", limit: 2, null: false
     t.string "description"

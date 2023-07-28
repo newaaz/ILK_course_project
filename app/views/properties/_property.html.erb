@@ -9,9 +9,9 @@
         data-loop="true"
         data-keyboard="true"
         data-auto="false">      
-      <%= link_to image_tag(property.avatar.variant(resize_to_limit: [3, 2])), property.avatar %>      
+      <%= link_to image_tag(property.avatar.thumb_100.url), property.avatar.thumb.url %>      
       <% property.images.take(2).each do |image| %> 
-        <%= link_to image_tag(image.variant(resize_to_limit: [3, 2])), image %>     
+        <%= link_to image_tag(image.thumb_100.url), image.thumb.url %>     
       <% end %>
     </div>
     <!-- fotorama end -->   

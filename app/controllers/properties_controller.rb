@@ -38,9 +38,9 @@ class PropertiesController < ApplicationController
 
   def index
     if params[:cat].blank?
-      properties = Property.activated.with_attached_avatar.with_attached_images    
+      properties = Property.activated  
     else
-      properties = Property.activated.with_attached_avatar.with_attached_images.where(category_id: params[:cat])
+      properties = Property.activated.where(category_id: params[:cat])
       @properties_category = Category.find(params[:cat])      
     end
     @categories = Category.all
@@ -48,7 +48,7 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @rooms = @property.rooms.with_attached_images.with_attached_avatar
+    @rooms = @property.rooms
     @nearby_properties = @property.nearby_objects('Property', 5)
     @nearby_activities = @property.nearby_objects('Activity', 5)
     @nearby_services = @property.nearby_objects('Service', 5)
@@ -114,9 +114,7 @@ class PropertiesController < ApplicationController
   private
 
   def set_property
-    @property = Property.with_attached_images.with_attached_avatar
-                        .includes([:geolocation, :property_detail, :contact, :town, :category])
-                        .find(params[:id])
+    @property = Property.includes([:geolocation, :property_detail, :contact, :town, :category]).find(params[:id])
   end
 
   def property_params

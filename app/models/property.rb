@@ -7,7 +7,8 @@ class Property < ApplicationRecord
                 playground: 'Детская площадка',
               }.freeze
 
-  include Imagable
+  #include Imagable
+  include CarrierwaveImagable
   include Geolocable
   include Searchable
   include ListingActivatable

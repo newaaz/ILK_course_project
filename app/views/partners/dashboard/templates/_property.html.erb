@@ -4,15 +4,26 @@
     <div class="d-flex justify-content-between align-items-center">
       <h4 class="card-header-title"><%= link_to property.title, property %></h4>
 
-      <div class="">
-        <%= link_to edit_property_path(property), class: 'btn btn-outline-primary btn-sm' do %>
-          <i class="bi bi-pencil-square me-1"></i>Изменить
-        <% end %>
-        <!-- DELETE OBJECT 
-        <%= link_to property_path(property), data: { "turbo-method": :delete, turbo_confirm: "Точно удалить - Вы уверены?" }, class: 'btn btn-sm btn-outline-danger' do %>
-          <i class="bi bi-trash3 fa-fw me-1"></i>Удалить
-        <% end %> -->
-      </div> 
+      <ul class="list-inline mb-0">
+        <li class="list-inline-item dropdown">
+          <a href="#" class="btn btn-sm btn-round btn-light mb-0" role="button" id="dropdownShare2" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-three-dots-vertical"></i>
+          </a>              
+          <ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare2">
+            <li>
+              <%= link_to edit_property_path(property), class: 'dropdown-item' do %>
+                <i class="bi bi-pencil-square me-2"></i>Изменить
+              <% end %>
+            </li>
+            <!-- delete 
+            <li>
+              <%= link_to property_path(property), class: 'dropdown-item text-danger bg-danger-soft-hover', data: { "turbo-method": :delete, turbo_confirm: "Точно удалить - Вы уверены?" } do %>
+                <i class="bi bi-trash fa-fw me-2"></i>Удалить
+              <% end %>
+            </li> -->
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 
@@ -22,7 +33,7 @@
 
       <!-- Avatar -->
       <div class="col-md-6 px-0 px-md-2">
-        <%= link_to image_tag(property.avatar.variant(resize_to_limit: [250, 250]), class: "card-img rounded-2"), property %>  
+        <%= link_to image_tag(property.avatar.thumb.url, class: "card-img rounded-2"), property %>  
       </div>
 
       <div class="col-md-6 mt-3">

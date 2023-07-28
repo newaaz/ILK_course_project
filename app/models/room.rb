@@ -11,7 +11,8 @@ class Room < ApplicationRecord
     kettle: 'Эл чайник'
   }.freeze
 
-  include Imagable
+  #include Imagable
+  include CarrierwaveImagable
 
   after_save -> { self.property.reindex } 
   

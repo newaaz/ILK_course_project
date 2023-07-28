@@ -1,4 +1,4 @@
-<% provide(:title, "Места и достопримечательности") %>
+<% provide(:title, "Локации") %>
 
 <%= turbo_frame_tag :town_places do %>
   <!-- breadcrumbs -->
@@ -7,10 +7,10 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>      
         <% if @category_title %>
-          <li class="breadcrumb-item"><%= link_to "Места и достопримечательности", places_path %></li> 
+          <li class="breadcrumb-item"><%= link_to "Локации", places_path %></li> 
           <li class="breadcrumb-item active"><%= @category_title %></li>  
         <% else %>
-          <li class="breadcrumb-item active">Места и достопримечательности</li>      
+          <li class="breadcrumb-item active">Локации</li>      
         <% end %>
       </ol>
     </nav>
@@ -32,13 +32,13 @@
     <div class="container">
       <div class="mb-3">
         <% if @category_title %>
-          <h1 class="fs-4"><i class="bi bi-pin-map text-warning me-3"></i>Места и достопримечательности. <%= @category_title %> (<%= @pagy.count %>)</h1> 
+          <h1 class="fs-4"><i class="bi bi-pin-map text-warning me-3"></i>Локации. <%= @category_title %> (<%= @pagy.count %>)</h1> 
         <% else %>
-          <h1 class="fs-4"><i class="bi bi-pin-map text-warning me-3"></i>Места и достопримечательности (<%= @pagy.count %>)</h1> 
+          <h1 class="fs-4"><i class="bi bi-pin-map text-warning me-3"></i>Локации (<%= @pagy.count %>)</h1> 
         <% end %>                    
       </div>
       <div class="my-3">
-        <%= link_to 'Все места', places_path, class: 'btn btn-light btn-sm' %>
+        <%= link_to 'Все локации', places_path, class: 'btn btn-light btn-sm' %>
         <% Place::PLACE_CATEGORIES.each do |cat| %>
           <%= link_to cat, places_path(category_title: cat), class: 'btn btn-light btn-sm' %>
         <% end %>

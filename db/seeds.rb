@@ -208,13 +208,22 @@ end
 
 # Create property
 def create_property
-  property = Property.new(title:        PROPERTY_TITLES.sample,
-                          address:      ADRESSES.sample,
-                          town:         Town.all.sample,
-                          category:     Category.all.sample,
-                          owner:        Partner.first,
-                          activated:    true,
-                          price_from:   (rand(1000..5000) / 50).round * 50,
+  property = Property.new(title:      PROPERTY_TITLES.sample,
+                          avatar:     File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                          images:     [ 
+                                        File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                        File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                        File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                        File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                        File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                        File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg"))
+                                      ],
+                          address:    ADRESSES.sample,
+                          town:       Town.all.sample,
+                          category:   Category.all.sample,
+                          owner:      Partner.first,
+                          activated:  true,
+                          price_from: (rand(1000..5000) / 50).round * 50,
                           distance_to_sea: (rand(200..1500) / 50).round * 50,
                           services: ["kitchen", "excursions", "pool", "parking", "playground"],
                           geolocation:  Geolocation.new(
@@ -236,14 +245,23 @@ def create_property
                             email: 'email@email.ru',
                             vk_group: 'i_lovekrim'))
   
-  property.avatar.attach(io: rand_image_path .open, filename: "avatar.jpg")
-  6.times do |i|
-    property.images.attach(io: rand_image_path .open, filename: "p_#{i + 1}.jpg")
-  end    
+  # add images by ActiveStorage (deprecated)
+  # property.avatar.attach(io: rand_image_path .open, filename: "avatar.jpg")
+  # 6.times do |i|
+  #   property.images.attach(io: rand_image_path .open, filename: "p_#{i + 1}.jpg")
+  # end    
   
   # Create Room's
   4.times do |i|
     room = property.rooms.build(title: "Стандартный #{i + 1}-х местный номер",
+                                avatar: File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                images: [ 
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg"))
+                                        ],
                                 guest_base_count: 2,
                                 guest_max_count: rand(1..10),
                                 rooms_count: 1,
@@ -260,11 +278,12 @@ def create_property
                                   Price.new(start_date: '01/05/2023', end_date: '31/05/2023', day_cost: rand_price),
                                   Price.new(start_date: '01/06/2023', end_date: '30/09/2025', day_cost: rand_price),
                                 ])
-  
-    room.avatar.attach(io: rand_image_path .open, filename: "r(#{i}).jpg")
-    5.times do |i|
-      room.images.attach(io: rand_image_path .open, filename: "r_#{i + 1}.jpg")
-    end
+    # add images by ActiveStorage (deprecated)
+    # room.avatar.attach(io: rand_image_path .open, filename: "r(#{i}).jpg")
+    # 5.times do |i|
+    #   room.images.attach(io: rand_image_path .open, filename: "r_#{i + 1}.jpg")
+    # end
+
     #puts "Room #{room.title} for #{room.property.title} created"
   end  
 
@@ -283,10 +302,10 @@ time = Benchmark.measure do
   65.times { create_property }
   
   Activity.destroy_all
-  45.times { create_activity }
+  35.times { create_activity }
 
   Service.destroy_all
-  45.times { create_service }
+  35.times { create_service }
 
   Place.destroy_all
   45.times { create_place }
