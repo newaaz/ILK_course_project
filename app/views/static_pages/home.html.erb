@@ -5,11 +5,24 @@
 <section class="py-0">
 	<div class="container">
 		<div class="row mb-4">
-				<h2 class="h3 ps-md-5"><i class="bi bi-check2-circle text-orange me-3"></i>Куда поехать</h2>
+      <%= link_to towns_path do %>
+				<h2 class="h3 ps-md-5"><i class="bi bi-compass text-orange me-3"></i><span class="text-decoration-underline">Куда поехать</span></h2>
+      <% end %>
 		</div>
 
-    <div class="row g-4 g-md-5 justify-content-center">
-      <%= render @towns %>
+    <div class="row g-5 g-md-4 justify-content-center">
+      <% @towns.each do |town| %>
+        <div class="col-auto">   
+          <div class="card bg-transparent p-1 h-100 text-center">
+            <div class="avatar avatar-xxxl mx-auto">
+              <%= image_tag town.avatar.thumb.url, class: "avatar-img border border-white border-3 shadow rounded-circle", alt: town.name %>
+            </div>
+            <div class="card-body p-0 pt-3">
+              <h5 class="card-title"><%= link_to town.name, town, class: "stretched-link"%></h5>
+            </div>
+          </div>
+        </div>
+      <% end %>
 		</div>	
 	</div>
 </section>
@@ -17,7 +30,12 @@
 <section>
   <div class="container">
     <div class="row mb-4">
-			<h2 class="h3 ps-md-5"><i class="bi bi-check2-circle text-orange me-3"></i>Популярные предложения</h2>
+      <%= link_to properties_path do %>
+			  <h2 class="h3 ps-md-5">
+        <i class="bi bi-check2-circle text-primary me-3"></i>
+        <span class="text-decoration-underline">Где остановиться</span>
+        </h2>
+      <% end %>
 		</div>
 
     <div class="row gx-4">
@@ -29,7 +47,9 @@
 <section>
   <div class="container">
     <div class="row mb-4">
-			<h2 class="h3 ps-md-5"><i class="bi bi-star text-orange me-3"></i>Активный отдых</h2>
+      <%= link_to activities_path do %>
+			  <h2 class="h3 ps-md-5"><i class="bi bi-star text-orange me-3"></i><span class="text-decoration-underline">Активный отдых</span></h2>
+      <% end %>
 		</div>
 
     <div class="row g-4">
@@ -41,7 +61,9 @@
 <section>
   <div class="container">
     <div class="row mb-4">
-			<h2 class="h3 ps-md-5"><i class="bi bi-box text-orange me-3"></i>Услуги и сервисы</h2>
+      <%= link_to services_path do %>
+        <h2 class="h3 ps-md-5"><i class="bi bi-box text-info me-3"></i><span class="text-decoration-underline">Услуги и сервисы</span></h2>
+      <% end %>
 		</div>
 
     <div class="row g-4">
@@ -49,3 +71,18 @@
     </div>
   </div>
 </section>
+
+<section>
+  <div class="container">
+    <div class="row mb-4">
+      <%= link_to places_path do %>
+        <h2 class="h3 ps-md-5"><i class="bi bi-pin-map text-warning me-3"></i><span class="text-decoration-underline">Места и достопримечательности</span></h2>
+      <% end %>
+		</div>
+
+    <div class="row g-4">
+      <%= render @places %>
+    </div>
+  </div>
+</section>
+

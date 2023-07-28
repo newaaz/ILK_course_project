@@ -151,6 +151,11 @@
             <h4>Услуги и сервисы рядом</h4>
 						<%= render partial: 'shared/nearby_object', locals: { main_object: @property, nearby_objects: @nearby_services } %>
 					<% end %>
+
+					<% if @nearby_places.any? %>
+            <h4>Места и достопримечательности рядом</h4>
+						<%= render partial: 'shared/nearby_object', locals: { main_object: @property, nearby_objects: @nearby_places } %>
+					<% end %>
 				</aside>
 				<!-- Right side content END -->
 			</div>

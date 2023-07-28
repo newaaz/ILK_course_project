@@ -5,8 +5,15 @@ class ActivitiesController < ApplicationController
   after_action  :verify_authorized
 
   def index
-    activities = Activity.all
-    @pagy, @activities = pagy(activities, items: 12)
+    if params[:category_title].present?
+      activities = Activity.all.activated
+                           .select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address)
+                           .where(category_title: params[:category_title])
+      @category_title = params[:category_title]
+    else
+      activities = Activity.all.activated.select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address)
+    end
+    @pagy, @activities = pagy(activities, items: 12) 
   end
 
   def show
@@ -15,6 +22,7 @@ class ActivitiesController < ApplicationController
       @nearby_properties = @activity.nearby_objects('Property', 5)
       @nearby_activities = @activity.nearby_objects('Activity', 5)
       @nearby_services = @activity.nearby_objects('Service', 5)
+      @nearby_places = @activity.nearby_objects('Place', 5)
     end
   end
 

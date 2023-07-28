@@ -131,33 +131,7 @@
     </div> 
   </div>  
 
-  <div class="card shadow">  
-    <div class="card-header border-bottom">
-      <h5 class="mb-0">Добавить поля с информацией</h5>
-    </div>
-
-    <div class="card-body">
-      <div class="row g-3">
-        <div class="col-12">
-          <div data-controller="nested-additional-fields">
-            <template data-nested-additional-fields-target="template">
-              <%= f.fields_for :additional_fields, AdditionalField.new, child_index: 'NEW_RECORD' do |add_field_form| %>
-                <%= render 'additional_fields/form', f: add_field_form %>
-              <% end %>
-            </template>
-
-            <%= f.fields_for :additional_fields do |add_field_form| %>
-              <%= render 'additional_fields/form', f: add_field_form %>
-            <% end %>
-
-            <div data-nested-additional-fields-target="add_field" class="mt-4">
-              <%= link_to "+ Добавить ещё поле период", "#", data: { action:"click->nested-additional-fields#add_association" }, class: 'btn-sm btn btn-secondary' %>
-            </div>
-          </div>              
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render 'additional_fields/form', f: f %>
 
   <div class="text-center">
     <%= f.submit f.object.new_record? ? "Разместить объявление" : "Сохранить изменения", class:"btn btn-primary my-4" %>

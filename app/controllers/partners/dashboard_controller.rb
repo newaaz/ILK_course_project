@@ -9,6 +9,7 @@ class Partners::DashboardController < ApplicationController
                                   .includes([:orders, :town, :category, :property_detail])
     @activities = current_partner.activities
     @services = current_partner.services
+    @places = current_partner.places
   end
 
   def orders

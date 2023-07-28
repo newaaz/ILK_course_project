@@ -1,0 +1,31 @@
+<% provide(:title, "Курорты") %>
+
+<!-- breadcrumbs -->
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li> 
+      <li class="breadcrumb-item">Выбор курорта</li>      
+    </ol>
+  </nav>
+</div>
+
+<section class="pt-2">
+	<div class="container">
+		<div class="row mb-4">      
+			<h1 class="h3 ps-md-5"><i class="bi bi-compass text-orange me-3"></i>Куда поехать</h1>
+		</div>
+  </div>
+
+  <%= render @towns %>
+
+
+</section>
+
+
+
+
+
+
+
+

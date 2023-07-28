@@ -1,11 +1,13 @@
 <div class="col-md-6">
-  <div class="card shadow p-2">
+  <div class="card card-hover-shadow p-2">
     <div class="row g-0">
       <!-- Card img -->
       <div class="col-md-4 position-relative">
         <!-- Overlay item -->
         <div class="position-absolute top-0 start-0 z-index-1 m-1">
-          <div class="badge bg-info bg-opacity-75 text-light" style="font-size:12px;"><%= service.category_title %></div>
+          <%= link_to (@town.present? ? services_town_path(@town.id, category_title: service.category_title) : services_path(category_title: service.category_title)) do %>
+            <div class="badge bg-info bg-opacity-75 text-light" style="font-size:12px;"><%= service.category_title %></div>
+          <% end %>
         </div>
 
         <div class="overflow-hidden rounded-2">

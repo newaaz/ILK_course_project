@@ -1,5 +1,7 @@
 class Town < ApplicationRecord
   has_many  :properties, dependent: :destroy
+  has_many  :places, dependent: :destroy
+  has_many  :restaurants, dependent: :destroy
   has_and_belongs_to_many :activities
   has_and_belongs_to_many :services
 

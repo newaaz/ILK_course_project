@@ -1,0 +1,25 @@
+<div class="nested-fields mb-3">
+  <div class="row g-3">  
+    <div class="col-11">
+      <div class="d-flex align-items-center">
+        <%= f.label :name, class: 'form-label me-2' %>
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Например: Что входит в стоимость' %>    
+      </div>     
+    </div>
+
+    <div class="col-1 text-end">
+      <%= link_to "#", data: { action:"click->nested-additional-fields#remove_association" },
+                       class: "btn btn-outline-danger rounded-circle p-2 lh-1" do %>
+        <i class="bi bi-x-lg"></i>
+      <% end %>
+    </div>
+
+    <div class="col-12">  
+      <%= f.label :value, class: 'form-label' %>
+      <%= f.text_area :value, rows: 4, class: 'form-control', placeholder: 'Например: Чай/кофе, консультация, +1 дополнительное место' %>
+    </div>
+
+    <%= f.hidden_field :_destroy %>    
+  </div>
+</div>
+

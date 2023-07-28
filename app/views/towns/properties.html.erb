@@ -41,7 +41,7 @@
         <%= render 'search/form' %>
       </div>
 
-      <div class="col-md-12 mt-5 text-center text-md-start mt-md-3">
+      <div class="col-md-12 mt-5 text-center text-md-start mt-md-4">
         <%= link_to town_path(@town), class: 'badge bg-primary  text-white mb-3' do %>
           Страница города<i class="ms-2 bi bi-arrow-right"></i>
         <% end %>
@@ -50,47 +50,45 @@
         <% end %>
         <%= link_to services_town_path(@town), class: 'badge bg-info bg-opacity-10 text-info ms-2 mb-3' do %>
           <i class="bi bi-box me-2"></i>Услуги и сервисы
-        <% end %>  
+        <% end %>
+        <%= link_to places_town_path(@town), class: 'badge bg-warning bg-opacity-10 text-warning ms-2 mb-3' do %>
+          <i class="bi bi-pin-map me-2"></i>Места и достопримечательности
+        <% end %>
       </div>
     </div>
   </div>
 
-
-
   <section class="pt-2">
     <div class="container">
+      <div class="mb-3">
+        <% if @properties_category %>
+          <h1 class="fs-4"><i class="bi bi-check2-circle text-primary me-3"></i><%= "#{@properties_category.title} в #{@town.parent_name} (#{@pagy.count})" %></h1> 
+        <% else %>
+          <h1 class="fs-4"><i class="bi bi-check2-circle text-primary me-3"></i><%= "Где остановиться в #{@town.parent_name} (#{@pagy.count})" %></h1> 
+        <% end %>                    
+      </div>
       <div class="mb-4">
-        <h2 class="fs-4">Где остановиться в <%= @town.parent_name %></h2>
         <%= link_to 'Все категории', properties_town_path(@town), class: 'btn btn-light btn-sm' %>
         <% @categories.each do |cat| %>
           <%= link_to cat.title, { cat: cat.id }, data: { turbo_frame: :town_properties }, class: 'btn btn-light btn-sm' %>
         <% end %>
       </div>
-
-      <div class="row gx-4">
-        <% if @properties.any? %>
-          <div class="col-12 mb-3">
-            <h2 class="fs-5">Предложений: <%= @pagy.count %></h2>          
-          </div>
-
+      
+      <% if @properties.any? %>
+        <div class="row gx-4">
           <%= render partial: 'properties/property', collection: @properties, as: :property %>
-
-          <% if @pagy.count > 12 %>
-            <div class="col-12 mt-5 d-flex justify-content-center">
-              <%= pagy_bootstrap_nav(@pagy).html_safe %>
-            </div>
-          <% end %>
-          <% else %>
-          <div class="col-12 text-center">
-            <h1 class="fs-4 mb-2">Нет подходящих предложений</h1>
+        </div>
+        <% if @pagy.count > 12 %>
+          <div class="col-12 mt-5 d-flex justify-content-center">
+            <%= pagy_bootstrap_nav(@pagy).html_safe %>
           </div>
         <% end %>
-      </div>
+      <% else %>
+        <div class="col-12 text-center">
+          <h1 class="fs-4 mb-2">Нет подходящих предложений</h1>
+        </div>
+      <% end %>      
     </div>
   </section>
 <% end %>
 
-<section></section>
-<section></section>
-<section></section>
-<section></section>

@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
     @properties = Property.activated.with_attached_avatar.with_attached_images.take 3
     @activities = Activity.activated.select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address).take 6
     @services = Service.activated.select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address).take 6
+    @places = Place.activated.select(:id, :title, :avatar, :images, :category_title, :town_id, :address).take 6
   end
 
   def contacts

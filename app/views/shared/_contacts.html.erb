@@ -1,0 +1,84 @@
+<div class="card border">  
+  <div class="card-header border-bottom text-center">
+    <h6 class="mb-0">
+      <% if object.contact&.name.present? %>
+        <%= object.contact.name %>
+
+        <div class="avatar align-middle ms-4">  
+          <% if object.owner.avatar.present? %>                
+            <%= image_tag(object.owner.avatar.thumb.url, class: 'avatar-img rounded-circle shadow') %>    
+          <% else %>
+            <div class="avatar-img rounded-circle bg-primary bg-opacity-10">
+              <span class="text-primary position-absolute top-50 start-50 translate-middle fw-bold">
+                <%= object.contact.name[0] %>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        Контакты
+      <% end %>
+    </h6>
+  
+  </div>
+
+  <div class="card-body py-2 px-3">
+    <div class="my-4 vstack gap-3 ps-3">
+      <% if object.site.present? %>
+        <a href="http://<%= object.site %>" target="_blank">
+        <span class="badge bg-secondary bg-opacity-10 text-black-50"><i class="bi bi-globe"></i></span>          
+          &nbsp;<%= object.site %>
+        </a>  
+      <% end %>
+
+      <% if object.email.present? %>
+        <div>
+          <span class="badge bg-secondary bg-opacity-10 text-black-50"><i class="bi bi-envelope"></i></span>
+          <%= object.email %>
+        </div>
+      <% end %>
+    
+      <% if object.vk_group.present? %>
+        <a href="https://vk.com/<%= object.vk_group %>" target="_blank">
+          <span class="badge bg-secondary bg-opacity-10 text-black-50">VK</span>
+          &nbsp;<%= object.vk_group %>
+        </a>  
+      <% end %>
+    </div>
+
+    <% if object.contact&.phone_number.present? %>
+      <div class="hstack gap-2 ">
+        <a class="btn btn-primary-soft btn-sm w-100" data-bs-toggle="collapse" href="#collapseContacts" role="button" aria-expanded="false" aria-controls="collapseContacts">
+          <i class="bi bi-caret-down me-1"></i>Контакты
+        </a>
+
+        <%= link_to new_property_booking_path(object),
+              data: { turbo_frame: "modal" },
+              class: 'btn btn-orange-soft btn-sm w-100' do %>
+          <i class="bi bi-send me-1"></i> Написать
+        <% end %>      
+      </div>
+
+      <div class="collapse" id="collapseContacts">
+        <% if object.contact.phone_number.present? %>
+          <div class="my-4 vstack gap-3 ">          
+            <a href=<%= "tel:#{object.contact.phone_number}" %>>
+              <span class="badge bg-secondary bg-opacity-10 text-black-50"><i class="bi bi-telephone"></i></span>            
+              <%= object.contact.phone_number %>
+            </a>
+          </div>
+        
+          <div class="text-center">
+            <% object.contact.messengers.each do |messenger| %>
+              <%= link_to_messenger(messenger, object.contact.phone_number) %>          
+            <% end %>
+          </div>
+        <% end %>       
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+

@@ -41,45 +41,44 @@
       <% end %>
       <%= link_to services_town_path(@town), class: 'badge bg-info bg-opacity-10 text-info ms-2 mb-3' do %>
         <i class="bi bi-box me-2"></i>Услуги и сервисы
-      <% end %>  
+      <% end %>
+      <%= link_to places_town_path(@town), class: 'badge bg-warning bg-opacity-10 text-warning ms-2 mb-3' do %>
+        <i class="bi bi-pin-map me-2"></i>Места и достопримечательности
+      <% end %>
     </div>
   </div>
 
-  <section class="pt-4">
+  <section class="pt-2">
     <div class="container">
-      <h2 class="fs-4">Активный отдых в <%= @town.parent_name %></h2>
+      <div class="mb-3">
+        <% if @category_title %>
+          <h1 class="fs-4"><i class="bi bi-star text-orange me-3"></i><%= "Активный отдых. #{@category_title} в #{@town.parent_name}  (#{@pagy.count})" %></h1> 
+        <% else %>
+          <h1 class="fs-4"><i class="bi bi-star text-orange me-3"></i><%= "Активный отдых в #{@town.parent_name}  (#{@pagy.count})" %></h1> 
+        <% end %>                    
+      </div>
       <div class="mb-3 mt-2">
         <%= link_to 'Все категории', activities_town_path(@town), class: 'btn btn-light btn-sm' %>
         <% Activity::ACTIVITY_CATEGORIES.each do |cat| %>
           <%= link_to cat, activities_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>
         <% end %>
       </div>      
-        <% if @activities.any? %>
-          <div class="mb-3">
-            <h1 class="fs-4">Объявлений: <%= @pagy.count %></h1>          
-          </div>
+      <% if @activities.any? %>
+        <div class="row g-4">
+          <%= render @activities %>
+        </div>
 
-          <div class="row g-4">
-            <%= render @activities %>
-          </div>
-
-          <% if @pagy.count > 12 %>
-            <div class="mt-5 d-flex justify-content-center">
-              <%= pagy_bootstrap_nav(@pagy).html_safe %>
-            </div>
-          <% end %>
-          <% else %>
-          <div class="text-center">
-            <h1 class="fs-4 mb-2">Нет подходящих объявлений об активном отдыхе</h1>
+        <% if @pagy.count > 12 %>
+          <div class="mt-5 d-flex justify-content-center">
+            <%= pagy_bootstrap_nav(@pagy).html_safe %>
           </div>
         <% end %>
-      </div>
+      <% else %>
+        <div class="text-center">
+          <h1 class="fs-4 mb-2">Нет подходящих объявлений об активном отдыхе</h1>
+        </div>
+      <% end %>      
     </div>
-
   </section>
 <% end %>
 
-<section></section>
-<section></section>
-<section></section>
-<section></section>

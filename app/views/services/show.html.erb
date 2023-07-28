@@ -35,7 +35,7 @@
         <div class="d-lg-flex justify-content-lg-between mb-1">
           <!-- Title -->
           <div class="mb-2 mb-lg-0 ">
-            <h1 class="h3"><%= @service.title %></h1>
+            <h1 class="h3"><i class="bi bi-box text-info me-3"></i><%= @service.title %></h1>
               <!-- Location -->
               <p class="fw-bold mb-0">
                 <% unless @town.present? %>
@@ -49,7 +49,7 @@
               
               <p class="fw-bold mb-0 mt-2">
                 <% if @service.address.present? %>
-                <i class="bi bi-geo-alt me-2"></i><%= "#{@service.address}" %>
+                <i class="bi bi-geo-alt me-2"></i><%= @service.address %>
                 <% end %>
 
                 <% if @service.geolocation.present? %>
@@ -177,6 +177,11 @@
           <% if @nearby_services.any? %>
             <h4>Услуги и сервисы рядом</h4>
 						<%= render partial: 'shared/nearby_object', locals: { main_object: @service, nearby_objects: @nearby_services } %>
+					<% end %>
+
+          <% if @nearby_places.any? %>
+            <h4>Места и достопримечательности рядом</h4>
+						<%= render partial: 'shared/nearby_object', locals: { main_object: @service, nearby_objects: @nearby_places } %>
 					<% end %>
         <% end %>
       </aside>

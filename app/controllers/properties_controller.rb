@@ -36,11 +36,23 @@ class PropertiesController < ApplicationController
     
   end
 
+  def index
+    if params[:cat].blank?
+      properties = Property.activated.with_attached_avatar.with_attached_images    
+    else
+      properties = Property.activated.with_attached_avatar.with_attached_images.where(category_id: params[:cat])
+      @properties_category = Category.find(params[:cat])      
+    end
+    @categories = Category.all
+    @pagy, @properties = pagy(properties, items: 12)
+  end
+
   def show
     @rooms = @property.rooms.with_attached_images.with_attached_avatar
     @nearby_properties = @property.nearby_objects('Property', 5)
     @nearby_activities = @property.nearby_objects('Activity', 5)
     @nearby_services = @property.nearby_objects('Service', 5)
+    @nearby_places = @property.nearby_objects('Place', 5)
     @booking = Booking.new(property: @property)
   end
 
