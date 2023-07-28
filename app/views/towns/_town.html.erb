@@ -1,10 +1,56 @@
-<div class="col-auto">   
-  <div class="card bg-transparent p-1 h-100 text-center">
-    <div class="avatar avatar-xxxl mx-auto">
-      <%= image_tag town.avatar.thumb.url, class: "avatar-img border border-white border-3 shadow rounded-circle", alt: town.name %>
-    </div>
-    <div class="card-body p-0 pt-3">
-      <h5 class="card-title"><%= link_to town.name, town, class: "stretched-link"%></h5>
+<div  style=" background-image: url('<%= town.avatar.url %>');
+              background-size: cover;
+              background-position: center; height: 500px;
+	            position: relative;">
+  
+  <div class="container pt-3" >
+    <div class="row">
+      <div class="col-md-12"> 
+        <%= link_to town, class: 'btn btn-sm btn-outline-primary' do %>
+          <span class='display-6'><%= town.name %></span>
+        <% end %>
+      </div>
     </div>
   </div>
+
+
+  <div  class="mt-3 text-center text-md-start"
+        style=' position: absolute;
+                width: 100%;
+                left: 0; 
+                bottom: 0;
+                z-index: 600;
+                padding: 25px 0 20px 0;background: linear-gradient(to bottom, transparent, #014a6e);'>
+
+    <%= link_to properties_town_path(town), class: 'btn btn-sm btn-primary ms-md-5 me-md-3' do %>
+      <i class="bi bi-check2-circle me-2"></i> Где остановиться
+    <% end %>
+
+    <%= link_to properties_town_path(town), class: 'btn btn-sm btn-orange me-md-3' do %>
+      <i class="bi bi-star me-2"></i> Активный отдых
+    <% end %>
+
+    <%= link_to properties_town_path(town), class: 'btn btn-sm btn-info me-md-3' do %>
+      <i class="bi bi-box me-2"></i> Услуги и сервисы
+    <% end %>
+
+    <%= link_to properties_town_path(town), class: 'btn btn-sm btn-lime me-md-3' do %>
+      <i class="bi bi-cup-hot me-2"></i> Где покушать
+    <% end %>
+
+    <%= link_to properties_town_path(town), class: 'btn btn-sm btn-warning' do %>
+      <i class="bi bi-pin-map me-2"></i> Места и достопримечательности
+    <% end %>
+  </div>
 </div>
+
+<div class="container mt-4 mb-5">
+  <div class="row mb-4">  
+    <div class="col-12">
+      <p class="mb-lg-0 fs-6 fw-semibold"><em><%= town.description %></em></p>
+    </div>
+  </div>
+  <hr class="border border-primary border-1 opacity-75">
+</div>
+<br>
+
