@@ -3,6 +3,8 @@ class CreateRooms < ActiveRecord::Migration[7.0]
     create_table :rooms do |t|
       t.references :property, null: false, foreign_key: true
       t.string :title, null: false
+      t.string  :avatar
+      t.json    :images 
       t.integer :guest_base_count, limit: 1, null: false
       t.integer :guest_max_count, limit:1, null: false
 

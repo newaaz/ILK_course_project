@@ -28,12 +28,8 @@
     <div class="card-body">
       <div class="row">
         <!-- Avatar -->
-        <div class="col-md-4 px-0 px-md-2">
-          <% if listing.avatar.respond_to?(:attached?) %>
-            <%= link_to image_tag(listing.avatar.variant(resize_to_limit: [250, 250]), class: "card-img rounded-2"), listing %> 
-          <% else %>
-            <%= link_to image_tag(listing.avatar.thumb.url, class: "card-img rounded-2"), listing %>
-          <% end %>
+        <div class="col-md-4 px-0 px-md-2">  
+          <%= link_to image_tag(listing.avatar.thumb.url, class: "card-img rounded-2"), listing %>
         </div>
 
         <div class="col-md-8 mt-3">

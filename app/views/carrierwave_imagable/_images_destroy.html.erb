@@ -5,6 +5,6 @@
     <%= link_to send(link_to_destroy, listing, index, listing: listing.model_name.name), data: { "turbo-method": :delete } do %>
       &times;
     <% end %>
-    <%= image_tag image.thumb.url, class: 'rounded' %>
+    <%= image_tag image.thumb_100.url, class: 'rounded' %>
   <% end %>
 <% end %>

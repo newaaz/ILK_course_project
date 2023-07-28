@@ -114,7 +114,8 @@
       <aside class="col-lg-4 px-lg-4 px-sm-0 mt-3 order-2">
 
           <% if @nearby_properties.any? %>
-            <%= render partial: 'properties/show/nearby_properties', locals: { object: @place } %>
+            <h4>Предложения рядом</h4>
+						<%= render partial: 'shared/nearby_object', locals: { main_object: @place, nearby_objects: @nearby_properties } %>
           <% end %>
 
           <% if @nearby_activities.any? %>

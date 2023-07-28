@@ -10,7 +10,7 @@ module Geolocable
 
       if coordinates_optional?(object) || coordinates_optional?(self.model_name.name)
         object.constantize.activated
-                          .select(:id, :title, object == 'Property' ? nil : :avatar)
+                          .select(:id, :title, :avatar)
                           .includes([:geolocation])
                           .joins(:geolocation)
                           .where(geolocation: { latitude: lat_range, longitude: long_range, geolocable_type: object })
@@ -18,7 +18,7 @@ module Geolocable
                           .take(count)
       else
         object.constantize.activated
-                          .select(:id, :title, object == 'Property' ? nil : :avatar)
+                          .select(:id, :title, :avatar)
                           .includes([:geolocation])
                           .where(town_id: self.town_id)
                           .joins(:geolocation)

@@ -3,6 +3,8 @@ class ListingUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
+  version :nearby, if: :is_avatar?
+
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
@@ -23,7 +25,11 @@ class ListingUploader < CarrierWave::Uploader::Base
   # For Fotorama
   version :thumb_100 do
     process resize_to_fit: [100, 100]
-  end  
+  end
+
+  version :nearby do
+    process resize_to_fill: [180, 150]
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -56,4 +62,10 @@ class ListingUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  private
+
+  def is_avatar? image
+    mounted_as == :avatar
+  end
 end
