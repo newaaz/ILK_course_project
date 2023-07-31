@@ -6,10 +6,12 @@ Rails.application.routes.draw do
         get 'activities',   on: :collection
         get 'services',     on: :collection
         get 'places',       on: :collection
-        get 'restaurants',  on: :collection
+        get 'food_places',  on: :collection
       end
       patch 'listings/:id/activate_listing', to: 'listings#activate_listing', as: 'activate_listing'
       patch 'listings/:id/deactivate_listing', to: 'listings#deactivate_listing', as: 'deactivate_listing'
+      # toggle listing activating status
+      patch 'listings/:id/toggle_listing_activating', to: 'listings#toggle_listing_activating', as: 'toggle_listing_activating'
     end
   end
 
@@ -17,8 +19,8 @@ Rails.application.routes.draw do
   concern :imagable do
     resources :images, only: [:destroy]
   end
-  # Images Active storage
-  delete 'images/:id/purge', to: 'images#purge', as: 'purge_image'
+  # Images Active storage (deprecated)
+  # delete 'images/:id/purge', to: 'images#purge', as: 'purge_image'
 
   root 'static_pages#home'
 
@@ -56,14 +58,14 @@ Rails.application.routes.draw do
   resources :activities, concerns: %i[imagable], except: %i[]
   resources :services, concerns: %i[imagable], except: %i[]
   resources :places, concerns: %i[imagable], except: %i[]
-  resources :restaurants, concerns: %i[imagable], except: %i[]
+  resources :food_places, concerns: %i[imagable], except: %i[]
 
   resources :towns, only: %i[index show] do
     get :properties, on: :member
     get :activities, on: :member
     get :services, on: :member
     get :places, on: :member
-    get :restaurants, on: :member
+    get :food_places, on: :member
   end
 
   resources :carts, only: [:show, :destroy]

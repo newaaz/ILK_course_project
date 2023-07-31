@@ -1,6 +1,6 @@
 class Place < ApplicationRecord
   PLACE_CATEGORIES = ["Пляжи", "Достопримечательности", "Парки", "Кинотеатры", "Музеи", "Театры", "Рынки", "Места для фото",
-                      "Спортивные площадки", "Другое"]
+                      "Спортивные площадки", "Другое"].freeze
 
   belongs_to :owner, class_name: 'Partner'
   belongs_to :town

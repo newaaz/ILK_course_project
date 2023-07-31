@@ -42,7 +42,10 @@
             <% else %>
               <%= button_to 'Activate', admin_activate_listing_path(listing, model_name: listing.model_name.name),
                                           method: :patch, class: 'btn btn-primary-soft btn-sm mb-0' %>
-            <% end %>      
+            <% end %>  
+
+            <%= button_to 'Toggle!', admin_toggle_listing_activating_path(listing, model_name: listing.model_name.name),
+                              method: :patch, class: 'btn btn-secondary-soft btn-sm mb-0' %>    
           </div>
         </div>
       </div> 

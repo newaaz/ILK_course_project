@@ -11,6 +11,7 @@ class Partner < ApplicationRecord
   has_many :activities, foreign_key: 'owner_id', class_name: 'Activity', dependent: :destroy
   has_many :services, foreign_key: 'owner_id', class_name: 'Service', dependent: :destroy
   has_many :places, foreign_key: 'owner_id', class_name: 'Place', dependent: :destroy
+  has_many :food_places, foreign_key: 'owner_id', class_name: 'FoodPlace', dependent: :destroy
   has_many :restaurants, foreign_key: 'owner_id', class_name: 'Restaurant', dependent: :destroy
   has_many :as_hoster_bookings, through: :properties, source: :bookings
   has_many :as_guest_bookings, class_name: 'Booking', foreign_key: 'guest_id', inverse_of: :guest, dependent: :destroy

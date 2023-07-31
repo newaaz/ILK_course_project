@@ -299,16 +299,16 @@ time = Benchmark.measure do
   #create_towns
 
   Property.destroy_all
-  65.times { create_property }
+  35.times { create_property }
   
   Activity.destroy_all
-  35.times { create_activity }
+  25.times { create_activity }
 
   Service.destroy_all
-  35.times { create_service }
+  25.times { create_service }
 
   Place.destroy_all
-  45.times { create_place }
+  25.times { create_place }
 
   # Property.reindex
   # puts "Properties indexed"

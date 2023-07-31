@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_26_163559) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_28_165327) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -136,6 +136,33 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_163559) do
     t.index ["confirmation_token"], name: "index_customers_on_confirmation_token", unique: true
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
+  end
+
+  create_table "food_places", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description", null: false
+    t.text "menu"
+    t.string "address"
+    t.text "how_to_get"
+    t.string "email"
+    t.string "site"
+    t.string "vk_group"
+    t.string "avatar"
+    t.json "images"
+    t.string "tags", default: [], array: true
+    t.integer "rating", limit: 2, default: 10
+    t.integer "random_id", limit: 2, default: 1
+    t.integer "promouted", limit: 2, default: 0
+    t.boolean "activated", default: false
+    t.boolean "deleted", default: false
+    t.boolean "enabled", default: true
+    t.boolean "blocked", default: false
+    t.bigint "owner_id", null: false
+    t.bigint "town_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_food_places_on_owner_id"
+    t.index ["town_id"], name: "index_food_places_on_town_id"
   end
 
   create_table "geolocations", force: :cascade do |t|
@@ -345,6 +372,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_163559) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "partners", column: "owner_id"
   add_foreign_key "bookings", "properties"
+  add_foreign_key "food_places", "partners", column: "owner_id"
+  add_foreign_key "food_places", "towns"
   add_foreign_key "oauth_providers", "customers"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "properties"

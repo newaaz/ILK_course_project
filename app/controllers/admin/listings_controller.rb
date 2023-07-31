@@ -30,6 +30,12 @@ class Admin::ListingsController < Admin::BaseController
     render :listings
   end
 
+  def food_places
+    food_places = FoodPlace.all
+    @pagy, @listings = pagy(food_places, items: 12)
+    render :listings
+  end
+
   def activate_listing    
     listing = params[:model_name].constantize.find(params[:id])
     listing.activate!
@@ -45,6 +51,18 @@ class Admin::ListingsController < Admin::BaseController
   def deactivate_listing    
     listing = params[:model_name].constantize.find(params[:id])
     listing.deactivate!
+
+    respond_to do |format|    
+      format.turbo_stream do
+        render turbo_stream:
+          turbo_stream.replace(listing, partial: "admin/listings/listing", locals: {listing: listing})
+      end
+    end
+  end
+
+  def toggle_listing_activating
+    listing = params[:model_name].constantize.find(params[:id])
+    listing.toggle!(:activated)
 
     respond_to do |format|    
       format.turbo_stream do

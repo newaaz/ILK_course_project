@@ -2,7 +2,7 @@ module CarrierwaveImagable
   extend ActiveSupport::Concern
 
   included do
-    MAX_SIZE = 4.megabytes
+    MAX_SIZE = 4.megabytes.freeze
     mount_uploader  :avatar, ListingUploader
     mount_uploaders :images, ListingUploader
 
