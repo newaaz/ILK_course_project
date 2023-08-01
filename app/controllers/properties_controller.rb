@@ -59,6 +59,7 @@ class PropertiesController < ApplicationController
   def new
     @property = Property.new(geolocation: Geolocation.new,
                              property_detail: PropertyDetail.new,
+                             additional_fields: [AdditionalField.new],
                              contact: Contact.new)
   end
 
@@ -122,6 +123,7 @@ class PropertiesController < ApplicationController
                                       :distance_to_sea, :price_from, images: [], services: [],
                                       geolocation_attributes: [:id, :latitude, :longitude],
                                       contact_attributes: [:id, :email, :name, :avatar, :phone_number, messengers: [] ],
+                                      additional_fields_attributes: [:id, :name, :value, :_destroy],
                                       property_detail_attributes: [:id, :short_description,
                                         :parking, :rating, :food, :territory, :additional_info,
                                         :transfer, :site, :email, :vk_group, amenities: []])

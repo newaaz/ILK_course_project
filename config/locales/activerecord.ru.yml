@@ -9,15 +9,41 @@ ru:
       property_detail: 'Детальная информация'
       room: 'Номер'        
       activity: 'Активный отдых'
-      service: 'Услуга/Сервис'           
-      restaurant: 'Кафе/Ресторан'
-      point: 'Достопримечательность'
+      service: 'Услуга/Сервис'
+      place: 'Локация'
+      food_place: 'Где поесть'        
       order: 'Заявка'
       booking: 'Бронирование'
       geolocation: 'Точка геолокации'
       contact: 'Контакт'
       additional_field: "Дополнительное поле с информацией"
     attributes:
+      food_place:
+        title: 'Название'
+        category_title: 'Категория'
+        description: 'Описание'
+        menu: 'Меню'
+        town_id: 'Населённый пункт'
+        town: 'Населённый пункт'
+        address: 'Адрес'
+        avatar: 'Главное изображение'
+        images: 'Изображения'
+        site: 'Сайт'
+        email: 'Email'
+        vk_group: 'Группа в ВК'  
+      place:
+        title: 'Название'
+        category_title: 'Категория'
+        description: 'Описание'
+        how_to_get: 'Как добраться'
+        town_id: 'Населённый пункт'
+        town: 'Населённый пункт'
+        address: 'Адрес'
+        avatar: 'Главное изображение'
+        images: 'Изображения'
+        site: 'Сайт'
+        email: 'Email'
+        vk_group: 'Группа в ВК'        
       activity:
         title: 'Название'
         category_title: 'Категория'
@@ -47,17 +73,6 @@ ru:
       geolocation:
         latitude: 'Широта'
         longitude: 'Долгота'
-      point:
-        name:   "Название"
-        avatar: "Главное изображение"
-        images: "Изображения"
-        address:  "Адрес"
-        how_to_get: "Как добраться"
-        description:  "Описание"
-        town_id:  "Населённый пункт"
-        point_category_id:  "Категория"
-        latitude: 'Требуется широта,'
-        longitude: 'Требуется долгота,'
       partner:
         name: 'Имя'
         email: 'Email'

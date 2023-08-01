@@ -55,10 +55,10 @@ Rails.application.routes.draw do
     post :calculate_price, on: :member
   end
 
-  resources :activities, concerns: %i[imagable], except: %i[]
-  resources :services, concerns: %i[imagable], except: %i[]
-  resources :places, concerns: %i[imagable], except: %i[]
-  resources :food_places, concerns: %i[imagable], except: %i[]
+  resources :activities, concerns: %i[imagable]
+  resources :services, concerns: %i[imagable]
+  resources :places, concerns: %i[imagable]
+  resources :food_places, concerns: %i[imagable]
 
   resources :towns, only: %i[index show] do
     get :properties, on: :member

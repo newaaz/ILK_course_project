@@ -55,30 +55,30 @@ class PlacesController < ApplicationController
   end
 
   def update
-    # if @activity.update activity_params
-    #   flash[:success] = 'Данные успешно обновлены'
-    #   redirect_to @activity
-    # else
-    #   respond_to do |format|
-    #     format.html { render 'edit', status: :unprocessable_entity }
+    if @place.update place_params
+      flash[:success] = 'Данные успешно обновлены'
+      redirect_to @place
+    else
+      respond_to do |format|
+        format.html { render 'edit', status: :unprocessable_entity }
       
-    #     format.turbo_stream do
-    #       render turbo_stream:
-    #         turbo_stream.update('forms_errors',
-    #           partial: 'shared/errors',
-    #           locals:   { object: @activity })
-    #     end
-    #   end
-    # end
+        format.turbo_stream do
+          render turbo_stream:
+            turbo_stream.update('forms_errors',
+              partial: 'shared/errors',
+              locals:   { object: @place })
+        end
+      end
+    end
   end
 
   def destroy
-    # @activity.destroy
+    @place.destroy
 
-    # respond_to do |format|
-    #   format.html { redirect_to partners_root_path, notice: 'Объявление удалено' }    
-    #   format.turbo_stream
-    # end
+    respond_to do |format|
+      format.html { redirect_to partners_root_path, notice: 'Объявление удалено' }    
+      format.turbo_stream
+    end
   end
 
   private

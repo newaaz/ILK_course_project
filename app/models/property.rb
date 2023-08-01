@@ -13,6 +13,7 @@ class Property < ApplicationRecord
   include Searchable
   include ListingActivatable
   include Contactable
+  include AdditionalFieldable
   
   belongs_to :owner, class_name: 'Partner'
   belongs_to :town

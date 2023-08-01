@@ -1,0 +1,33 @@
+<% provide(:title, "#{@place.title} - редактирование") %>
+
+<!-- breadcrumbs -->
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
+      <li class="breadcrumb-item"><%= link_to "Личный кабинет", partners_root_path %></li>				
+      <li class="breadcrumb-item active"><%= "Изменить #{@place.title}" %></li> 
+    </ol>
+  </nav>
+</div>
+
+<section class="pb-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1 class="fs-2 mb-2">Редактирование данных: <%= @place.title %></h1>
+				<p class="mb-0"></p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 mx-auto">
+        <%= render 'form' %>
+			</div>
+		</div>
+	</div>
+</section>

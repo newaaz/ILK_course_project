@@ -5,7 +5,7 @@ class FoodPlacesController < ApplicationController
   after_action  :verify_authorized
 
   def index
-    food_places = FoodPlace.activated.select(:id, :title, :avatar, :images, :category_title, :town_id, :address)
+    food_places = FoodPlace.activated.select(:id, :title, :avatar, :images, :tags, :town_id, :address)
     @pagy, @food_places = pagy(food_places, items: 12)
   end
 
@@ -47,30 +47,30 @@ class FoodPlacesController < ApplicationController
   end
 
   def update
-    # if @activity.update activity_params
-    #   flash[:success] = 'Данные успешно обновлены'
-    #   redirect_to @activity
-    # else
-    #   respond_to do |format|
-    #     format.html { render 'edit', status: :unprocessable_entity }
+    if @food_place.update food_place_params
+      flash[:success] = 'Данные успешно обновлены'
+      redirect_to @food_place
+    else
+      respond_to do |format|
+        format.html { render 'edit', status: :unprocessable_entity }
       
-    #     format.turbo_stream do
-    #       render turbo_stream:
-    #         turbo_stream.update('forms_errors',
-    #           partial: 'shared/errors',
-    #           locals:   { object: @activity })
-    #     end
-    #   end
-    # end
+        format.turbo_stream do
+          render turbo_stream:
+            turbo_stream.update('forms_errors',
+              partial: 'shared/errors',
+              locals:   { object: @food_place })
+        end
+      end
+    end
   end
 
   def destroy
-    # @activity.destroy
+    @food_place.destroy
 
-    # respond_to do |format|
-    #   format.html { redirect_to partners_root_path, notice: 'Объявление удалено' }    
-    #   format.turbo_stream
-    # end
+    respond_to do |format|
+      format.html { redirect_to partners_root_path, notice: 'Объявление удалено' }    
+      format.turbo_stream
+    end
   end
 
   private

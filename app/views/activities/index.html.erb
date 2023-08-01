@@ -20,8 +20,15 @@
       <%= link_to properties_path, class: 'badge bg-primary bg-opacity-10 text-primary ms-2 mb-3' do %>
         <i class="bi bi-check2-circle me-2"></i>Где остановиться
       <% end %>
+
+      <!-- current -->
+      <span class="badge text-secondary ms-2 mb-3" ><i class="bi bi-star me-2"></i>Активный отдых</span>
+
       <%= link_to services_path, class: 'badge bg-info bg-opacity-10 text-info ms-2 mb-3' do %>
         <i class="bi bi-box me-2"></i>Услуги и сервисы
+      <% end %>
+      <%= link_to food_places_path, class: 'badge bg-lime bg-opacity-10 text-lime ms-2 mb-3' do %>
+        <i class="bi bi-cup-hot me-2"></i>Где поесть
       <% end %>
       <%= link_to places_path, class: 'badge bg-warning bg-opacity-10 text-warning ms-2 mb-3' do %>
         <i class="bi bi-pin-map me-2"></i>Локации
