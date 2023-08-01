@@ -1,11 +1,11 @@
-<% provide(:title, "Локации в #{ @town.parent_name }") %>
+<% provide(:title, "Где поесть в #{ @town.parent_name }") %>
 
 <section class="parallax-window" data-controller="parallax" data-parallax="scroll" data-image-src="<%= @town.avatar.url %>">
   <div class="parallax-content-2">
     <div class="container">
       <div class="row">
         <div class="col-md-8">          
-          <h1>Локации в <%= @town.parent_name %></h1>           
+          <h1>Где поесть в <%= @town.parent_name %></h1>           
         </div>
         <div class="col-md-4">
           <div id="price_single_main" class="hotel">
@@ -17,19 +17,14 @@
   </div>
 </section>
 
-<%= turbo_frame_tag :town_places do %>
+<%= turbo_frame_tag :town_food_places do %>
   <!-- breadcrumbs -->
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
         <li class="breadcrumb-item"><%= link_to @town.name, @town %></li>
-        <% if @category_title %>
-          <li class="breadcrumb-item"><%= link_to "Локации в #{@town.parent_name}", places_town_path(@town) %></li> 
-          <li class="breadcrumb-item active"><%= @category_title %></li>  
-        <% else %>
-          <li class="breadcrumb-item active"><%= "Локации в #{@town.parent_name}" %></li>      
-        <% end %>
+        <li class="breadcrumb-item active"><%= link_to "Где поесть в #{@town.parent_name}", food_places_town_path(@town) %></li> 
       </ol>
     </nav>
 
@@ -46,33 +41,32 @@
       <%= link_to services_town_path(@town), class: 'badge bg-info bg-opacity-10 text-info ms-2 mb-3' do %>
         <i class="bi bi-box me-2"></i>Услуги и сервисы
       <% end %>
-      <%= link_to food_places_town_path(@town), class: 'badge bg-lime bg-opacity-10 text-lime ms-2 mb-3' do %>
-        <i class="bi bi-cup-hot me-2"></i>Где поесть
-      <% end %>
+
       <!-- current -->
-      <span class="badge text-secondary ms-2 mb-3" ><i class="bi bi-pin-map me-2"></i>Локации</span>
+      <span class="badge text-secondary ms-2 mb-3" ><i class="bi bi-cup-hot me-2"></i>Где поесть</span>
+
+      <%= link_to places_town_path(@town), class: 'badge bg-warning bg-opacity-10 text-warning ms-2 mb-3' do %>
+        <i class="bi bi-pin-map me-2"></i>Локации
+      <% end %>
     </div>
   </div>
 
   <section class="pt-2">
     <div class="container">
       <div class="mb-3">
-        <% if @category_title %>
-          <h1 class="fs-4"><i class="bi bi-pin-map text-warning me-3"></i><%= "Локации. #{@category_title} в #{@town.parent_name} (#{@pagy.count})" %></h1> 
-        <% else %>
-          <h1 class="fs-4"><i class="bi bi-pin-map text-warning me-3"></i><%= "Локации в #{@town.parent_name} (#{@pagy.count})" %></h1> 
-        <% end %>                    
+        <h1 class="fs-4"><i class="bi bi-cup-hot text-lime me-3"></i><%= "Где поесть #{@town.parent_name} (#{@pagy.count})" %></h1>                   
       </div>
+      <!-- link to tags
       <div class="my-3">
-        <%= link_to 'Все локации', places_town_path(@town), class: 'btn btn-light btn-sm' %>
+        <%= link_to 'Все локации', food_places_town_path(@town), class: 'btn btn-light btn-sm' %>
         <% Place::PLACE_CATEGORIES.each do |cat| %>
           <%= link_to cat, places_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>
         <% end %>
-      </div> 
+      </div>  -->
       
-      <% if @places.any? %>
+      <% if @food_places.any? %>
         <div class="row g-4">
-          <%= render @places %>
+          <%= render @food_places %>
         </div>
 
         <% if @pagy.count > 12 %>
@@ -88,4 +82,5 @@
     </div>
   </section>
 <% end %>
+
 

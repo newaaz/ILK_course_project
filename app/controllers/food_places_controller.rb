@@ -10,11 +10,12 @@ class FoodPlacesController < ApplicationController
   end
 
   def show
-    # @town = @place.town
-    # @nearby_properties = @place.nearby_objects('Property', 10)
-    # @nearby_activities = @place.nearby_objects('Activity', 10)
-    # @nearby_services = @place.nearby_objects('Service', 10)
-    # @nearby_places = @place.nearby_objects('Place', 10)
+    @town = @food_place.town
+    @nearby_properties = @food_place.nearby_objects('Property', 10)
+    @nearby_activities = @food_place.nearby_objects('Activity', 10)
+    @nearby_services = @food_place.nearby_objects('Service', 10)
+    @nearby_places = @food_place.nearby_objects('Place', 10)
+    @nearby_food_places = @food_place.nearby_objects('FoodPlace', 10)
   end
 
   def new

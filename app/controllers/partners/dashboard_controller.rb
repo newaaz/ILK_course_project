@@ -7,6 +7,7 @@ class Partners::DashboardController < ApplicationController
     @activities = current_partner.activities
     @services = current_partner.services
     @places = current_partner.places
+    @food_places = current_partner.food_places
   end
 
   def orders

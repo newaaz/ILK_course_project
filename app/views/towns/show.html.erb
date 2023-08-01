@@ -85,11 +85,27 @@
 
 <section class="py-3">
 	<div class="container">		
+    <%= link_to food_places_town_path(@town), class: 'btn btn-lime' do %>
+      <i class="bi bi-cup-hot me-2"></i>
+      <%= "Где поесть в #{@town.parent_name}" %>
+    <% end %>
+    <!-- links to tags 
+    <div class="my-3">
+      <%= link_to 'Все локации', places_town_path(@town), class: 'btn btn-light btn-sm' %>
+      <% Place::PLACE_CATEGORIES.each do |cat| %>
+        <%= link_to cat, places_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>
+      <% end %>
+    </div> -->
+	</div>
+</section>
+
+<section class="py-3">
+	<div class="container">		
     <%= link_to places_town_path(@town), class: 'btn btn-warning' do %>
       <i class="bi bi-pin-map me-2"></i>
       <%= "Локации в #{@town.parent_name}" %>
     <% end %>
-
+    
     <div class="my-3">
       <%= link_to 'Все локации', places_town_path(@town), class: 'btn btn-light btn-sm' %>
       <% Place::PLACE_CATEGORIES.each do |cat| %>

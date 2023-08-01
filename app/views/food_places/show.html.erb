@@ -1,0 +1,177 @@
+<% provide(:title, "#{@food_place.title}") %>
+
+<% provide :turbo_cache_control do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
+<!-- breadcrumbs -->
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Главная', root_path %></li>
+      <li class="breadcrumb-item"><%= link_to @town.name, @town %></li>
+      <li class="breadcrumb-item"><%= link_to "Где поесть", food_places_town_path(@town) %></li>				
+      <li class="breadcrumb-item active"><%= @food_place.title %></li> 
+    </ol>
+  </nav>
+</div>
+
+<%= render 'shared/not_activated' unless @food_place.activated? %>
+
+<!-- title -->
+<section class="py-0">
+  <div class="container position-relative">  
+    <!-- Title and button START -->
+    <div class="row mb-3 border-bottom pb-2">
+      <div class="col-12">
+        <!-- Meta -->
+        <div class="d-lg-flex justify-content-lg-between mb-1">
+          <!-- Title -->
+          <div class="mb-2 mb-lg-0 ">
+            <h1 class="h3"><i class="bi bi-pin-map text-warning me-3"></i><%= @food_place.title %></h1>
+              <!-- Location -->
+              <p class="fw-bold mb-0 mt-2">
+                <% if @food_place.address.present? %>
+                <i class="bi bi-geo-alt me-2"></i><%= @food_place.address %>
+                <% end %>
+                
+                <a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">
+                  <i class="bi bi-eye-fill me-1"></i>На карте
+                </a>                			
+              </p>
+          </div>
+          
+          <ul class="list-inline text-center">            
+            <li class="list-inline-item">
+              <a href="#" class="btn btn-sm btn-orange-soft px-2"><i class="bi bi-heart" style="font-size: 1rem;"></i></a>
+            </li>
+          </ul>          
+        </div>
+      </div>
+    </div>
+    <!-- Title and button END -->		
+  </div>
+</section>
+
+<!-- Photo & contacts -->
+<section class="card-grid pt-0">
+  <div class="container">
+    <div class="row g-2">
+      <div class="col-lg-8 px-0">
+        <!-- fotorama begin -->        
+        <div class="fotoramain mt-2" data-controller="fotorama" data-object="main">
+          <%= link_to image_tag(@food_place.avatar.thumb_100.url), @food_place.avatar.url %>
+          <% @food_place.images.each do |image| %>
+            <%= link_to image_tag(image.thumb_100.url), image.url %>
+          <% end %>
+        </div>        
+        <!-- fotorama end -->
+      </div>
+
+      <aside class="col-lg-4 px-lg-4 px-sm-0 mt-3">
+        <% unless @food_place.contactless? %>
+          <%= render 'shared/contacts', object: @food_place %>
+        <% end %>
+
+        <div class="mt-3 px-2">
+          <% @food_place.tags.each do |tag| %>
+            <div class="badge bg-lime bg-opacity-75 text-light mb-2 me-2" style="font-size:12px;"><%= FoodPlace::FOOD_PLACE_TAGS[tag] %></div>
+          <% end %>
+        </div>
+      </aside>			
+    </div>
+  </div>
+</section>
+
+<!-- Description -->
+<section class="pt-0 ">
+  <div class="container">
+    <div class="row g-2 g-xl-3">
+      <div class="col-xl-8 order-1">      
+        <div class="card bg-transparent">
+          <div class="card-header border-bottom bg-transparent px-0 pt-0">
+            <div class="d-sm-flex justify-content-sm-between align-items-center">
+              <h3 class="fs-4 mb-2 mb-sm-0">Описание</h3>								
+            </div>
+          </div>
+
+          <div class="card-body">
+            <%= @food_place.description %>
+
+            <% if @food_place.menu.present? %>
+              <div class="mt-4">
+                <h4 class="fs-5 mb-2 mb-sm-0">Меню</h4>	
+                <p><%= @food_place.menu %></p>
+              </div>
+            <% end %>
+
+            <% if @food_place.additional_fields.any? %>
+              <div class="mt-4">
+                <% @food_place.additional_fields.each do |field| %>
+                  <h4 class="fs-5 mb-2 mb-sm-0"><%= field.name %></h4>	
+                  <p><%= field.value %></p>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>    
+      </div>
+
+      <aside class="col-lg-4 px-lg-4 px-sm-0 mt-3 order-2">
+        <!-- Right side content START -->
+      </aside>
+    </div>
+  </div>  
+</section>
+
+<!-- nearbies objects -->
+<section class="pt-1 mb-5 pb-5">
+  <div class="container">
+    <% if @nearby_properties.any? %>
+      <h4>Предложения рядом</h4>
+      <%= render partial: 'shared/nearby_objects_full', locals: { main_object: @food_place, nearby_objects: @nearby_properties } %>
+    <% end %>
+
+    <% if @nearby_activities.any? %>
+      <h4>Активный отдых рядом</h4>
+      <%= render partial: 'shared/nearby_objects_full', locals: { main_object: @food_place, nearby_objects: @nearby_activities } %>
+    <% end %>
+
+    <% if @nearby_services.any? %>
+      <h4>Услуги и сервисы рядом</h4>
+      <%= render partial: 'shared/nearby_objects_full', locals: { main_object: @food_place, nearby_objects: @nearby_services } %>
+    <% end %>
+
+    <% if @nearby_food_places.any? %>
+      <h4>Где поесть рядом</h4>
+      <%= render partial: 'shared/nearby_objects_full', locals: { main_object: @food_place, nearby_objects: @nearby_food_places } %>
+    <% end %>
+
+    <% if @nearby_places.any? %>
+      <h4>Локации рядом</h4>
+      <%= render partial: 'shared/nearby_objects_full', locals: { main_object: @food_place, nearby_objects: @nearby_places } %>
+    <% end %>
+  </div>
+</section>
+
+<!-- modal map -->
+<div class="modal fade" id="mapmodal" tabindex="-1" aria-labelledby="mapmodalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- Title -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="mapmodalLabel">На карте</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- Map -->
+      <div class="modal-body p-0">				
+        <div class="p-2">
+          <%= render 'geolocations/show_map', object: @food_place, preset_icon: "islands#darkBlueStarIcon" %>			
+        </div>
+      </div>
+      <!-- Button -->
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

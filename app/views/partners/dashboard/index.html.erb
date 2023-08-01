@@ -43,6 +43,11 @@
 					<h3 class="mb-3"><i class="bi bi-check2-circle text-orange me-3"></i>Локации</h3>
 					<%= render partial: 'partners/dashboard/templates/place', collection: @places, as: :place %>
 				<% end %>
+
+				<% if @places.any? %>
+					<h3 class="mb-3"><i class="bi bi-check2-circle text-orange me-3"></i>Где покушать</h3>
+					<%= render partial: 'partners/dashboard/templates/food_place', collection: @food_places, as: :food_place %>
+				<% end %>
 			</div>
 		</div>
 	</div>

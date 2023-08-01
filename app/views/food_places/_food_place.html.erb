@@ -1,0 +1,45 @@
+<div class="col-sm-6 col-xl-4">
+  <div class="card card-hover-shadow overflow-hidden bg-transparent">
+    <!-- category overlay
+    <div class="position-absolute top-0 start-0 z-index-1 m-2">
+      <%= link_to food_places_path(category_title: food_place.tags[1]), class: 'text-decoration-underline' do %>
+        <div class="badge bg-lime bg-opacity-75 text-light" style="font-size:12px;"><%= food_place.tags[1] %></div>
+      <% end %>
+    </div>-->
+
+    <div class="position-relative">
+      <!-- Image -->
+      <div class="" data-controller="fotorama" data-object="widget"
+          data-width="100%"
+          data-ratio="3/2"
+          data-allowfullscreen="false"                
+          data-nav="false"
+          data-loop="true"
+          data-keyboard="true"
+          data-auto="false">      
+        <%= link_to image_tag(food_place.avatar.thumb_100.url, class: "card-img-top"), food_place.avatar.thumb.url %>      
+        <% food_place.images.take(4).each do |image| %> 
+          <%= link_to image_tag(image.thumb_100.url, class: "card-img-top"), image.thumb.url %>     
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Card body -->
+    <div class="card-body px-2 pt-2">
+      <!-- Title -->
+      <h5 class="card-title"><%= link_to food_place.title, food_place, class: '' %></h5>
+      <!-- Price and rating -->
+      <div class="d-flex justify-content-between align-items-center">
+        <%= link_to food_places_town_path(food_place.town_id), class: 'text-decoration-underline' do %>
+          <span class="small"><i class="bi bi-cup-hot text-lime me-1"></i><%= towns_hash[food_place.town_id] %></span>
+        <% end %>
+        
+        <div class="mt-2 mt-sm-0">
+          <%= link_to food_place, class: "btn btn-sm btn-lime-soft mb-0" do %>
+            Подробнее
+          <% end %>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

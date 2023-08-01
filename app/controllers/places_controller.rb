@@ -23,6 +23,7 @@ class PlacesController < ApplicationController
     @nearby_activities = @place.nearby_objects('Activity', 10)
     @nearby_services = @place.nearby_objects('Service', 10)
     @nearby_places = @place.nearby_objects('Place', 10)
+    @nearby_food_places = @place.nearby_objects('FoodPlace', 10)
   end
 
   def new

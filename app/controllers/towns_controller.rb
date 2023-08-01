@@ -57,6 +57,11 @@ class TownsController < ApplicationController
     @pagy, @places = pagy(places, items: 12)
   end
 
+  def food_places
+    food_places = @town.food_places.activated.select(:id, :title, :avatar, :images, :town_id, :address, :tags)
+    @pagy, @food_places = pagy(food_places, items: 12)
+  end
+
   private
 
   def set_town

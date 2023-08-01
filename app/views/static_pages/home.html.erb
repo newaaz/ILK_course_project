@@ -2,6 +2,7 @@
 
 <%= render 'static_pages/templates/main_banner' %>
 
+<!-- towns -->
 <section class="py-0">
 	<div class="container">
 		<div class="row mb-4">
@@ -27,6 +28,7 @@
 	</div>
 </section>
 
+<!-- properties -->
 <section>
   <div class="container">
     <div class="row mb-4">
@@ -44,6 +46,7 @@
   </div>
 </section>
 
+<!-- activities -->
 <section>
   <div class="container">
     <div class="row mb-4">
@@ -58,6 +61,7 @@
   </div>
 </section>
 
+<!-- services -->
 <section>
   <div class="container">
     <div class="row mb-4">
@@ -72,6 +76,22 @@
   </div>
 </section>
 
+<!-- food places -->
+<section>
+  <div class="container">
+    <div class="row mb-4">
+      <%= link_to food_places_path do %>
+        <h2 class="h3 ps-md-5"><i class="bi bi-cup-hot text-lime me-3"></i><span class="text-decoration-underline">Где поесть</span></h2>
+      <% end %>
+		</div>
+
+    <div class="row g-4">
+      <%= render @food_places %>
+    </div>
+  </div>
+</section>
+
+<!-- places -->
 <section>
   <div class="container">
     <div class="row mb-4">
@@ -85,4 +105,3 @@
     </div>
   </div>
 </section>
-
