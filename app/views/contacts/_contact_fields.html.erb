@@ -1,4 +1,4 @@
-<%= content_tag(:div, class: 'nested-fields', id: "contact_#{f.object.class.name}") do %>
+<%= content_tag(:div, class: 'nested-fields') do %>
   <div class="field form-group mb-2">
     <%= f.label :name, class: 'form-label' %>      
     <%= f.text_field :name, class: 'form-control' %>
@@ -12,7 +12,7 @@
   <% Contact::MESSENGERS.each do |key| %>
     <div class="d-inline mt-3 ms-2">
       <%= f.check_box :messengers, { multiple: true, checked: f.object.messengers&.include?(key.to_s), class: 'form-check-input' }, key, nil %>
-      <%= f.label key, for: "#{f.object.contactable_type.downcase}_contact_attributes_messengers_#{key}",  class: 'form-check-label' %>
+      <%= f.label key, for: "#{f.object.contactable_type.underscore}_contact_attributes_messengers_#{key}",  class: 'form-check-label' %>
     </div>  
   <% end %>
 <% end %>

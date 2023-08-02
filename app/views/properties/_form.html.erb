@@ -54,7 +54,8 @@
   <%#= render 'attached_images/imagable_fields', f: f %>
   <%= render 'carrierwave_imagable/imagable_fields', f: f %> 
   <%= render 'properties/templates/services', f: f %>
-  <%= render 'properties/templates/property_detail_fields', f: f %>  
+  <%= render 'properties/templates/property_detail_fields', f: f %>
+  <%= render 'additional_fields/form', f: f %>
 
   <div class="text-center">
     <%= f.submit f.object.new_record? ? "Разместить объявление" : "Сохранить изменения", class:"btn btn-primary my-4" %>

@@ -20,6 +20,7 @@ class ImagesController < ApplicationController
 
   # destroy image from Carrierwave
   def destroy
+    #debugger
     remove_image_at_index(params[:id].to_i)
     respond_to do |format|
       format.html {
@@ -37,7 +38,7 @@ class ImagesController < ApplicationController
   private
 
   def remove_image_at_index(index)
-    listing_id = params[:listing].downcase + '_id'
+    listing_id = ActiveSupport::Inflector.underscore(params[:listing]) + '_id'
     listing = params[:listing].constantize.find(params[listing_id])
 
     authorize listing, policy_class: ImagesPolicy

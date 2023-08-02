@@ -7,6 +7,11 @@ class TownsController < ApplicationController
 
   def show
     @categories = Category.all
+    @promo_properties = @town.properties.activated.take(3)
+    @promo_activities = @town.activities.activated.take(6)
+    @promo_services = @town.services.activated.take(6)
+    @promo_food_places = @town.food_places.activated.take(6)
+    @promo_places = @town.places.activated.take(6)
   end
 
   def properties
@@ -55,6 +60,11 @@ class TownsController < ApplicationController
       places = @town.places.activated.select(:id, :title, :avatar, :images, :category_title, :town_id, :address)
     end
     @pagy, @places = pagy(places, items: 12)
+  end
+
+  def food_places
+    food_places = @town.food_places.activated.select(:id, :title, :avatar, :images, :town_id, :address, :tags)
+    @pagy, @food_places = pagy(food_places, items: 12)
   end
 
   private

@@ -35,67 +35,157 @@
   </div>
 </div>
 
-<section class="py-3">
-	<div class="container">		
-    <%= link_to properties_town_path(@town), class: 'btn btn-primary' do %>
-      <i class="bi bi-check2-circle me-2"></i>
-      <%= "Жильё в #{@town.parent_name}" %>
-    <% end %>
+<!-- promo listings 
+<div class="container mb-5">
+  <div class="row g-2">
+    <div class="col-md-4 position-relative overflow-hidden ">
+      <div class="bg-primary bg-opacity-25 rounded-5 h-100 p-2 d-flex">
+          <div class="icon-md text-white bg-primary rounded-circle flex-shrink-0"><i class="bi bi-house-add"></i></div>          
 
-    <div class="my-3">
-      <%= link_to 'Все категории', properties_town_path(@town), class: 'btn btn-light btn-sm' %>
-      <% @categories.each do |cat| %>
-        <%= link_to cat.title, properties_town_path(@town, { cat: cat.id }), class: 'btn btn-light btn-sm' %>
-      <% end %>
+          Доставка еды
+          <div class="d-block"><%= link_to 'Меню', new_property_path, class: 'btn btn-sm btn-primary mb-0 ' %></div>
+      </div>
     </div>
+
+    <div class="col-md-6 position-relative overflow-hidden">
+      <div class="bg-orange bg-opacity-25 rounded-3 h-100 p-4">
+        
+      </div>
+    </div>      
+  </div>
+</div> -->
+
+<!-- properties -->
+<section class="py-3 ">
+	<div class="container">
+    <div class="row gx-1">
+      <div class="col-md-4">
+        <%= link_to properties_town_path(@town), class: 'btn btn-primary' do %>
+          <i class="bi bi-check2-circle me-2"></i>
+          <%= "Где остановиться в #{@town.parent_name}" %>
+        <% end %>
+
+        <div class="my-3">
+          <%= link_to 'Все категории', properties_town_path(@town), class: 'btn btn-light btn-sm border shadow ms-2' %>
+          <% @categories.each do |cat| %>
+            <%= link_to cat.title, properties_town_path(@town, { cat: cat.id }), class: 'ms-2 border shadow btn btn-light btn-sm' %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="row g-3">
+          <%= render partial: 'properties/promo', collection: @promo_properties, as: :property %>
+        </div>
+      </div>
+    </div>
+    <hr class="border border-primary border-1 opacity-75">
 	</div>
 </section>
 
+<!-- activities -->
 <section class="py-3">
-	<div class="container">		
-    <%= link_to activities_town_path(@town), class: 'btn btn-orange' do %>
-      <i class="bi bi-star me-2"></i>
-      <%= "Активный отдых в #{@town.parent_name}" %>
-    <% end %>
+	<div class="container">
+    <div class="row gx-1">
+      <div class="col-md-4">
+        <%= link_to activities_town_path(@town), class: 'btn btn-orange' do %>
+          <i class="bi bi-star me-2"></i>
+          <%= "Активный отдых в #{@town.parent_name}" %>
+        <% end %>
 
-    <div class="my-3">
-      <%= link_to 'Все категории', activities_town_path(@town), class: 'btn btn-light btn-sm' %>
-      <% Activity::ACTIVITY_CATEGORIES.each do |cat| %>
-        <%= link_to cat, activities_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>
-      <% end %>
+        <div class="my-3">
+          <%= link_to 'Все категории', activities_town_path(@town), class: 'btn btn-light btn-sm border shadow ms-2' %>
+          <% Activity::ACTIVITY_CATEGORIES.each do |cat| %>
+            <%= link_to cat, activities_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm border shadow ms-2' %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="row g-1">
+          <%= render partial: 'activities/promo', collection: @promo_activities, as: :activity %>
+        </div>
+      </div>
     </div>
+    <hr class="border border-orange border-1 opacity-75">
 	</div>
 </section>
 
+<!-- services -->
 <section class="py-3">
-	<div class="container">		
-    <%= link_to services_town_path(@town), class: 'btn btn-info' do %>
-      <i class="bi bi-box me-2"></i>
-      <%= "Услуги и сервисы в #{@town.parent_name}" %>
-    <% end %>
+	<div class="container">
+    <div class="row gx-2">
+      <div class="col-md-4">
+        <%= link_to services_town_path(@town), class: 'btn btn-info' do %>
+          <i class="bi bi-box me-2"></i>
+          <%= "Услуги и сервисы в #{@town.parent_name}" %>
+        <% end %>
 
-    <div class="my-3">
-      <%= link_to 'Все услуги и сервисы', services_town_path(@town), class: 'btn btn-light btn-sm' %>
-      <% Service::SERVICE_CATEGORIES.each do |cat| %>
-        <%= link_to cat, services_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>
-      <% end %>
+        <div class="my-3">
+          <%= link_to 'Все услуги и сервисы', services_town_path(@town), class: 'btn btn-light btn-sm border shadow ms-2' %>
+          <% Service::SERVICE_CATEGORIES.each do |cat| %>
+            <%= link_to cat, services_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm border shadow ms-2' %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="row g-1">
+          <%= render partial: 'services/promo', collection: @promo_services, as: :service %>
+        </div>
+      </div>
     </div>
+    <hr class="border border-info border-1 opacity-75">
 	</div>
 </section>
 
+<!-- food places -->
 <section class="py-3">
 	<div class="container">		
-    <%= link_to places_town_path(@town), class: 'btn btn-warning' do %>
-      <i class="bi bi-pin-map me-2"></i>
-      <%= "Локации в #{@town.parent_name}" %>
+    <%= link_to food_places_town_path(@town), class: 'btn btn-lime' do %>
+      <i class="bi bi-cup-hot me-2"></i>
+      <%= "Где поесть в #{@town.parent_name}" %>
     <% end %>
-
+    <!-- links to tags 
     <div class="my-3">
       <%= link_to 'Все локации', places_town_path(@town), class: 'btn btn-light btn-sm' %>
       <% Place::PLACE_CATEGORIES.each do |cat| %>
         <%= link_to cat, places_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm' %>
       <% end %>
+    </div> -->
+
+    <div class="row g-3 mt-2">
+      <%= render partial: 'food_places/promo', collection: @promo_food_places, as: :food_place %>
     </div>
+    <hr class="border border-lime border-1 opacity-75">
+	</div>
+</section>
+
+<!-- places -->
+<section class="py-3">
+	<div class="container">
+    <div class="row gx-2">
+      <div class="col-md-3">
+        <%= link_to places_town_path(@town), class: 'btn btn-warning' do %>
+          <i class="bi bi-pin-map me-2"></i>
+          <%= "Локации в #{@town.parent_name}" %>
+        <% end %>
+        
+        <div class="my-3">
+          <%= link_to 'Все локации', places_town_path(@town), class: 'btn btn-light btn-sm border shadow ms-2' %>
+          <% Place::PLACE_CATEGORIES.each do |cat| %>
+            <%= link_to cat, places_town_path(@town, { category_title: cat }), class: 'btn btn-light btn-sm border shadow ms-2' %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="row g-3">
+          <%= render partial: 'places/promo', collection: @promo_places, as: :place %>
+        </div>
+      </div>
+    </div>
+    <hr class="border border-warning border-1 opacity-75">
 	</div>
 </section>
 

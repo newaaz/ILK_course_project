@@ -93,10 +93,12 @@
           <div class="card-body">
             <%= @place.description %>
 
-            <div class="mt-4">
-              <h4 class="fs-5 mb-2 mb-sm-0">Как добраться?</h4>	
-              <p><%= @place.how_to_get %></p>
-            </div>
+            <% if @place.how_to_get.present? %>
+              <div class="mt-4">
+                <h4 class="fs-5 mb-2 mb-sm-0">Как добраться?</h4>	
+                <p><%= @place.how_to_get %></p>
+              </div>
+            <% end %>
 
             <% if @place.additional_fields.any? %>
               <div class="mt-4">

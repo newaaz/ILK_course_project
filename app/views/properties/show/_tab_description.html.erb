@@ -61,6 +61,15 @@
             <div class="col-md-9"><%= @property.property_detail.additional_info %></div>
           </div>
         </div>
+
+        <% if @property.additional_fields.any? %>
+          <div class="mt-4">
+            <% @property.additional_fields.each do |field| %>
+              <h4 class="fs-5 mb-2 mb-sm-0"><%= field.name %></h4>	
+              <p><%= field.value %></p>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

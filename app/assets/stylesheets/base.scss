@@ -66,3 +66,24 @@
   border-top-right-radius: 0;
 }
 /* END LOGIN FORM */
+
+/* promo Activities */
+.activity-promo:hover {
+  .activity-link {
+    background: rgba(247, 103, 7, 0.8);
+    color: #fff;
+    
+  }
+}
+.activity-link {
+  font-size: 13px;
+  font-weight: 500;
+  position: absolute; /* Position the background text */
+  bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+  /* background: rgb(0, 0, 0);  Fallback color */
+  background: rgba(16, 108, 160, 0.6); /* Black background with 0.5 opacity */
+  color: #f1f1f1; /* Grey text */
+  width: 100%; /* Full width */
+  padding: 5px; /* Some padding */
+  transition: all 0.3s;
+}
