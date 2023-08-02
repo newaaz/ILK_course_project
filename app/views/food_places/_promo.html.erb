@@ -1,0 +1,31 @@
+<div class="col-md-4 col-6">
+  <div class="card card-hover-shadow">
+  
+      <!-- Card img -->
+      <div class="position-relative">
+        <!-- Overlay item -->
+        <div class="position-absolute top-0 start-0 z-index-1 m-1">
+          <%= link_to food_place do %>
+            <div class="badge bg-lime bg-opacity-75 text-light" style="font-size:14px;"><%= food_place.title %></div>
+          <% end %>
+        </div>
+
+        <div class="overflow-hidden rounded-2">
+          <div class="" data-controller="fotorama" data-object="widget"
+              data-width="100%"
+              data-ratio="3/2"
+              data-allowfullscreen="false"                
+              data-nav="false"
+              data-loop="true"
+              data-keyboard="true"
+              data-auto="false">      
+            <%= link_to image_tag(food_place.avatar.thumb_100.url), food_place.avatar.thumb.url %>      
+            <% food_place.images.take(4).each do |image| %> 
+              <%= link_to image_tag(image.thumb_100.url), image.thumb.url %>     
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+  </div>
+</div>

@@ -343,23 +343,21 @@ def create_property
   puts "Property #{property.title} created"
 end
 
-
-
 time = Benchmark.measure do
   #create_categories
   #create_towns
 
-  Property.destroy_all
-  45.times { create_property }
+  # Property.destroy_all
+  # 45.times { create_property }
   
-  Activity.destroy_all
-  25.times { create_activity }
+  # Activity.destroy_all
+  # 25.times { create_activity }
 
-  Service.destroy_all
-  25.times { create_service }
+  # Service.destroy_all
+  # 25.times { create_service }
 
-  Place.destroy_all
-  35.times { create_place }
+  # Place.destroy_all
+  # 35.times { create_place }
 
   FoodPlace.destroy_all
   35.times { create_food_place }

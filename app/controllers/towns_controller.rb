@@ -7,6 +7,11 @@ class TownsController < ApplicationController
 
   def show
     @categories = Category.all
+    @promo_properties = @town.properties.activated.take(3)
+    @promo_activities = @town.activities.activated.take(6)
+    @promo_services = @town.services.activated.take(6)
+    @promo_food_places = @town.food_places.activated.take(6)
+    @promo_places = @town.places.activated.take(6)
   end
 
   def properties
