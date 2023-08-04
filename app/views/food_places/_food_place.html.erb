@@ -27,7 +27,13 @@
     <!-- Card body -->
     <div class="card-body px-2 pt-2">
       <!-- Title -->
-      <h5 class="card-title"><%= link_to food_place.title, food_place, class: '' %></h5>
+      <div class="d-flex justify-content-between mb-1">        
+        <h5 class="card-title"><%= link_to food_place.title, food_place %></h5>
+
+        <span id="add_favorite_<%= dom_id food_place %>">
+          <%= render partial: 'shared/add_favorite', locals: { listing: food_place } %>
+        </span>
+      </div>
       <!-- Price and rating -->
       <div class="d-flex justify-content-between align-items-center">
         <%= link_to food_places_town_path(food_place.town_id), class: 'text-decoration-underline' do %>

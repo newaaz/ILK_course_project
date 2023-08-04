@@ -1,0 +1,16 @@
+<% if current_favorite.send("#{listing.model_name.singular}_ids").include?(listing.id) %>
+	<%= link_to favorite_items_path(listing_type: listing.model_name.name, listing_id: listing.id),
+								class: "", style: "font-size: 1.1rem",
+								data: { "turbo-method": :post } do %>
+
+		<i class="bi bi-heart-fill text-orange"></i>
+	<% end %>
+<% else %>
+	<%= link_to favorite_items_path(listing_type: listing.model_name.name, listing_id: listing.id),
+								class: "", style: "font-size: 1.1rem",
+								data: { "turbo-method": :post } do %>
+
+		<i class="bi bi-heart text-orange"></i>
+	<% end %>
+<% end %>
+

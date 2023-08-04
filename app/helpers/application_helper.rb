@@ -12,10 +12,36 @@ module ApplicationHelper
   end
 
   def towns_hash
-    Town.pluck(:id, :name).to_h
+    @towns_hash ||= Town.pluck(:id, :name).to_h
   end
 
   def categories_hash
-    Category.pluck(:id, :title).to_h
+    @categories_hash ||= Category.pluck(:id, :title).to_h
+  end
+
+  #TODO refactoring this methods
+  def favorite_property_ids
+    return [] unless session[:favorite_id].present?
+    @favorite_property_ids ||= current_favorite.property_ids
+  end
+
+  def favorite_activity_ids
+    return [] unless session[:favorite_id].present?
+    @favorite_activity_ids ||= current_favorite.activity_ids
+  end
+
+  def favorite_service_ids
+    return [] unless session[:favorite_id].present?
+    @favorite_service_ids ||= current_favorite.service_ids
+  end
+
+  def favorite_place_ids
+    return [] unless session[:favorite_id].present?
+    @favorite_place_ids ||= current_favorite.place_ids
+  end
+
+  def favorite_food_place_ids
+    return [] unless session[:favorite_id].present?
+    @favorite_food_place_ids ||= current_favorite.food_place_ids
   end
 end

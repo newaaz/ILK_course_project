@@ -56,8 +56,8 @@
 									<% end %>								
 							</li>
 
-							<li id="add_favorite_show" class="list-inline-item">
-								<%= render partial: 'shared/add_favorite_show', locals: { listing: @property } %>
+							<li id="add_favorite_<%= dom_id @property %>" class="list-inline-item">
+								<%= render partial: 'shared/add_favorite', locals: { listing: @property } %>
 							</li>					
 
 							<!-- DROPDOWN SHARE

@@ -43,8 +43,8 @@
           </div>
           
           <ul class="list-inline text-center">            
-            <li id="add_favorite_show" class="list-inline-item">
-              <%= render partial: 'shared/add_favorite_show', locals: { listing: @place } %>
+            <li id="add_favorite_<%= dom_id @place %>" class="list-inline-item">
+              <%= render partial: 'shared/add_favorite', locals: { listing: @place } %>
             </li>
           </ul>          
         </div>
