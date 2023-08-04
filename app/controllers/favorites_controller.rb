@@ -1,12 +1,17 @@
 class FavoritesController < ApplicationController
+  #TODO resolve how to include favorite_items in favorite
   def show
-    @favorite = current_favorite
+    @favorite = Favorite.includes(:favorite_items).find(session[:favorite_id])
   end
 
   def destroy
-    favorite = current_favorite
+    favorite = Favorite.find(session[:favorite_id])
     favorite.destroy
     session[:favorite_id] = nil
+
+    respond_to do |format|
+      format.html { redirect_to root_url, notice: 'Список избранного очищен'  }
+    end
   rescue ActiveRecord::RecordNotFound
     session[:favorite_id] = nil
   end

@@ -1,14 +1,4 @@
 <% unless @status == :error %>
-  <%= turbo_stream.update('favorite_top_menu', partial: 'shared/favorite_top_menu') %>
-
+  <%= turbo_stream.update('favorite_main_menu', partial: 'shared/favorite_main_menu') %>
   <%= turbo_stream.update("add_favorite_#{dom_id @listing}", partial: 'shared/add_favorite', locals: { listing: @listing }) %>
-
-
-  <%#= turbo_stream.update('flash_messages', partial: 'shared/flash_message',
-                                            locals: { 
-                                                      message_type: 'success',
-                                                      message: @status
-                                                    }) %>
-
 <% end %>
-

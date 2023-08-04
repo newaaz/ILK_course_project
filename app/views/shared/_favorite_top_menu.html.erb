@@ -12,4 +12,5 @@
   <%= link_to favorite_path(session[:favorite_id]), data: { "turbo-method": :delete }, class: 'mx-1 text-light small' do %>
     delete favorite
   <% end %>
+  <span class="text-secondary">|</span>
 <% end %>

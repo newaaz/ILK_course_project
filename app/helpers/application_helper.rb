@@ -13,7 +13,7 @@ module ApplicationHelper
 
   def towns_hash
     @towns_hash ||= Town.pluck(:id, :name).to_h
-  end
+  end 
 
   def categories_hash
     @categories_hash ||= Category.pluck(:id, :title).to_h
@@ -21,27 +21,27 @@ module ApplicationHelper
 
   #TODO refactoring this methods
   def favorite_property_ids
-    return [] unless session[:favorite_id].present?
+    return [] if session[:favorite_id].nil?
     @favorite_property_ids ||= current_favorite.property_ids
   end
 
   def favorite_activity_ids
-    return [] unless session[:favorite_id].present?
+    return [] if session[:favorite_id].nil?
     @favorite_activity_ids ||= current_favorite.activity_ids
   end
 
   def favorite_service_ids
-    return [] unless session[:favorite_id].present?
+    return [] if session[:favorite_id].nil?
     @favorite_service_ids ||= current_favorite.service_ids
   end
 
   def favorite_place_ids
-    return [] unless session[:favorite_id].present?
+    return [] if session[:favorite_id].nil?
     @favorite_place_ids ||= current_favorite.place_ids
   end
 
   def favorite_food_place_ids
-    return [] unless session[:favorite_id].present?
+    return [] if session[:favorite_id].nil?
     @favorite_food_place_ids ||= current_favorite.food_place_ids
   end
 end

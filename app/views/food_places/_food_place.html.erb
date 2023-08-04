@@ -3,7 +3,7 @@
     <!-- category overlay
     <div class="position-absolute top-0 start-0 z-index-1 m-2">
       <%= link_to food_places_path(category_title: food_place.tags[1]), class: 'text-decoration-underline' do %>
-        <div class="badge bg-lime bg-opacity-75 text-light" style="font-size:12px;"><%= food_place.tags[1] %></div>
+        <div class="badge bg-success bg-opacity-75 text-light" style="font-size:12px;"><%= food_place.tags[1] %></div>
       <% end %>
     </div>-->
 
@@ -37,11 +37,11 @@
       <!-- Price and rating -->
       <div class="d-flex justify-content-between align-items-center">
         <%= link_to food_places_town_path(food_place.town_id), class: 'text-decoration-underline' do %>
-          <span class="small"><i class="bi bi-cup-hot text-lime me-1"></i><%= towns_hash[food_place.town_id] %></span>
+          <span class="small"><i class="bi bi-cup-hot text-success me-1"></i><%= towns_hash[food_place.town_id] %></span>
         <% end %>
         
         <div class="mt-2 mt-sm-0">
-          <%= link_to food_place, class: "btn btn-sm btn-lime-soft mb-0" do %>
+          <%= link_to food_place, class: "btn btn-sm btn-success-soft mb-0" do %>
             Подробнее
           <% end %>  
         </div>

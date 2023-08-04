@@ -8,11 +8,7 @@
           <% if object.owner.avatar.present? %>                
             <%= image_tag(object.owner.avatar.thumb.url, class: 'avatar-img rounded-circle shadow') %>    
           <% else %>
-            <div class="avatar-img rounded-circle bg-primary bg-opacity-10">
-              <span class="text-primary position-absolute top-50 start-50 translate-middle fw-bold">
-                <%= object.contact.name[0] %>
-              </span>
-            </div>
+            <%= image_tag(object.avatar.thumb.url, class: 'avatar-img rounded-circle shadow') %> 
           <% end %>
         </div>
       <% else %>
