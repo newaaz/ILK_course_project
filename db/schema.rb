@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_28_165327) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_02_044416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -136,6 +136,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_165327) do
     t.index ["confirmation_token"], name: "index_customers_on_confirmation_token", unique: true
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
+  end
+
+  create_table "favorite_items", force: :cascade do |t|
+    t.bigint "favorite_id", null: false
+    t.string "listing_type", null: false
+    t.bigint "listing_id", null: false
+    t.index ["favorite_id"], name: "index_favorite_items_on_favorite_id"
+    t.index ["listing_type", "listing_id"], name: "index_favorite_items_on_listing"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "food_places", force: :cascade do |t|
@@ -372,6 +385,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_165327) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "partners", column: "owner_id"
   add_foreign_key "bookings", "properties"
+  add_foreign_key "favorite_items", "favorites"
   add_foreign_key "food_places", "partners", column: "owner_id"
   add_foreign_key "food_places", "towns"
   add_foreign_key "oauth_providers", "customers"
