@@ -1,0 +1,15 @@
+<% if session[:favorite_id].present? %>
+  <%= link_to favorite_path(session[:favorite_id]), class: "text-light mx-1" do %>
+    <% if current_favorite.items_count > 0 %>
+      <i class="bi bi-heart-fill text-orange"></i>
+    <% else %>
+      <i class="bi bi-heart text-orange"></i>
+    <% end %>    
+    <span class="text-light small ">Избранное (<%= current_favorite.items_count %>)</span>
+    <span class="text-secondary">|</span>
+  <% end %> 
+
+  <%= link_to favorite_path(session[:favorite_id]), data: { "turbo-method": :delete }, class: 'mx-1 text-light small' do %>
+    delete favorite
+  <% end %>
+<% end %>

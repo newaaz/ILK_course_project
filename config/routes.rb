@@ -68,7 +68,6 @@ Rails.application.routes.draw do
     get :food_places, on: :member
   end
 
-  resources :favorites, only: [:show, :destroy] do
-    resources :favorite_items, only: :create
-  end
+  resources :favorites, only: [:show, :destroy]
+  resources :favorite_items, only: :create  
 end
