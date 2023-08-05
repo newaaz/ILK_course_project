@@ -16,9 +16,9 @@ class StaticPagesController < ApplicationController
     @town = Town.all.sample    #  Town.find(Town.ids.sample) || Town.find(Town.pluck(:id).sample)
   end
 
-  def privacy
-  end
+  def privacy; end
 
-  def agreement    
-  end
+  def agreement; end
+
+  def join_us; end
 end

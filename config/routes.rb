@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       end
       patch 'listings/:id/activate_listing', to: 'listings#activate_listing', as: 'activate_listing'
       patch 'listings/:id/deactivate_listing', to: 'listings#deactivate_listing', as: 'deactivate_listing'
-      # toggle listing activating status
+      # toggle listing activating status without sending email
       patch 'listings/:id/toggle_listing_activating', to: 'listings#toggle_listing_activating', as: 'toggle_listing_activating'
     end
   end
@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get '/about',     to: 'static_pages#about'
   get '/privacy',   to: 'static_pages#privacy'
   get '/agreement', to: 'static_pages#agreement'
+  get 'join_us',    to: 'static_pages#join_us'
 
   get 'search', to: 'search#index'
   delete 'reset_search_dates', to: 'search#destroy'

@@ -1,11 +1,37 @@
+<% provide(:title, "Добавить номер") %>
+
 <section class="pb-0">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 text-center">
 				<h1 class="fs-3 mb-2">Добавить номер</h1>
 				<p class="fs-5 mb-0"><%= "#{property.title}: добавление нового номера" %></p>
-				<p class="mb-0">Поля со знаком * нужно заполнить</p>
 			</div>
+		</div>
+
+		<div class="alert alert-info alert-dismissible fade show my-3 rounded-2" role="alert">
+			<div class="d-sm-flex align-items-center mb-3">
+				<h5 class="alert-heading mb-0"><i class="bi bi-info-circle me-2"></i>Информация по заполнению:</h5>
+			</div>
+			
+			<div class="px-md-5 px-2">
+				<dl>
+					<dt>Стоимость проживания</dt>
+					<dd>
+						Устанавливается начало периода, конец периода и стоимость проживания за сутки в этом периоде.<br>
+						Потом добавляется следующий период началом которого должен быть следующий день от конца предыдущего
+					</dd>					
+					<dt>Копирование описания номера</dt>
+					<dd>
+						Можно выбрать номер и скопировать описание если оно похоже. Скопируется всё кроме цен, некоторые поля нужно будет изменить на новые, например "Название или тип номера" <br>
+						Главную фотографию скопированного номера нужно будет заменить на новую (если номера не однотипные)
+					</dd>
+					<dt>Поля со звёздочкой *</dt>
+					<dd>Необходимо заполнить.</dd>
+				</dl>
+			</div>
+			<!--
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
 		</div>
 	</div>
 </section>
@@ -17,14 +43,14 @@
 			<% if @sample_rooms.any? %>		
 				<div class="col-lg-8">		
 					<%= form_with(url: new_property_room_path(property), method: "get", data: { turbo_stream: true }) do |f| %>
-						<span class="d-block text-secondary mb-2">Вставить шаблон данных с ранее добавленого номера</span>
+						<span class="d-block text-secondary mb-2">Скопировать данные с ранее добавленого номера</span>
 						<div class="input-group mb-4">
 							
 							<%= link_to 'Очистить', new_property_room_path(property),
 																			class: 'btn btn-outline-secondary',
 																			data: { turbo_stream: true } %>
 							<%= f.collection_select :sample_room, @sample_rooms, :id, :title, { prompt: "Выбрать номер" }, class:"form-select" %>
-							<%= f.submit "Вставить", class:"btn btn-secondary" %>
+							<%= f.submit "Скопировать описание", class:"btn btn-secondary" %>
 						</div>
 					<% end %>
 				</div>
