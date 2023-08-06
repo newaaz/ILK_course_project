@@ -22,6 +22,7 @@ class Property < ApplicationRecord
   include Contactable
   include AdditionalFieldable
   include Favoritable
+  include Ratingable
   
   belongs_to :owner, class_name: 'Partner'
   belongs_to :town
