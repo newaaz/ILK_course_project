@@ -3,8 +3,15 @@ class FavoriteItemsController < ApplicationController
     current_item = current_favorite.favorite_items.find_by(listing_type: params[:listing_type], listing_id: params[:listing_id])
 
     if current_item.present?
-      current_item.destroy
-      current_favorite.update_attribute(:items_count, current_favorite.items_count - 1)
+      current_item.destroy      
+
+      if current_favorite.items_count == 1
+        current_favorite.destroy
+        session[:favorite_id] = nil
+      else
+        current_favorite.update_attribute(:items_count, current_favorite.items_count - 1)
+      end
+      
       respond_to do |format|        
         format.turbo_stream { @status = "Удалено из избранного", @listing = current_item.listing }
       end

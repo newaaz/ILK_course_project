@@ -5,7 +5,8 @@ class PropertyDetail < ApplicationRecord
                 terrace: 'Терраса',
                 brazier: 'Мангал',
                 printer: 'Принтер',
-                notebok: 'Ноутбук'
+                notebok: 'Ноутбук',
+                safe: 'Сейф'
               }.freeze
 
   belongs_to :property

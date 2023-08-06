@@ -90,9 +90,13 @@
       <div class="row g-3">
         <div class="col-12">
           <% Room::SERVICES.each do |key, value| %>
-            <div class="d-inline mx-2">
-              <%= f.check_box :services, { multiple: true, checked: f.object.services&.include?(key.to_s), class: 'form-check-input' }, key, nil %>
-              <%= f.label value, for: "room_services_#{key}",  class: 'form-check-label mb-4' %>
+            <div class="checkbox-wrapper-16 d-inline">
+              <label class="checkbox-wrapper ms-1 mb-2">
+                <%= f.check_box :services, { multiple: true, checked: f.object.services&.include?(key.to_s), class: 'checkbox-input' }, key, nil %>
+                <span class="checkbox-tile">
+                <%= f.label value, for: "room_services_#{key}",  class: 'form-check-label' %>
+                </span>
+              </label>
             </div>  
           <% end %>              
         </div>

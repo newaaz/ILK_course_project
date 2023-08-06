@@ -2,6 +2,8 @@ class FavoritesController < ApplicationController
   #TODO resolve how to include favorite_items in favorite
   def show
     @favorite = Favorite.includes(:favorite_items).find(session[:favorite_id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_url, notice: 'В избранном ничего нет'
   end
 
   def destroy

@@ -5,6 +5,11 @@
 				<%#= render 'shared/favorite_top_menu' %>
 			</div>-->
 			<%= link_to "О проекте", about_path, class: 'mx-1 text-light small' %>
+			
+			<% unless current_partner.present? %>
+				<span class="text-secondary">|</span>
+				<%= link_to "Добавить объявление", join_us_url, class: 'mx-1 text-light small' %>
+			<% end %>	
 	</div>
 </div>
 
@@ -49,9 +54,11 @@
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="pageMenu">
 								<li><%= link_to "Страница города", town_path(@town), class: 'dropdown-item' %></li>
-								<li><%= link_to "Жильё", properties_town_path(@town), class: 'dropdown-item' %></li>
+								<li><%= link_to "Где остановиться", properties_town_path(@town), class: 'dropdown-item' %></li>
 								<li><%= link_to "Активный отдых", activities_town_path(@town), class: 'dropdown-item' %></li>
-								<li><%= link_to "Услуги и сервисы", services_town_path(@town), class: 'dropdown-item' %></li>	
+								<li><%= link_to "Услуги и сервисы", services_town_path(@town), class: 'dropdown-item' %></li>
+								<li><%= link_to "Где поесть", food_places_town_path(@town), class: 'dropdown-item' %></li>
+								<li><%= link_to "Локации", places_town_path(@town), class: 'dropdown-item' %></li>
 							</ul>
 						</li>
 					<% end %>	

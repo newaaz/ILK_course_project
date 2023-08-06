@@ -1,15 +1,15 @@
 PROPERTY_TITLES = ["Гостевой дом 'Одиссей'", "Гостевой дом 'Александра'", "Гостиница 'Орхидея'",
                   "Апартаменты 'Парус'", "Эллинг 'Катран'", "Дом под ключ в центре",
                   "3-х комнатная квартира у моря", "Гостиница У Моря", "Эко гостевой дом 'Здоровье'",
-                  "Отель 'Бриз'", "Апартаменты 'Хижина Робинзона'", "Вилла 'Santa Fe'", "Апартаменты 'На Черноморской'"].freeze
+                  "Отель 'Бриз'", "Апартаменты 'Хижина Робинзона'", "Вилла 'Santa Fe'", "Апартаменты 'На Черноморской'"]
 
 ADRESSES = ["ул. Ленина 15", "Черноморская набережная, д. 1В", "ул. Бусина 35", "ул. Приморская 65 B",
                      "переулок Лазурный, д.7", "ул. Луначарского, д. 16", "Севастопольское шоссе, д. 22", "ул. Ленина, 35 б",
-                     "эллинг 60"].freeze
+                     "эллинг 60"]
 
 ACTIVITY_TITLES = ["Прогулка на каяках у Кара Дага", "Прыжок с парашютом в тандеме", "Конная прогулка к подножию Эчки Дага", "Дайвинг в Береговом",
                    "Джипинг", "Виндсерфинг в Приморском", "Прогулка на воздушном шаре", "Экскурсия на джипе по горам Феодосии", "Конные прогулки - сердце генценберга",
-                    "Воздушные прогулки", "Морские прогулки", "Конные прогулки - Тепе-Оба", "Прогулки на квадроциклах"].freeze
+                    "Воздушные прогулки", "Морские прогулки", "Конные прогулки - Тепе-Оба", "Прогулки на квадроциклах"]
 
 SERVICE_TITLES = ["Такси 'Девяточка'", "Служба такси 'Виктор'", "Детсая комната 'Одуванчик'", "Ремонт обуви", "Ремонт смартфонов",
                    "Спортзал 'Аполлон'", "Маникюр/педикюр", "Массаж", "Доставка еды 'БыстроПицца'", "Прокат авто", "Услуги эваукатора",
@@ -30,18 +30,18 @@ FOOD_PLACE_TITLES = ["Вкусная точка", "Гурманово месте
                       "Вкусненький край", "Шедевры кулинарии", "Гастро-магия", "кафе Вкусота", "кафе Гастро", "кафе Лакомство", "кафе Сытость",
                       "Аппетит", "Столовая 'На Динамо'", "кафе Суши", "пиццерия ПиццаПапа", "БургерКвин", "Десерты и сладости", "Чайный домик"]
 
+
 # Categories for properties
 def create_categories
   Category.destroy_all
   Category.create!([
     { title: 'Гостевые дома', ordinal_number: 1 },
-    { title: 'Гостиницы', ordinal_number: 2 },
-    { title: 'Квартиры', ordinal_number: 3 },
+    { title: 'Гостиницы и отели', ordinal_number: 2 },
+    { title: 'Квартиры посуточно', ordinal_number: 3 },
     { title: 'Частный сектор', ordinal_number: 4 },
-    { title: 'Дома под ключ', ordinal_number: 5 },
+    { title: 'Дома под ключ и коттеджи', ordinal_number: 5 },
     { title: 'Эллинги', ordinal_number: 6 },
-    { title: 'Пансионаты', ordinal_number: 7 },
-    { title: 'Бюджетное жильё', ordinal_number: 8 },
+    { title: 'Эконом', ordinal_number: 8 },
     { title: 'Другое', ordinal_number: 9}
   ])
   puts "Categories created"
@@ -81,7 +81,7 @@ def create_towns
 end
 
 def rand_image_path  
-  Pathname.new(Rails.root.join("app/assets/images/seed/property/p (#{rand 1..15}).jpg"))
+  Pathname.new(Rails.root.join("app/assets/images/seed/properties/rooms/room (#{rand 1..21}).jpg"))
 end
 
 def rand_price
@@ -89,7 +89,7 @@ def rand_price
 end
 
 # create place
-def create_food_place
+def create_food_place_for(owner)
   food_place = FoodPlace.create!(title:          FOOD_PLACE_TITLES.sample,
                         tags: [1,2,3,4,5,6,7,8,9,10,11],
                         avatar:         File.open(File.join(Rails.root, "app/assets/images/seed/food_places/food_place (#{rand 1..15}).jpg")),
@@ -110,10 +110,11 @@ def create_food_place
                                         С приходом теплых дней часть веселья переносится на летнюю веранду – уютный красивый дворик с видом на город. Высококлассное обслуживание, доброжелательный персонал, качественная кухня с авторской «изюминкой», и правильная музыка позволяют нам надеяться, что, побывав здесь однажды, Вы будете возвращаться вновь.",
                         menu:           "Меню: В меню представлены хиты различных кухонь мира: традиционная европейская, армянская, авторская кухня. Здесь можно пообедать с деловым партнером, поужинать в кругу друзей и семьи или отметить значимую дату. Живая музыка, вкусные блюда, вежливый персонал – эти и другие моменты говорят сами за себя.",
                         activated:    true,
+                        rating:       1,
                         site:         'ilovekrim.ru',
-                        email:        'email@email.ru',
+                        email:        'wellcome@ilovekrim.ru',
                         vk_group:     'i_lovekrim',
-                        owner:        Partner.first,
+                        owner:        owner,
                         town:         Town.all.sample,
                         geolocation:  Geolocation.new(
                           latitude: "45.0#{rand 60..80}65",
@@ -131,7 +132,7 @@ def create_food_place
 end
 
 # create place
-def create_place
+def create_place_for(owner)
   place = Place.create!(title:          PLACE_TITLES.sample,
                         category_title: Place::PLACE_CATEGORIES.sample,
                         avatar:         File.open(File.join(Rails.root, "app/assets/images/seed/places/place (#{rand 1..32}).jpg")),
@@ -151,10 +152,11 @@ def create_place
                                         А после представления у вас будет возможность пообщаться с артистами поближе, сфотографироваться и даже поплавать, а самые любопытные смогут погрузиться с аквалангом в мир морских млекопитающих.
                                         Для того чтоб память о нашем дельфинарии осталась в ваших сердцах надолго после представления вы сможете приобрести сувенир на память, DVD диск где мы записали все, что попало к Вам на глаза в нашем комплексе.",
                         activated:    true,
+                        rating:       1,
                         site:         'ilovekrim.ru',
-                        email:        'email@email.ru',
+                        email:        'wellcome@ilovekrim.ru',
                         vk_group:     'i_lovekrim',
-                        owner:        Partner.first,
+                        owner:        owner,
                         town:         Town.all.sample,
                         geolocation:  Geolocation.new(
                           latitude: "45.0#{rand 60..80}65",
@@ -172,7 +174,7 @@ def create_place
 end
 
 # create Service
-def create_service
+def create_service_for(owner)
   service = Service.create!(title:          SERVICE_TITLES.sample,
                             category_title: Service::SERVICE_CATEGORIES.sample,
                             avatar:         File.open(File.join(Rails.root, "app/assets/images/seed/services/service (#{rand 1..25}).jpg")),
@@ -192,10 +194,11 @@ def create_service
                             additional_info: "У нас просторная студия, маникюрный зал отделен от педикюрного, для удобства и комфорта клиентов и мастеров.
                                               Работают 3 топ мастера, старший мастер и мастер, поэтому всегда можно подобрать удобное для вас время. Учитывайте, что у каждого мастера свой стаж и время работы, поэтому стоимость услуг у всех отличается. Также услуги бровиста! В студии работает косметолог.",
                             activated:    true,
+                            rating:       1,
                             site:         'ilovekrim.ru',
-                            email:        'email@email.ru',
+                            email:        'wellcome@ilovekrim.ru',
                             vk_group:     'i_lovekrim',
-                            owner:        Partner.first,
+                            owner:        owner,
                             town_ids:     Town.ids,
                             geolocation:  Geolocation.new(
                               latitude: "45.0#{rand 60..80}65",
@@ -214,7 +217,7 @@ def create_service
 end
 
 # create actitvity
-def create_activity
+def create_activity_for(owner)
   actitvity = Activity.create!( title:          ACTIVITY_TITLES.sample,
                                 category_title: Activity::ACTIVITY_CATEGORIES.sample,
                                 avatar:         File.open(File.join(Rails.root, "app/assets/images/seed/activities/activity (#{rand 1..20}).jpg")),
@@ -236,10 +239,11 @@ def create_activity
                                                   Не забудьте, что предварительное бронирование обязательно, чтобы убедиться в наличии свободных мест и подготовке к вашему приходу.
                                                   Желаем вам незабываемых морских прогулок и великолепного отдыха на нашем сказочном побережье!",
                                 activated:    true,
+                                rating:       1,
                                 site:         'ilovekrim.ru',
-                                email:        'email@email.ru',
+                                email:        'wellcome@ilovekrim.ru',
                                 vk_group:     'i_lovekrim',
-                                owner:        Partner.first,
+                                owner:        owner,
                                 town_ids:     Town.ids,
                                 geolocation:  Geolocation.new(
                                   latitude: "45.0#{rand 60..80}65",
@@ -258,22 +262,23 @@ def create_activity
 end
 
 # Create property
-def create_property
+def create_property_for(owner)
   property = Property.new(title:      PROPERTY_TITLES.sample,
-                          avatar:     File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                          avatar:     File.open(File.join(Rails.root, "app/assets/images/seed/properties/avatars/avatar (#{rand 1..31}).jpg")),
                           images:     [ 
-                                        File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                                        File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                                        File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                                        File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                                        File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                                        File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg"))
+                                        File.open(File.join(Rails.root, "app/assets/images/seed/properties/p (#{rand 1..39}).jpg")),
+                                        File.open(File.join(Rails.root, "app/assets/images/seed/properties/p (#{rand 1..39}).jpg")),
+                                        File.open(File.join(Rails.root, "app/assets/images/seed/properties/p (#{rand 1..39}).jpg")),
+                                        File.open(File.join(Rails.root, "app/assets/images/seed/properties/p (#{rand 1..39}).jpg")),
+                                        File.open(File.join(Rails.root, "app/assets/images/seed/properties/p (#{rand 1..39}).jpg")),
+                                        File.open(File.join(Rails.root, "app/assets/images/seed/properties/p (#{rand 1..39}).jpg"))
                                       ],
                           address:    ADRESSES.sample,
                           town:       Town.all.sample,
                           category:   Category.all.sample,
-                          owner:      Partner.first,
+                          owner:      owner,
                           activated:  true,
+                          rating:     1,
                           price_from: (rand(1000..5000) / 50).round * 50,
                           distance_to_sea: (rand(200..1500) / 50).round * 50,
                           services: ["kitchen", "excursions", "pool", "parking", "playground"],
@@ -293,7 +298,7 @@ def create_property
                             amenities: ["washer", "closed_yard", "terrace", "brazier", "printer", "notebok"],
                             additional_info: 'Услуги за отдельную плату: пользование стиральной машиной. Примечание: если клиент отказывается от бронирования, предоплата не возвращается.',
                             site: 'ilovekrim.ru',
-                            email: 'email@email.ru',
+                            email: 'wellcome@ilovekrim.ru',
                             vk_group: 'i_lovekrim'))
   
   # add images by ActiveStorage (deprecated)
@@ -305,13 +310,13 @@ def create_property
   # Create Room's
   4.times do |i|
     room = property.rooms.build(title: "Стандартный #{i + 1}-х местный номер",
-                                avatar: File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
+                                avatar: File.open(File.join(Rails.root, "app/assets/images/seed/properties/rooms/room (#{rand 1..21}).jpg")),
                                 images: [ 
-                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg")),
-                                          File.open(File.join(Rails.root, "app/assets/images/seed/property/p (#{rand 1..15}).jpg"))
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/properties/rooms/room (#{rand 1..21}).jpg")),
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/properties/rooms/room (#{rand 1..21}).jpg")),
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/properties/rooms/room (#{rand 1..21}).jpg")),
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/properties/rooms/room (#{rand 1..21}).jpg")),
+                                          File.open(File.join(Rails.root, "app/assets/images/seed/properties/rooms/room (#{rand 1..21}).jpg"))
                                         ],
                                 guest_base_count: 2,
                                 guest_max_count: rand(1..10),
@@ -344,26 +349,26 @@ def create_property
 end
 
 time = Benchmark.measure do
-  #create_categories
+  owner = Partner.find_by(email: 'jumperka@list.ru')
   #create_towns
+  #create_categories
 
-  # Property.destroy_all
-  # 45.times { create_property }
+  Property.destroy_all
+  5.times { create_property_for(owner) }
+  Property.reindex
+  puts "Properties indexed"
   
-  # Activity.destroy_all
-  # 25.times { create_activity }
+  Activity.destroy_all
+  5.times { create_activity_for(owner) }
 
-  # Service.destroy_all
-  # 25.times { create_service }
+  Service.destroy_all
+  5.times { create_service_for(owner) }
 
-  # Place.destroy_all
-  # 35.times { create_place }
+  Place.destroy_all
+  5.times { create_place_for(owner) }
 
   FoodPlace.destroy_all
-  35.times { create_food_place }
-
-  # Property.reindex
-  # puts "Properties indexed"
+  5.times { create_food_place_for(owner) }
 end
 
 puts "Время выполнения: #{time.real} секунд"

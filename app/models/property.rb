@@ -1,10 +1,17 @@
 class Property < ApplicationRecord
   SERVICES =  {
                 kitchen: 'Кухня',
+                food: 'С питанием',
                 excursions: 'Экскурсии',
                 pool: 'Бассеин',
                 parking: 'Парковка',
                 playground: 'Детская площадка',
+                gazebo: 'Беседка для отдыха',
+                with_childen: 'Для отдыха с детьми',
+                billiard_room: 'Бильярдная',
+                gym: 'Тренажёрный зал',
+                room_cleaning: 'Уборка в номерах',
+                linen_change: 'Смена белья'
               }.freeze
 
   #include Imagable
