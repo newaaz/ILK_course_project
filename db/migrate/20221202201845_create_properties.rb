@@ -5,7 +5,7 @@ class CreateProperties < ActiveRecord::Migration[7.0]
       t.string  :avatar
       t.json    :images  
       t.string  :address
-      t.integer :rating, limit: 2, default: 50
+      t.integer :rating, limit: 2, default: 10
       t.integer :random_id, limit: 2, default: 1    
       t.integer :promouted, limit: 2, default: 0
       t.integer :price_from, limit: 2

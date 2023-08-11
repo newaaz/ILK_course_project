@@ -27,7 +27,7 @@ class FoodPlacesController < ApplicationController
   def create
     @food_place = current_partner.food_places.build(food_place_params)
     if @food_place.save
-      flash[:success] = "Объявление добавлено и ожидает проверки. Вам на почту придёт письмо, сообщающее об активации и доступности к просмотру"
+      flash[:success] = "Объявление добавлено и ожидает проверки. После активации вам на почту придёт письмо"
       redirect_to @food_place
     else
       respond_to do |format|

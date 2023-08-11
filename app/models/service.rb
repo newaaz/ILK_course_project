@@ -1,5 +1,6 @@
 class Service < ApplicationRecord
-  SERVICE_CATEGORIES =  ["Доставка еды", "Такси", "Спортзалы", "Прокат авто", "Эвакуатор", "Прачечные", "Ремонт обуви", "Теннис",
+  SERVICE_CATEGORIES =  ["Доставка еды", "Такси", "Спортзалы", "Прокат авто", "Велопрокат","Эвакуатор", "Прачечные",
+                         "Ремонт обуви", "Теннис", "Другое",
                          "Массаж", "Бильярд", "Бани / Сауны", "Красота", "Ремонт телефонов", "Частные клиники", "Детские комнаты"].freeze
 
   include CarrierwaveImagable
@@ -7,6 +8,8 @@ class Service < ApplicationRecord
   include ListingActivatable
   include Contactable
   include AdditionalFieldable
+  include Favoritable
+  include Ratingable
 
   has_and_belongs_to_many :towns
 

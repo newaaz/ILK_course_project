@@ -7,11 +7,17 @@ class TownsController < ApplicationController
 
   def show
     @categories = Category.all
-    @promo_properties = @town.properties.activated.take(3)
-    @promo_activities = @town.activities.activated.take(6)
-    @promo_services = @town.services.activated.take(6)
-    @promo_food_places = @town.food_places.activated.take(6)
-    @promo_places = @town.places.activated.take(6)
+    @promo_properties = @town.properties.activated.where(promouted: 5).take(6)
+    @promo_activities = @town.activities.activated.where(promouted: 5).take(6)
+
+    @promo_services = @town.services.activated.where(promouted: 5).take(6)
+    #@taxi_services = @promo_services.select { |service| service.promouted == 10 }
+    #@food_delivery_services = @promo_services.select { |service| service.promouted == 10 }
+    @taxi_services = @town.services.activated.where(promouted: 10, category_title: 'Такси').take(2)
+    @food_delivery_services = @town.services.activated.where(promouted: 10, category_title: "Доставка еды").take(2)
+
+    @promo_food_places = @town.food_places.activated.where(promouted: 5).take(6)
+    @promo_places = @town.places.activated.where(promouted: 5).take(6)
   end
 
   def properties

@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
-  include Authorized
   include Pagy::Backend
+  include Authorized  
+  include NotFounded
+  include Favorited
 end

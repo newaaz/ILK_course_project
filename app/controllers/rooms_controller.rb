@@ -13,10 +13,13 @@ class RoomsController < ApplicationController
     respond_to do |format|
       format.html { render 'new', locals: { property: property, room: room } }
       format.turbo_stream do
+        room_clone = Room.sample_data(params[:sample_room].to_i)
+        room_clone.avatar = nil
+        room_clone.images = nil
         render turbo_stream:
           turbo_stream.update('room_form',
             partial: 'rooms/form',
-            locals:   { property: property, room: Room.sample_data(params[:sample_room].to_i) })
+            locals:   { property: property, room: room_clone })
       end
     end    
   end

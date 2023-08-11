@@ -20,7 +20,11 @@
     <div class="card-body px-3">      
       <!-- Title -->
       <div class="d-flex justify-content-between mb-1">        
-        <h5 class="card-title my-0"><%= link_to property.title, property %></h5>        
+        <h5 class="card-title my-0"><%= link_to property.title, property %></h5>
+
+        <span id="add_favorite_<%= dom_id property %>">
+          <%= render partial: 'shared/add_favorite', locals: { listing: property } %>
+        </span>
       </div>
 
       <div class="d-sm-flex justify-content-sm-between align-items-center flex-wrap mt-1 mb-2">

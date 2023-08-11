@@ -2,13 +2,16 @@ class Room < ApplicationRecord
   SERVICES =  {
     sea_view: 'Вид на море',
     mountain_view: 'Вид на горы',
+    sea_view: 'Вид на море',
     balcony: 'Балкон',
     wifi: 'WiFi',
     tv: 'Телевизор',
     satellite: 'Спутниковое, цифровое ТВ',
     fridge: 'Холодильник',
     conditioner: 'Кондиционер',
-    kettle: 'Эл чайник'
+    kettle: 'Эл чайник',
+    ws: 'Душ и туалет в номере',
+    safe: 'Сейф'
   }.freeze
 
   #include Imagable
@@ -79,5 +82,9 @@ class Room < ApplicationRecord
 
   def min_price
     prices.any? ? prices.minimum(:day_cost) : nil
+  end
+
+  def owner
+    property.owner
   end
 end

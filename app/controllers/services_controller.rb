@@ -36,7 +36,7 @@ class ServicesController < ApplicationController
   def create
     @service = current_partner.services.build(service_params)
     if @service.save
-      flash[:success] = "Объявление добавлено и ожидает проверки. Вам на почту придёт письмо, сообщающее об активации и доступности к просмотру"
+      flash[:success] = "Объявление добавлено и ожидает проверки. После активации вам на почту придёт письмо"
       redirect_to @service
     else
       respond_to do |format|

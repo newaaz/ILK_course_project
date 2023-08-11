@@ -28,7 +28,7 @@
         <div class="d-lg-flex justify-content-lg-between mb-1">
           <!-- Title -->
           <div class="mb-2 mb-lg-0 ">
-            <h1 class="h3"><i class="bi bi-cup-hot text-lime me-3"></i><%= @food_place.title %></h1>
+            <h1 class="h3"><i class="bi bi-cup-hot text-success me-3"></i><%= @food_place.title %></h1>
               <!-- Location -->
               <p class="fw-bold mb-0 mt-2">
                 <% if @food_place.address.present? %>
@@ -42,8 +42,8 @@
           </div>
           
           <ul class="list-inline text-center">            
-            <li class="list-inline-item">
-              <a href="#" class="btn btn-sm btn-orange-soft px-2"><i class="bi bi-heart" style="font-size: 1rem;"></i></a>
+            <li id="add_favorite_<%= dom_id @food_place %>" class="list-inline-item">
+              <%= render partial: 'shared/add_favorite', locals: { listing: @food_place } %>
             </li>
           </ul>          
         </div>
@@ -75,7 +75,7 @@
 
         <div class="mt-3 px-2">
           <% @food_place.tags.each do |tag| %>
-            <div class="badge bg-lime bg-opacity-75 text-light mb-2 me-2" style="font-size:12px;"><%= FoodPlace::FOOD_PLACE_TAGS[tag] %></div>
+            <div class="badge bg-success bg-opacity-75 text-light mb-2 me-2" style="font-size:12px;"><%= FoodPlace::FOOD_PLACE_TAGS[tag] %></div>
           <% end %>
         </div>
       </aside>			

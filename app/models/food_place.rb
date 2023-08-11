@@ -35,6 +35,8 @@ class FoodPlace < ApplicationRecord
   include ListingActivatable
   include Contactable
   include AdditionalFieldable
+  include Favoritable
+  include Ratingable
 
   validates :title, :description, :town_id, presence: true
 end

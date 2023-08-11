@@ -35,7 +35,7 @@ class PlacesController < ApplicationController
   def create
     @place = current_partner.places.build(place_params)
     if @place.save
-      flash[:success] = "Объявление добавлено и ожидает проверки. Вам на почту придёт письмо, сообщающее об активации и доступности к просмотру"
+      flash[:success] = "Объявление добавлено и ожидает проверки. После активации вам на почту придёт письмо"
       redirect_to @place
     else
       respond_to do |format|

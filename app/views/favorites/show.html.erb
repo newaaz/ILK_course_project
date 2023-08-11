@@ -1,0 +1,102 @@
+<% provide(:title, "Избранное") %>
+
+<div class="container mt-3">
+  <div class="d-flex justify-content-between">
+    <h1 class="h2"><i class="bi bi-heart-fill text-orange me-2 h3"></i>Избранное</h1>
+
+    
+    <ul class="list-inline mb-0">
+      <li class="list-inline-item dropdown">
+        <a href="#" class="btn  btn-round btn-light mb-0" role="button" id="dropdownShare2" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-three-dots-vertical"></i>
+        </a>              
+        <ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare2">
+            <%= link_to favorite_path(@favorite), class: 'dropdown-item text-danger bg-danger-soft-hover', data: { "turbo-method": :delete } do %>
+              <i class="bi bi-trash fa-fw me-2"></i>Очистить список
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    
+  </div>
+
+  <% unless @favorite.favorite_items.any? %>
+    <h5 class="ms-4">Список избранного пуст</h5>
+  <% end %>
+</div>
+
+<!-- properties -->
+<% if @favorite.properties.any? %>
+  <section>
+    <div class="container">
+      <div class="row mb-4">        
+        <h2 class="h3 ps-md-5"><i class="bi bi-check2-circle text-primary me-3"></i>Где остановиться</h2>        
+      </div>
+
+      <div class="row gx-4">
+        <%= render @favorite.properties %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<!-- activities -->
+<% if @favorite.activities.any? %>
+  <section>
+    <div class="container">
+      <div class="row mb-4">
+        <h2 class="h3 ps-md-5"><i class="bi bi-star text-orange me-3"></i>Активный отдых</h2>
+      </div>
+
+      <div class="row g-4">
+        <%= render @favorite.activities %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<!-- services -->
+<% if @favorite.services.any? %>
+  <section>
+    <div class="container">
+      <div class="row mb-4">
+        <h2 class="h3 ps-md-5"><i class="bi bi-box text-info me-3"></i>Услуги и сервисы</h2>
+      </div>
+
+      <div class="row g-4">
+        <%= render @favorite.services %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<!-- food places -->
+<% if @favorite.food_places.any? %>
+  <section>
+    <div class="container">
+      <div class="row mb-4">
+        <h2 class="h3 ps-md-5"><i class="bi bi-cup-hot text-success me-3"></i>Где поесть</h2>
+      </div>
+
+      <div class="row g-4">
+        <%= render @favorite.food_places %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<!-- places -->
+<% if @favorite.places.any? %>
+  <section>
+    <div class="container">
+      <div class="row mb-4">
+        <h2 class="h3 ps-md-5"><i class="bi bi-pin-map text-warning me-3"></i>Локации</h2>
+      </div>
+
+      <div class="row g-4">
+        <%= render @favorite.places %>
+      </div>
+    </div>
+  </section>
+<% end %>

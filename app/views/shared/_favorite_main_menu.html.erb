@@ -1,0 +1,12 @@
+<% if session[:favorite_id].present? %>
+  <li class="nav-item ms-3 ms-md-2">
+    <%= link_to favorite_path(session[:favorite_id]), class: "btn btn-primary-soft btn-sm px-2 py-1 mb-0" do %>
+      <% if current_favorite.items_count > 0 %>
+        <i class="bi bi-heart-fill text-orange fs-6" ></i>
+      <% else %>
+        <i class="bi bi-heart text-orange fs-6" ></i>
+      <% end %>      
+      <span class="d-none d-md-inline">Избранное <%= current_favorite.items_count == 0 ? '' : "(#{current_favorite.items_count})" %></span>
+    <% end %>
+  </li>
+<% end %>

@@ -57,6 +57,7 @@ ru:
         site: 'Сайт'
         email: 'Email'
         vk_group: 'Группа в ВК'
+        towns: 'К каким населённым пунктам относится -'
       service:
         title: 'Название'
         category_title: 'Категория'
@@ -69,7 +70,8 @@ ru:
         images: 'Изображения'
         site: 'Сайт'
         email: 'Email'
-        vk_group: 'Группа в ВК'        
+        vk_group: 'Группа в ВК'
+        towns: 'К каким населённым пунктам относится -'    
       geolocation:
         latitude: 'Широта'
         longitude: 'Долгота'

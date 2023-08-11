@@ -31,7 +31,13 @@
       <div class="col-md-8">
         <div class="card-body py-md-2 d-flex flex-column h-100 position-relative">
           <!-- Title -->
-          <h5 class="card-title mb-1"><%= link_to service.title, service_path(service, town_id: @town.present? ? @town.id : nil) %></h5>
+          <div class="d-flex justify-content-between mb-1">        
+            <h5 class="card-title mb-1"><%= link_to service.title, service_path(service, town_id: @town.present? ? @town.id : nil) %></h5>
+
+            <span id="add_favorite_<%= dom_id service %>">
+              <%= render partial: 'shared/add_favorite', locals: { listing: service } %>
+            </span>
+          </div>
 
           <% if service.address.present? %>
             <small><i class="bi bi-geo-alt me-2"></i><%= service.address %></small>

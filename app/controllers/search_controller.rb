@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def index
-    finded_properties = BookingSearchService.call(params).includes([:avatar_attachment, images_attachments: :blob])
+    finded_properties = BookingSearchService.call(params)
     @pagy, @properties = pagy_searchkick finded_properties, items: 12
 
     if params[:check_in].present? && params[:check_out].present?        

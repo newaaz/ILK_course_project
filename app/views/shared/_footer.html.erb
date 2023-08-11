@@ -1,3 +1,5 @@
+<div class="d-sm-none d-md-block py-5 my-5"></div>
+
 <footer class="bg-secondary bg-opacity-10 border-top shadow">
 	<div class="container py-3">
 		<!-- Row START -->
@@ -27,7 +29,7 @@
 					<li class="list-inline-item pt-1"><a class="nav-link text-decoration-underline py-1 text-primary" href="#">О проекте</a></li>
 					-->
 
-
+					<!--
 					<li class="list-inline-item ">
 						<%= link_to "https://t.me/ilovekrim_ru", class: 'btn btn-sm btn-outline-primary mt-4 mt-md-0' do %>
 							<i class="bi bi-telegram fs-6"></i>
@@ -40,11 +42,11 @@
 							<i class="bi bi-telegram fs-6"></i>
 							VK
 						<% end %>
-					</li>
+					</li> -->
 
 					<% unless current_partner.present? %>
 						<li class="list-inline-item ms-md-3">
-							<%= link_to new_partner_registration_path, class: 'btn btn-sm btn-primary-soft mt-4 mt-md-0' do %>
+							<%= link_to join_us_url, class: 'btn btn-sm btn-primary-soft mt-4 mt-md-0' do %>
 								<i class="bi bi-plus fs-6"></i>
 								Добавить объявление
 							<% end %>
@@ -57,7 +59,7 @@
 	</div>
 
 	<!-- Bottom footer -->
-	<div class="top_line_menu">
+	<div class="top_line_menu border-top border-2 border-orange">
 		<div class="container">
 			<div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-lg-start">
 				<!-- copyright text -->
@@ -66,16 +68,16 @@
 				<div class="nav mt-2 mt-lg-0">
 					<ul class="list-inline small mx-auto mb-0">
 						<li class="list-inline-item me-0">
-							<%= link_to "О проекте", about_path, target: "_blank", class: 'nav-link text-decoration-underline py-1 text-light' %>
+							<%= link_to "О проекте", about_path, class: 'nav-link text-decoration-underline py-1 text-light' %>
 						</li>
 						<li class="list-inline-item me-0">
-							<%= link_to "Контакты", contacts_path, target: "_blank", class: 'nav-link text-decoration-underline py-1 text-light' %>
+							<%= link_to "Контакты", contacts_path, class: 'nav-link text-decoration-underline py-1 text-light' %>
 						</li>			
 						<li class="list-inline-item me-0">
-							<%= link_to "Политика конфиденциальности", privacy_path, target: "_blank", class: 'nav-link text-decoration-underline py-1 text-light' %>
+							<%= link_to "Политика конфиденциальности", privacy_path, class: 'nav-link text-decoration-underline py-1 text-light' %>
 						</li>
 						<li class="list-inline-item me-0">
-							<%= link_to "Пользовательское соглашение", agreement_path, target: "_blank", class: 'nav-link text-decoration-underline py-1 text-light' %>
+							<%= link_to "Пользовательское соглашение", agreement_path, class: 'nav-link text-decoration-underline py-1 text-light' %>
 						</li>
 						
 						<!-- 
@@ -93,4 +95,5 @@
 	</div>
 </footer>
 
-<div class="d-md-none pt-5 pb-3"></div>
+<!-- for mobile menu 
+<div class="d-md-none pt-5 pb-3"></div> -->

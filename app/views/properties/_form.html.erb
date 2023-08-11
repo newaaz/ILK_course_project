@@ -29,7 +29,7 @@
         <div class="col-md-6">            
           <%= f.label :price_from, class: 'form-label' %>* <span class="small text-secondary">(минимальная стоимость аренды за сутки)</span>        
           <div class="input-group"> 
-            <%= f.number_field :price_from, class: 'form-control', min: 50 %>
+            <%= f.number_field :price_from, class: 'form-control' %>
             <span class="input-group-text">&#8381;</span>
           </div> 
         </div>
@@ -42,7 +42,7 @@
         <div class="col-md-6">        
           <%= f.label :distance_to_sea, class: 'form-label' %> <span class="small text-secondary">(необязательно)</span>  
           <div class="input-group ">       
-            <%= f.number_field :distance_to_sea, class: 'form-control', min: 10 %>
+            <%= f.number_field :distance_to_sea, class: 'form-control' %>
             <span class="input-group-text">М</span>
           </div>          
         </div>        

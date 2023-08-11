@@ -54,11 +54,12 @@
 										<i class="bi bi-water me-1 text-primary"></i>
 										море ~ <span class="fw-semibold"><%= @property.distance_to_sea %></span><small>м</small>
 									<% end %>								
-							</li>							
-							
-							<li class="list-inline-item">
-								<a href="#" class="btn btn-sm btn-orange-soft px-2"><i class="bi bi-heart" style="font-size: 1rem;"></i></a>
 							</li>
+
+							<li id="add_favorite_<%= dom_id @property %>" class="list-inline-item">
+								<%= render partial: 'shared/add_favorite', locals: { listing: @property } %>
+							</li>					
+
 							<!-- DROPDOWN SHARE
 							<li class="list-inline-item dropdown">
 								<a href="#" class="btn btn-sm btn-light px-2" role="button" id="dropdownShare" data-bs-toggle="dropdown" aria-expanded="false">

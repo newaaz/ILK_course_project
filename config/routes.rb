@@ -10,7 +10,10 @@ Rails.application.routes.draw do
       end
       patch 'listings/:id/activate_listing', to: 'listings#activate_listing', as: 'activate_listing'
       patch 'listings/:id/deactivate_listing', to: 'listings#deactivate_listing', as: 'deactivate_listing'
-      # toggle listing activating status
+      patch 'listings/:id/update_rating', to: 'listings#update_rating', as: 'update_rating'
+      patch 'listings/:id/update_promouted', to: 'listings#update_promouted', as: 'update_promouted'
+
+      # toggle listing activating status without sending email
       patch 'listings/:id/toggle_listing_activating', to: 'listings#toggle_listing_activating', as: 'toggle_listing_activating'
     end
   end
@@ -28,6 +31,7 @@ Rails.application.routes.draw do
   get '/about',     to: 'static_pages#about'
   get '/privacy',   to: 'static_pages#privacy'
   get '/agreement', to: 'static_pages#agreement'
+  get 'join_us',    to: 'static_pages#join_us'
 
   get 'search', to: 'search#index'
   delete 'reset_search_dates', to: 'search#destroy'
@@ -55,6 +59,10 @@ Rails.application.routes.draw do
     post :calculate_price, on: :member
   end
 
+  resources :rooms, concerns: %i[imagable], except: %i[index show new create edit update destroy] # only to delete images
+  # room_image DELETE /rooms/:room_id/images/:id(.:format)         images#destroy
+  #delete '/rooms/:room_id/images/:id(.:format)', to: 'images#destroy'
+
   resources :activities, concerns: %i[imagable]
   resources :services, concerns: %i[imagable]
   resources :places, concerns: %i[imagable]
@@ -68,5 +76,6 @@ Rails.application.routes.draw do
     get :food_places, on: :member
   end
 
-  resources :carts, only: [:show, :destroy]
+  resources :favorites, only: [:show, :destroy]
+  resources :favorite_items, only: :create  
 end

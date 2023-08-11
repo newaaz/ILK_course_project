@@ -70,6 +70,7 @@ module Searchable
         town_id:              town_id,
         category_id:          category_id,
         activated:            activated,
+        rating:               rating,
         rooms:                self.room_availabilities   
       }
     end

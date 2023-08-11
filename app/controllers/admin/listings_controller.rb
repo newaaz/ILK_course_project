@@ -1,37 +1,37 @@
 class Admin::ListingsController < Admin::BaseController
   def index
+    @town = Town.first
   end
 
   # for all listings
-  def listings
-  end
+  def listings;  end
 
   def activities    
-    activities = Activity.all
+    activities = Activity.order(rating: :desc).all
     @pagy, @listings = pagy(activities, items: 12)
     render :listings
   end
 
   def properties
-    properties = Property.all
+    properties = Property.order(rating: :desc).all
     @pagy, @listings = pagy(properties, items: 12)
     render :listings
   end
 
   def services
-    services = Service.all
+    services = Service.order(rating: :desc).all
     @pagy, @listings = pagy(services, items: 12)
     render :listings
   end
 
   def places
-    places = Place.all
+    places = Place.order(rating: :desc).all
     @pagy, @listings = pagy(places, items: 12)
     render :listings
   end
 
   def food_places
-    food_places = FoodPlace.all
+    food_places = FoodPlace.order(rating: :desc).all
     @pagy, @listings = pagy(food_places, items: 12)
     render :listings
   end
@@ -71,5 +71,28 @@ class Admin::ListingsController < Admin::BaseController
       end
     end
   end
-end
 
+  def update_rating
+    listing = params[:model_name].constantize.find(params[:id])
+    listing.update_attribute(:rating, params[:rating])
+
+    respond_to do |format|    
+      format.turbo_stream do
+        render turbo_stream:
+          turbo_stream.replace(listing, partial: "admin/listings/listing", locals: {listing: listing})
+      end
+    end
+  end
+
+  def update_promouted
+    listing = params[:model_name].constantize.find(params[:id])
+    listing.update_attribute(:promouted, params[:promouted])
+
+    respond_to do |format|    
+      format.turbo_stream do
+        render turbo_stream:
+          turbo_stream.replace(listing, partial: "admin/listings/listing", locals: {listing: listing})
+      end
+    end
+  end
+end

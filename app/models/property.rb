@@ -1,10 +1,17 @@
 class Property < ApplicationRecord
   SERVICES =  {
                 kitchen: 'Кухня',
+                food: 'С питанием',
                 excursions: 'Экскурсии',
                 pool: 'Бассеин',
                 parking: 'Парковка',
                 playground: 'Детская площадка',
+                gazebo: 'Беседка для отдыха',
+                with_childen: 'Для отдыха с детьми',
+                billiard_room: 'Бильярдная',
+                gym: 'Тренажёрный зал',
+                room_cleaning: 'Уборка в номерах',
+                linen_change: 'Смена белья'
               }.freeze
 
   #include Imagable
@@ -14,6 +21,8 @@ class Property < ApplicationRecord
   include ListingActivatable
   include Contactable
   include AdditionalFieldable
+  include Favoritable
+  include Ratingable
   
   belongs_to :owner, class_name: 'Partner'
   belongs_to :town
