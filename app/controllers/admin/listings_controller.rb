@@ -1,10 +1,10 @@
 class Admin::ListingsController < Admin::BaseController
   def index
+    @town = Town.first
   end
 
   # for all listings
-  def listings
-  end
+  def listings;  end
 
   def activities    
     activities = Activity.all
@@ -72,4 +72,3 @@ class Admin::ListingsController < Admin::BaseController
     end
   end
 end
-

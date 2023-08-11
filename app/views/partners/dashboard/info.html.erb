@@ -1,6 +1,5 @@
 <% provide(:title, "Информация") %>
 
-
 <section class="pt-3">
 	<div class="container">
 		<div class="row">
@@ -27,7 +26,25 @@
             <div class="row">
               <div class="col-12 mx-auto">
                 <div class="accordion accordion-icon accordion-bg-light" id="accordionExample2">
-                  <!-- Item -->
+                  <!-- Item listing fee -->
+                  <div class="accordion-item mb-3">
+                    <h6 class="accordion-header font-base" id="heading-0">
+                      <button class="accordion-button fw-bold rounded d-inline-block collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-0" aria-expanded="false" aria-controls="collapse-0">
+                        Стоимость размещения объявлений
+                      </button>
+                    </h6>
+                    <!-- Body -->
+                    <div id="collapse-0" class="accordion-collapse collapse" aria-labelledby="heading-0" data-bs-parent="#accordionExample2" style="">
+                      <div class="accordion-body mt-3">
+                      	<dl>
+                          <dt>Размещение объявлений бесплатно</dt>
+                          <dd>На данный момент все объявления размещаются на бесплатном тарифе. В дальнейшем, когда появятся другие, бесплатный тариф останется, и вы сами решите какой из них выбрать, или оставить бесплатный</dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Item adding properties -->
                   <div class="accordion-item mb-3">
                     <h6 class="accordion-header font-base" id="heading-1">
                       <button class="accordion-button fw-bold rounded d-inline-block collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
@@ -47,7 +64,7 @@
                     </div>
                   </div>
 
-                  <!-- Item -->
+                  <!-- Item adding rooms -->
                   <div class="accordion-item mb-3">
                     <h6 class="accordion-header font-base" id="heading-6">
                       <button class="accordion-button fw-bold collapsed rounded d-block pe-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-6" aria-expanded="false" aria-controls="collapse-6">
@@ -71,7 +88,7 @@
                     </div>
                   </div>
 
-                  <!-- Item -->
+                  <!-- Item  booking calculation -->
                   <div class="accordion-item mb-3">
                     <h6 class="accordion-header font-base" id="heading-7">
                       <button class="accordion-button fw-bold collapsed rounded d-block pe-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-7" aria-expanded="false" aria-controls="collapse-7">
@@ -91,6 +108,8 @@
                           <dd>Если гость выбрал номер - он может отправить заявку. В появившейся форме он заполняет дату заезда/выезда, количество гостей, контактные данные, и при необходимости комментарий и отправляет заявку.
                             Вам на почту приходит уведомление о получении новой заявки со всеми данными. А в личном кабинете в разделе "Заявки" появляется новая заявка со всей информацией по ней
                           </dd>
+                          <dt>Можно отправить заявку самому себе</dt>
+                          <dd>Чтобы посмотреть как это работает</dd>
                           <dt>Отправка сообщения</dt>
                           <dd>Если гость хочет что-то узнать - он может написать сообщение. Тогда ему нужно будет заполнить только контактные данные и текст сообщения.
                             Вам также на почту придёт уведомление о получении нового сообщения (но без дат, количества гостей и выбранного номера). А в личном кабинете в разделе "Заявки" появляется новая заявка с пометкой "Сообщение".
@@ -101,7 +120,7 @@
                     </div>
                   </div>
 
-                  <!-- Item -->
+                  <!-- Item Activity -->
                   <div class="accordion-item mb-3">
                     <h6 class="accordion-header font-base" id="heading-2">
                       <button class="accordion-button fw-bold rounded d-inline-block d-block pe-5 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
@@ -118,7 +137,7 @@
                     </div>
                   </div>
 
-                  <!-- Item -->
+                  <!-- Item Service -->
                   <div class="accordion-item mb-3">
                     <h6 class="accordion-header font-base" id="heading-3">
                       <button class="accordion-button fw-bold rounded d-block pe-5 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
@@ -135,7 +154,7 @@
                     </div>
                   </div>
 
-                  <!-- Item -->
+                  <!-- Item Food place -->
                   <div class="accordion-item mb-3">
                     <h6 class="accordion-header font-base" id="heading-4">
                       <button class="accordion-button fw-bold collapsed rounded d-block pe-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
@@ -151,7 +170,7 @@
                     </div>
                   </div>
 
-                  <!-- Item -->
+                  <!-- Item Place -->
                   <div class="accordion-item mb-3">
                     <h6 class="accordion-header font-base" id="heading-5">
                       <button class="accordion-button fw-bold collapsed rounded d-block pe-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
@@ -167,11 +186,100 @@
                       </div>
                     </div>
                   </div>
-
-
                 </div>
               </div>
             </div>
+
+            		<div class="d-flex mt-5 mb-3">
+			<!-- Icon -->
+			<div class="">
+				<div class="icon-lg text-white bg-primary rounded-circle flex-shrink-0"><i class="bi bi-camera"></i></div>
+			</div>
+			<!-- Content -->
+			<div class="ms-3">
+				<h5 class="mb-1">Также предлагаем услуги по фотографированию гостиниц, гостевых домов, квартир и другой недвижимости.</h5>				
+			</div>	
+		</div>
+
+		<p>&emsp;Мы используем профессиональное оборудование и техники, чтобы создавать высококачественные фотографии, которые <strong>подчеркнут красоту и уют вашего помещения</strong>, и помогут вам <strong>привлечь больше новых гостей и клиентов</strong> и повысить уровень доверия уже имеющихся.</p>
+		<p>&emsp;Свяжитесь с нами, чтобы обсудить, как мы можем помочь вам сделать ваш бизнес более привлекательным и успешным! </p>
+			
+		<div class="row g-4 mt-md-3">
+			<div class="col-md-8">
+				<div class="fotoramain mt-2 property-images" data-controller="fotorama" data-object="main">		    
+					<%= link_to image_tag("promo/small/promo (2).jpg"), image_url("promo/medium/promo (2).jpg") %>
+					<%= link_to image_tag("promo/small/promo (3).jpg"), image_url("promo/medium/promo (3).jpg") %>
+					<%= link_to image_tag("promo/small/promo (4).jpg"), image_url("promo/medium/promo (4).jpg") %>
+					<%= link_to image_tag("promo/small/promo (5).jpg"), image_url("promo/medium/promo (5).jpg") %>
+					<%= link_to image_tag("promo/small/promo (6).jpg"), image_url("promo/medium/promo (6).jpg") %>
+					<%= link_to image_tag("promo/small/promo (7).jpg"), image_url("promo/medium/promo (7).jpg") %>
+					<%= link_to image_tag("promo/small/promo (8).jpg"), image_url("promo/medium/promo (8).jpg") %>
+					<%= link_to image_tag("promo/small/promo (9).jpg"), image_url("promo/medium/promo (9).jpg") %>
+					<%= link_to image_tag("promo/small/promo (10).jpg"), image_url("promo/medium/promo (10).jpg") %>
+					<%= link_to image_tag("promo/small/promo (11).jpg"), image_url("promo/medium/promo (11).jpg") %>
+
+					<%= link_to image_tag("promo/small/promo (12).jpg"), image_url("promo/medium/promo (12).jpg") %>
+					<%= link_to image_tag("promo/small/promo (13).jpg"), image_url("promo/medium/promo (13).jpg") %>
+					<%= link_to image_tag("promo/small/promo (14).jpg"), image_url("promo/medium/promo (14).jpg") %>
+					<%= link_to image_tag("promo/small/promo (15).jpg"), image_url("promo/medium/promo (15).jpg") %>
+					<%= link_to image_tag("promo/small/promo (16).jpg"), image_url("promo/medium/promo (16).jpg") %>
+					<%= link_to image_tag("promo/small/promo (17).jpg"), image_url("promo/medium/promo (17).jpg") %>
+					<%= link_to image_tag("promo/small/promo (18).jpg"), image_url("promo/medium/promo (18).jpg") %>
+					<%= link_to image_tag("promo/small/promo (19).jpg"), image_url("promo/medium/promo (19).jpg") %>
+					<%= link_to image_tag("promo/small/promo (20).jpg"), image_url("promo/medium/promo (20).jpg") %>
+					<%= link_to image_tag("promo/small/promo (21).jpg"), image_url("promo/medium/promo (21).jpg") %>
+
+					<%= link_to image_tag("promo/small/promo (22).jpg"), image_url("promo/medium/promo (22).jpg") %>
+					<%= link_to image_tag("promo/small/promo (23).jpg"), image_url("promo/medium/promo (23).jpg") %>
+					<%= link_to image_tag("promo/small/promo (24).jpg"), image_url("promo/medium/promo (24).jpg") %>
+					<%= link_to image_tag("promo/small/promo (25).jpg"), image_url("promo/medium/promo (25).jpg") %>
+					<%= link_to image_tag("promo/small/promo (26).jpg"), image_url("promo/medium/promo (26).jpg") %>
+					<%= link_to image_tag("promo/small/promo (27).jpg"), image_url("promo/medium/promo (27).jpg") %>
+					<%= link_to image_tag("promo/small/promo (28).jpg"), image_url("promo/medium/promo (28).jpg") %>
+					<%= link_to image_tag("promo/small/promo (29).jpg"), image_url("promo/medium/promo (29).jpg") %>
+					<%= link_to image_tag("promo/small/promo (30).jpg"), image_url("promo/medium/promo (30).jpg") %>
+					<%= link_to image_tag("promo/small/promo (31).jpg"), image_url("promo/medium/promo (31).jpg") %>			
+				</div>
+			</div>
+
+			<div class="col-md-4 ps-md-4">
+				<div class="resources-title mb-3 text-center pt-md-3">		
+					<h3 class="h5">Стоимость фотосъёмки</h1>		
+				</div>
+
+				<ul class="list-group list-group-borderless">
+					<li class="list-group-item py-3">
+						<h6 class="mb-0 fw-normal">
+							<i class="bi bi-check-lg fa-fw text-primary me-2"></i>1к номер - 700р
+						</h6>
+					</li>
+
+					<li class="list-group-item py-3">
+						<h6 class="mb-0 fw-normal">
+							<i class="bi bi-check-lg fa-fw text-primary me-2"></i>2к номер - 1000р
+						</h6>
+					</li>
+
+					<li class="list-group-item py-3">
+						<h6 class="mb-0 fw-normal">
+							<i class="bi bi-check-lg fa-fw text-primary me-2"></i>3к номер - 1300р
+						</h6>
+					</li>
+
+					<li class="list-group-item py-3">
+						<h6 class="mb-0 fw-normal">
+							<i class="bi bi-check-lg fa-fw text-primary me-2"></i>Квартиры - от 1000р (1к)
+						</h6>
+					</li>
+
+					<li class="list-group-item py-3">
+						<h6 class="mb-0 fw-normal">
+							<i class="bi bi-check-lg fa-fw text-primary me-2"></i>Другие объекты - по договорённости
+						</h6>
+					</li>
+				</ul>			
+			</div>
+		</div>
 
             <div class="row g-4 mt-3">
               <!-- Action box item -->
@@ -200,8 +308,8 @@
                     <div class="icon-lg text-white bg-warning rounded-circle flex-shrink-0"><i class="bi bi-envelope"></i></div>
                     <!-- Content -->
                     <div class="ms-3">
-                      <h4 class="mb-1">Нужна помощь?</h4>
-                      <p class="mb-3">Написать</p>
+                      <h4 class="mb-1">Есть предложения?</h4>
+                      <p class="mb-3">Пожалуйста, напишите ваше мнение о работе сервиса, и как можно его улучшить. Спасибо </p>
                       <a href="mailto:admin@ilovekrim.ru">admin@ilovekrim.ru</a>
                       <!-- <a href="#" class="btn btn-warning mb-0">Написать</a> -->
                     </div>	
@@ -217,4 +325,3 @@
 		</div>
 	</div>
 </section>
-

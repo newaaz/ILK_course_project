@@ -69,6 +69,41 @@
   </div>
 </section>
 
+<!-- promo listings -->
+<div class="container mb-5">
+  <div class="row g-2">
+    <div class="col-md-4 position-relative overflow-hidden ">
+      <div class="bg-primary bg-opacity-25 rounded-5 h-100 p-2 d-flex">
+          <div class="icon-md text-white bg-primary rounded-circle flex-shrink-0"><i class="bi bi-house-add"></i></div>          
+
+          Доставка еды
+          <div class="d-block"><%= link_to 'Меню', new_property_path, class: 'btn btn-sm btn-primary mb-0 ' %></div>
+      </div>
+    </div>
+
+    <div class="col-md-6 position-relative overflow-hidden">
+      <div class="bg-orange bg-opacity-25 rounded-3 h-100 p-4">
+        
+      </div>
+    </div>      
+  </div>
+</div>
+
+
+<section class="py-0 py-md-3">
+	<div class="container">
+		<div class="position-relative rounded overflow-hidden p-2 p-sm-5" style="background-image:url(<%= @town.avatar.url %>); background-position: center left; background-size: cover;">
+			<div class="row position-relative z-index-9">
+				<div class="col-md-9 col-xl-8">
+					<div class="rounded shadow bg-light bg-opacity-75 p-sm-4">
+            <h5><%= link_to @town.name, @town, class: "stretched-link"%></h5>
+						<p class="mb-3 text-dark"><%= @town.description %></p>						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 
 

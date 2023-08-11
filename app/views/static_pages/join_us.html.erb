@@ -6,9 +6,9 @@
 			<div class="col-lg-7">
 				<!-- Title -->
 				<h1 class="mb-4 h2">Регистрируйтесь и добавляйте <span class="text-primary">свои объекты</span></h1>
-				<!-- Info -->
+				<!-- Info
 				<p class="mb-4">Speedily say has suitable disposal add boy. On forth doubt miles of child. Exercise joy man children rejoiced.</p>
-				<!-- Button -->
+				 -->
 
         <%= link_to new_partner_registration_path, class: "btn btn-primary-soft mb-4" do %>
           Регистрация <i class="bi bi-arrow-right ms-2"></i>
@@ -16,7 +16,7 @@
 
 				<!-- List -->
 				<h6 class="fw-normal mb-1">Разные типы объявлений и объектов</h6>
-				<ul class="list-group list-group-borderless mb-0 small">
+				<ul class="list-group list-group-borderless mb-0 fw-normal ps-md-3">
 					<li class="list-group-item d-flex mb-0">
 						<i class="bi bi-check-circle text-success me-2 "></i>Объекты  сдачи жилья
 					</li>
@@ -51,46 +51,37 @@
 					<h2 class="fs-3 text-center mb-4 mb-sm-5">Преимущества работы с нами</h2>
 
 					<div class="row g-4">
-						<!-- Card START -->
-						<div class="col-md-6">
-							<div class="card card-body p-4">
-                <div><%= image_tag("theme/element/18.svg", class: "h-70px mb-3") %></div>
-								<h5>List any type of properties</h5>
-								<p class="mb-0">Speedily say has suitable disposal add boy. On forth doubt miles of child. Exercise joy man children rejoiced.</p>
-							</div>
-						</div>
-						<!-- Card END -->
-
-						<!-- Card START -->
-						<div class="col-md-6">
-							<div class="card card-body p-4">
-                <div><%= image_tag("theme/element/21.svg", class: "h-70px mb-3") %></div>
-								<h5>Import detail easily</h5>
-								<p class="mb-0">Two before narrow not relied on how except moment myself Dejection assurance Mrs led certainly open Betrayed.</p>
-							</div>
-						</div>
-						<!-- Card END -->
-
-						<!-- Card START -->
-						<div class="col-md-6">
-							<div class="card card-body p-4">
-                <div><%= image_tag("theme/element/19.svg", class: "h-70px mb-3") %></div>
-								<h5>Step by step guide</h5>
-								<p class="mb-0">Rooms oh fully taken by worse do. Points afraid but may end law.Points afraid but may end law.</p>
-							</div>
-						</div>
-						<!-- Card END -->
-
-						<!-- Card START -->
 						<div class="col-md-6">
 							<div class="card card-body p-4">
                 <div><%= image_tag("theme/element/20.svg", class: "h-70px mb-3") %></div>
-								<h5>Marvelous discounts</h5>
-								<p class="mb-0">Prospective should start broadly and then narrow their list down to colleges that best fit experts</p>
+								<h5>Бесплатное размещение объявлений</h5>
+								<p class="mb-0">На данный момент все объявления размещаются на бесплатном тарифе. В дальнейшем, когда появятся другие, бесплатный тариф останется, и вы сами решите какой из них выбрать, или оставить бесплатный</p>
 							</div>
 						</div>
-						<!-- Card END -->
 
+						<div class="col-md-6">
+							<div class="card card-body p-4">
+                <div><%= image_tag("theme/element/18.svg", class: "h-70px mb-3") %></div>
+								<h5>Расширение вашей аудитории</h5>
+								<p class="mb-0">Разместив у нас объявление,  вы сможете привлечь новых клиентов, которые раньше могли не знать о вашем объекте.</p>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="card card-body p-4">
+                <div><%= image_tag("theme/element/22.svg", class: "h-70px mb-3") %></div>
+								<h5>Управление объявлением из личного кабинета</h5>
+								<p class="mb-0">Вы сами загружаете фотографии, изменяете цены или описание объявлений</p>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="card card-body p-4">
+                <div><%= image_tag("theme/element/17.svg", class: "h-70px mb-3") %></div>
+								<h5>Удобство использования</h5>
+								<p class="mb-0">Наша платформа имеет простой и интуитивно понятный интерфейс, постоянно развивается и получает новые возможности</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -107,18 +98,20 @@
 					<div class="row g-4 justify-content-between align-items-center">
 						<!-- Image -->
 						<div class="col-sm-3 col-lg-2">
-              <%= image_tag("theme/element/22.svg") %>
+              <%= image_tag("theme/element/congratulations.svg") %>
 						</div>
 
 						<!-- Title and content -->
 						<div class="col-sm-9 col-lg-6 col-xl-7">
-							<h4>Why did you choose us</h4>
-							<p class="mb-0">Water timed folly right aware if oh truth. Large above be to means. Dashwood does provide stronger is.</p>
+							<h4>Присоединяйтесь к нам!</h4>
+							<p class="mb-0">И вместе мы создадим незабываемые впечатления для всех, кто хочет открыть для себя Крым!</p>
 						</div>
 
 						<!-- Button -->
 						<div class="col-lg-3 col-xxl-2 d-grid">
-							<a href="#" class="btn btn-primary mb-0">Become a host</a>
+							<%= link_to new_partner_registration_path, class: "btn btn-primary" do %>
+          			Регистрация <i class="bi bi-arrow-right ms-2"></i>
+        			<% end %>
 						</div>
 					</div>
 				</div>
