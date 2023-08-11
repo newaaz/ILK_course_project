@@ -2,12 +2,12 @@
 
 <% flash.each do |message_type, message| %>
   <div class="toast-container position-fixed top-0 end-0 p-3">
-    <div class="toast text-bg-<%= message_type %> border-0 py-2" style="opacity: 0.85;" role="alert" data-bs-delay="5000" aria-live="assertive" aria-atomic="true">
+    <div data-controller="toast" class="toast text-bg-<%= message_type %> border-0 py-2" data-bs-delay="4000" style="opacity: 0.85;" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="d-flex">
-        <div class="toast-body">
+        <div class="toast-body ">
           <%= message %>
         </div>
-        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <button type="button" class="btn-close ms-auto mb-auto pe-3 me-2" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
     </div>
   </div>

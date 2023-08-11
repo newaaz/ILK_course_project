@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
     authorize @property, policy_class: BookingPolicy
     @room = @property.rooms.select(:id, :title).find(params[:booking][:room_id].to_i) if params[:booking][:room_id].present?
     # TODO redefine guest
-    guest = Partner.first
+    guest = Partner.find_by(email: Rails.application.credentials.email[:demo_user])
 
     @booking = @property.bookings.build(booking_params.merge({ guest: guest }))
 

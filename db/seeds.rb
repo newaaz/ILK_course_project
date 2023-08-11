@@ -368,7 +368,7 @@ time = Benchmark.measure do
   45.times { create_place_for(owner) }
 
   FoodPlace.destroy_all
-  45.times { create_food_place_for(owner) }
+  30.times { create_food_place_for(owner) }
 end
 
 puts "Время выполнения: #{time.real} секунд"

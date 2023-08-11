@@ -10,10 +10,11 @@ Rails.application.routes.draw do
       end
       patch 'listings/:id/activate_listing', to: 'listings#activate_listing', as: 'activate_listing'
       patch 'listings/:id/deactivate_listing', to: 'listings#deactivate_listing', as: 'deactivate_listing'
+      patch 'listings/:id/update_rating', to: 'listings#update_rating', as: 'update_rating'
+      patch 'listings/:id/update_promouted', to: 'listings#update_promouted', as: 'update_promouted'
+
       # toggle listing activating status without sending email
       patch 'listings/:id/toggle_listing_activating', to: 'listings#toggle_listing_activating', as: 'toggle_listing_activating'
-      
-      patch 'listings/:id/update_rating', to: 'listings#update_rating', as: 'update_rating'
     end
   end
 

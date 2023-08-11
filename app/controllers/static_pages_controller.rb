@@ -1,11 +1,11 @@
 class StaticPagesController < ApplicationController
   def home
     @towns = Town.all
-    @properties = Property.activated.take 6
-    @activities = Activity.activated.where(rating: 15).select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address).take 6
-    @services = Service.activated.where(rating: 15).select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address).take 6
-    @places = Place.activated.where(rating: 15).select(:id, :title, :avatar, :images, :category_title, :town_id, :address).take 6
-    @food_places = FoodPlace.where(rating: 15).activated.select(:id, :title, :avatar, :images, :tags, :town_id, :address).take 6
+    @properties = Property.activated.where(promouted: 5).select(:id, :title, :avatar, :images, :town_id, :category_id, :services, :address, :price_from, :distance_to_sea).take 6
+    @activities = Activity.activated.where(promouted: 5).select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address).take 6
+    @services = Service.activated.where(promouted: 5).select(:id, :title, :avatar, :images, :category_title, :price, :price_type, :address).take 6
+    @places = Place.activated.where(promouted: 5).select(:id, :title, :avatar, :images, :category_title, :town_id, :address).take 6
+    @food_places = FoodPlace.where(promouted: 5).activated.select(:id, :title, :avatar, :images, :tags, :town_id, :address).take 6
   end
 
   def contacts

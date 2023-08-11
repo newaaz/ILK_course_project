@@ -1,5 +1,5 @@
 <% if object.errors.any? %>
-  <div class="alert alert-danger alert-dismissible fade show" role="alert">    
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">   
     <ul>
       <% object.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -9,12 +9,12 @@
   </div>
 
   <div class="toast-container position-fixed top-0 end-0 p-3">
-    <div id="toast-error" class="toast show text-bg-info border-0 py-3" role="alert" data-bs-delay="5000" aria-live="assertive" aria-atomic="true">
+    <div id="toast-error" class="toast show text-bg-info border-0 py-3" role="alert" data-bs-delay="4000" aria-live="assertive" aria-atomic="true">
       <div class="d-flex">
         <div class="toast-body">
           Нужно правильно указать все необходимые данные
         </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white ms-auto mb-auto pe-3 me-2" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
     </div>
   </div>
