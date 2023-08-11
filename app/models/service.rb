@@ -8,6 +8,8 @@ class Service < ApplicationRecord
   include ListingActivatable
   include Contactable
   include AdditionalFieldable
+  include Favoritable
+  include Ratingable
 
   has_and_belongs_to_many :towns
 

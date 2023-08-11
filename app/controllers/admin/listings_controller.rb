@@ -71,4 +71,16 @@ class Admin::ListingsController < Admin::BaseController
       end
     end
   end
+
+  def update_rating
+    listing = params[:model_name].constantize.find(params[:id])
+    listing.update_attribute(:rating, params[:rating])
+
+    respond_to do |format|    
+      format.turbo_stream do
+        render turbo_stream:
+          turbo_stream.replace(listing, partial: "admin/listings/listing", locals: {listing: listing})
+      end
+    end
+  end
 end

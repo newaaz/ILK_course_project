@@ -83,4 +83,8 @@ class Room < ApplicationRecord
   def min_price
     prices.any? ? prices.minimum(:day_cost) : nil
   end
+
+  def owner
+    property.owner
+  end
 end

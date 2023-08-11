@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       patch 'listings/:id/deactivate_listing', to: 'listings#deactivate_listing', as: 'deactivate_listing'
       # toggle listing activating status without sending email
       patch 'listings/:id/toggle_listing_activating', to: 'listings#toggle_listing_activating', as: 'toggle_listing_activating'
+      
+      patch 'listings/:id/update_rating', to: 'listings#update_rating', as: 'update_rating'
     end
   end
 
@@ -55,6 +57,10 @@ Rails.application.routes.draw do
     resources :bookings, only: %i[new create]
     post :calculate_price, on: :member
   end
+
+  resources :rooms, concerns: %i[imagable], except: %i[index show new create edit update destroy] # only to delete images
+  # room_image DELETE /rooms/:room_id/images/:id(.:format)         images#destroy
+  #delete '/rooms/:room_id/images/:id(.:format)', to: 'images#destroy'
 
   resources :activities, concerns: %i[imagable]
   resources :services, concerns: %i[imagable]

@@ -35,7 +35,7 @@ class ActivitiesController < ApplicationController
   def create
     @activity = current_partner.activities.build(activity_params)
     if @activity.save
-      flash[:success] = "Объявление добавлено и ожидает проверки. Вам на почту придёт письмо, сообщающее об активации и доступности к просмотру"
+      flash[:success] = "Объявление добавлено и ожидает проверки. После активации вам на почту придёт письмо"
       redirect_to @activity
     else
       respond_to do |format|

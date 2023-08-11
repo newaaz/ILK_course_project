@@ -47,6 +47,19 @@
             <%= button_to 'Toggle!', admin_toggle_listing_activating_path(listing, model_name: listing.model_name.name),
                               method: :patch, class: 'btn btn-secondary-soft btn-sm mb-0' %>    
           </div>
+
+          <% if listing.has_attribute?(:category_title) %>
+            <%= "Категория: #{listing.category_title}" %>
+          <% end %>
+
+          <div class="mt-1">          
+            <%= form_with(url: admin_update_rating_path(listing, model_name: listing.model_name.name), method: :patch) do |f| %>
+              <div class="input-group">
+              <%= f.text_field :rating, value: listing.rating, class: 'form-control form-control-sm' %>
+              <%= button_tag "Change", type: 'submit', class:"btn btn-sm btn-success" %>
+              </div>  
+            <% end %>           
+          </div>
         </div>
       </div> 
     </div>

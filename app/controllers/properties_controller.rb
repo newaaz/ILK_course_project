@@ -48,7 +48,7 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @rooms = @property.rooms
+    @rooms = @property.rooms.order(:serial_number)
     @nearby_properties = @property.nearby_objects('Property', 5)
     @nearby_activities = @property.nearby_objects('Activity', 5)
     @nearby_services = @property.nearby_objects('Service', 5)
@@ -66,7 +66,7 @@ class PropertiesController < ApplicationController
   def create
     @property = current_partner.properties.build(property_params)
     if @property.save
-      flash[:success] = "Объявление добавлено и ожидает проверки. Вам на почту придёт письмо, сообщающее об активации и доступности к просмотру"
+      flash[:success] = "Объявление добавлено и ожидает проверки. После активации вам на почту придёт письмо"
       redirect_to @property
     else
       respond_to do |format|
