@@ -3,6 +3,8 @@
   <head>
     <title><%= full_title(yield(:title)) %></title>
 
+    <%= display_meta_tags %>
+
     <%= yield :turbo_cache_control %>
 
     <meta name="viewport" content="width=device-width,initial-scale=1">
