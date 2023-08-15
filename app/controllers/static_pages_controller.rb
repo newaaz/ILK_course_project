@@ -1,6 +1,4 @@
-class StaticPagesController < ApplicationController
-  include ActionView::Helpers::AssetUrlHelper
-  
+class StaticPagesController < ApplicationController  
   def home
     @towns = Town.all
     @properties = Property.activated.where(promouted: 5).select(:id, :title, :avatar, :images, :town_id, :category_id, :services, :address, :price_from, :distance_to_sea).take 6
@@ -13,10 +11,10 @@ class StaticPagesController < ApplicationController
       description: "жильё, активный отдых, услуги и сервис в Крыму на сайте Люблю Крым - ilovekrim.ru",
       og: {
         title: "Люблю Крым - ilovekrim.ru",
-        description: "жильё, активный отдых, услуги и сервис в Крыму на сайте Люблю Крым - ilovekrim.ru",
+        description: "жильё, активный отдых и услуги в Крыму",
         type: "website",
         url: url_for(:only_path => false),
-        image: image_url("theme/category/12.jpg"),
+        image: ActionController::Base.helpers.asset_url("logo_sqwr.png", type: :image),
         locale: "ru_RU"
       }
     )
@@ -28,11 +26,34 @@ class StaticPagesController < ApplicationController
 
   def about
     @town = Town.all.sample    #  Town.find(Town.ids.sample) || Town.find(Town.pluck(:id).sample)
+    set_meta_tags(
+      description: "жильё, активный отдых, услуги и сервис в Крыму на сайте Люблю Крым - ilovekrim.ru",
+      og: {
+        title: "Люблю Крым - ilovekrim.ru",
+        description: "О проекте Люблю Крым",
+        type: "website",
+        url: url_for(:only_path => false),
+        image: ActionController::Base.helpers.asset_url("logo_sqwr.png", type: :image),
+        locale: "ru_RU"
+      }
+    )
   end
 
   def privacy; end
 
   def agreement; end
 
-  def join_us; end
+  def join_us
+    set_meta_tags(
+      description: "жильё, активный отдых, услуги и сервис в Крыму на сайте Люблю Крым - ilovekrim.ru",
+      og: {
+        title: "Люблю Крым - ilovekrim.ru",
+        description: "Размещайте объекты и объявления на сайте Люблю Крым",
+        type: "website",
+        url: url_for(:only_path => false),
+        image: ActionController::Base.helpers.asset_url("logo_sqwr.png", type: :image),
+        locale: "ru_RU"
+      }
+    )
+  end
 end
