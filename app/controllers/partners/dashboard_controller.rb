@@ -18,14 +18,21 @@ class Partners::DashboardController < ApplicationController
     @bookings = current_partner.as_hoster_bookings.includes(:property)
   end
 
-  def profile
+  def cancel_mailing
+    render turbo_stream:
+      turbo_stream.update('flash_messages',
+                          partial: 'shared/flash_message',
+                          locals: {
+                            message_type: 'info',
+                            message: 'Рассылка отключена'
+                          })
   end
 
-  def add_listing
-  end
+  def profile; end
 
-  def info
-  end
+  def add_listing; end
+
+  def info; end
 
   private
 

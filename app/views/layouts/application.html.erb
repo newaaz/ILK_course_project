@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru-RU">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'> -->
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
     <title><%= full_title(yield(:title)) %></title>
 
     <%= display_meta_tags %>
 
     <%= yield :turbo_cache_control %>
-
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
     <!-- Google Font -->
 	  <link rel="preconnect" href="https://fonts.googleapis.com">

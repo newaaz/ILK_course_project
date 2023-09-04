@@ -26,12 +26,13 @@ class PropertiesController < ApplicationController
 
       @dates_status = :set
     rescue Date::Error
-      render turbo_stream: turbo_stream.update('flash_messages',
-                                                  partial: 'shared/flash_message',
-                                                  locals: {
-                                                    message_type: 'info',
-                                                    message: 'Неправильный формат даты'
-                                                  })
+      render turbo_stream:
+        turbo_stream.update('flash_messages',
+                              partial: 'shared/flash_message',
+                              locals: {
+                                message_type: 'info',
+                                message: 'Неправильный формат даты'
+                              })
     end
     
   end

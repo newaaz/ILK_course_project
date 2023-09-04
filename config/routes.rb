@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     get 'bookings', to: 'dashboard#bookings'
     get 'add_listing', to: 'dashboard#add_listing'
     get 'info', to: 'dashboard#info'
+    get 'cancel_mailing', to: 'dashboard#cancel_mailing'
   end
 
   resources :properties, concerns: %i[imagable] do

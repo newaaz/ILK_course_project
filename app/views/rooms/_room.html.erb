@@ -58,7 +58,7 @@
         <ul class="list-group list-group-horizontal">
           <li class="list-group-item w-100 text-center">
             <i class="bi bi-people"></i>
-            <span class="fw-semibold"><%= "#{room.guest_base_count}-#{room.guest_max_count}" %></span>
+            <span class="fw-semibold"><%= "#{room.guest_base_count} (+#{room.guest_max_count - room.guest_base_count})" %></span>
           </li>
           <li class="list-group-item w-100 text-center">
             <small>Комнат: </small><span class="fw-semibold"><%= room.rooms_count %></span>
