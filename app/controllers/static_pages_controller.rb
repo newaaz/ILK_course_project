@@ -1,6 +1,4 @@
-class StaticPagesController < ApplicationController
-  include ActionView::Helpers::AssetUrlHelper
-  
+class StaticPagesController < ApplicationController  
   def home
     @towns = Town.all
     @properties = Property.activated.where(promouted: 5).select(:id, :title, :avatar, :images, :town_id, :category_id, :services, :address, :price_from, :distance_to_sea).take 6

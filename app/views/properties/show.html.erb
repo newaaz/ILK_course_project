@@ -111,26 +111,39 @@
 			<div class="row g-2 g-xl-3">
 				<div class="col-xl-8 order-1">
 					<ul class="nav nav-tabs nav-bottom-line mb-3">
-						<li class="nav-item me-2">
-							<a class="nav-link active" data-bs-toggle="tab" href="#tab-description"><span class="fs-5">Описание</span></a>
-						</li>
 
 						<% if @rooms.any? %>
-							<li class="nav-item">
-								<a class="nav-link" data-bs-toggle="tab" href="#tab-rooms"><span class="fs-5">Номера</span></a>
+							<li class="nav-item me-2">
+								<a class="nav-link active" data-bs-toggle="tab" href="#tab-rooms"><span class="fs-5">Номера</span></a>
 							</li>
-						<% end %>
+							<li class="nav-item">
+								<a class="nav-link" data-bs-toggle="tab" href="#tab-description"><span class="fs-5">Описание</span></a>
+							</li>
+						<% else %>
+							<li class="nav-item me-2">
+								<a class="nav-link active" data-bs-toggle="tab" href="#tab-description"><span class="fs-5">Описание</span></a>
+							</li>				
+						<% end %>		
 				
 						<li class="nav-item">
 							<a class="nav-link" data-bs-toggle="tab" href="#tab-map"><span class="fs-5">Карта</span></a>
 						</li>
 					</ul>
 
-					<div class="tab-content">
-						<%= render 'properties/show/tab_description' %><!-- DESCRIPTION -->
+					<div class="tab-content">						
 
 						<% if @rooms.any? %>
-							<%= render 'properties/show/tab_rooms' %><!-- ROOMS -->
+							<div class="tab-pane show active" id="tab-rooms">
+								<%= render 'properties/show/tab_rooms' %><!-- ROOMS -->
+							</div>
+
+							<div class="tab-pane" id="tab-description">
+								<%= render 'properties/show/tab_description' %><!-- DESCRIPTION -->
+							</div>							
+						<% else %>
+							<div class="tab-pane show active" id="tab-description">
+								<%= render 'properties/show/tab_description' %><!-- DESCRIPTION -->
+							</div>
 						<% end %>			
 
 						<%= render 'properties/show/tab_map' %><!-- MAP -->						
