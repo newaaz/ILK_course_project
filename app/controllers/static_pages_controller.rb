@@ -10,11 +10,11 @@ class StaticPagesController < ApplicationController
     set_meta_tags(
       description: "Жильё, активный отдых, услуги и сервис в Крыму на сайте Люблю Крым рф - ilovekrim.ru",
       og: {
-        title: "Люблю Крым рф - ilovekrim.ru",
-        description: "Жильё, активный отдых, услуги и сервис в Крыму на сайте Люблю Крым рф - ilovekrim.ru",
+        title: "Люблю Крым - ilovekrim.ru",
+        description: "жильё, активный отдых и услуги в Крыму",
         type: "website",
         url: url_for(:only_path => false),
-        image: image_url("theme/category/12.jpg"),
+        image: ActionController::Base.helpers.asset_url("logo_sqwr.png", type: :image),
         locale: "ru_RU"
       }
     )
@@ -38,15 +38,14 @@ class StaticPagesController < ApplicationController
 
   def about
     @town = Town.all.sample    #  Town.find(Town.ids.sample) || Town.find(Town.pluck(:id).sample)
-
     set_meta_tags(
-      description: "О проекте Люблю Крым",
+      description: "жильё, активный отдых, услуги и сервис в Крыму на сайте Люблю Крым - ilovekrim.ru",
       og: {
-        title: "ILK: О проекте",
+        title: "Люблю Крым - ilovekrim.ru",
         description: "О проекте Люблю Крым",
         type: "website",
         url: url_for(:only_path => false),
-        image: image_url("theme/category/12.jpg"),
+        image: ActionController::Base.helpers.asset_url("logo_sqwr.png", type: :image),
         locale: "ru_RU"
       }
     )
@@ -68,5 +67,17 @@ class StaticPagesController < ApplicationController
 
   def agreement; end
 
-  def join_us; end
+  def join_us
+    set_meta_tags(
+      description: "жильё, активный отдых, услуги и сервис в Крыму на сайте Люблю Крым - ilovekrim.ru",
+      og: {
+        title: "Люблю Крым - ilovekrim.ru",
+        description: "Размещайте объекты и объявления на сайте Люблю Крым",
+        type: "website",
+        url: url_for(:only_path => false),
+        image: ActionController::Base.helpers.asset_url("logo_sqwr.png", type: :image),
+        locale: "ru_RU"
+      }
+    )
+  end
 end
