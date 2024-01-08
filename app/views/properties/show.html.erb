@@ -39,6 +39,9 @@
 									<i class="bi bi-eye-fill me-1"></i>View On Map
 								</a>							
 								-->
+								<a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">
+                  <i class="bi bi-eye-fill me-1"></i>На карте
+                </a>   
 							</p>						
 						</div>
 						
@@ -124,14 +127,9 @@
 								<a class="nav-link active" data-bs-toggle="tab" href="#tab-description"><span class="fs-5">Описание</span></a>
 							</li>				
 						<% end %>		
-				
-						<li class="nav-item">
-							<a class="nav-link" data-bs-toggle="tab" href="#tab-map"><span class="fs-5">Карта</span></a>
-						</li>
 					</ul>
 
-					<div class="tab-content">						
-
+					<div class="tab-content">
 						<% if @rooms.any? %>
 							<div class="tab-pane show active" id="tab-rooms">
 								<%= render 'properties/show/tab_rooms' %><!-- ROOMS -->
@@ -144,9 +142,7 @@
 							<div class="tab-pane show active" id="tab-description">
 								<%= render 'properties/show/tab_description' %><!-- DESCRIPTION -->
 							</div>
-						<% end %>			
-
-						<%= render 'properties/show/tab_map' %><!-- MAP -->						
+						<% end %>	
 					</div>
 				</div>
 
@@ -178,30 +174,23 @@
 	</section>
 </main>
 
-<!-- Map modal START (don't used) -->
 <div class="modal fade" id="mapmodal" tabindex="-1" aria-labelledby="mapmodalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<!-- Title -->
-			<div class="modal-header">
-				<h5 class="modal-title" id="mapmodalLabel">View Our Hotel Location</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<!-- Map -->
-			<div class="modal-body p-0">				
-				<div class="p-2">
-					MAP MODAL				
-				</div>
-			</div>
-			<!-- Button -->
-			<div class="modal-footer">
-			</div>
-		</div>
-	</div>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- Title -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="mapmodalLabel">На карте</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- Map -->
+      <div class="modal-body p-0">				
+        <div class="p-2">
+          <%= render 'geolocations/show_map', object: @property, preset_icon: "islands#darkBlueHomeIcon" %>			
+        </div>
+      </div>
+      <!-- Button -->
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
 </div>
-<!-- Map modal END -->
-
-
-
-
-
