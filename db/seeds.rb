@@ -88,7 +88,7 @@ def rand_price
   (rand(1000..2500) / 50).round * 50
 end
 
-# create place
+# create food place
 def create_food_place_for(owner)
   food_place = FoodPlace.create!(title:          FOOD_PLACE_TITLES.sample,
                         tags: [1,2,3,4,5,6,7,8,9,10,11],
@@ -173,7 +173,7 @@ def create_place_for(owner)
   puts "place #{place.title} created"                    
 end
 
-# create Service
+# create service
 def create_service_for(owner)
   service = Service.create!(title:          SERVICE_TITLES.sample,
                             category_title: Service::SERVICE_CATEGORIES.sample,
@@ -307,7 +307,7 @@ def create_property_for(owner)
   #   property.images.attach(io: rand_image_path .open, filename: "p_#{i + 1}.jpg")
   # end    
   
-  # Create Room's
+  # Create room's
   4.times do |i|
     room = property.rooms.build(title: "Стандартный #{i + 1}-х местный номер",
                                 avatar: File.open(File.join(Rails.root, "app/assets/images/seed/properties/rooms/room (#{rand 1..21}).jpg")),
@@ -319,7 +319,7 @@ def create_property_for(owner)
                                           File.open(File.join(Rails.root, "app/assets/images/seed/properties/rooms/room (#{rand 1..21}).jpg"))
                                         ],
                                 guest_base_count: 2,
-                                guest_max_count: rand(1..10),
+                                guest_max_count: rand(3..10),
                                 rooms_count: 1,
                                 size:   rand(20..50),
                                 description: "Номера «люкс» подойдут для размещения четырех человек – отличный вариант для большой семьи",

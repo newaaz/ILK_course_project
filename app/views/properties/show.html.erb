@@ -39,6 +39,9 @@
 									<i class="bi bi-eye-fill me-1"></i>View On Map
 								</a>							
 								-->
+								<a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">
+                  <i class="bi bi-eye-fill me-1"></i>На карте
+                </a>   
 							</p>						
 						</div>
 						
@@ -111,29 +114,35 @@
 			<div class="row g-2 g-xl-3">
 				<div class="col-xl-8 order-1">
 					<ul class="nav nav-tabs nav-bottom-line mb-3">
-						<li class="nav-item me-2">
-							<a class="nav-link active" data-bs-toggle="tab" href="#tab-description"><span class="fs-5">Описание</span></a>
-						</li>
 
 						<% if @rooms.any? %>
-							<li class="nav-item">
-								<a class="nav-link" data-bs-toggle="tab" href="#tab-rooms"><span class="fs-5">Номера</span></a>
+							<li class="nav-item me-2">
+								<a class="nav-link active" data-bs-toggle="tab" href="#tab-rooms"><span class="fs-5">Номера</span></a>
 							</li>
-						<% end %>
-				
-						<li class="nav-item">
-							<a class="nav-link" data-bs-toggle="tab" href="#tab-map"><span class="fs-5">Карта</span></a>
-						</li>
+							<li class="nav-item">
+								<a class="nav-link" data-bs-toggle="tab" href="#tab-description"><span class="fs-5">Описание</span></a>
+							</li>
+						<% else %>
+							<li class="nav-item me-2">
+								<a class="nav-link active" data-bs-toggle="tab" href="#tab-description"><span class="fs-5">Описание</span></a>
+							</li>				
+						<% end %>		
 					</ul>
 
 					<div class="tab-content">
-						<%= render 'properties/show/tab_description' %><!-- DESCRIPTION -->
-
 						<% if @rooms.any? %>
-							<%= render 'properties/show/tab_rooms' %><!-- ROOMS -->
-						<% end %>			
+							<div class="tab-pane show active" id="tab-rooms">
+								<%= render 'properties/show/tab_rooms' %><!-- ROOMS -->
+							</div>
 
-						<%= render 'properties/show/tab_map' %><!-- MAP -->						
+							<div class="tab-pane" id="tab-description">
+								<%= render 'properties/show/tab_description' %><!-- DESCRIPTION -->
+							</div>							
+						<% else %>
+							<div class="tab-pane show active" id="tab-description">
+								<%= render 'properties/show/tab_description' %><!-- DESCRIPTION -->
+							</div>
+						<% end %>	
 					</div>
 				</div>
 
@@ -165,30 +174,23 @@
 	</section>
 </main>
 
-<!-- Map modal START (don't used) -->
 <div class="modal fade" id="mapmodal" tabindex="-1" aria-labelledby="mapmodalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<!-- Title -->
-			<div class="modal-header">
-				<h5 class="modal-title" id="mapmodalLabel">View Our Hotel Location</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<!-- Map -->
-			<div class="modal-body p-0">				
-				<div class="p-2">
-					MAP MODAL				
-				</div>
-			</div>
-			<!-- Button -->
-			<div class="modal-footer">
-			</div>
-		</div>
-	</div>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- Title -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="mapmodalLabel">На карте</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- Map -->
+      <div class="modal-body p-0">				
+        <div class="p-2">
+          <%= render 'geolocations/show_map', object: @property, preset_icon: "islands#darkBlueHomeIcon" %>			
+        </div>
+      </div>
+      <!-- Button -->
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
 </div>
-<!-- Map modal END -->
-
-
-
-
-

@@ -4,7 +4,7 @@
       <div class="row g-0 align-items-center">
         <!-- Image -->
         <div class="col-4">
-          <%= image_tag(nearby_object.avatar.nearby.url, class: "card-img ") %>  
+          <%= image_tag(nearby_object.avatar.nearby.url, class: "card-img ") %> 
         </div>
 
         <!-- Title and content -->
@@ -14,8 +14,7 @@
               <%= link_to nearby_object.title, nearby_object, class: "stretched-link" %>
             </h6>
             <p class="small mb-0">
-            <i class="bi bi-pin-map"></i>
-            <%= main_object.distance_to nearby_object %> m.
+              <%= "~ #{main_object.distance_to nearby_object}m." %>
             </p>
           </div>
         </div>

@@ -26,12 +26,13 @@ class PropertiesController < ApplicationController
 
       @dates_status = :set
     rescue Date::Error
-      render turbo_stream: turbo_stream.update('flash_messages',
-                                                  partial: 'shared/flash_message',
-                                                  locals: {
-                                                    message_type: 'info',
-                                                    message: 'Неправильный формат даты'
-                                                  })
+      render turbo_stream:
+        turbo_stream.update('flash_messages',
+                              partial: 'shared/flash_message',
+                              locals: {
+                                message_type: 'info',
+                                message: 'Неправильный формат даты'
+                              })
     end
     
   end
@@ -54,6 +55,18 @@ class PropertiesController < ApplicationController
     @nearby_services = @property.nearby_objects('Service', 5)
     @nearby_places = @property.nearby_objects('Place', 5)
     @booking = Booking.new(property: @property)
+
+    set_meta_tags(
+      description: "Жильё, активный отдых, услуги и сервис в Крыму на сайте Люблю Крым рф - ilovekrim.ru",
+      og: {
+        title: "#{@property.title} - #{@property.category.title} в #{@property.town.name}",
+        description: "Жильё, активный отдых, услуги и сервис в Крыму на сайте Люблю Крым рф - ilovekrim.ru",
+        type: "website",
+        url: url_for(:only_path => false),
+        image: image_url(@property.avatar.url),
+        locale: "ru_RU"
+      }
+    )
   end
 
   def new

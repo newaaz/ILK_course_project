@@ -58,15 +58,28 @@
         <ul class="list-group list-group-horizontal">
           <li class="list-group-item w-100 text-center">
             <i class="bi bi-people"></i>
-            <span class="fw-semibold"><%= "#{room.guest_base_count}-#{room.guest_max_count}" %></span>
+
+            <% if room.guest_max_count == room.guest_base_count %>
+              <small>Гостей:</small>
+              <span class="fw-semibold"><%= room.guest_base_count %></span>  
+            <% else %>
+              <small>от</small>
+              <span class="fw-semibold"><%= room.guest_base_count %></span>
+              <small>до</small>
+              <span class="fw-semibold"><%= room.guest_max_count %></span>
+            <% end %>
           </li>
+          
           <li class="list-group-item w-100 text-center">
             <small>Комнат: </small><span class="fw-semibold"><%= room.rooms_count %></span>
           </li>
-          <li class="list-group-item w-100 text-center">
-            <i class="bi bi-square"></i>
-            <span class="fw-semibold"><%= room.size %></span> м<sup>2</sup>
-          </li>
+
+          <% if room.size.present? %>
+            <li class="list-group-item w-100 text-center">
+              <i class="bi bi-square"></i>
+              <span class="fw-semibold"><%= room.size %></span> м<sup>2</sup>
+            </li>
+          <% end %>
         </ul>
 
         <%= content_tag(:div, id: "price_#{dom_id(room)}", class: 'mx-auto my-3') do %>

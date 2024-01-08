@@ -8,7 +8,7 @@ class StaticPagesController < ApplicationController
     @food_places = FoodPlace.where(promouted: 5).activated.select(:id, :title, :avatar, :images, :tags, :town_id, :address).take 6
 
     set_meta_tags(
-      description: "жильё, активный отдых, услуги и сервис в Крыму на сайте Люблю Крым - ilovekrim.ru",
+      description: "Жильё, активный отдых, услуги и сервис в Крыму на сайте Люблю Крым рф - ilovekrim.ru",
       og: {
         title: "Люблю Крым - ilovekrim.ru",
         description: "жильё, активный отдых и услуги в Крыму",
@@ -22,6 +22,18 @@ class StaticPagesController < ApplicationController
 
   def contacts
     @town = Town.all.sample
+
+    set_meta_tags(
+      description: "Контакты администрации сайта",
+      og: {
+        title: "ILK: Контакты",
+        description: "Контакты администрации сайта",
+        type: "website",
+        url: url_for(:only_path => false),
+        image: image_url("theme/category/12.jpg"),
+        locale: "ru_RU"
+      }
+    )
   end
 
   def about
@@ -39,7 +51,19 @@ class StaticPagesController < ApplicationController
     )
   end
 
-  def privacy; end
+  def privacy
+    set_meta_tags(
+      description: "Политика конфиденциальности",
+      og: {
+        title: "ILK: Политика конфиденциальности",
+        description: "О проекте Люблю Крым",
+        type: "website",
+        url: url_for(:only_path => false),
+        image: image_url("theme/category/12.jpg"),
+        locale: "ru_RU"
+      }
+    )
+  end
 
   def agreement; end
 

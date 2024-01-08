@@ -22,4 +22,8 @@ class Partners::DashboardPolicy < ApplicationPolicy
   def info?
     user.is_a?(Partner)
   end
+
+  def cancel_mailing?
+    user.is_a?(Partner)
+  end
 end
