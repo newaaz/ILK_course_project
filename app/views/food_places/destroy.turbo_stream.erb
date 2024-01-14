@@ -1,4 +1,4 @@
-<%= turbo_stream.remove("place_#{@food_place.id}") %>
+<%= turbo_stream.remove("food_place_#{@food_place.id}") %>
 
 <%= turbo_stream.update('flash_messages', partial: 'shared/flash_message', locals: { 
                                                                               message_type: 'warning',

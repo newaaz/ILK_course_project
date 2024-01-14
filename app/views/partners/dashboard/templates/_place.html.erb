@@ -38,7 +38,10 @@
         <div class="small mb-2"><i class="bi bi-star me-2"></i><%= place.category_title %></div>
 
         <% if place.address.present? %>
-          <div class="small my-2"><i class="bi bi-geo-alt me-2"></i><%= place.address %></div>
+          <div class="small my-2">
+            <i class="bi bi-geo-alt me-2"></i>
+            <%= "#{place.town.name}, #{place.address}" %>
+          </div>
         <% end %>
 
                   

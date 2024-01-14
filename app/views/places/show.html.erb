@@ -33,7 +33,7 @@
               <!-- Location -->
               <p class="fw-bold mb-0 mt-2">
                 <% if @place.address.present? %>
-                <i class="bi bi-geo-alt me-2"></i><%= @place.address %>
+                <i class="bi bi-geo-alt me-2"></i><%= "#{@place.town.name}, #{@place.address}" %>
                 <% end %>
                 
                 <a href="#" class="ms-2 text-decoration-underline" data-bs-toggle="modal" data-bs-target="#mapmodal">

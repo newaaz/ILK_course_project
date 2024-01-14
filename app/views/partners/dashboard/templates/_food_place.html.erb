@@ -15,7 +15,7 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to place_path(food_place), class: 'dropdown-item text-danger bg-danger-soft-hover', data: { "turbo-method": :delete, turbo_confirm: "Точно удалить - Вы уверены?" } do %>
+                <%= link_to food_place_path(food_place), class: 'dropdown-item text-danger bg-danger-soft-hover', data: { "turbo-method": :delete, turbo_confirm: "Точно удалить - Вы уверены?" } do %>
                   <i class="bi bi-trash fa-fw me-2"></i>Удалить
                 <% end %>
               </li>
@@ -36,7 +36,10 @@
 
       <div class="col-md-8 mt-3">
         <% if food_place.address.present? %>
-          <div class="small my-2"><i class="bi bi-geo-alt me-2"></i><%= food_place.address %></div>
+          <div class="small my-2">
+            <i class="bi bi-geo-alt me-2"></i>
+            <%= "#{food_place.town.name}, #{food_place.address}" %>
+          </div>
         <% end %>
 
                   
